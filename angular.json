@@ -7,8 +7,16 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
-        }
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": { "skipTests": true },
+        "@schematics/angular:directive": { "skipTests": true },
+        "@schematics/angular:guard": { "skipTests": true },
+        "@schematics/angular:interceptor": { "skipTests": true },
+        "@schematics/angular:pipe": { "skipTests": true },
+        "@schematics/angular:resolver": { "skipTests": true },
+        "@schematics/angular:service": { "skipTests": true }
       },
       "root": "",
       "sourceRoot": "src",
@@ -30,6 +38,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -97,8 +106,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "36d2763b-7cf4-42fa-aa47-fe8f7e089c28",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
