@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: "**", redirectTo: "login" }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
