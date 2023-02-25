@@ -9,7 +9,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng deploy",
     "lint": "ng lint",
     "release:major": "changelog -M && git add CHANGELOG.md && npm version major -f && git push && git push --tags",
     "release:minor": "changelog -m && git add CHANGELOG.md && npm version minor -f && git push && git push --tags",

@@ -116,18 +116,6 @@
               "src/**/*.html"
             ]
           }
-        },
-        "deploy": {
-          "builder": "@angular-builders/deploy-ftp:deploy",
-          "options": {
-            "host"        : "${{ secrets.CPANEL_HOSTNAME }}",
-            "port"        : "${{ secrets.CPANEL_SSH_PORT }}",
-            "username"    : "${{ secrets.CPANEL_USERNAME }}",
-            "password"    : "${{ secrets.CPANEL_SSH_PASSPHRASE }}",
-            "privateKey"  : "${{ secrets.CPANEL_SSH_KEY }}",
-            "destination" : "${{ env.CPANEL_PATH }}",
-            "source"      : "dist/fitness-trainer"
-          }
         }
       }
     }
