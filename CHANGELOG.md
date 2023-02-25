@@ -1,3 +1,20 @@
+#### 0.0.4 (2023-02-25)
+
+##### Build System / Dependencies
+
+*  Revert push event tags ([1fd71981](https://github.com/maurodviveros/fitness-trainer/commit/1fd71981082a342d006964d3a2106f68e8b4b641))
+*  params target in  scp-action ([53da96ba](https://github.com/maurodviveros/fitness-trainer/commit/53da96bac009534e0b1c00cd6b71e55a584cee03))
+*  Update params scp-action ([d796aa24](https://github.com/maurodviveros/fitness-trainer/commit/d796aa246c9547df8a86f64dc40f1caf0b1b5963))
+*  Set parameters for scp-action in deploy workflow ([0ed0788c](https://github.com/maurodviveros/fitness-trainer/commit/0ed0788c7b6ec6e969035040b91f6db8ad17c36a))
+*  Update source target ([405ce8e9](https://github.com/maurodviveros/fitness-trainer/commit/405ce8e92c8dee09d1120a68377470d30d6cffb4))
+*  Update Deploy workflow ([fa405f2e](https://github.com/maurodviveros/fitness-trainer/commit/fa405f2efed52ba4ffa4400d190b49b011658072))
+*  update step Upload filed to cPanel ([529c4077](https://github.com/maurodviveros/fitness-trainer/commit/529c4077997dc26dcc9a1d6469e9770b943387ee))
+*  fixed run deploy proyect ([776f8ba5](https://github.com/maurodviveros/fitness-trainer/commit/776f8ba55715b5c6fda2d267640a76bdb575cef4))
+
+##### Reverts
+
+*  Remove angular deploy ([846d5e8c](https://github.com/maurodviveros/fitness-trainer/commit/846d5e8cae6d37f512e4282c7eec51ce33e720f6))
+
 #### 0.0.3 (2023-02-25)
 
 ##### Build System / Dependencies
