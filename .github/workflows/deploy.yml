@@ -2,8 +2,8 @@ name: Despliegue de Angular a cPanel
 
 on:
   push:
-    tags:
-      - '*' # Ejecutar la acción para cualquier tag
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -29,7 +29,7 @@ jobs:
       with:
         host: ${{ secrets.CPANEL_HOSTNAME }}
         username: ${{ secrets.CPANEL_USERNAME }}
-        key: ${{ secrets.CPANEL_SSH_KEY }}
+        key: ${{ secrets.CPANEL_SSH_KEY }} # Base64
         passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
         source: dist/
         target: ${{ env.CPANEL_PATH }}
