@@ -2,8 +2,8 @@ name: Despliegue de Angular a cPanel
 
 on:
   push:
-    tags:
-      - '*' # Ejecutar la acción para cualquier tag
+    branches:
+      - main # Nombre de la rama que deseas monitorear
 
 jobs:
   build-and-deploy:
@@ -25,4 +25,4 @@ jobs:
       run: npm run build
 
     - name: Deploy Project
-      run: ng deploy
+      run: npm run deploy
