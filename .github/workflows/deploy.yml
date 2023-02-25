@@ -31,5 +31,5 @@ jobs:
         username: ${{ secrets.CPANEL_USERNAME }}
         key: ${{ secrets.CPANEL_SSH_KEY }} # Base64
         passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
-        source: dist/
+        source: dist/fitness-trainer
         target: ${{ env.CPANEL_PATH }}
