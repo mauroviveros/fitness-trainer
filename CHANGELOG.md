@@ -1,3 +1,9 @@
+#### 0.0.3 (2023-02-25)
+
+##### Build System / Dependencies
+
+*  Add Angular deploy ([623e70c8](https://github.com/maurodviveros/fitness-trainer/commit/623e70c8ed9aa33cbb4d305ccedac01acaaafdd2))
+
 #### 0.0.2 (2023-02-25)
 
 ##### Build System / Dependencies
