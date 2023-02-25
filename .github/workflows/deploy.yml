@@ -32,6 +32,6 @@ jobs:
         key: ${{ secrets.CPANEL_SSH_KEY }} # Base64
         passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
         source: dist/fitness-trainer/*
-        target: public_html/training.tomipfit.com
+        target: ${{ vars.CPANEL_PATH }}
         strip_components: 2
         rm: true
