@@ -1,24 +1,41 @@
 <mat-card>
   <mat-card-header>
-    <!-- <img mat-card-image src="https://picsum.photos/200/200" /> -->
     <mat-card-title-group>
       <img mat-card-md-image src="https://picsum.photos/400/400" />
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-title-group>
-    <!-- <mat-card-subtitle>tomip-fitness</mat-card-subtitle> -->
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form [formGroup]="form" (submit)="login()">
       <mat-form-field appearance="outline">
         <mat-label>Usuario</mat-label>
-        <input type="text" matInput placeholder="Ingrese su Usuario" />
+        <input
+          type="text"
+          formControlName="user"
+          matInput
+          placeholder="Ingrese su Usuario" />
         <mat-icon matSuffix>person_outlined</mat-icon>
+        <mat-error *ngIf="isInvalid('user')">El campo es obligatorio</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input type="text" matInput placeholder="Ingrese su Contraseña" />
+        <input
+          [type]="show_password ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+          placeholder="Ingrese su Contraseña" />
         <mat-icon matSuffix>lock_outline</mat-icon>
+        <mat-error *ngIf="isInvalid('password')"
+          >El campo es obligatorio</mat-error
+        >
       </mat-form-field>
+
+      <mat-checkbox
+        [(ngModel)]="show_password"
+        [ngModelOptions]="{ standalone: true }">
+        Mostrar Contraseña
+      </mat-checkbox>
 
       <button type="submit" mat-stroked-button color="accent">Ingresar</button>
     </form>
