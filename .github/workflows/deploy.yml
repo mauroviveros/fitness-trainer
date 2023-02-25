@@ -18,16 +18,11 @@ jobs:
       with:
         node-version: '18.14.0'
 
-    - name: Install dependencies
+    - name: Install Dependencies
       run: npm install
 
-    - name: Build project
+    - name: Build Project
       run: npm run build
 
-    - name: Install cPanel SSH key
-      uses: webfactory/ssh-agent@v0.4.1
-      with:
-        ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
-
-    - name: Upload to cPanel
-      run: scp -r -P ${{ secrets.CPANEL_SSH_PORT }} ./dist/* ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOSTNAME }}:{{ env.CPANEL_PATH }}
+    - name: Deploy Project
+      run: ng deploy
