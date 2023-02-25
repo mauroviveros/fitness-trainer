@@ -4,3 +4,30 @@ on:
   push:
     tags:
       - '*' # Ejecutar la acción para cualquier tag
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2.3.4
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2.1.5
+      with:
+        node-version: '18.14.0'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Install cPanel SSH key
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
+
+    - name: Upload to cPanel
+      run: scp -r -P ${{ secrets.CPANEL_SSH_PORT }} ./dist/* ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOSTNAME }}:{{ env.CPANEL_PATH }}
