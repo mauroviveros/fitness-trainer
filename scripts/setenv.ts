@@ -23,6 +23,8 @@ const content = `export const evironment = ${JSON.stringify(environment, null, 2
 const main = async () => {
   await fs.mkdirSync(path.parse(targetPath).dir, { recursive: true });
   await fs.writeFileSync(targetPath, content);
+  const response = await fs.readFileSync(targetPath);
+  console.log(response);
 };
 
 main();
