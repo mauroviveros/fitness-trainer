@@ -1,3 +1,38 @@
+#### 0.0.6 (2023-02-26)
+
+##### Build System / Dependencies
+
+*  workflow deploy on tags ([9c77fbc4](https://github.com/maurodviveros/fitness-trainer/commit/9c77fbc4d4a25bde6f5026b75ed6ec49af7e71f8))
+*  fixed invalid api_key ([95488d60](https://github.com/maurodviveros/fitness-trainer/commit/95488d60484b5c40a6843fabd699b7d4fa8c8f8a))
+*  set new firebase hosting ([c4c35c6d](https://github.com/maurodviveros/fitness-trainer/commit/c4c35c6ddc0beb7197919fdf35fb332105e859a3))
+*  Solved CORS error ([4bd35857](https://github.com/maurodviveros/fitness-trainer/commit/4bd358575c242893675b469f14bbc7e9987e7c25))
+*  enable deploy_dev ([7ad78c21](https://github.com/maurodviveros/fitness-trainer/commit/7ad78c2102f0852b727a12455c85ea455eb14978))
+*  Fix workflow deploy ([cd9ebe49](https://github.com/maurodviveros/fitness-trainer/commit/cd9ebe4949ec30caa16b74eefe471b09be77188c))
+*  use upload artifact ([2be93d77](https://github.com/maurodviveros/fitness-trainer/commit/2be93d77bbf947b623cb0ca1754825be9b21eda1))
+*  Use vars instead of secrets ([2f8ebad7](https://github.com/maurodviveros/fitness-trainer/commit/2f8ebad78234fd9506c90fe9927807e63ed2cd25))
+*  use base64 on secret ([8e64f871](https://github.com/maurodviveros/fitness-trainer/commit/8e64f8718e41c485dc3e60d25a03bc81fb302581))
+*  Ver el contenido del secret ([b3289d63](https://github.com/maurodviveros/fitness-trainer/commit/b3289d6319ecac44470c0fa766ba19a6a0b91fc9))
+*  DOTENV in env ([e778047c](https://github.com/maurodviveros/fitness-trainer/commit/e778047cc8d60b082db0cad966ea884afac46967))
+*  show in workflow files ([29966492](https://github.com/maurodviveros/fitness-trainer/commit/29966492dc829989100b953ff23170513c51dcb8))
+*  fix step config workflow ([5bb6fe66](https://github.com/maurodviveros/fitness-trainer/commit/5bb6fe661347eaac43cdda92b951496343e07c20))
+*  see src in worklflow ([258e7341](https://github.com/maurodviveros/fitness-trainer/commit/258e73416e27c034feef3277058ce2b9f1efb59a))
+*  show ls -l ([0a296143](https://github.com/maurodviveros/fitness-trainer/commit/0a296143f46adda76c0efa91e49f77249c7bdaf8))
+*  show workspace ([6662eef2](https://github.com/maurodviveros/fitness-trainer/commit/6662eef2090a1ca241656115e38b2b914147b97c))
+*  Divido el deploy de PRD y DEV en 2 YAMLs ([ab3d897e](https://github.com/maurodviveros/fitness-trainer/commit/ab3d897e28d99037ed40d72c919f3714335c9598))
+*  fix yaml ([7f2b444b](https://github.com/maurodviveros/fitness-trainer/commit/7f2b444b3d46ee41fc1c41b48f6728e0061449d8))
+
+##### New Features
+
+* **auth:**  add Guard canActivate ([3794e773](https://github.com/maurodviveros/fitness-trainer/commit/3794e77353104d9c29f53b4082509f07b9715dd8))
+
+##### Bug Fixes
+
+*  No se usa momentanamente databaseURL ([2408ef16](https://github.com/maurodviveros/fitness-trainer/commit/2408ef16ac19bae0a952f828e33d11aa9e732f31))
+
+##### Code Style Changes
+
+*  fix Use double quotes ([ab9f6755](https://github.com/maurodviveros/fitness-trainer/commit/ab9f6755e875c68911d77032b6021dbe05793642))
+
 #### 0.0.5 (2023-02-26)
 
 ##### Build System / Dependencies
