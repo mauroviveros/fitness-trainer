@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fitness-trainer-88b97": {
+      "hosting": {
+        "fitness-trainer": [
+          "fitness-trainer-88b97"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fitness-trainer-88b97"
+  }
+}
