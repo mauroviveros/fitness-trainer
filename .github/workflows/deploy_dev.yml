@@ -16,8 +16,10 @@ jobs:
         run: curl -sL https://firebase.tools | bash
 
       - name: Build project
+        env:
+          DOTENV: ${{ vars.DOTENV }}
         run: |
-          echo ${{ vars.DOTENV }} > .env
+          echo $DOTENV > .env
           npm install
           npm run config
           npm run build
