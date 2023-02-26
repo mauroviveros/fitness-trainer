@@ -16,8 +16,10 @@ jobs:
       uses: actions/checkout@v3.3.0
 
     - name: Build project
+      env:
+        DOTENV: ${{ secrets.DOTENV }}
       run: |
-        echo ${{ secrets.DOTENV }} > .env
+        echo $DOTENV > .env
         npm install
         npm run config
         npm run build
