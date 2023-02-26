@@ -1,7 +1,9 @@
-name: Despliegue de Angular a cPanel
+name: Despliegue de Angular a Producción (cPanel)
 
 on:
   push:
+    branches:
+      - main
     tags:
       - '**'
 
@@ -11,15 +13,21 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v3.3.0
 
     - name: Install Node.js
       uses: actions/setup-node@v2.1.5
       with:
         node-version: '18.14.0'
 
+    - name: Generate .env File
+      run: echo ${{ secrets.DOTENV }} > .env
+
     - name: Install dependencies
       run: npm install
+
+    - name: Set up config environments
+      run: npm run config
 
     - name: Build project
       run: npm run build
@@ -35,3 +43,39 @@ jobs:
         target: ${{ vars.CPANEL_PATH }}
         strip_components: ${{ vars.SOURCE_STRIP }}
         rm: ${{ vars.SOURCE_RM }}
+...
+
+name: Despliegue de Angular a Desarrollo (Firebase Hosting)
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.3.0
+
+      - name: Install Firebase CLI
+        run: curl -sL https://firebase.tools | bash
+
+      - name: Generate .env File
+        run: echo ${{ vars.DOTENV }} > .env
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up config environments
+        run: npm run config
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Firebase Hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          firebase deploy --token $FIREBASE_TOKEN
