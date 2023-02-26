@@ -29,8 +29,12 @@ jobs:
     - name: Set up config environments
       run: |
         npm run config
+        cd src
         ls -l
-        echo ${GITHUB_WORKSPACE}
+        cd environments
+        ls -l
+        cd ./src
+        ls -l
 
     - name: Build project
       run: npm run build
