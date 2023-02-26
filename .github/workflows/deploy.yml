@@ -15,22 +15,15 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3.3.0
 
-    - name: Ver contenido del secreto
+    - name: Build project
       env:
         DOTENV: ${{ secrets.DOTENV }}
       run: |
-        echo "El contenido del secreto es: $DOTENV"
-        echo "*************"
-        echo "$DOTENV"
-
-    # - name: Build project
-    #   env:
-    #     DOTENV: ${{ secrets.DOTENV }}
-    #   run: |
-    #     echo $DOTENV > .env
-    #     npm install
-    #     npm run config
-    #     npm run build
+        echo ${{ secrets.DOTENV }} | base64 -d > .env
+        base64 -i .env
+        npm install
+        npm run config
+        npm run build
 
     # - name: Upload files to cPanel
     #   uses: appleboy/scp-action@master
