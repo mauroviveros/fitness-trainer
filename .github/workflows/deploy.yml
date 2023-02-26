@@ -43,6 +43,7 @@ jobs:
         source: dist/fitness-trainer/*
         strip_components: 2
         rm: true
+
 ...
 
 name: Despliegue de Angular a Desarrollo (Firebase Hosting)
