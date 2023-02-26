@@ -2,7 +2,7 @@
   "name": "fitness-trainer",
   "description": "Proyecto Frontend WebApp de Gestión de Rutinas y Ejercicios para Clientes",
   "author": "Mauro Daniel Viveros <maurod.viveros@gmail.com> (TRY Ubbe)",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "private": true,
   "scripts": {

@@ -1,3 +1,19 @@
+#### 0.0.5 (2023-02-26)
+
+##### Build System / Dependencies
+
+*  Remove unnecessary actions vars ([d237d1d1](https://github.com/maurodviveros/fitness-trainer/commit/d237d1d16bdc87e40c8e3a66d40065a7cf49f869))
+*  Add Workflow deploy DEV ([ad22a604](https://github.com/maurodviveros/fitness-trainer/commit/ad22a604f595b9e7798825f6cb0f3e057c41a82e))
+*  script npm config ([22dc024f](https://github.com/maurodviveros/fitness-trainer/commit/22dc024fc28bf44ae61fc9bfe008865dada93074))
+
+##### New Features
+
+*  Add Firebase at Project ([6b570a4a](https://github.com/maurodviveros/fitness-trainer/commit/6b570a4abb175b82252010f081b60c086f9d5cdb))
+
+##### Code Style Changes
+
+*  Add rule double quotes ([cfbd0d37](https://github.com/maurodviveros/fitness-trainer/commit/cfbd0d37b8312e9014c34715fa75f7ea55227434))
+
 #### 0.0.4 (2023-02-25)
 
 ##### Build System / Dependencies
