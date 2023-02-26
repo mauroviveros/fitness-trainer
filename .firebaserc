@@ -1,14 +1,14 @@
 {
   "targets": {
-    "fitness-trainer-88b97": {
+    "fitness-trainer-dev-a0ab6": {
       "hosting": {
         "fitness-trainer": [
-          "fitness-trainer-88b97"
+          "fitness-trainer-dev-a0ab6"
         ]
       }
     }
   },
   "projects": {
-    "default": "fitness-trainer-88b97"
+    "default": "fitness-trainer-dev-a0ab6"
   }
 }
