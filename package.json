@@ -10,6 +10,7 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
+    "config": "npx ts-node scripts/setenv.ts",
     "release:major": "changelog -M && git add CHANGELOG.md && npm version major -f && git push && git push --tags",
     "release:minor": "changelog -m && git add CHANGELOG.md && npm version minor -f && git push && git push --tags",
     "release:patch": "changelog -p && git add CHANGELOG.md && npm version patch -f && git push && git push --tags"
