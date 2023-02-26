@@ -17,7 +17,7 @@ jobs:
 
       - name: Build project
         env:
-          DOTENV: ${{ vars.DOTENV }}
+          DOTENV: ${{ vars.DOTENV_DEV }}
         run: |
           echo $DOTENV > .env
           npm install
