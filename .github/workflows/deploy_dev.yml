@@ -6,7 +6,7 @@ on:
       - dev
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -15,17 +15,12 @@ jobs:
       - name: Install Firebase CLI
         run: curl -sL https://firebase.tools | bash
 
-      - name: Generate .env File
-        run: echo ${{ vars.DOTENV }} > .env
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Set up config environments
-        run: npm run config
-
       - name: Build project
-        run: npm run build
+        run: |
+          echo ${{ vars.DOTENV }} > .env
+          npm install
+          npm run config
+          npm run build
 
       - name: Deploy to Firebase Hosting
         env:

@@ -8,7 +8,7 @@ on:
     #   - '**'
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,23 +16,20 @@ jobs:
       uses: actions/checkout@v3.3.0
 
     - name: Build project
-      env:
-        DOTENV: ${{ secrets.DOTENV }}
       run: |
-        echo ${{ secrets.DOTENV }} | base64 -d > .env
-        base64 -i .env
+        echo ${{ vars.DOTENV }} > .env
         npm install
         npm run config
         npm run build
 
-    # - name: Upload files to cPanel
-    #   uses: appleboy/scp-action@master
-    #   with:
-    #     host: ${{ secrets.CPANEL_HOSTNAME }}
-    #     username: ${{ secrets.CPANEL_USERNAME }}
-    #     key: ${{ secrets.CPANEL_SSH_KEY }}
-    #     passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
-    #     target: ${{ vars.CPANEL_PATH }}
-    #     source: dist/fitness-trainer/*
-    #     strip_components: 2
-    #     rm: true
+    - name: Upload files to cPanel
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.CPANEL_HOSTNAME }}
+        username: ${{ secrets.CPANEL_USERNAME }}
+        key: ${{ secrets.CPANEL_SSH_KEY }}
+        passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
+        target: ${{ vars.CPANEL_PATH }}
+        source: dist/fitness-trainer/*
+        strip_components: 2
+        rm: true

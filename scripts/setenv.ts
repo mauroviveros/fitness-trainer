@@ -24,12 +24,7 @@ const main = async () => {
   try {
     await fs.mkdirSync(path.parse(targetPath).dir, { recursive: true });
     await fs.writeFileSync(targetPath, content);
-
-    console.log(await fs.readFileSync(targetPath, "utf8"));
-    console.log(await fs.readFileSync("./.env", "utf8"));
-  } catch (error) {
-    throw error;
-  };
+  } catch (error) { throw error; };
 };
 
 main();
