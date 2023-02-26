@@ -17,7 +17,7 @@ import { HomeComponent } from "./pages/home/home.component";
 const firebase = {
   projectId         : environment.FIREBASE.PROJECT_ID,
   appId             : environment.FIREBASE.APP_ID,
-  databaseURL       : environment.FIREBASE.DATABASE_URL,
+  // databaseURL       : environment.FIREBASE.DATABASE_URL,
   storageBucket     : environment.FIREBASE.STORAGE_BUCKET,
   apiKey            : environment.FIREBASE.API_KEY,
   authDomain        : environment.FIREBASE.AUTH_DOMAIN,

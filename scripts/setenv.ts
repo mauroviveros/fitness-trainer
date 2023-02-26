@@ -8,7 +8,7 @@ const environment = {
   FIREBASE: {
     PROJECT_ID          : process.env["FIREBASE_PROJECT_ID"],
     APP_ID              : process.env["FIREBASE_APP_ID"],
-    // DATABASE_URL        : process.env["FIREBASE_DATABASE_URL"],
+    DATABASE_URL        : process.env["FIREBASE_DATABASE_URL"],
     STORAGE_BUCKET      : process.env["FIREBASE_STORAGE_BUCKET"],
     API_KEY             : process.env["FIREBASE_API_KEY"],
     AUTH_DOMAIN         : process.env["FIREBASE_AUTH_DOMAIN"],
