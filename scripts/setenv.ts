@@ -17,7 +17,7 @@ const environment = {
   }
 };
 
-const content = `export const evironment = ${JSON.stringify(environment, null, 2)};`;
+const content = `export const environment = ${JSON.stringify(environment, null, 2)};`;
 
 
 const main = async () => {

@@ -14,6 +14,9 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3.3.0
+    
+    - name: check node
+      run: node -v
 
     - name: Install Node.js
       uses: actions/setup-node@v2.1.5
@@ -27,14 +30,7 @@ jobs:
       run: npm install
 
     - name: Set up config environments
-      run: |
-        npm run config
-        cd src
-        ls -l
-        cd environments
-        ls -l
-        cd ./src
-        ls -l
+      run: npm run config
 
     - name: Build project
       run: npm run build
