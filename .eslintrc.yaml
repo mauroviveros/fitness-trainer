@@ -1,6 +1,7 @@
 root: true
 ignorePatterns:
 - projects/**/*
+- scripts/*
 overrides:
 - files:
   - "*.ts"
@@ -21,6 +22,10 @@ overrides:
     semi:
     - error
     - always
+    quotes:
+    - error
+    - double
+    - allowTemplateLiterals: true
 - files:
   - "*.html"
   extends:
