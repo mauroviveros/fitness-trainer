@@ -15,21 +15,40 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3.3.0
 
-    - name: Build project
+    - name: Print Secrets
+      shell: bash
+      env:
+        DOTENV: ${{ vars.DOTENV }}
       run: |
-        echo ${{ vars.DOTENV }} > .env
-        npm install
-        npm run config
-        npm run build
+        echo $DOTENV > .env
+        cat .env
 
-    - name: Upload files to cPanel
-      uses: appleboy/scp-action@master
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
       with:
-        host: ${{ secrets.CPANEL_HOSTNAME }}
-        username: ${{ secrets.CPANEL_USERNAME }}
-        key: ${{ secrets.CPANEL_SSH_KEY }}
-        passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
-        target: ${{ vars.CPANEL_PATH }}
-        source: dist/fitness-trainer/*
-        strip_components: 2
-        rm: true
+        name: DEV_ENV_FILE
+        path: .env.prd
+
+    - name: Print Secrets
+      shell: bash
+      run: |
+        cat .env.prd
+
+    # - name: Build project
+    #   run: |
+    #     echo ${{ vars.DOTENV }} > .env
+    #     npm install
+    #     npm run config
+    #     npm run build
+
+    # - name: Upload files to cPanel
+    #   uses: appleboy/scp-action@master
+    #   with:
+    #     host: ${{ secrets.CPANEL_HOSTNAME }}
+    #     username: ${{ secrets.CPANEL_USERNAME }}
+    #     key: ${{ secrets.CPANEL_SSH_KEY }}
+    #     passphrase: ${{ secrets.CPANEL_SSH_PASSPHRASE }}
+    #     target: ${{ vars.CPANEL_PATH }}
+    #     source: dist/fitness-trainer/*
+    #     strip_components: 2
+    #     rm: true
