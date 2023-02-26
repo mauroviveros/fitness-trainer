@@ -21,10 +21,15 @@ const content = `export const environment = ${JSON.stringify(environment, null, 
 
 
 const main = async () => {
-  await fs.mkdirSync(path.parse(targetPath).dir, { recursive: true });
-  await fs.writeFileSync(targetPath, content);
-  const response = await fs.readFileSync(targetPath);
-  console.log(response);
+  try {
+    await fs.mkdirSync(path.parse(targetPath).dir, { recursive: true });
+    await fs.writeFileSync(targetPath, content);
+
+    console.log(await fs.readFileSync(targetPath, "utf8"));
+    console.log(await fs.readFileSync("./.env", "utf8"));
+  } catch (error) {
+    throw error;
+  };
 };
 
 main();

@@ -14,26 +14,13 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3.3.0
-    
-    - name: check node
-      run: node -v
-
-    - name: Install Node.js
-      uses: actions/setup-node@v2.1.5
-      with:
-        node-version: '18.14.0'
-
-    - name: Generate .env File
-      run: echo ${{ secrets.DOTENV }} > .env
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Set up config environments
-      run: npm run config
 
     - name: Build project
-      run: npm run build
+      run: |
+        echo ${{ secrets.DOTENV }} > .env
+        npm install
+        npm run config
+        npm run build
 
     - name: Upload files to cPanel
       uses: appleboy/scp-action@master
