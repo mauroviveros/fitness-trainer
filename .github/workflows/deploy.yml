@@ -3,6 +3,8 @@ name: Despliegue de Angular a Producción (cPanel)
 on:
   release:
     types: [published]
+    branches:
+    - main
 
 jobs:
   deploy:
