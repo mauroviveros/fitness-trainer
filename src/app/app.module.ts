@@ -1,12 +1,11 @@
-import { initializeApp,provideFirebaseApp } from "@angular/fire/app";
-import { environment } from "../environments/environment";
-import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
-import { provideAuth, getAuth } from "@angular/fire/auth";
-import { provideDatabase, getDatabase } from "@angular/fire/database";
-
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+
+import { environment } from "../environments/environment";
 
 import { AppRoutingModule } from "./app.routing";
 import { MaterialModule } from "./modules/material.module";
@@ -31,18 +30,16 @@ const firebase = {
     HomeComponent
   ],
   imports: [
-    provideFirebaseApp(() => initializeApp(firebase)),
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
+    AngularFireModule.initializeApp(firebase),
+    AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule
   ],
   providers: [
-    ScreenTrackingService,
-    UserTrackingService
+    // ScreenTrackingService,
+    // UserTrackingService
   ],
   bootstrap: [AppComponent]
 })
