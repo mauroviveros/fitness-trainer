@@ -12,3 +12,6 @@ $ npm start
 ```
 
 > server on: `http://localhost:4200/`
+
+## 📜 License
+MIT © [Mauro Daniel Viveros](https://github.com/maurodviveros)
