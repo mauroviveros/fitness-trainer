@@ -13,11 +13,16 @@
     width: 70%;
     max-width: 400px;
     justify-content: center;
-    
+
     @media #{$small-and-down}{
       width: 100%;
       height: 100%;
       border-radius: 0;
+    }
+
+    mat-progress-bar{
+      position: absolute;
+      top: 0;
     }
 
     mat-card-header {

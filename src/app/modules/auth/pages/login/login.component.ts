@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
+import { finalize } from "rxjs";
+
 import { AuthService } from "../../services/auth.service";
 
 @Component({
@@ -8,8 +11,9 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent {
+export class LoginComponent{
   public show_password = false;
+  public isLoading = false;
 
   public form: FormGroup = this._formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -18,6 +22,7 @@ export class LoginComponent {
 
   constructor(
     private _formBuilder: FormBuilder,
+    private _router: Router,
     private _snackBar: MatSnackBar,
     private _auth: AuthService
   ) {}
@@ -26,9 +31,13 @@ export class LoginComponent {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
 
-    this._snackBar.open("❌ Usuario o contraseña incorrecta");
-
-    console.log(this.form.value);
+    this.isLoading = true;
+    this._auth.login(this.form.value.email, this.form.value.password).pipe(
+      finalize(()=> this.isLoading = false )
+    ).subscribe({
+      complete: () => { this._router.navigate([""]); },
+      error: () => { this._snackBar.open("❌ Usuario o contraseña incorrecta", "ok", { duration: 5000 }); }
+    });
   }
 
   public isInvalid(campo: string): boolean | null{
