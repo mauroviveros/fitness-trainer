@@ -1,3 +1,17 @@
+#### 0.0.7 (2023-02-27)
+
+##### Build System / Dependencies
+
+*  update deploy workflow ([3f63cc2f](https://github.com/maurodviveros/fitness-trainer/commit/3f63cc2f79f4379ea9a9e7204bcef1ebae2cd6d6))
+*  add firebase and dotenv ([9044db6e](https://github.com/maurodviveros/fitness-trainer/commit/9044db6e0a5ad4fe4b2a2a91c55e58542baccf0b))
+
+##### New Features
+
+* **auth:**
+  *  add authorized and unauthorized firebase guard ([d2efaa08](https://github.com/maurodviveros/fitness-trainer/commit/d2efaa08ebcbb2213d5ef56e636208593b7ce87d))
+  *  add login subscription and progress bar ([00951ab2](https://github.com/maurodviveros/fitness-trainer/commit/00951ab20b13a8326983157153f4838a4b2188a5))
+*  change username for email ([f763f689](https://github.com/maurodviveros/fitness-trainer/commit/f763f6894d8283ed3859d906288e8da9d5f0fa49))
+
 #### 0.0.6 (2023-02-26)
 
 ##### Build System / Dependencies
