@@ -11,7 +11,8 @@ import { AppRoutingModule } from "./app.routing";
 import { MaterialModule } from "./modules/material.module";
 
 import { AppComponent } from "./app.component";
-import { HomeComponent } from "./pages/home/home.component";
+import { HomeComponent } from "./core/pages/home/home.component";
+import { ShortcutComponent } from "./core/components/shortcut/shortcut.component";
 
 const firebase = {
   projectId         : environment.FIREBASE.PROJECT_ID,
@@ -27,7 +28,8 @@ const firebase = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ShortcutComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebase),
