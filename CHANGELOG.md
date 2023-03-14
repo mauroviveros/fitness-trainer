@@ -1,3 +1,19 @@
+## [0.0.9](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.8...v0.0.9) (2023-03-14)
+
+
+### Bug Fixes
+
+* **core:** :truck: rename import homeComponent ([942ca4b](https://github.com/maurodviveros/fitness-trainer/commit/942ca4b0c4f5e96887ccb0fe50a17b4dcbd326a8))
+
+
+### Features
+
+* **auth:** :iphone: responsive login form on desktop ([43b42a1](https://github.com/maurodviveros/fitness-trainer/commit/43b42a16726382b1a6db353eda73ca42e7c5ea64))
+* **core:** :lipstick: add home theme ([6606cd2](https://github.com/maurodviveros/fitness-trainer/commit/6606cd2bebd19e317930c1b07c5678db8b991b69))
+* **core:** :sparkles: add shortcutComponent ([6e09285](https://github.com/maurodviveros/fitness-trainer/commit/6e0928567a9a0e557dae4ac31b1bf57ce11aff17))
+
+
+
 #### 0.0.8 (2023-02-27)
 
 #### 0.0.7 (2023-02-27)
