@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($config) {
+  $primary-palette: map.get($config, primary);
+
+  core-home {
+    background-color: mat.get-color-from-palette($primary-palette, A100);
+
+    figure, h1 {
+      color: mat.get-contrast-color-from-palette($primary-palette, A100);
+    }
+    mat-card{
+      background-color: mat.get-color-from-palette($primary-palette, 50) !important;
+      color: mat.get-contrast-color-from-palette($primary-palette, 50);
+    }
+  }
+}
+
+@mixin typography($config) {
+  core-home {
+    figure {
+      font-size: mat.font-size($config, 'headline-5') !important;
+      line-height: mat.line-height($config, 'headline-5') !important;
+    }
+
+    h1 {
+      font-size: mat.font-size($config, 'headline-4') !important;
+      line-height: mat.line-height($config, 'headline-4') !important;
+    }
+
+    mat-card{
+      font-size: mat.font-size($config, 'subtitle-2') !important;
+      line-height: mat.line-height($config, 'subtitle-2') !important;
+      font-weight: mat.font-weight($config, 'subtitle-2') !important;;
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $typography-config: mat.get-typography-config($theme);
+
+  @if $color-config != null { @include color($color-config); }
+  @if $typography-config != null { @include typography($typography-config); }
+}
