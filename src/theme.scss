@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use './app/core/core.theme.scss' as core;
 
 @include mat.core();
 
@@ -13,8 +14,8 @@
 //   )
 // );
 
-$primary: mat.define-palette($primary-palette);
-$accent: mat.define-palette($primary-palette);
+$primary: mat.define-palette(mat.$indigo-palette);
+$accent: mat.define-palette(mat.$pink-palette);
 
 $typography: mat.define-typography-config();
 
@@ -27,3 +28,4 @@ $theme: mat.define-light-theme((
 ));
 
 @include mat.all-component-themes($theme);
+@include core.all-component-themes($theme);
