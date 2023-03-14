@@ -18,7 +18,8 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.inlineSuggest.enabled": true,
   "conventionalCommits.scopes": [
-    "auth"
+    "auth",
+    "core"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
