@@ -10,14 +10,18 @@
   background-color: #fafafa;
 
   mat-card {
-    width: 70%;
-    max-width: 400px;
+    width: 100%;
+    height: 100%;
     justify-content: center;
 
     @media #{$small-and-down}{
-      width: 100%;
-      height: 100%;
       border-radius: 0;
+    }
+
+    @media #{$medium-and-up}{
+      width: 70%;
+      max-width: 400px;
+      height: auto;
     }
 
     mat-progress-bar{
