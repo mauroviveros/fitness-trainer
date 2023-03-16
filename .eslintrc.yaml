@@ -2,6 +2,10 @@ root: true
 ignorePatterns:
 - projects/**/*
 - scripts/*
+rules:
+  indent:
+  - error
+  - 2	
 overrides:
 - files:
   - "*.ts"
