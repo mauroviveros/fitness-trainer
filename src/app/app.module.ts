@@ -8,7 +8,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from "../environments/environment";
 
 import { AppRoutingModule } from "./app.routing";
-import { MaterialModule } from "./modules/material.module";
+import { SharedModule } from "./shared/shared.module";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./core/pages/home/home.component";
@@ -37,7 +37,7 @@ const firebase = {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    SharedModule
   ],
   providers: [
     // ScreenTrackingService,
