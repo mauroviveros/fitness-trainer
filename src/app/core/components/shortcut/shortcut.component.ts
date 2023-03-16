@@ -9,4 +9,5 @@ export class ShortcutComponent {
   @Input() public icon = "dashboard";
   @Input() public link = "";
   @Input() public text = "dashboard";
+  @Input() public disabled = false;
 }
