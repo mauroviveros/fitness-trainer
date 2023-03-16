@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+  <a mat-icon-button routerLink="">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+
+  <span style="flex: 1 1 auto">Mi Rutina</span>
+
+  <button mat-icon-button>
+    <mat-icon>date_range</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-tab-group backgroundColor="primary">
+  <mat-tab label="Detalle">
+    <mat-list>
+      <ng-container *ngFor="let item of detalle">
+        <mat-list-item>
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <h5 matListItemTitle>{{ item.title }}:</h5>
+          <span matListItemLine>{{ item.value }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-tab>
+  <mat-tab label="Entrenamiento">
+    <mat-list>
+      <mat-list-item>
+        <mat-checkbox>
+          <h5 matListItemTitle>title</h5>
+          <p matListItemLine>info</p>
+        </mat-checkbox>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>
