@@ -10,19 +10,24 @@ const redirectAuthorizedToHome = () => redirectLoggedInTo([""]);
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin }
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: "",
+        component: HomeComponent,
+      },
+      {
+        path: "rutina",
+        loadChildren: () => import("./modules/routines/routines.module").then(m => m.RoutinesModule)
+      }
+    ]
   },
   {
-    path: "login",
+    path: "",
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectAuthorizedToHome },
     loadChildren: () => import("./modules/auth/auth.module").then(m => m.AuthModule)
-  },
-  {
-    path: "rutina",
-    loadChildren: () => import("./modules/routines/routines.module").then(m => m.RoutinesModule)
   }
 ];
 
