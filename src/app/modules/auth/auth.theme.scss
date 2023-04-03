@@ -1,0 +1,5 @@
+@use './pages/login/login.component.scss' as login;
+
+@mixin all-component-themes($theme) {
+    @include login.theme($theme);
+};

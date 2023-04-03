@@ -1,8 +1,8 @@
+<img src="assets/logo.png" />
 <mat-card>
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <mat-card-header>
     <mat-card-title-group>
-      <img mat-card-md-image src="https://picsum.photos/400/400" />
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-title-group>
   </mat-card-header>
@@ -10,35 +10,19 @@
     <form [formGroup]="form" (submit)="login()">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input
-          type="email"
-          formControlName="email"
-          matInput
-          placeholder="Ingrese su Email" />
+        <input type="email" formControlName="email" matInput placeholder="Ingrese su Email" />
         <mat-icon matSuffix>mail_outlined</mat-icon>
-        <mat-error *ngIf="isInvalid('email')">
-          El campo es obligatorio
-        </mat-error>
+        <mat-error *ngIf="isInvalid('email')"> El campo es obligatorio </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input
-          [type]="show_password ? 'text' : 'password'"
-          matInput
-          formControlName="password"
-          placeholder="Ingrese su Contraseña" />
+        <input [type]="show_password ? 'text' : 'password'" matInput formControlName="password" placeholder="Ingrese su Contraseña" />
         <mat-icon matSuffix>lock_outline</mat-icon>
-        <mat-error *ngIf="isInvalid('password')"
-          >El campo es obligatorio</mat-error
-        >
+        <mat-error *ngIf="isInvalid('password')">El campo es obligatorio</mat-error>
       </mat-form-field>
 
-      <mat-checkbox
-        [(ngModel)]="show_password"
-        [ngModelOptions]="{ standalone: true }">
-        Mostrar Contraseña
-      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="show_password" [ngModelOptions]="{ standalone: true }"> Mostrar Contraseña </mat-checkbox>
 
       <button type="submit" mat-stroked-button color="accent">Ingresar</button>
     </form>

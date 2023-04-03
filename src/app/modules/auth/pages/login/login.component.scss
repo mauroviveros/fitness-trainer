@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
 @import "../../../../../variables.scss";
 
 :host {
@@ -7,7 +9,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
 
   mat-card {
     width: 100%;
@@ -20,6 +21,7 @@
 
     @media #{$medium-and-up}{
       width: 70%;
+      margin-top: 1rem;
       max-width: 400px;
       height: auto;
     }
@@ -35,13 +37,6 @@
         align-items: center;
         flex-direction: column-reverse;
         margin-bottom: 1rem;
-
-        img{
-          width: 100%;
-          min-height: 200px;
-          padding: 4%;
-          border-radius: 24px;
-        }
       }
     }
 
@@ -55,3 +50,18 @@
     }
   }
 }
+
+// Theming
+@mixin color($config) {
+  $primary-palette: map.get($config, primary);
+
+  auth-login{
+    background-color: mat.get-color-from-palette($primary-palette, 500);
+  }
+};
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null { @include color($color-config); };
+};
