@@ -1,22 +1,23 @@
 @use '@angular/material' as mat;
 @use './app/core/core.theme.scss' as core;
+@use './app/modules/auth/auth.theme.scss' as auth;
 @use './app/modules/routines/routines.theme.scss' as routines;
 
 @include mat.core();
 
-// $primary-palette: (
-//   50 : #e5e2f3, 100 : #bdb8e0, 200 : #9288cc, 300 : #6658b8, 400 : #4535a8,
-//   500 : #241199, 600 : #200f91, 700 : #1b0c86, 800 : #160a7c, 900 : #0d056b,
-//   A100 : #9f9bff, A200 : #6e68ff, A400 : #3d35ff, A700 : #251bff,
-//   contrast: (
-//     50 : #000000, 100 : #000000, 200 : #000000, 300 : #ffffff, 400 : #ffffff,
-//     500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff,
-//     A100 : #000000, A200 : #ffffff, A400 : #ffffff, A700 : #ffffff,
-//   )
-// );
+$primary-palette: (
+    50: #f2e8e8, 100: #dec5c5, 200: #c99f9f, 300: #b37979, 400: #a25c5c,
+    500: #923f3f, 600: #8a3939, 700: #7f3131, 800: #752929, 900: #631b1b,
+    A100: #ffa0a0, A200: #ff6d6d, A400: #ff3a3a, A700: #ff2020,
+    contrast: (
+        50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #ffffff,
+        500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff,
+        A100: #000000, A200: #000000, A400: #ffffff, A700: #ffffff,
+    )
+);
 
-$primary: mat.define-palette(mat.$indigo-palette);
-$accent: mat.define-palette(mat.$pink-palette);
+$primary: mat.define-palette($primary-palette);
+$accent: mat.define-palette($primary-palette);
 
 $typography: mat.define-typography-config();
 
@@ -30,4 +31,5 @@ $theme: mat.define-light-theme((
 
 @include mat.all-component-themes($theme);
 @include core.all-component-themes($theme);
+@include auth.all-component-themes($theme);
 @include routines.all-component-themes($theme);
