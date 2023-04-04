@@ -1,0 +1,41 @@
+name: Despliegue de Angular a Desarrollo (Firebase Hosting)
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.3.0
+
+      - name: Install Project
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Archive Build
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./dist/fitness-trainer
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Install Firebase CLI
+        run: curl -sL https://firebase.tools | bash
+
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          path: ./dist/fitness-trainer
+
+      - name: Deploy to Firebase Hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --token $FIREBASE_TOKEN
