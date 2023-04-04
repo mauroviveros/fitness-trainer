@@ -46,8 +46,3 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-
-# Dotenv
-.env*
-!.env.example
-src/environments
