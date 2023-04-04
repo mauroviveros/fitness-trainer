@@ -34,14 +34,10 @@ jobs:
         run: curl -sL https://firebase.tools | bash
 
       - name: Download Build
-        uses: actions/download-artifact@v3
-        with:
-          path: .
-
-      - name: Mostrar contenido del directorio
-        run: ls -R
+        uses: actions/download-artifact@v3  
 
       - name: Deploy to Firebase Hosting
+        working-directory: ./artifact
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: firebase deploy --token $FIREBASE_TOKEN
