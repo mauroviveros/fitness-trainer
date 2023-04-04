@@ -25,7 +25,7 @@
   </mat-tab>
   <mat-tab label="Entrenamiento">
     <mat-selection-list>
-      <mat-list-option>
+      <mat-list-option (click)="onSelectRutina(option)" #option>
         <mat-icon matListItemIcon>folder</mat-icon>
         <h5 matListItemTitle>title</h5>
         <p matListItemLine>info</p>

@@ -4,11 +4,13 @@ import { SharedModule } from "../../shared/shared.module";
 import { RoutinesRoutingModule } from "./routines.routing";
 
 import { DetailComponent } from "./pages/detail/detail.component";
+import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.component";
 
 
 @NgModule({
   declarations: [
-    DetailComponent
+    DetailComponent,
+    BottomSheetComponent
   ],
   imports: [
     CommonModule,
