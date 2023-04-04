@@ -38,7 +38,7 @@ jobs:
         with:
           path: |
             dist/fitness-trainer
-            firebase.json
+            .
 
       - name: Deploy to Firebase Hosting
         env:
