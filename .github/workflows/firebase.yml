@@ -36,9 +36,7 @@ jobs:
       - name: Download Build
         uses: actions/download-artifact@v3
         with:
-          path: |
-            dist/fitness-trainer
-            .
+          path: .
 
       - name: Deploy to Firebase Hosting
         env:
