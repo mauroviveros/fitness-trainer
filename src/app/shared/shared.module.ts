@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatIconModule } from "@angular/material/icon";
+import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
@@ -17,6 +19,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 @NgModule({
   declarations: [],
   exports: [
+    MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -30,4 +33,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatToolbarModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
+    matIconRegistry.addSvgIcon("youtube", domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/youtube.svg"));
+  }
+}
