@@ -20,6 +20,10 @@
     };
 };
 
+input.mat-datepicker-input{
+  display: none;
+};
+
 :host ::ng-deep {
     .mat-mdc-tab-body-wrapper{
         flex: 1;

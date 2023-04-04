@@ -1,3 +1,6 @@
+<input matInput [matDatepicker]="picker" />
+<mat-datepicker touchUi #picker></mat-datepicker>
+
 <mat-toolbar color="primary">
   <a mat-icon-button routerLink="">
     <mat-icon>arrow_back</mat-icon>
@@ -5,7 +8,7 @@
 
   <span style="flex: 1 1 auto">Mi Rutina</span>
 
-  <button mat-icon-button>
+  <button mat-icon-button (click)="picker.open()">
     <mat-icon>date_range</mat-icon>
   </button>
 </mat-toolbar>
