@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 :host{
     display: flex;
     flex-direction: column;
@@ -18,4 +21,32 @@
     .mat-mdc-tab-body-wrapper{
         flex: 1;
     };
+};
+
+@mixin color($config) {
+  $primary-palette: map.get($config, primary);
+
+  mat-list-item, mat-list-option{
+    mat-icon, h5{
+      color: mat.get-color-from-palette($primary-palette, 500) !important;
+    }
+  };
+};
+
+@mixin typography($config) {
+  mat-list-item, mat-list-option{
+    mat-icon{
+      font-size: 2rem !important;
+      width: 2rem !important;
+      height: 2rem !important;
+    };
+  };
+};
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $typography-config: mat.get-typography-config($theme);
+
+  @if $color-config != null { @include color($color-config); };
+  @if $typography-config != null { @include typography($typography-config); };
 };
