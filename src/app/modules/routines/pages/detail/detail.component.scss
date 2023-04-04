@@ -2,22 +2,20 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-}
+
+    mat-tab-group{ 
+        flex: 1;
+        mat-list-item, mat-list-option{
+            mat-icon{
+                margin-top: auto !important;
+                margin-bottom: auto !important;
+            };
+        };
+    };
+};
 
 :host ::ng-deep {
     .mat-mdc-tab-body-wrapper{
         flex: 1;
-    }
-}
-
-
-mat-list-item{
-    mat-icon{
-        margin-top: auto !important;
-        margin-bottom: auto !important;
-    }
-}
-
-mat-tab-group{ 
-    flex: 1;
-}
+    };
+};
