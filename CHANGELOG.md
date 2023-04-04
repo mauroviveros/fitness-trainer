@@ -1,3 +1,29 @@
+## [0.0.10](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.9...v0.0.10) (2023-04-04)
+
+
+### Bug Fixes
+
+* **auth:** :lipstick: set max-height in img ([b868618](https://github.com/maurodviveros/fitness-trainer/commit/b86861800aa094112ab4e817ff092a273a25443c))
+
+
+### Features
+
+* :lipstick: add and exec routines theme ([3a62105](https://github.com/maurodviveros/fitness-trainer/commit/3a62105b50b15c2f5d9486b74cb5b1a412f83995))
+* :lipstick: add app-root styles ([0e78951](https://github.com/maurodviveros/fitness-trainer/commit/0e78951a777430a9f2eadf15a44b3e2f08ab58ba))
+* :lipstick: set body display:flex ([1596d03](https://github.com/maurodviveros/fitness-trainer/commit/1596d030143457ef0c197289b20933de8905755a))
+* :sparkles: add routing rutina ([965f9c6](https://github.com/maurodviveros/fitness-trainer/commit/965f9c627461be46cf5dfb4f0f57d3c571bcb3a2))
+* :truck: move material module ([5933f96](https://github.com/maurodviveros/fitness-trainer/commit/5933f962eb2fc158235c2e6c6c38956b4cbf58ac))
+* **auth:** :zap: 2 childs Authorized / Unauthorized ([816094d](https://github.com/maurodviveros/fitness-trainer/commit/816094dfdae2d6628a9887787790656bd5ccec2a))
+* **core:** :bento: add logotipo and isotipo ([493e4a4](https://github.com/maurodviveros/fitness-trainer/commit/493e4a4491434ff3d9882f8ec8e47b6b2889882d))
+* **core:** :label: add input disabled ([a46eab0](https://github.com/maurodviveros/fitness-trainer/commit/a46eab0d9447e486e9adaa4f4d67dd4aa1f1c36e))
+* **core:** :lipstick: add main theme ([d149cef](https://github.com/maurodviveros/fitness-trainer/commit/d149ceffb52671720fef705483486f68e74d6ff2))
+* **routines:** :lipstick: add theme module ([ac16b86](https://github.com/maurodviveros/fitness-trainer/commit/ac16b8678ba9e1dc53dd8880758ec7cc1320c211))
+* **routines:** :sparkles: add routing ([45b01b2](https://github.com/maurodviveros/fitness-trainer/commit/45b01b2ac9811eb143ca9c76637f6ed126cae6b1))
+* **routines:** :sparkles: init detail component ([3600cd6](https://github.com/maurodviveros/fitness-trainer/commit/3600cd6833a76b04bbc24fb3320521832147f223))
+* **routines:** :sparkles: init routines module ([acb77f5](https://github.com/maurodviveros/fitness-trainer/commit/acb77f5ddc05f0b0d4b400d80847912558fda01f))
+
+
+
 ## [0.0.9](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.8...v0.0.9) (2023-03-14)
 
 
