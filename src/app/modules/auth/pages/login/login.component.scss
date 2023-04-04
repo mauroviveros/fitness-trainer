@@ -10,6 +10,12 @@
   align-items: center;
   justify-content: center;
 
+  img{
+    @media #{$medium-and-up}{
+      max-height: 40vh;
+    };
+  };
+
   mat-card {
     width: 100%;
     height: 100%;
