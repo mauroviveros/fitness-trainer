@@ -21,7 +21,7 @@ jobs:
       - name: Archive Build
         uses: actions/upload-artifact@v3
         with:
-          path: ./dist/fitness-trainer
+          path: ./
 
   deploy:
     needs: build
@@ -33,7 +33,7 @@ jobs:
       - name: Download Build
         uses: actions/download-artifact@v3
         with:
-          path: ./dist/fitness-trainer
+          path: ./
 
       - name: Deploy to Firebase Hosting
         env:
