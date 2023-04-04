@@ -39,7 +39,7 @@ jobs:
           path: .
 
       - name: Mostrar contenido del directorio
-        run: ls
+        run: ls -R
 
       - name: Deploy to Firebase Hosting
         env:
