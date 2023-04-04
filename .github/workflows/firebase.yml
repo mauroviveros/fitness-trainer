@@ -24,6 +24,7 @@ jobs:
         with:
           path: |
             dist/fitness-trainer
+            .firebaserc
             firebase.json
 
   deploy:
