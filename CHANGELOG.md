@@ -1,3 +1,24 @@
+## [0.0.12](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.11...v0.0.12) (2023-04-04)
+
+
+### Bug Fixes
+
+* **core:** :lipstick: center shotcuts ([8079377](https://github.com/maurodviveros/fitness-trainer/commit/8079377a170014c12c1f8ff0f0ef56ab1d268c4b))
+* **routines:** :truck: merge theme scss file ([bd2cb72](https://github.com/maurodviveros/fitness-trainer/commit/bd2cb7220daf56cd32e959dcc4be82730363f915))
+
+
+### Features
+
+* **core:** :bento: add youtube.svg ([490a37b](https://github.com/maurodviveros/fitness-trainer/commit/490a37bec8d65885b18ce594e2f3f8b06d20d818))
+* **routines:** :art: add selection-list ([46eb58c](https://github.com/maurodviveros/fitness-trainer/commit/46eb58c480e1df9a13d2cb6fbb05e0fab2f80009))
+* **routines:** :lipstick: add mat-list-option styles ([f68b805](https://github.com/maurodviveros/fitness-trainer/commit/f68b8058e9f8b4254c86e8933db3910a2acf078a))
+* **routines:** :lipstick: add style mat-list-option ([3d71c6b](https://github.com/maurodviveros/fitness-trainer/commit/3d71c6bb540077ea7f5d6e03ff383f2108423242))
+* **routines:** :sparkles: add botton-sheet component ([dd9633f](https://github.com/maurodviveros/fitness-trainer/commit/dd9633facb84282bf0451becea33c7f89d504831))
+* **routines:** :sparkles: add datepicker ([5fb8c06](https://github.com/maurodviveros/fitness-trainer/commit/5fb8c06d397bbb85904eb116e99cdd04e9f43864))
+* **routines:** :sparkles: use botton-sheet in detail ([9fb32b1](https://github.com/maurodviveros/fitness-trainer/commit/9fb32b132800c69f0c91bccb6a274208ef69fdc7))
+
+
+
 ## [0.0.11](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.10...v0.0.11) (2023-04-04)
 
 
