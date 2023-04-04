@@ -4,7 +4,7 @@
 @mixin color($config) {
   $primary-palette: map.get($config, primary);
 
-  mat-list-item{
+  mat-list-item, mat-list-option{
     mat-icon, h5{
       color: mat.get-color-from-palette($primary-palette, 500) !important;
     }
@@ -13,7 +13,7 @@
 
 @mixin typography($config) {
 
-  mat-list-item{
+  mat-list-item, mat-list-option{
     mat-icon{
       font-size: 2rem !important;
       width: 2rem !important;
