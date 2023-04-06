@@ -20,7 +20,8 @@
   "conventionalCommits.scopes": [
     "auth",
     "core",
-    "routines"
+    "routines",
+    "users"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
