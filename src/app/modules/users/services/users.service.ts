@@ -1,20 +1,32 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
-// import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Firestore, collection, setDoc, doc } from "@angular/fire/firestore";
+
+enum Role { "USER", "ADMIN", "OWNER" }
+interface userCollection {
+  name: string,
+  surname: string
+}
 
 @Injectable({
   providedIn: "root"
 })
 export class UsersService {
+  private usersCollection = collection(this.firestore, "users");
 
   constructor(
-    private _authFire: AngularFireAuth,
-    // private _firestore: AngularFirestore
+    private auth: Auth,
+    private firestore: Firestore
   ){}
 
-  public async createUser(email: string){
-    const credential = await this._authFire.createUserWithEmailAndPassword(email, "123456");
-    console.log(credential.user);
-    console.log(credential.user?.uid);
+  public async createUser(email: string, role: Role, fields: userCollection){
+    const credential = await createUserWithEmailAndPassword(this.auth, email, "123456");
+
+    const document = await setDoc(doc(this.usersCollection, credential.user.uid), {
+      role: role,
+      ...fields
+    });
+
+    console.log(document);
   }
 }
