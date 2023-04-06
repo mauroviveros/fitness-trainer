@@ -20,6 +20,10 @@ const routes: Routes = [
       {
         path: "rutina",
         loadChildren: () => import("./modules/routines/routines.module").then(m => m.RoutinesModule)
+      },
+      {
+        path: "users",
+        loadChildren: () => import("./modules/users/users.module").then(m => m.UsersModule)
       }
     ]
   },
