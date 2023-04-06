@@ -1,0 +1,20 @@
+$screen-xsmall   : 600px;
+$screen-small    : 960px;
+$screen-medium   : 1280px;
+$screen-large    : 1920px;
+
+$diff : 0.02px;
+
+$media-xsmall   : "(max-width: #{$screen-xsmall - $diff})";
+$media-small    : "(min-width: #{$screen-xsmall}) and (max-width: #{$screen-small - $diff})";
+$media-medium   : "(min-width: #{$screen-small}) and (max-width: #{$screen-medium - $diff})";
+$media-large    : "(min-width: #{$screen-medium}) and (max-width: #{$screen-large - $diff})";
+$media-xlarge   : "(min-width: #{$screen-large})";
+
+$media-small-down   : "(max-width: #{$screen-small - $diff})";
+$media-medium-down  : "(max-width: #{$screen-medium - $diff})";
+$media-large-down   : "(max-width: #{$screen-large - $diff})";
+
+$media-small-up     : "(min-width: #{$screen-xsmall})";
+$media-medium-up    : "(min-width: #{$screen-small})";
+$media-large-up     : "(min-width: #{$screen-medium})";
