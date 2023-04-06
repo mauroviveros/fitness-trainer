@@ -3,8 +3,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 
-import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
+import { provideAuth,getAuth } from "@angular/fire/auth";
+import { provideFirestore,getFirestore } from "@angular/fire/firestore";
 
 import { environment } from "../environments/environment";
 
@@ -18,7 +19,6 @@ import { ShortcutComponent } from "./core/components/shortcut/shortcut.component
 const firebase = {
   projectId         : environment.FIREBASE.PROJECT_ID,
   appId             : environment.FIREBASE.APP_ID,
-  // databaseURL       : environment.FIREBASE.DATABASE_URL,
   storageBucket     : environment.FIREBASE.STORAGE_BUCKET,
   apiKey            : environment.FIREBASE.API_KEY,
   authDomain        : environment.FIREBASE.AUTH_DOMAIN,
@@ -33,8 +33,10 @@ const firebase = {
     ShortcutComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(firebase),
-    AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

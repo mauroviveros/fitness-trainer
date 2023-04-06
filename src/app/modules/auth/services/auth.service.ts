@@ -1,20 +1,17 @@
 import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { from, Observable } from "rxjs";
-
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { Auth, signInWithEmailAndPassword } from "@angular/fire/auth";
+import { from } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
 
-  constructor(private _auth: AngularFireAuth){
-    this._auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
-  }
+  constructor(
+    private auth: Auth
+  ){}
 
-  public login(email: string, password: string): Observable<firebase.auth.UserCredential>{
-    return from(this._auth.signInWithEmailAndPassword(email, password));
+  public login(email: string, password: string){
+    return from(signInWithEmailAndPassword(this.auth, email, password));
   }
 }
