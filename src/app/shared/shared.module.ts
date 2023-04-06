@@ -7,6 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
@@ -41,6 +42,7 @@ const MY_DATE_FORMATS = {
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
