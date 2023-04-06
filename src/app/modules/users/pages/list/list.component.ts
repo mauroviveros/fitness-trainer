@@ -1,5 +1,9 @@
 import { Component } from "@angular/core";
-import { UsersService } from "../../services/users.service";
+import { MatDialog } from "@angular/material/dialog";
+import { MatBottomSheet } from "@angular/material/bottom-sheet";
+
+import { NewUserComponent } from "../../components/new-user/new-user.component";
+import { BottomSheetComponent } from "../../components/bottom-sheet/bottom-sheet.component";
 
 @Component({
   selector: "app-list",
@@ -9,10 +13,17 @@ import { UsersService } from "../../services/users.service";
 export class ListComponent {
 
   constructor(
-    private _usersService: UsersService
+    private _dialog: MatDialog,
+    private _bottomSheet: MatBottomSheet
   ){}
 
   public addUser(){
-    this._usersService.createUser("test1@test.com");
+    const bool = true;
+    if(bool){
+      this._bottomSheet.open(BottomSheetComponent);
+    } else{
+      this._dialog.open(NewUserComponent);
+    }
+
   }
 }
