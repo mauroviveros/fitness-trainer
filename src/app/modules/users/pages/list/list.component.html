@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <a mat-icon-button routerLink="">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+
+  <span style="flex: 1 1 0">Usuarios</span>
+
+  <button mat-icon-button (click)="addUser()">
+    <mat-icon>person_add</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-nav-list>
+  <mat-list-item routerLink="/users/123" [activated]="false">
+    <span>Hola</span>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-nav-list>
