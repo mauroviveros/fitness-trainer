@@ -1,3 +1,29 @@
+## [0.0.13](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.12...v0.0.13) (2023-04-09)
+
+
+### Bug Fixes
+
+* **auth:** :alien: use angular/fire 7 ([d257e24](https://github.com/maurodviveros/fitness-trainer/commit/d257e243b7f1710837d7f9c9ead392ece5bbd136))
+* **auth:** :bulb: disable persistence ([c7695d7](https://github.com/maurodviveros/fitness-trainer/commit/c7695d73ef3abd588d407baf39d733cc820a5b82))
+
+
+### Features
+
+* **core:** :bento: add img isotipo ([51b2a0f](https://github.com/maurodviveros/fitness-trainer/commit/51b2a0f64858e44143cdbf1edeb5e6437f93bd9c))
+* **core:** :children_crossing: add users path in loadChildren route ([991a1dc](https://github.com/maurodviveros/fitness-trainer/commit/991a1dc0edcf3f7e21626cd55b921b7d1bdd7b89))
+* **core:** :lipstick: add breakpoints variables ([ca59180](https://github.com/maurodviveros/fitness-trainer/commit/ca59180773abc3ad22a33e686e10c7ef434184d4))
+* **core:** :sparkles: add Dialog ([247bc46](https://github.com/maurodviveros/fitness-trainer/commit/247bc46a78a4f5e9dffad52ac1bdc71de95e707b))
+* **core:** :sparkles: add user shortcut ([853cf40](https://github.com/maurodviveros/fitness-trainer/commit/853cf4098b33aa8c10b0deec4aa8097c256411b0))
+* **users:** :alien: add service ([ceed44f](https://github.com/maurodviveros/fitness-trainer/commit/ceed44f9e552e8b2fb063f7f9e92a8927bea3e45))
+* **users:** :alien: add service ([aa3f603](https://github.com/maurodviveros/fitness-trainer/commit/aa3f60380b4be1b4174c442b2ac9c0b57d9e43b7))
+* **users:** :sparkles: add detail page ([38ef29e](https://github.com/maurodviveros/fitness-trainer/commit/38ef29e7ef954631b36a1a71c362fb5924fcb177))
+* **users:** :sparkles: add list page ([f175439](https://github.com/maurodviveros/fitness-trainer/commit/f175439aaab4f0517ef0854103ebbda622259a88))
+* **users:** :sparkles: add module ([252ae08](https://github.com/maurodviveros/fitness-trainer/commit/252ae0844fe4e86ecb0158cb686e7393f87a78bc))
+* **users:** :sparkles: add newUser component ([2b03be9](https://github.com/maurodviveros/fitness-trainer/commit/2b03be9699cc01e9b737e3b7bd71609409e6ba69))
+* **users:** :sparkles: add routing ([fb50ae2](https://github.com/maurodviveros/fitness-trainer/commit/fb50ae24491f1e9266ce12338f6b33138dc3a890))
+
+
+
 ## [0.0.12](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.11...v0.0.12) (2023-04-04)
 
 
