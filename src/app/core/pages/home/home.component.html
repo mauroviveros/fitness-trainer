@@ -7,11 +7,12 @@
 
 <mat-card>
   <mat-card-content>
-    <core-shortcut text="Usuarios" link="users" icon="people"></core-shortcut>
-    <core-shortcut text="Mi rutina" link="rutina" icon="fitness_center"></core-shortcut>
-    <core-shortcut text="Mi nutrición" [disabled]="true"></core-shortcut>
-    <core-shortcut text="Calorias" [disabled]="true"></core-shortcut>
-    <core-shortcut text="Calorias" [disabled]="true"></core-shortcut>
-    <core-shortcut text="Calorias" [disabled]="true"></core-shortcut>
+    <core-shortcut
+      *ngFor="let shortcut of shortcuts"
+      [text]="shortcut.text"
+      [link]="shortcut.link"
+      [icon]="shortcut.icon"
+      [disabled]="shortcut.disabled"
+      (click)="onClick(shortcut.action)"></core-shortcut>
   </mat-card-content>
 </mat-card>
