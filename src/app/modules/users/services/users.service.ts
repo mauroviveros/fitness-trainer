@@ -1,12 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Auth, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Auth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "@angular/fire/auth";
 import { Firestore, collection, setDoc, doc } from "@angular/fire/firestore";
 
-enum Role { "USER", "ADMIN", "OWNER" }
-interface userCollection {
-  name: string,
-  surname: string
-}
+import { UserDocument } from "../interfaces/users";
+import { from } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -19,14 +16,14 @@ export class UsersService {
     private firestore: Firestore
   ){}
 
-  public async createUser(email: string, role: Role, fields: userCollection){
-    const credential = await createUserWithEmailAndPassword(this.auth, email, "123456");
+  public createUser(email: string, fields: UserDocument){
+    const promise = async () => {
+      const methods = await fetchSignInMethodsForEmail(this.auth, email);
+      if(methods.length) throw "Ya existe ese usuario";
+      const credential = await createUserWithEmailAndPassword(this.auth, email, "123456");
+      await setDoc(doc(this.usersCollection, credential.user.uid), fields);
+    };
 
-    const document = await setDoc(doc(this.usersCollection, credential.user.uid), {
-      role: role,
-      ...fields
-    });
-
-    console.log(document);
+    return from(promise());
   }
 }

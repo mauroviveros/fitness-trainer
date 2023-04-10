@@ -1,22 +1,35 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
 <h1 mat-dialog-title>Nuevo Usuario</h1>
-<form [formGroup]="form">
+
+<form [formGroup]="form" (submit)="submit()">
   <mat-dialog-content>
     <mat-form-field>
       <mat-label>Nombre</mat-label>
       <input type="text" formControlName="name" placeholder="Ingrese el Nombre" matInput />
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Apellido</mat-label>
       <input type="text" formControlName="surname" placeholder="Ingrese el Apellido" matInput />
       <mat-icon matSuffix>badge</mat-icon>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input type="email" formControlName="email" placeholder="Ingrese el email" matInput />
       <mat-icon matSuffix>mail</mat-icon>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol">
+        <mat-option [value]="role.value" *ngFor="let role of roles">{{ role.key }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-dialog-content>
+
   <mat-dialog-actions>
     <button type="submit" color="accent" mat-button cdkFocusInitial>Ingresar</button>
   </mat-dialog-actions>
