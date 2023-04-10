@@ -1,5 +1,5 @@
 <a mat-fab color="primary" [routerLink]="link" [disabled]="disabled">
-  <mat-icon>{{ icon }}</mat-icon>
+  <mat-icon>{{ icon || 'dashboard' }}</mat-icon>
 </a>
 
-<span>{{ text }}</span>
+<span>{{ text || 'dashboard' }}</span>
