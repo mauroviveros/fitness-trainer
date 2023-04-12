@@ -7,9 +7,13 @@ import { AuthRoutingModule } from "./auth.routing";
 import { SharedModule } from "../../shared/shared.module";
 
 import { LoginComponent } from "./pages/login/login.component";
+import { UnverifiedComponent } from "./pages/unverified/unverified.component";
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [
+    LoginComponent,
+    UnverifiedComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

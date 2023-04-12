@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+section{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    mat-icon{
+        font-size: 5rem;
+        width: auto;
+        height: auto;
+    }
+
+
+    button{
+        margin-top: 2rem;
+    }
+}
+
+// Theming
+@mixin color($config) {
+    $primary-palette: map.get($config, primary);
+
+    auth-unverified{
+      section {
+        mat-icon{
+            color: mat.get-color-from-palette($primary-palette, 500);
+        }
+      }
+    }
+  };
+  
+  @mixin theme($theme) {
+    $color-config: mat.get-color-config($theme);
+  
+    @if $color-config != null { @include color($color-config); };
+  };

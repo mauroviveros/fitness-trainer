@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <h1>Usuario no verificado</h1>
+</mat-toolbar>
+
+<section>
+  <mat-icon>security</mat-icon>
+  <h5>No puede continuar al menos que confirme su email</h5>
+  <p class="mat-caption">Si no le llego el correo contactese con su coach</p>
+  <button mat-raised-button color="primary" (click)="logout()">CERRAR SESIÓN</button>
+  <button mat-raised-button color="primary" (click)="sendVerification()" *ngIf="user.role === 'OWNER'">ENVIAR EMAIL</button>
+</section>
