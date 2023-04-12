@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "@angular/fire/auth";
-import { Firestore, collection, setDoc, doc } from "@angular/fire/firestore";
+import { Firestore, collection, setDoc, getDoc, doc, collectionData } from "@angular/fire/firestore";
 
 import { UserDocument } from "../interfaces/users";
-import { from } from "rxjs";
+import { Observable, from } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -26,4 +26,23 @@ export class UsersService {
 
     return from(promise());
   }
+
+  public getUsers(){
+    return collectionData(this.usersCollection, { idField: "_id" }) as Observable<UserDocument[]>;
+  }
+
+  public getUser(_id: string){
+    const promise = async () => {
+      const document = await getDoc(doc(this.usersCollection, _id));
+      if(document.exists()){
+        const user = document.data() as UserDocument;
+        user._id = document.id;
+        return user;
+      }
+      else throw document.id;
+    };
+
+    return from(promise());
+  }
+
 }
