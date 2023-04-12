@@ -6,45 +6,32 @@
     flex-direction: column;
     flex: 1;
 
-    mat-tab-group{ 
+    mat-tab-group{
         flex: 1;
-        mat-list-item, mat-list-option{
-            mat-icon{
-                margin-top: auto !important;
-                margin-bottom: auto !important;
-                font-size: 2rem !important;
-                width: 2rem !important;
-                height: 2rem !important;
-            };
-        };
-    };
-};
+    }
+}
 
 input.mat-datepicker-input{
-  display: none;
-};
+    display: none;
+}
 
 :host ::ng-deep {
-    .mat-mdc-tab-body-wrapper{
-        flex: 1;
-    };
-    .mat-bottom-sheet-container{
-      padding: 0;
+    .mat-mdc-tab-body-wrapper { flex: 1; }
+    .mat-bottom-sheet-container { padding: 0; }
+}
+
+@mixin color($config){
+    $primary-palette: map.get($config, primary);
+
+    mat-list-item, mat-list-option{
+        mat-icon, h5 {
+            color: mat.get-color-from-palette($primary-palette, 500) !important;
+        }
     }
-};
+}
 
-@mixin color($config) {
-  $primary-palette: map.get($config, primary);
+@mixin theme($theme){
+    $color-config: mat.get-color-config($theme);
 
-  mat-list-item, mat-list-option{
-    mat-icon, h5{
-      color: mat.get-color-from-palette($primary-palette, 500) !important;
-    }
-  };
-};
-
-@mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
-
-  @if $color-config != null { @include color($color-config); };
+    @if $color-config != null { @include color($color-config); }
 };
