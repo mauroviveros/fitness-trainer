@@ -1,1 +1,21 @@
-<p>detail works!</p>
+<mat-toolbar color="primary">
+  <a mat-icon-button routerLink="/users"><mat-icon>arrow_back</mat-icon></a>
+
+  <span style="flex: 1 1 0">Detalle Usuario</span>
+</mat-toolbar>
+
+<mat-list>
+  <mat-list-item>
+    <mat-icon matListItemIcon>badge</mat-icon>
+    <h5 matListItemTitle>Nombre Completo</h5>
+    <span matListItemLine>{{ user.name | titlecase }} {{ user.surname | titlecase }}</span>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <mat-icon matListItemIcon>email</mat-icon>
+    <h5 matListItemTitle>Email</h5>
+    <span matListItemLine>{{ user.email }}</span>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

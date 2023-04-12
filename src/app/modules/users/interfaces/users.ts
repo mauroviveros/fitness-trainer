@@ -1,18 +1,11 @@
 
 export interface UserDocument {
-    email?  : string,
+    _id     : string,
+    email   : string,
     name    : string,
     surname : string,
-    role    : Role
+    role    : Role,
+    [key: string]: string
 }
 
-export interface UserDialog{
-    role    : Role
-}
-
-
-export enum Role {
-    user    = "USER",
-    admin   = "ADMIN",
-    owner   = "OWNER"
-}
+export type Role = "USER" | "ADMIN" | "OWNER";
