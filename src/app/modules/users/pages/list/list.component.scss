@@ -1,0 +1,33 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    section{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+
+        mat-nav-list{
+            flex: 1;
+            width: 100%;
+        }
+    }
+}
+
+:host ::ng-deep{
+    *[matlistitemtitle]{
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center;
+        gap: .2rem;
+        mat-icon{
+            font-size: 1.25rem !important;
+            width: 1.25rem !important;
+            height: 1.25rem !important;
+            color: gray !important;
+        }
+    }
+}

@@ -1,7 +1,5 @@
 <mat-toolbar color="primary">
-  <a mat-icon-button routerLink="">
-    <mat-icon>arrow_back</mat-icon>
-  </a>
+  <a mat-icon-button routerLink=""><mat-icon>arrow_back</mat-icon></a>
 
   <span style="flex: 1 1 0">Usuarios</span>
 
@@ -9,9 +7,24 @@
     <mat-icon>person_add</mat-icon>
   </button>
 </mat-toolbar>
-<mat-nav-list>
-  <mat-list-item routerLink="/users/123" [activated]="false">
-    <span>Hola</span>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-</mat-nav-list>
+
+<section>
+  <mat-spinner *ngIf="!users.length; else list"></mat-spinner>
+</section>
+
+<ng-template #list>
+  <mat-nav-list>
+    <ng-container *ngFor="let user of users">
+      <mat-list-item [routerLink]="user._id">
+        <mat-icon matListItemIcon>{{ getIconByRol(user.role) }}</mat-icon>
+        <h5 matListItemTitle>
+          <span>{{ user.name | titlecase }} {{ user.surname | titlecase }}</span>
+          <mat-icon>verified</mat-icon>
+        </h5>
+        <span matListItemLine>Email: {{ user.email }}</span>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-nav-list>
+</ng-template>
