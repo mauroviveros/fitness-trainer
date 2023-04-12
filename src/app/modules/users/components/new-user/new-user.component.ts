@@ -20,15 +20,15 @@ export class NewUserComponent {
   public isLoading = false;
 
   public roles: RoleSelect[] = [
-    { key: "Administrador", value: Role.admin },
-    { key: "Cliente", value: Role.user }
+    { key: "Administrador", value: "ADMIN" },
+    { key: "Cliente", value: "USER" }
   ];
 
   public form: FormGroup = this._formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     name: [null, [Validators.required]],
     surname: [null, [Validators.required]],
-    rol: [null, [Validators.required]]
+    role: [null, [Validators.required]]
   });
 
   constructor(
@@ -40,11 +40,11 @@ export class NewUserComponent {
 
   public submit(){
     if(this.form.invalid) return;
-    const { email, ...fields } = this.form.value;
+    const fields = this.form.value;
 
     this.isLoading = true;
 
-    this._users.createUser(email, fields).pipe(
+    this._users.createUser(fields.email, fields).pipe(
       finalize(()=> this.isLoading = false )
     ).subscribe({
       complete: () => { this._snackBar.open("✅ Usuario creado correctamente", "cerrar", { panelClass: ["success-snackbar"] }); },
