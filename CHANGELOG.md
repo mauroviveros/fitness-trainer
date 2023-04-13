@@ -1,3 +1,40 @@
+## [0.0.14](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.13...v0.0.14) (2023-04-13)
+
+
+### Bug Fixes
+
+* **auth:** :lipstick: use breakpoints for [@media](https://github.com/media) ([2c0866d](https://github.com/maurodviveros/fitness-trainer/commit/2c0866df2c31a331fdaeca215fc0e05eb6f1150a))
+* **core:** :sparkles: use custom authGuard ([34b84de](https://github.com/maurodviveros/fitness-trainer/commit/34b84de0aa6d592c0f4bd2b477bb00394f1b695c))
+* **routines:** :art: format code ([c949511](https://github.com/maurodviveros/fitness-trainer/commit/c949511be9996dcd449d0a780a2a57bcc6159047))
+* **users:** :adhesive_bandage: close dialog when createUser ([72e124a](https://github.com/maurodviveros/fitness-trainer/commit/72e124a5822ec3de28ff80bc23df98c152b56f97))
+* **users:** :bug: updateUser return a promise ([9c697c1](https://github.com/maurodviveros/fitness-trainer/commit/9c697c1f8eb093cf09c74e5752dd7eca6e4ffa1a))
+* **users:** :pencil2: fix role name in users ([8dd3d7e](https://github.com/maurodviveros/fitness-trainer/commit/8dd3d7edda39a5dd10287795b735d42fd85f7a50))
+* **users:** :truck: rename listComponent selector ([c1d952b](https://github.com/maurodviveros/fitness-trainer/commit/c1d952b10d3138fd2a709adad708eebb6b1fbf78))
+
+
+### Features
+
+* :lipstick: add theme's  files ([a2c5409](https://github.com/maurodviveros/fitness-trainer/commit/a2c5409aef75c8f4942c0725badcd73be2cb2167))
+* **auth:** :adhesive_bandage: fix sendEmailVerification on Promise ([2a348a0](https://github.com/maurodviveros/fitness-trainer/commit/2a348a03175e81e7c3b846278080b0f3cff6c62e))
+* **auth:** :lock: add authGuard for unverified users ([71dc7eb](https://github.com/maurodviveros/fitness-trainer/commit/71dc7eb6d082e4f877c4c479989f30bea9ac6c1f))
+* **auth:** :sparkles: add logout service ([a5786eb](https://github.com/maurodviveros/fitness-trainer/commit/a5786ebd4a6c9e69271c8263d5437a18b0774228))
+* **auth:** :sparkles: add unverified page ([f2c2cc1](https://github.com/maurodviveros/fitness-trainer/commit/f2c2cc170b7586af1f9c22fc93b31e80cd19fc81))
+* **core:** :lipstick: set mat-icon styles in mat-list-item ([d597a05](https://github.com/maurodviveros/fitness-trainer/commit/d597a05b5ab0939c287ef3c027c8483f86b1ac46))
+* **core:** :recycle: use ngFor for Shortcuts ([c34e78e](https://github.com/maurodviveros/fitness-trainer/commit/c34e78e1e148dc1285883d2b0fb6bb3672e79d53))
+* **core:** :sparkles: add LayoutComponent ([2400c0e](https://github.com/maurodviveros/fitness-trainer/commit/2400c0efd27e5dbe93946878fd99049fc396b8b5))
+* **core:** :sparkles: add ProgressSpinner ([fd40055](https://github.com/maurodviveros/fitness-trainer/commit/fd40055ce01d92fe2273eb89b9443fdff5f82435))
+* **core:** :truck: add MatSelect ([8de06a7](https://github.com/maurodviveros/fitness-trainer/commit/8de06a77296d01dce3a13a845cf4814e5b3b328f))
+* **users:** :alien: add getUsers and getUser ([80fe9fc](https://github.com/maurodviveros/fitness-trainer/commit/80fe9fc1cfd81d9710642cf3487a4f6ed9ad8011))
+* **users:** :alien: add updateUser ([077847d](https://github.com/maurodviveros/fitness-trainer/commit/077847d05b289583802238ce80cc294a76098150))
+* **users:** :alien: create Users ([63460d3](https://github.com/maurodviveros/fitness-trainer/commit/63460d3638a0ea7a0cd4d537a80257313d55a7f5))
+* **users:** :fire: Remove BottomSheet ([fdc9131](https://github.com/maurodviveros/fitness-trainer/commit/fdc9131166037f48dcb0e38196fe102f3ae1507e))
+* **users:** :sparkles: add detail ([d29249a](https://github.com/maurodviveros/fitness-trainer/commit/d29249a2e29f9c0acb239d50e19da73c4d0fff6b))
+* **users:** :sparkles: add list ([e804685](https://github.com/maurodviveros/fitness-trainer/commit/e804685d0cade61343daaee1f97c19450cf3c26e))
+* **users:** :sparkles: update detailComponent with shared-module ([d64d337](https://github.com/maurodviveros/fitness-trainer/commit/d64d337a2e39216c9d1617a2056eea95d7cf126f))
+* **users:** :sparkles: update listComponent with shared-layout ([9ac1ec4](https://github.com/maurodviveros/fitness-trainer/commit/9ac1ec4786cba4f4c876be47f537142621069739))
+
+
+
 ## [0.0.13](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.12...v0.0.13) (2023-04-09)
 
 
