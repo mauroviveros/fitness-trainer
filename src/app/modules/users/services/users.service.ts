@@ -44,6 +44,7 @@ export class UsersService {
         const user = documentData.data();
         user["_id"] = documentData.id;
         user["dateCreated"] = user["dateCreated"].toDate();
+        user["dateLastEmailVerification"] = user["dateLastEmailVerification"] ? user["dateLastEmailVerification"].toDate() : undefined;
         return user as UserDocument;
       }),
     );
