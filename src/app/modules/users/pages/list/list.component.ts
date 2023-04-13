@@ -18,7 +18,7 @@ export class ListComponent {
     private usersService: UsersService
   ){
     this.usersService.getUsers().subscribe(users => {
-      this.users = users;
+      this.users = users as UserDocument[];
     });
   }
 
