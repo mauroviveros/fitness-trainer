@@ -1,5 +1,5 @@
-@use './pages/login/login.component.scss' as login;
-@use './pages/unverified/unverified.component.scss' as unverified;
+@use './pages/login/login.component.theme.scss' as login;
+@use './pages/unverified/unverified.component.theme.scss' as unverified;
 
 @mixin all-component-themes($theme) {
     @include login.theme($theme);

@@ -1,5 +1,0 @@
-@use './pages/detail/detail.component.scss' as detail;
-
-@mixin all-component-themes($theme) {
-    @include detail.theme($theme);
-};

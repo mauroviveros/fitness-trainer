@@ -1,4 +1,4 @@
-@use './pages/home/home.component.scss' as home;
+@use './pages/home/home.component.theme.scss' as home;
 
 @mixin all-component-themes($theme) {
     @include home.theme($theme);
