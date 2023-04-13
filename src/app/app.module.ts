@@ -15,6 +15,7 @@ import { SharedModule } from "./shared/shared.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ShortcutComponent } from "./core/components/shortcut/shortcut.component";
+import { SplashScreenComponent } from "./core/components/splash-screen/splash-screen.component";
 
 const firebase = {
   projectId         : environment.FIREBASE.PROJECT_ID,
@@ -30,7 +31,8 @@ const firebase = {
   declarations: [
     AppComponent,
     HomeComponent,
-    ShortcutComponent
+    ShortcutComponent,
+    SplashScreenComponent
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(firebase)),
