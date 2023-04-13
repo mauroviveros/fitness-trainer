@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
+import { UserDocument } from "src/app/modules/users/interfaces/users";
+import { UsersService } from "src/app/modules/users/services/users.service";
 
 interface Shortcut{
   text: string,
@@ -16,6 +18,7 @@ interface Shortcut{
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent {
+  public user: UserDocument = {} as UserDocument;
   public shortcuts: Shortcut[] = [
     { text: "Usuarios", icon: "people", link: "/users" },
     { text: "Mi rutina", icon: "fitness_center", link: "/rutina" },
@@ -24,10 +27,22 @@ export class HomeComponent {
     { text: "Salir", action: "logout", icon: "logout" }
   ];
 
+  public get saludo(){
+    const hour = new Date().getHours();
+    if(hour >= 6 && hour < 12) return "Buen dia!";
+    else if(hour >= 12 && hour < 18) return "Buenas Tardes!";
+    else return "Buenas Noches!";
+  }
+
   constructor(
     private _router: Router,
-    private _auth: AuthService
-  ){}
+    private _auth: AuthService,
+    private usersService: UsersService
+  ){
+    this.usersService.user.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   public onClick(action?: string){
     if(!action) return;

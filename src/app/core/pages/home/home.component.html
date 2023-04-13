@@ -1,9 +1,9 @@
 <figure>
   <img src="https://via.placeholder.com/200" alt="Profile" />
-  <figcaption>Hola Mauro</figcaption>
+  <figcaption>Hola {{ user.name | titlecase }}</figcaption>
 </figure>
 
-<h1>Buen dia!</h1>
+<h1>{{ saludo | titlecase }}</h1>
 
 <mat-card>
   <mat-card-content>
