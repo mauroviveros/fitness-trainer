@@ -1,4 +1,7 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+
 import { DomSanitizer } from "@angular/platform-browser";
 import { NativeDateModule, MAT_DATE_FORMATS } from "@angular/material/core";
 
@@ -18,6 +21,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { LayoutComponent } from "./components/layout/layout.component";
 
 
 
@@ -34,9 +38,30 @@ const MY_DATE_FORMATS = {
 };
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LayoutComponent
+  ],
   imports: [
-    NativeDateModule
+    CommonModule,
+    RouterModule,
+    NativeDateModule,
+
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   exports: [
     MatBottomSheetModule,
@@ -54,7 +79,8 @@ const MY_DATE_FORMATS = {
     MatSelectModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    LayoutComponent
   ],
   providers: [
     {

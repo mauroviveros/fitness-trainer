@@ -1,0 +1,5 @@
+@use './components/layout/layout.component.theme.scss' as layout;
+
+@mixin all-component-themes($theme) {
+    @include layout.theme($theme);
+};

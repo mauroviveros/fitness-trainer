@@ -1,0 +1,25 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($config) {
+    $primary-palette: map.get($config, primary);
+
+    shared-layout {
+        mat-nav-list, mat-list{
+            > mat-list-item{
+                *[matlistitemtitle] mat-icon{
+                    color: gray;
+                }
+                *[matlistitemicon]{
+                    color: mat.get-color-from-palette($primary-palette, 500) !important;
+                }
+            }
+        }
+    }
+}
+
+@mixin theme($theme) {
+    $color-config: mat.get-color-config($theme);
+
+    @if $color-config != null { @include color($color-config); }
+}

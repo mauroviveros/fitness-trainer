@@ -1,0 +1,41 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    mat-toolbar h1{ flex: 1; }
+}
+
+:host ::ng-deep{
+    section > *:not(mat-icon) {
+        flex: 1;
+        width: 100%;
+    }
+
+    section{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+
+        mat-list, mat-nav-list{
+            mat-list-item{
+                *[matlistitemtitle] mat-icon{
+                    font-size: 1rem !important;
+                    width: 1rem !important;
+                    height: 1rem !important;
+                    margin-left: .2rem;
+                }
+
+                > mat-icon{
+                    margin-top: auto !important;
+                    margin-bottom: auto !important;
+                    font-size: 2rem !important;
+                    width: 2rem !important;
+                    height: 2rem !important;
+                }
+            }
+        }
+    }
+}
