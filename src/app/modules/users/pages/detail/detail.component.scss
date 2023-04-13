@@ -1,0 +1,7 @@
+:host ::ng-deep{
+    .mat-mdc-list-item-meta{
+        display: flex !important;
+        align-items: center;
+        height: 100%;
+    }
+}

@@ -1,21 +1,36 @@
-<mat-toolbar color="primary">
-  <a mat-icon-button routerLink="/users"><mat-icon>arrow_back</mat-icon></a>
+<shared-layout text="Detalle Usuario" [isLoading]="!user._id">
+  <mat-list class="content">
+    <mat-list-item>
+      <mat-icon matListItemIcon>badge</mat-icon>
+      <h5 matListItemTitle>Nombre Completo</h5>
+      <span matListItemLine>{{ user.name | titlecase }} {{ user.surname | titlecase }}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
 
-  <span style="flex: 1 1 0">Detalle Usuario</span>
-</mat-toolbar>
+    <mat-list-item>
+      <mat-icon matListItemIcon>email</mat-icon>
+      <h5 matListItemTitle>
+        <span>Email</span>
+        <mat-icon *ngIf="user.verified">verified</mat-icon>
+      </h5>
+      <span matListItemLine>{{ user.email }}</span>
 
-<mat-list>
-  <mat-list-item>
-    <mat-icon matListItemIcon>badge</mat-icon>
-    <h5 matListItemTitle>Nombre Completo</h5>
-    <span matListItemLine>{{ user.name | titlecase }} {{ user.surname | titlecase }}</span>
-  </mat-list-item>
-  <mat-divider></mat-divider>
+      <div matListItemMeta>
+        <button mat-mini-fab color="primary">
+          <mat-icon>forward_to_inbox</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
 
-  <mat-list-item>
-    <mat-icon matListItemIcon>email</mat-icon>
-    <h5 matListItemTitle>Email</h5>
-    <span matListItemLine>{{ user.email }}</span>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-</mat-list>
+    <mat-list-item>
+      <mat-icon matListItemIcon>today</mat-icon>
+      <h5 matListItemTitle>Fecha Creado</h5>
+      <span matListItemLine>{{ user.dateCreated | date }}</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</shared-layout>

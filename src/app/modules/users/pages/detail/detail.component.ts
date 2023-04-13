@@ -11,16 +11,12 @@ interface Detalle {
 }
 
 @Component({
-  selector: "app-detail",
+  selector: "users-detail",
   templateUrl: "./detail.component.html",
   styleUrls: ["./detail.component.scss"]
 })
 export class DetailComponent {
   public user: UserDocument = {} as UserDocument;
-
-  private get fullName(){
-    return `${this.user.name} ${this.user.surname}`;
-  }
 
   public detalle: Detalle[] = [
     { icon: "dashboard", title: "email", field: "email" }
