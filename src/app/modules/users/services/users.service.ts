@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "@angular/fire/auth";
-import { Firestore, collection, setDoc, doc, collectionData, updateDoc, docSnapshots, DocumentData } from "@angular/fire/firestore";
+import { Firestore, collection, setDoc, doc, collectionData, updateDoc, docSnapshots } from "@angular/fire/firestore";
 
 import { UserDocument, UserDocumentOutput } from "../interfaces/users";
 import { from, map, switchMap } from "rxjs";
@@ -30,7 +30,7 @@ export class UsersService {
   }
 
   public updateUser(userID: string, fields: UserDocumentOutput){
-    updateDoc(doc(this.usersCollection, userID), { ...fields });
+    return updateDoc(doc(this.usersCollection, userID), { ...fields });
   }
 
   public getUsers(){
