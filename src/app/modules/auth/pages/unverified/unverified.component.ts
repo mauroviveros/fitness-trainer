@@ -27,7 +27,7 @@ export class UnverifiedComponent{
     private router: Router,
     private userService: UsersService
   ){
-    this.userService.getUser().subscribe(user => {
+    this.userService.user.subscribe(user => {
       this.user = user;
     });
   }
