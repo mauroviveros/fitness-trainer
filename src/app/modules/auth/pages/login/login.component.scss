@@ -1,4 +1,4 @@
-@import "src/variables.scss";
+@import "breakpoints";
 
 :host {
   width: 100%;
@@ -9,7 +9,7 @@
   justify-content: center;
 
   img{
-    @media #{$medium-and-up}{
+    @media #{$media-small-up}{
       max-height: 40vh;
     };
   };
@@ -19,11 +19,11 @@
     height: 100%;
     justify-content: center;
 
-    @media #{$small-and-down}{
+    @media #{$media-small-down}{
       border-radius: 0;
     }
 
-    @media #{$medium-and-up}{
+    @media #{$media-small-up}{
       width: 70%;
       margin-top: 1rem;
       max-width: 400px;
