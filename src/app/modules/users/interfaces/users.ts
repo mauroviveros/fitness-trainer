@@ -7,13 +7,15 @@ export interface UserDocument {
     verified    : boolean,
     role        : Role,
     dateCreated : Date,
-    [key: string]: string | boolean | Date
+    dateLastEmailVerification? : Date,
+    [key: string]: string | boolean | Date | undefined
 }
 
 export interface UserDocumentOutput{
     verified?   : boolean,
     name?       : string,
     surname?    : string,
+    dateLastEmailVerification? : Date
 }
 
 export type Role = "USER" | "ADMIN" | "OWNER";

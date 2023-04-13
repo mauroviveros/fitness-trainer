@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from "@angular/router";
 import { UrlTree } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 
@@ -17,11 +17,14 @@ export class AuthGuard {
     private users: UsersService
   ){}
 
-  canActivate(): Observable<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
     return this.auth.getUser().pipe(
       map(userAuth => {
         if(userAuth) this.users.updateUser(userAuth.uid, { verified: userAuth.emailVerified });
-        if(userAuth?.emailVerified) return true;
+        if(userAuth?.emailVerified){
+          if(state.url !== "/unverified") return true;
+          return this.router.parseUrl("/");
+        }
         return this.router.parseUrl("/unverified");
       })
     );

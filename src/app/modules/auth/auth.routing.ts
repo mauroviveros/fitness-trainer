@@ -5,6 +5,7 @@ import { AuthGuard as FireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo 
 
 import { LoginComponent } from "./pages/login/login.component";
 import { UnverifiedComponent } from "./pages/unverified/unverified.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 const redirectAuthorizedToHome = () => redirectLoggedInTo([""]);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["login"]);
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: "unverified",
-    canActivate: [FireAuthGuard],
+    canActivate: [FireAuthGuard, AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     component: UnverifiedComponent
   },
