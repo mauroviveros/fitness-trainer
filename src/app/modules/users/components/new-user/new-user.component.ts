@@ -5,6 +5,7 @@ import { finalize } from "rxjs";
 import { UsersService } from "../../services/users.service";
 import { Role } from "../../interfaces/users";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialogRef } from "@angular/material/dialog";
 
 interface RoleSelect {
   key: string,
@@ -32,6 +33,7 @@ export class NewUserComponent {
   });
 
   constructor(
+    private dialogRef: MatDialogRef<NewUserComponent>,
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private _users: UsersService
@@ -41,13 +43,18 @@ export class NewUserComponent {
   public submit(){
     if(this.form.invalid) return;
     const fields = this.form.value;
+    fields.dateCreated = new Date();
+    fields.verified = false;
 
     this.isLoading = true;
 
     this._users.createUser(fields.email, fields).pipe(
       finalize(()=> this.isLoading = false )
     ).subscribe({
-      complete: () => { this._snackBar.open("✅ Usuario creado correctamente", "cerrar", { panelClass: ["success-snackbar"] }); },
+      complete: () => {
+        this.dialogRef.close();
+        this._snackBar.open("✅ Usuario creado correctamente", "cerrar", { panelClass: ["success-snackbar"] });
+      },
       error: (error) => { this._snackBar.open(`❌ ${error}`, "cerrar", { panelClass: ["error-snackbar"] }); }
     });
   }
