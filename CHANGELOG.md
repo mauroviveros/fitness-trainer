@@ -1,3 +1,12 @@
+## [0.0.16](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.15...v0.0.16) (2023-04-13)
+
+
+### Bug Fixes
+
+* **core:** :bug: fix hide splashScreen if authState null ([96d4b84](https://github.com/maurodviveros/fitness-trainer/commit/96d4b84f30f3484882bd9ea82ee4335317ec80a1))
+
+
+
 ## [0.0.15](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.14...v0.0.15) (2023-04-13)
 
 
