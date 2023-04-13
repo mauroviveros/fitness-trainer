@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "@angular/fire/auth";
-import { Firestore, collection, setDoc, getDoc, doc, collectionData } from "@angular/fire/firestore";
+import { Firestore, collection, setDoc, doc, collectionData, updateDoc, docSnapshots, DocumentData } from "@angular/fire/firestore";
 
-import { UserDocument } from "../interfaces/users";
-import { Observable, from } from "rxjs";
+import { UserDocument, UserDocumentOutput } from "../interfaces/users";
+import { from, map, switchMap } from "rxjs";
+import { AuthService } from "../../auth/services/auth.service";
 
 @Injectable({
   providedIn: "root"
@@ -13,6 +14,7 @@ export class UsersService {
 
   constructor(
     private auth: Auth,
+    private authService: AuthService,
     private firestore: Firestore
   ){}
 
@@ -27,22 +29,33 @@ export class UsersService {
     return from(promise());
   }
 
-  public getUsers(){
-    return collectionData(this.usersCollection, { idField: "_id" }) as Observable<UserDocument[]>;
+  public updateUser(userID: string, fields: UserDocumentOutput){
+    updateDoc(doc(this.usersCollection, userID), { ...fields });
   }
 
-  public getUser(_id: string){
-    const promise = async () => {
-      const document = await getDoc(doc(this.usersCollection, _id));
-      if(document.exists()){
-        const user = document.data() as UserDocument;
-        user._id = document.id;
-        return user;
-      }
-      else throw document.id;
-    };
+  public getUsers(){
+    return collectionData(this.usersCollection, { idField: "_id" });
+  }
 
-    return from(promise());
+  public getUser(_id?: string){
+    const snapshot = () => docSnapshots(doc(this.usersCollection, _id)).pipe(
+      map(documentData => {
+        if(!documentData.exists()) throw new Error();
+        const user = documentData.data();
+        user["_id"] = documentData.id;
+        user["dateCreated"] = user["dateCreated"].toDate();
+        return user as UserDocument;
+      }),
+    );
+
+    if(!_id) return this.authService.getUser().pipe(
+      switchMap(user => {
+        _id = user.uid;
+        return snapshot();
+      })
+    ); else{
+      return snapshot();
+    }
   }
 
 }
