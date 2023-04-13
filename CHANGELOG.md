@@ -1,3 +1,26 @@
+## [0.0.15](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.14...v0.0.15) (2023-04-13)
+
+
+### Bug Fixes
+
+* **auth:** :adhesive_bandage: update observable getUser ([62317d1](https://github.com/maurodviveros/fitness-trainer/commit/62317d1d8960ae1f3b1704b93d7e7df08dbdd23f))
+* **auth:** :alien: add BehaviorSubject on service ([8b56db3](https://github.com/maurodviveros/fitness-trainer/commit/8b56db35d448f367e9f73d0566485da57f833dfc))
+* **users:** :alien: add BehaviorSubject on service ([f0681b5](https://github.com/maurodviveros/fitness-trainer/commit/f0681b5be9d0d89678650ad275b926f4faf4dfce))
+* **users:** :bug: dateLasteEmailVerification is undefined ([0ec3000](https://github.com/maurodviveros/fitness-trainer/commit/0ec3000984826cee9a2ca5eefe55acbd11b28627))
+* **users:** :coffin: remove actions in email detail ([352a006](https://github.com/maurodviveros/fitness-trainer/commit/352a006909ee832b79ab41a37503b15e10a556db))
+
+
+### Features
+
+* :heavy_plus_sign: add moment ([71a2ca4](https://github.com/maurodviveros/fitness-trainer/commit/71a2ca494e45771dbbe54ba5d8292e657d3e2e0a))
+* **auth:** :lock: if verified in /unverified navigate to home ([637615c](https://github.com/maurodviveros/fitness-trainer/commit/637615c1440a7005238bde00ad8062050869525d))
+* **auth:** :sparkles: can sendEmail each 5minutes ([2410b33](https://github.com/maurodviveros/fitness-trainer/commit/2410b33cf609c0cbeb2da0d3fffcf4b9a9a554a5))
+* **core:** :sparkles: add dynamic texts ([4317770](https://github.com/maurodviveros/fitness-trainer/commit/43177701dc7804d37e71c06d259ba581d753de1e))
+* **core:** :sparkles: add SplashScreen with service ([69e68a0](https://github.com/maurodviveros/fitness-trainer/commit/69e68a079c15dad84aeb9286794f38e52fd24700))
+* **core:** :zap: add splash screen on root ([11d8b1a](https://github.com/maurodviveros/fitness-trainer/commit/11d8b1ae935b8be7b7896905c5125fd932db725a))
+
+
+
 ## [0.0.14](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.13...v0.0.14) (2023-04-13)
 
 
