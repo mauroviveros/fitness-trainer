@@ -5,7 +5,13 @@
 <section>
   <mat-icon>security</mat-icon>
   <h5>No puede continuar al menos que confirme su email</h5>
-  <p class="mat-caption">Si no le llego el correo contactese con su coach</p>
+  <p class="mat-caption" *ngIf="user._id && !canSendEmail">
+    Debe esperar al menos 5min para volver a enviar otro email
+    <br />
+    <span *ngIf="user.dateLastEmailVerification">
+      Ultimo mail enviado a las {{ user.dateLastEmailVerification | date : 'HH:mm:ss' }} del {{ user.dateLastEmailVerification | date : 'dd/MM/YYYY' }}
+    </span>
+  </p>
+  <button mat-raised-button color="primary" (click)="sendVerification()" *ngIf="user._id" [disabled]="!canSendEmail">REENVIAR EMAIL CONFIRMACIÓN</button>
   <button mat-raised-button color="primary" (click)="logout()">CERRAR SESIÓN</button>
-  <button mat-raised-button color="primary" (click)="sendVerification()" *ngIf="user.role === 'OWNER'">ENVIAR EMAIL</button>
 </section>

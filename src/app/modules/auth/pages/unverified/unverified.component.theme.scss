@@ -5,12 +5,8 @@
 @mixin color($config) {
     $primary-palette: map.get($config, primary);
 
-    auth-unverified{
-      section {
-        mat-icon{
-            color: mat.get-color-from-palette($primary-palette, 500);
-        }
-      }
+    auth-unverified > section > mat-icon{
+        color: mat.get-color-from-palette($primary-palette, 500); 
     }
 };
 
