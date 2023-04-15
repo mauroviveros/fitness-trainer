@@ -35,8 +35,8 @@ export class HomeComponent {
   }
 
   constructor(
-    private _router: Router,
-    private _auth: AuthService,
+    private router: Router,
+    private auth: AuthService,
     private usersService: UsersService
   ){
     this.usersService.user.subscribe(user => {
@@ -48,7 +48,7 @@ export class HomeComponent {
     if(!action) return;
 
     switch(action){
-    case "logout": this._auth.logout().then(() => this._router.navigate(["/login"])); break;
+    case "logout": this.auth.logout().then(() => this.router.navigate(["/login"])); break;
 
     }
   }
