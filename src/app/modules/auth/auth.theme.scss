@@ -1,7 +1,5 @@
-@use './pages/login/login.component.theme.scss' as login;
-@use './pages/unverified/unverified.component.theme.scss' as unverified;
+@use './components/form/form.component.theme.scss' as form;
 
 @mixin all-component-themes($theme) {
-    @include login.theme($theme);
-    @include unverified.theme($theme);
+    @include form.theme($theme);
 };

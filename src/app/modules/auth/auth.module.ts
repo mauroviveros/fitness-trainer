@@ -7,12 +7,14 @@ import { AuthRoutingModule } from "./auth.routing";
 import { SharedModule } from "../../shared/shared.module";
 
 import { LoginComponent } from "./pages/login/login.component";
-import { UnverifiedComponent } from "./pages/unverified/unverified.component";
+import { RegisterComponent } from "./pages/register/register.component";
+import { FormComponent } from "./components/form/form.component";
 
 @NgModule({
   declarations: [
     LoginComponent,
-    UnverifiedComponent
+    RegisterComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
