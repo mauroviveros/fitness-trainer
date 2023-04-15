@@ -1,0 +1,9 @@
+<img src="assets/logotipo.png" />
+<mat-card>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  <mat-card-header>
+    <mat-card-title>{{ text }}</mat-card-title>
+  </mat-card-header>
+  <ng-content select="mat-card-content"></ng-content>
+  <ng-content select="mat-card-footer"></ng-content>
+</mat-card>

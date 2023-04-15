@@ -15,32 +15,39 @@ export class LoginComponent{
   public show_password = false;
   public isLoading = false;
 
-  public form: FormGroup = this._formBuilder.group({
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required]]
+
+  public visibility = false;
+  public visibilityIcon(){
+    return this.visibility ? "visibility_off" : "visibility";
+  }
+  public visibilityType(){
+    return this.visibility ? "text" : "password";
+  }
+
+  public form = this.formBuilder.group({
+    email: ["", [Validators.required, Validators.email]],
+    password: ["", [Validators.required]]
   });
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private _router: Router,
-    private _snackBar: MatSnackBar,
-    private _auth: AuthService
-  ) {}
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private auth: AuthService
+  ){}
 
-  public login(): void {
-    this.form.markAllAsTouched();
-    if (this.form.invalid) return;
+  submit(){
+    if(this.form.invalid) return;
 
     this.isLoading = true;
-    this._auth.login(this.form.value.email, this.form.value.password).pipe(
-      finalize(()=> this.isLoading = false )
-    ).subscribe({
-      complete: () => { this._router.navigate([""]); },
-      error: () => { this._snackBar.open("❌ Usuario o contraseña incorrecta", "ok", { duration: 5000 }); }
-    });
-  }
+    const { email, password } = this.form.value as { email: string, password: string };
 
-  public isInvalid(campo: string): boolean | null{
-    return this.form.controls[campo].errors && this.form.controls[campo].touched;
+    this.auth.login(email, password).then(()=>{
+      this.router.navigate([""]);
+    }).catch(error => {
+      const message = error.message;
+      this.isLoading = false;
+      this.snackBar.open(message, "cerrar", { duration: 5000 });
+    });
   }
 }

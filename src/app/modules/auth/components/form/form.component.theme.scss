@@ -5,7 +5,7 @@
 @mixin color($config) {
     $primary-palette: map.get($config, primary);
 
-    auth-login{ background-color: mat.get-color-from-palette($primary-palette, 500); }
+    auth-form{ background-color: mat.get-color-from-palette($primary-palette, 500); }
 }
 
 @mixin theme($theme) {

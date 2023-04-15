@@ -1,25 +1,19 @@
-<img src="assets/logotipo.png" />
-<mat-card>
-  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-  <mat-card-header>
-    <mat-card-title-group>
-      <mat-card-title>Iniciar Sesión</mat-card-title>
-    </mat-card-title-group>
-  </mat-card-header>
+<auth-form [isLoading]="isLoading" text="Iniciar Sesión">
   <mat-card-content>
-    <form [formGroup]="form" (submit)="login()">
+    <form [formGroup]="form" (submit)="submit()">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email" formControlName="email" matInput placeholder="Ingrese su Email" />
-        <mat-icon matSuffix>mail_outlined</mat-icon>
-        <mat-error *ngIf="isInvalid('email')"> El campo es obligatorio </mat-error>
+        <mat-error> El campo es obligatorio </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input [type]="show_password ? 'text' : 'password'" matInput formControlName="password" placeholder="Ingrese su Contraseña" />
-        <mat-icon matSuffix>lock_outline</mat-icon>
-        <mat-error *ngIf="isInvalid('password')">El campo es obligatorio</mat-error>
+        <input [type]="visibilityType()" matInput formControlName="password" placeholder="Ingrese su Contraseña" />
+        <button type="button" mat-icon-button matSuffix (click)="visibility = !visibility">
+          <mat-icon>{{ visibilityIcon() }}</mat-icon>
+        </button>
+        <mat-error>El campo es obligatorio</mat-error>
       </mat-form-field>
 
       <mat-checkbox [(ngModel)]="show_password" [ngModelOptions]="{ standalone: true }"> Mostrar Contraseña </mat-checkbox>
@@ -27,4 +21,5 @@
       <button type="submit" mat-stroked-button color="accent">Ingresar</button>
     </form>
   </mat-card-content>
-</mat-card>
+  <mat-card-footer> No tienes cuenta? <a routerLink="/register">Registrate aqui</a></mat-card-footer>
+</auth-form>
