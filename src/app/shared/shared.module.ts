@@ -18,24 +18,10 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { LayoutComponent } from "./components/layout/layout.component";
-
-
-
-const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: "LL",
-  },
-  display: {
-    dateInput: "DD/MM/YYYY",
-    monthYearLabel: "MMM YYYY",
-    dateA11yLabel: "LL",
-    monthYearA11yLabel: "MMMM YYYY",
-  },
-};
 
 @NgModule({
   declarations: [
@@ -84,8 +70,22 @@ const MY_DATE_FORMATS = {
   ],
   providers: [
     {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { duration: 2500 }
+    },
+    {
       provide: MAT_DATE_FORMATS,
-      useValue: MY_DATE_FORMATS,
+      useValue: {
+        parse: {
+          dateInput: "LL",
+        },
+        display: {
+          dateInput: "DD/MM/YYYY",
+          monthYearLabel: "MMM YYYY",
+          dateA11yLabel: "LL",
+          monthYearA11yLabel: "MMMM YYYY",
+        },
+      },
     },
   ]
 })
