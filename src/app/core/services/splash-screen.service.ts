@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest, filter, switchMap, tap } from "rxjs";
 
 import { AuthService } from "src/app/modules/auth/services/auth.service";
-import { UsersService } from "src/app/modules/users/services/users.service";
+import { UserService } from "src/app/modules/auth/services/user.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,12 +12,12 @@ export class SplashScreenService {
 
   constructor(
     private authService: AuthService,
-    private usersService: UsersService,
+    private userService: UserService,
   ){
     this.authService.userObservable.pipe(
       tap(user => !user ? this.setLoading(false) : null),
       filter(user => !!user),
-      switchMap(() => combineLatest([this.usersService.userObservable])),
+      switchMap(() => combineLatest([this.userService.userObservable])),
     ).subscribe(() => {
       this.setLoading(false);
     });

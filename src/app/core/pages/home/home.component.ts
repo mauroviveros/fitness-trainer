@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { UserDocument } from "src/app/modules/users/interfaces/users";
+import { UserDocument } from "src/app/modules/auth/interfaces/user";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
-import { UsersService } from "src/app/modules/users/services/users.service";
+import { UserService } from "src/app/modules/auth/services/user.service";
 
 interface Shortcut{
   text: string,
@@ -38,9 +38,9 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private usersService: UsersService
+    private userService: UserService
   ){
-    this.usersService.user.subscribe(user => {
+    this.userService.user.subscribe(user => {
       this.user = user;
     });
   }

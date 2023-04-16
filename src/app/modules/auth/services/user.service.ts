@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Firestore, collection, doc, docSnapshots, DocumentData, DocumentSnapshot } from "@angular/fire/firestore";
-
-import { UserDocument } from "../interfaces/users";
 import { map, switchMap, BehaviorSubject, filter, of } from "rxjs";
-import { AuthService } from "../../auth/services/auth.service";
+
+import { UserDocument } from "../interfaces/user";
+import { AuthService } from "./auth.service";
 
 @Injectable({
   providedIn: "root"
 })
-export class UsersService {
+export class UserService {
   private usersCollection = collection(this.firestore, "users");
   private _user = new BehaviorSubject<UserDocument | null | undefined>(null);
   userObservable = this._user.pipe(filter(user => user !== null));

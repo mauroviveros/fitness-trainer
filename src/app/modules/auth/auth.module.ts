@@ -16,7 +16,7 @@ import { UnauthorizedComponent } from "./components/unauthorized/unauthorized.co
     LoginComponent,
     RegisterComponent,
     WrapperComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
   ],
   imports: [
     CommonModule,
