@@ -23,7 +23,6 @@ export class AuthService {
     this.userObservable.subscribe(user => {
       this._user.next(user);
     });
-    //// setPersistence(this.auth, { type: "LOCAL" });
   }
 
   private catchError(error: Error | undefined){

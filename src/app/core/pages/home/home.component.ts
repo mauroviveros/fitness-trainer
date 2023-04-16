@@ -48,19 +48,6 @@ export class HomeComponent {
     this.usersService.user.subscribe(user => {
       this.user = user;
     });
-
-    this.splashScreen.isLoading.pipe(
-      filter(bool => !bool),
-      switchMap(() => this.auth.user)
-    ).subscribe(user => {
-      if(user.emailVerified) return;
-      const _user = user;
-      this.auth.logout().then(() => {
-        this.dialog.open(UnauthorizedComponent, { data: { user: _user } }).afterClosed().subscribe(response => {
-          console.log(response);
-        });
-      });
-    });
   }
 
   public onClick(action?: string){

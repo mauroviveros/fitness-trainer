@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard as FireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 
 import { HomeComponent } from "./core/pages/home/home.component";
+import { EmailGuard } from "./modules/auth/guards/email.guard";
 
 const redirectUnauthorized = () => redirectUnauthorizedTo(["login"]);
 const redirectAuthorized = () => redirectLoggedInTo([""]);
@@ -10,7 +11,7 @@ const redirectAuthorized = () => redirectLoggedInTo([""]);
 const routes: Routes = [
   {
     path: "",
-    canActivate: [FireAuthGuard],
+    canActivate: [FireAuthGuard, EmailGuard],
     data: { authGuardPipe: redirectUnauthorized },
     children: [
       {
