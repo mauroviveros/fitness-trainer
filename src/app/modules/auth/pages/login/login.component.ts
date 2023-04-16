@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { finalize } from "rxjs";
 
 import { AuthService } from "../../services/auth.service";
 
@@ -32,7 +30,6 @@ export class LoginComponent{
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private snackBar: MatSnackBar,
     private auth: AuthService
   ){}
 
@@ -44,10 +41,6 @@ export class LoginComponent{
 
     this.auth.login(email, password).then(()=>{
       this.router.navigate([""]);
-    }).catch(error => {
-      const message = error.message;
-      this.isLoading = false;
-      this.snackBar.open(message, "cerrar", { duration: 5000 });
-    });
+    }).catch(() => this.isLoading = false);
   }
 }
