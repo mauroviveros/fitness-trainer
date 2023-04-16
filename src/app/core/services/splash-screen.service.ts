@@ -17,7 +17,7 @@ export class SplashScreenService {
     this.authService.userObservable.pipe(
       tap(user => !user ? this.setLoading(false) : null),
       filter(user => !!user),
-      switchMap(() => combineLatest([this.usersService.user])),
+      switchMap(() => combineLatest([this.usersService.userObservable])),
     ).subscribe(() => {
       this.setLoading(false);
     });

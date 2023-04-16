@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Firestore, collection, setDoc, doc, docSnapshots, DocumentData, DocumentSnapshot } from "@angular/fire/firestore";
+import { Firestore, collection, doc, docSnapshots, DocumentData, DocumentSnapshot } from "@angular/fire/firestore";
 
 import { UserDocument } from "../interfaces/users";
-import { map, switchMap, BehaviorSubject, filter, of, tap } from "rxjs";
+import { map, switchMap, BehaviorSubject, filter, of } from "rxjs";
 import { AuthService } from "../../auth/services/auth.service";
 
 @Injectable({
@@ -10,8 +10,8 @@ import { AuthService } from "../../auth/services/auth.service";
 })
 export class UsersService {
   private usersCollection = collection(this.firestore, "users");
-  private _user = new BehaviorSubject<UserDocument | null>(null);
-  userObservable = this._user.asObservable();
+  private _user = new BehaviorSubject<UserDocument | null | undefined>(null);
+  userObservable = this._user.pipe(filter(user => user !== null));
   get user(){
     return this._user.pipe(
       filter(user => !!user),
@@ -28,14 +28,14 @@ export class UsersService {
       switchMap(user => user === null ? of(null) : docSnapshots(doc(this.usersCollection, user.uid))),
       filter(document => !!document),
       map(document => document as DocumentSnapshot<DocumentData>),
-      tap(document => document.exists() ? null : setDoc(doc(this.usersCollection, document.id), {})),
-      filter(document => document.exists()),
       map(document => {
+        if(!document.exists()) return null;
         const documentData = document.data() as DocumentData;
         documentData["_id"] = document.id;
         return documentData;
       }),
       map(documentData => {
+        if(!documentData) return undefined;
         const user = documentData;
         //TODO parser User Fields
         return user as UserDocument;
