@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -22,20 +22,20 @@ export class RegisterComponent {
   });
 
   constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private authService: AuthService
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private auth: AuthService
   ){}
 
   public submit(){
     if(this.form.invalid) return;
+    const { email, password } = this.form.value as { email: string, password: string };
 
     this.isLoading = true;
-    const { email, password } = this.form.value as { email: string, password: string };
-    this.authService.register(email, password).then(() => {
-      this.snackBar.open("✅ Cuenta creada correctamente", undefined);
-      this.router.navigate([""]);
-    }).catch(() => this.isLoading = false);
+    this.auth.register(email, password)
+      .finally(() => this.isLoading = false)
+      .then(() => this.snackBar.open("✅ Cuenta creada correctamente", undefined))
+      .then(() => this.router.navigate([""]));
   }
 }
