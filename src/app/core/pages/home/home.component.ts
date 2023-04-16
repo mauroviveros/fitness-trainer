@@ -1,12 +1,9 @@
 import { Component } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { filter, switchMap } from "rxjs";
-import { UnauthorizedComponent } from "src/app/modules/auth/components/unauthorized/unauthorized.component";
-import { AuthService } from "src/app/modules/auth/services/auth.service";
+
 import { UserDocument } from "src/app/modules/users/interfaces/users";
+import { AuthService } from "src/app/modules/auth/services/auth.service";
 import { UsersService } from "src/app/modules/users/services/users.service";
-import { SplashScreenService } from "../../services/splash-screen.service";
 
 interface Shortcut{
   text: string,
@@ -40,8 +37,6 @@ export class HomeComponent {
 
   constructor(
     private router: Router,
-    private dialog: MatDialog,
-    private splashScreen: SplashScreenService,
     private auth: AuthService,
     private usersService: UsersService
   ){
