@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Firestore, collection, setDoc, doc, docSnapshots, DocumentData } from "@angular/fire/firestore";
+import { Firestore, collection, setDoc, doc, docSnapshots, DocumentData, DocumentSnapshot } from "@angular/fire/firestore";
 
 import { UserDocument } from "../interfaces/users";
-import { map, switchMap, BehaviorSubject, filter } from "rxjs";
+import { map, switchMap, BehaviorSubject, filter, of, tap } from "rxjs";
 import { AuthService } from "../../auth/services/auth.service";
 
 @Injectable({
@@ -18,13 +18,12 @@ export class UsersService {
     private auth: AuthService,
     private firestore: Firestore
   ){
-    this.auth.USER.pipe(
-      switchMap(user => docSnapshots(doc(this.usersCollection, user.uid))),
-      filter(document => {
-        const bool = document.exists();
-        if(!bool) setDoc(doc(this.usersCollection, document.id), {});
-        return bool;
-      }),
+    this.auth.user.pipe(
+      switchMap(user => user === null ? of(null) : docSnapshots(doc(this.usersCollection, user.uid))),
+      filter(document => !!document),
+      map(document => document as DocumentSnapshot<DocumentData>),
+      tap(document => document.exists() ? null : setDoc(doc(this.usersCollection, document.id), {})),
+      filter(document => document.exists()),
       map(document => {
         const documentData = document.data() as DocumentData;
         documentData["_id"] = document.id;
@@ -32,11 +31,10 @@ export class UsersService {
       }),
       map(documentData => {
         const user = documentData;
-        //TODO parseUserFields
+        //TODO parser User Fields
         return user as UserDocument;
       })
     ).subscribe(user => {
-      console.log(user);
       this._user.next(user);
     });
   }
