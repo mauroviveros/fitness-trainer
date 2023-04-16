@@ -8,14 +8,14 @@ import { SharedModule } from "../../shared/shared.module";
 
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
-import { FormComponent } from "./components/form/form.component";
+import { WrapperComponent } from "./components/wrapper/wrapper.component";
 import { UnauthorizedComponent } from "./components/unauthorized/unauthorized.component";
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    FormComponent,
+    WrapperComponent,
     UnauthorizedComponent
   ],
   imports: [

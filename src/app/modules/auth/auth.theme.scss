@@ -1,5 +1,5 @@
-@use './components/form/form.component.theme.scss' as form;
+@use './components/wrapper/wrapper.component.theme.scss' as wrapper;
 
 @mixin all-component-themes($theme) {
-    @include form.theme($theme);
+    @include wrapper.theme($theme);
 };
