@@ -10,9 +10,15 @@ import { AuthService } from "../../auth/services/auth.service";
 })
 export class UsersService {
   private usersCollection = collection(this.firestore, "users");
-  public _user = new BehaviorSubject<UserDocument>({} as UserDocument);
-
-  public get user(){ return this._user.asObservable(); }
+  private _user = new BehaviorSubject<UserDocument | null>(null);
+  userObservable = this._user.asObservable();
+  get user(){
+    return this._user.pipe(
+      filter(user => !!user),
+      map(user => user as UserDocument)
+    );
+  }
+  // get user(){ return this._user.asObservable(); }
 
   constructor(
     private auth: AuthService,
