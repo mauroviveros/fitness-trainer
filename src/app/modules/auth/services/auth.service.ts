@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Auth, signInWithEmailAndPassword, signOut, User, user, createUserWithEmailAndPassword } from "@angular/fire/auth";
+import { Auth, signInWithEmailAndPassword, signOut, User, user, createUserWithEmailAndPassword, sendEmailVerification } from "@angular/fire/auth";
 import { BehaviorSubject, filter, map } from "rxjs";
 
 @Injectable({
@@ -26,7 +26,8 @@ export class AuthService {
     //// setPersistence(this.auth, { type: "LOCAL" });
   }
 
-  catchError(error: Error){
+  private catchError(error: Error | undefined){
+    if(error === undefined) throw error;
     if(error.message.includes("(auth/user-not-found)")) error.message = "No existe ese usuario";
     if(error.message.includes("(auth/email-already-in-use)")) error.message = "Ya existe ese email";
 
@@ -34,11 +35,8 @@ export class AuthService {
     throw error;
   }
 
-  login(email: string, password: string){
-    return signInWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error));
-  }
-  register(email: string, password: string){
-    return createUserWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error));
-  }
+  sendEmailVerification(user: User){ return sendEmailVerification(user).catch(error => this.catchError(error)); }
+  login(email: string, password: string){ return signInWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error)); }
+  register(email: string, password: string){ return createUserWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error)); }
   logout(){ return signOut(this.auth); }
 }
