@@ -2,9 +2,9 @@
   <h2>Verifica tu email</h2>
 </mat-toolbar>
 <mat-dialog-content>
-  <mat-icon>security</mat-icon>
+  <mat-icon color="primary">security</mat-icon>
+  <p>Tu email no ha sido verificado todavía. Por favor verifica tu dirección de correo electrónico para acceder a todas las funcionalidades de nuestra plataforma.</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button color="primary" (click)="sendEmailVerification()">ENVIAR EMAIL</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>CERRAR SESION</button>
+  <button mat-button color="primary" (click)="sendEmailVerification()" cdkFocusInitial>ENVIAR EMAIL</button>
 </mat-dialog-actions>
