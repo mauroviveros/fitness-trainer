@@ -36,11 +36,6 @@ export class RegisterComponent {
     this.authService.register(email, password).then(() => {
       this.snackBar.open("✅ Cuenta creada correctamente", undefined);
       this.router.navigate([""]);
-    }).catch(error => {
-      let message = error.message;
-      this.isLoading = false;
-      if(message.includes("auth/email-already-in-use")) message = "Ya existe ese email";
-      this.snackBar.open(message, "cerrar", { duration: 5000 });
-    });
+    }).catch(() => this.isLoading = false);
   }
 }
