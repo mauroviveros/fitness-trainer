@@ -4,6 +4,7 @@ import { map, switchMap, BehaviorSubject, filter, of, firstValueFrom } from "rxj
 
 import { UserDocument, UserDocumentOutput } from "../interfaces/user";
 import { AuthService } from "./auth.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -24,8 +25,9 @@ export class UserService {
   }
 
   constructor(
-    private auth: AuthService,
-    private firestore: Firestore
+    private router: Router,
+    private firestore: Firestore,
+    private auth: AuthService
   ){
     this.auth.user.pipe(
       switchMap(user => user === null ? of(null) : docSnapshots(doc(this.usersCollection, user.uid))),
@@ -44,6 +46,7 @@ export class UserService {
         return user as UserDocument;
       })
     ).subscribe(user => {
+      if(user === undefined) this.router.navigate(["profile"]);
       this._user.next(user);
     });
   }

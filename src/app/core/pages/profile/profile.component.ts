@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { map, filter } from "rxjs";
+import { Subscription, map, filter } from "rxjs";
 import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
@@ -24,10 +24,13 @@ interface Field{
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"]
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnDestroy{
+  private subscription?: Subscription;
+
   mode      = { icon: "edit", number: 2, new: false };
   form      = this.formBuilder.group({});
   isLoading = false;
+
 
   fields: Field[] = [
     {
@@ -58,13 +61,12 @@ export class ProfileComponent {
   ){
     this.fields.forEach(field => {
       this.form.addControl(field._id, this.formBuilder.control("", field.validators));
-      // this.form.get(field._id)?.disable();
     });
 
     this.route.queryParamMap.pipe(
       map(query => parseInt(query.get("mode") || "3")),
       filter(modeNum => {
-        if(this.mode.new) this.router.navigate([], { queryParams: { mode: 2 }});
+        if(this.mode.new) this.router.navigate(["/profile"], { queryParams: { mode: 2 }});
         return modeNum === 3 || modeNum === 2;
       }),
     ).subscribe(modeNum => {
@@ -79,16 +81,21 @@ export class ProfileComponent {
 
     });
 
-    this.userService.userObservable.subscribe(user => {
+    this.subscription = this.userService.userObservable.subscribe(user => {
       this.mode.new = !user;
-      if(!user){
+
+      if(this.mode.new){
         this.dialog.open(WelcomeDialogComponent);
-        this.router.navigate([], { queryParams: { mode: 2 } });
+        this.router.navigate(["/profile"], { queryParams: { mode: 2 } });
       }
-      this.fields.forEach(field => {
+      return this.fields.forEach(field => {
         this.form.get(field._id)?.setValue(user ? user[field._id] : null);
       });
     });
+  }
+
+  ngOnDestroy(){
+    this.subscription?.unsubscribe();
   }
 
   submit(){
@@ -102,10 +109,14 @@ export class ProfileComponent {
     if(this.mode.new) promise = () => this.userService.create(fields);
 
     this.isLoading = true;
+    const _new = this.mode.new;
     promise()
       .finally(() => this.isLoading = false)
       .then(() => this.snackBar.open("✅ Datos actualizados correctamente", undefined))
-      .then(() => this.router.navigate([], options));
+      .then(() => {
+        if(_new) return this.router.navigate(["/"]);
+        return this.router.navigate(["/profile"], options);
+      });
 
   }
 }
