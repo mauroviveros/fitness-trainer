@@ -12,10 +12,8 @@ export interface UserDocument {
 }
 
 export interface UserDocumentOutput{
-    verified?   : boolean,
-    name?       : string,
-    surname?    : string,
-    dateLastEmailVerification? : Date
+    name    : string,
+    surname : string,
 }
 
 export type Role = "USER" | "ADMIN" | "OWNER";

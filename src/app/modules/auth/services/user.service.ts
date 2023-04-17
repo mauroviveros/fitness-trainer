@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Firestore, collection, doc, docSnapshots, DocumentData, DocumentSnapshot } from "@angular/fire/firestore";
-import { map, switchMap, BehaviorSubject, filter, of } from "rxjs";
+import { Firestore, collection, doc, docSnapshots, DocumentData, DocumentSnapshot, setDoc, updateDoc } from "@angular/fire/firestore";
+import { map, switchMap, BehaviorSubject, filter, of, firstValueFrom } from "rxjs";
 
-import { UserDocument } from "../interfaces/user";
+import { UserDocument, UserDocumentOutput } from "../interfaces/user";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -11,14 +11,17 @@ import { AuthService } from "./auth.service";
 export class UserService {
   private usersCollection = collection(this.firestore, "users");
   private _user = new BehaviorSubject<UserDocument | null | undefined>(null);
-  userObservable = this._user.pipe(filter(user => user !== null));
+
+  userObservable = this._user.pipe(
+    filter(user => user !== null),
+    map(user => user as UserDocument | undefined)
+  );
   get user(){
     return this._user.pipe(
       filter(user => !!user),
       map(user => user as UserDocument)
     );
   }
-  // get user(){ return this._user.asObservable(); }
 
   constructor(
     private auth: AuthService,
@@ -42,6 +45,18 @@ export class UserService {
       })
     ).subscribe(user => {
       this._user.next(user);
+    });
+  }
+
+  update(fields: UserDocumentOutput){
+    return firstValueFrom(this.auth.user).then(({ uid }) => {
+      return updateDoc(doc(this.usersCollection, uid), { data: fields });
+    });
+  }
+
+  create(fields: UserDocumentOutput){
+    return firstValueFrom(this.auth.user).then(({ uid }) => {
+      return setDoc(doc(this.usersCollection, uid), fields);
     });
   }
 
