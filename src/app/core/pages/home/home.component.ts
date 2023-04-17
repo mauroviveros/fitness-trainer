@@ -1,16 +1,18 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { UserDocument } from "src/app/modules/auth/interfaces/user";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
 import { UserService } from "src/app/modules/auth/services/user.service";
+
+import { UserDocument } from "src/app/modules/auth/interfaces/user";
 
 interface Shortcut{
   text: string,
   icon?: string,
   link?: string,
   action?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  admin?: boolean
 }
 
 @Component({
@@ -21,7 +23,7 @@ interface Shortcut{
 export class HomeComponent {
   public user: UserDocument = {} as UserDocument;
   public shortcuts: Shortcut[] = [
-    { text: "Clientes", icon: "people", link: "/clientes" },
+    { text: "Clientes", icon: "people", link: "/clientes", admin: true },
     { text: "Mi rutina", icon: "fitness_center", disabled: true },
     { text: "Mi nutrición", disabled: true },
     { text: "Calorias", disabled: true },
@@ -45,12 +47,11 @@ export class HomeComponent {
     });
   }
 
-  public onClick(action?: string){
+  public click(action?: string){
     if(!action) return;
 
     switch(action){
     case "logout": this.auth.logout().then(() => this.router.navigate(["/login"])); break;
-
     }
   }
 }

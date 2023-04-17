@@ -7,12 +7,14 @@
 
 <mat-card>
   <mat-card-content>
-    <core-shortcut
-      *ngFor="let shortcut of shortcuts"
-      [text]="shortcut.text"
-      [link]="shortcut.link"
-      [icon]="shortcut.icon"
-      [disabled]="shortcut.disabled"
-      (click)="onClick(shortcut.action)"></core-shortcut>
+    <ng-container *ngFor="let shortcut of shortcuts">
+      <core-shortcut
+        *ngIf="shortcut.admin ? user.admin : true"
+        [text]="shortcut.text"
+        [link]="shortcut.link"
+        [icon]="shortcut.icon"
+        [disabled]="shortcut.disabled"
+        (click)="click(shortcut.action)"></core-shortcut>
+    </ng-container>
   </mat-card-content>
 </mat-card>
