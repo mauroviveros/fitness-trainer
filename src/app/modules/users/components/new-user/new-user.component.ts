@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { finalize } from "rxjs";
 
 import { UsersService } from "../../services/users.service";
-import { Role } from "../../interfaces/users";
+import { Role } from "../../interfaces/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialogRef } from "@angular/material/dialog";
 

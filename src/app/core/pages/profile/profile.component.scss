@@ -19,6 +19,11 @@
         top: calc(200px + 56px);
     }
 
+    mat-toolbar{
+        a{ position: absolute; }
+        h1{ text-align: center; width: 100%; }
+    }
+
     mat-card {
         flex: 1;
         overflow: hidden;

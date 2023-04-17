@@ -19,6 +19,7 @@ import { SplashScreenComponent } from "./core/components/splash-screen/splash-sc
 
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ProfileComponent } from "./core/pages/profile/profile.component";
+import { WelcomeDialogComponent } from './core/components/welcome-dialog/welcome-dialog.component';
 
 
 const firebase = {
@@ -37,7 +38,8 @@ const firebase = {
     HomeComponent,
     ProfileComponent,
     ShortcutComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    WelcomeDialogComponent
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(firebase)),

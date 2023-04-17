@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { UsersService } from "../../services/users.service";
 import { ActivatedRoute } from "@angular/router";
-import { UserDocument } from "../../interfaces/users";
+import { UserDocument } from "../../interfaces/user";
 
 
 interface Detalle {

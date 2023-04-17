@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 
 import { NewUserComponent } from "../../components/new-user/new-user.component";
 import { UsersService } from "../../services/users.service";
-import { Role, UserDocument } from "../../interfaces/users";
+import { Role, UserDocument } from "../../interfaces/user";
 
 @Component({
   selector: "users-list",

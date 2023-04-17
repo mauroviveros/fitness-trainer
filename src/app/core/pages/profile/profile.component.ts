@@ -1,11 +1,13 @@
 import { Component } from "@angular/core";
 import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map, filter } from "rxjs";
 import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
+import { WelcomeDialogComponent } from "../../components/welcome-dialog/welcome-dialog.component";
 
 
 interface Field{
@@ -48,6 +50,7 @@ export class ProfileComponent {
 
   constructor(
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -61,9 +64,8 @@ export class ProfileComponent {
     this.route.queryParamMap.pipe(
       map(query => parseInt(query.get("mode") || "3")),
       filter(modeNum => {
-        const bool = modeNum === 3 || modeNum === 2;
-        if(!bool) this.router.navigate([]);
-        return bool;
+        if(this.mode.new) this.router.navigate([], { queryParams: { mode: 2 }});
+        return modeNum === 3 || modeNum === 2;
       }),
     ).subscribe(modeNum => {
       this.mode.number = modeNum;
@@ -78,7 +80,11 @@ export class ProfileComponent {
     });
 
     this.userService.userObservable.subscribe(user => {
-      if(!user) this.mode.new = true;
+      this.mode.new = !user;
+      if(!user){
+        this.dialog.open(WelcomeDialogComponent);
+        this.router.navigate([], { queryParams: { mode: 2 } });
+      }
       this.fields.forEach(field => {
         this.form.get(field._id)?.setValue(user ? user[field._id] : null);
       });
