@@ -1,3 +1,47 @@
+# [0.1.0](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.16...v0.1.0) (2023-04-17)
+
+
+### Bug Fixes
+
+* :lipstick: layout with gap in toolbar ([bbe9726](https://github.com/maurodviveros/fitness-trainer/commit/bbe972651711c785e3d647919965b5445c815829))
+* **auth:** :coffin: remove component Unverified ([bdba692](https://github.com/maurodviveros/fitness-trainer/commit/bdba692231f2a41dd1ee0316979b878ba4f50faa))
+* **auth:** :monocle_face: add 2 getters from user ([d855a3d](https://github.com/maurodviveros/fitness-trainer/commit/d855a3dfe521190a0080eb4c1f05f9c9babeb932))
+* **auth:** :passport_control: fix routing Login/Register ([55c951d](https://github.com/maurodviveros/fitness-trainer/commit/55c951d0e53581425efd8e633eab022aeed32e9c))
+* **auth:** :passport_control: remove guard userValidation ([c8f5cb7](https://github.com/maurodviveros/fitness-trainer/commit/c8f5cb7ee23c8ca642033c782963847ecd6a8079))
+* **auth:** :recycle: move catch into service ([de833bd](https://github.com/maurodviveros/fitness-trainer/commit/de833bdd2518288a820765f5540f5e1c2c8c995e))
+* **auth:** :wastebasket: cleaned authService ([0626e34](https://github.com/maurodviveros/fitness-trainer/commit/0626e34de1319f786d3a0910d0d21f641c2dfb16))
+* **core:** :adhesive_bandage: fix splashScreen on undefined user ([c9ac761](https://github.com/maurodviveros/fitness-trainer/commit/c9ac761620920c53f3134fa94b251331060b0487))
+* **core:** :bug: fix splashScreen Service ([9b1beb4](https://github.com/maurodviveros/fitness-trainer/commit/9b1beb455fd067f21fe366ce3adfe99ef13eb9a8))
+* **core:** :lipstick: fix UI layout ([f30036e](https://github.com/maurodviveros/fitness-trainer/commit/f30036ecc1eb3029cbb3e5719662eaeab85c4adc))
+* **core:** :wastebasket: clean SplashScreenService ([5bc3ecd](https://github.com/maurodviveros/fitness-trainer/commit/5bc3ecdc589b50bea63e721a6127e8b141067337))
+* **users:** :adhesive_bandage: update user.getter ([c38730d](https://github.com/maurodviveros/fitness-trainer/commit/c38730db9488ce42d6ee2a7e954041a49ce49541))
+* **users:** :wastebasket: cleaned UserService ([1516f2f](https://github.com/maurodviveros/fitness-trainer/commit/1516f2f90f525daf188aef9bd70c806d7f12fd66))
+
+
+### Features
+
+* **auth:** :alien: add update and create method ([647a3d5](https://github.com/maurodviveros/fitness-trainer/commit/647a3d55ac840398308c370cef8fc39fc1ca1c9a))
+* **auth:** :goal_net: catchErrors on AuthService ([01a3205](https://github.com/maurodviveros/fitness-trainer/commit/01a3205226c496c2524eae915b5e338db49bc578))
+* **auth:** :lock: add emailVerificationGuard ([b4ea778](https://github.com/maurodviveros/fitness-trainer/commit/b4ea77857df61dbe6b9e78788f0ad8ae28666374))
+* **auth:** :passport_control: add registerPage ([57fca15](https://github.com/maurodviveros/fitness-trainer/commit/57fca15c4685dfe97c76ec04b4009c0e85adb287))
+* **auth:** :passport_control: add unauthorized dialog component ([d64e5fd](https://github.com/maurodviveros/fitness-trainer/commit/d64e5fd3c7d0a420e46d2aa4d5423b4873927a4e))
+* **auth:** :passport_control: add userGuard ([4e36887](https://github.com/maurodviveros/fitness-trainer/commit/4e3688726e368a366ea995066955abf541bcbcae))
+* **auth:** :sparkles: add formComponent for login ([30aad98](https://github.com/maurodviveros/fitness-trainer/commit/30aad987a4915033f7f534bc808b1d88af07632f))
+* **auth:** :sparkles: complete unauthorized component ([6b0b723](https://github.com/maurodviveros/fitness-trainer/commit/6b0b72384a387b8176c2f99f5a26cbb493f901a0))
+* **auth:** :wheelchair: add sendEmailValidation ([d13a53d](https://github.com/maurodviveros/fitness-trainer/commit/d13a53dce4f3195dc4b65824b142657b6ab1a77a))
+* **core:** :children_crossing: add welcomeDialog component ([bd8325c](https://github.com/maurodviveros/fitness-trainer/commit/bd8325ca7c19856afb9ba2ef1599e17c8f2a6940))
+* **core:** :poop: open unauthorized dialog in home ([4aaeafe](https://github.com/maurodviveros/fitness-trainer/commit/4aaeafe8e1fe988eec21603cdfcb5e350eb34186))
+* **core:** :sparkles: add email field in profile ([4eac71b](https://github.com/maurodviveros/fitness-trainer/commit/4eac71babf37f4dcac1f8ecfae417484fcd4dc44))
+* **core:** :sparkles: add profileComponent ([ffefbf9](https://github.com/maurodviveros/fitness-trainer/commit/ffefbf9510206dccfc07d2f08e5614fa600dda16))
+* **customer:** :sparkles: add module customer ([acf9ba1](https://github.com/maurodviveros/fitness-trainer/commit/acf9ba1b79b07e2d6a0b97687d3a35ca07f7ff54))
+
+
+### Reverts
+
+* **core:** :mute: comment childrens ([a8a7d58](https://github.com/maurodviveros/fitness-trainer/commit/a8a7d5844d5e66a98b795f18a55c01932fd125a8))
+
+
+
 ## [0.0.16](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.15...v0.0.16) (2023-04-13)
 
 
