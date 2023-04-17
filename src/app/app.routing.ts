@@ -17,14 +17,10 @@ const routes: Routes = [
     children: [
       { path: "", component: HomeComponent, },
       { path: "profile", component: ProfileComponent },
-      // {
-      //   path: "rutina",
-      //   loadChildren: () => import("./modules/routines/routines.module").then(m => m.RoutinesModule)
-      // },
-      // {
-      //   path: "users",
-      //   loadChildren: () => import("./modules/users/users.module").then(m => m.UsersModule)
-      // }
+      {
+        path: "clientes",
+        loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
+      }
     ]
   },
   {
