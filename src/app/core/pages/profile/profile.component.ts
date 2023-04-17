@@ -3,11 +3,12 @@ import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription, map, filter } from "rxjs";
+import { Subscription, map, filter, firstValueFrom } from "rxjs";
 import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
 import { WelcomeDialogComponent } from "../../components/welcome-dialog/welcome-dialog.component";
+import { AuthService } from "src/app/modules/auth/services/auth.service";
 
 
 interface Field{
@@ -16,7 +17,8 @@ interface Field{
   label       : string,
   placeholder : string,
   validators  : ValidatorFn[],
-  maxLength?  : number
+  maxLength?  : number,
+  disabled?   : true
 }
 
 @Component({
@@ -48,6 +50,14 @@ export class ProfileComponent implements OnDestroy{
       placeholder: "Ingrese su apellido",
       validators: [Validators.required, Validators.maxLength(24)],
       maxLength: 24
+    },
+    {
+      _id: "email",
+      icon: "email",
+      label: "Email",
+      placeholder: "Ingrese su email",
+      validators: [Validators.required, Validators.email],
+      disabled: true
     }
   ];
 
@@ -57,7 +67,8 @@ export class ProfileComponent implements OnDestroy{
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ){
     this.fields.forEach(field => {
       this.form.addControl(field._id, this.formBuilder.control("", field.validators));
@@ -75,21 +86,25 @@ export class ProfileComponent implements OnDestroy{
 
       this.fields.forEach(field => {
         const control = this.form.get(field._id);
-        if(modeNum === 3) control?.disable();
-        if(modeNum === 2) control?.enable();
+        if(modeNum === 2 && !field.disabled) control?.enable();
+        else control?.disable();
       });
 
     });
 
-    this.subscription = this.userService.userObservable.subscribe(user => {
-      this.mode.new = !user;
+    firstValueFrom(this.authService.user).then(({ email }) => {
+      this.subscription = this.userService.userObservable.subscribe(user => {
+        this.mode.new = !user;
 
-      if(this.mode.new){
-        this.dialog.open(WelcomeDialogComponent);
-        this.router.navigate(["/profile"], { queryParams: { mode: 2 } });
-      }
-      return this.fields.forEach(field => {
-        this.form.get(field._id)?.setValue(user ? user[field._id] : null);
+        if(this.mode.new){
+          this.dialog.open(WelcomeDialogComponent);
+          this.router.navigate(["/profile"], { queryParams: { mode: 2 } });
+        }
+        return this.fields.forEach(field => {
+          let value = user ? user[field._id] : null;
+          if(field._id === "email") value = email;
+          this.form.get(field._id)?.setValue(value);
+        });
       });
     });
   }
@@ -100,7 +115,7 @@ export class ProfileComponent implements OnDestroy{
 
   submit(){
     const options = { queryParams: { mode: this.mode.number === 3 ? 2 : 3 } };
-    const fields = this.form.value as UserDocumentOutput;
+    const fields = this.form.getRawValue() as UserDocumentOutput;
 
     if(this.mode.number !== 2) return this.router.navigate([], options);
     if(this.form.invalid) return this.form.markAllAsTouched();
