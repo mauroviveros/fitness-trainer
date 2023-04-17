@@ -1,9 +1,9 @@
 <shared-layout text="Clientes" [isLoading]="false">
   <mat-nav-list class="content">
-    <ng-container>
+    <ng-container *ngFor="let customer of customers">
       <mat-list-item>
-        <mat-icon matListItemIcon>dashboard</mat-icon>
-        <h5>Cliente 1</h5>
+        <mat-icon matListItemIcon>user</mat-icon>
+        <h5>{{ customer.name | titlecase }} {{ customer.surname | titlecase }}</h5>
       </mat-list-item>
 
       <mat-divider></mat-divider>
