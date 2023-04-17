@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard as FireAuthGuard, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 
 import { EmailGuard } from "./modules/auth/guards/email.guard";
+import { AdminGuard } from "./modules/auth/guards/admin.guard";
 
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ProfileComponent } from "./core/pages/profile/profile.component";
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: "profile", component: ProfileComponent },
       {
         path: "clientes",
+        canActivate: [AdminGuard],
         loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
       }
     ]

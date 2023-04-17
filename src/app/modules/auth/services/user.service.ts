@@ -59,7 +59,7 @@ export class UserService {
 
   create(fields: UserDocumentOutput){
     return firstValueFrom(this.auth.user).then(({ uid }) => {
-      return setDoc(doc(this.usersCollection, uid), fields);
+      return setDoc(doc(this.usersCollection, uid), { admin: false, ...fields});
     });
   }
 
