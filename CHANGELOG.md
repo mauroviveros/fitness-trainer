@@ -1,3 +1,14 @@
+## [0.1.1](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.0...v0.1.1) (2023-04-17)
+
+
+### Features
+
+* **auth:** :lock: add guard admin ([51fcd98](https://github.com/maurodviveros/fitness-trainer/commit/51fcd9890c37a7ca6e2fbb9550a8fce0468b3e0a))
+* **core:** :lock: conditional shortcuts isAdmin ([d068f65](https://github.com/maurodviveros/fitness-trainer/commit/d068f653b3fb24a205b36c083377e7399789cace))
+* **customer:** :sparkles: add service list customers ([ad85341](https://github.com/maurodviveros/fitness-trainer/commit/ad85341814dfd430220e598e15b58c0bfb3afac7))
+
+
+
 # [0.1.0](https://github.com/maurodviveros/fitness-trainer/compare/v0.0.16...v0.1.0) (2023-04-17)
 
 
