@@ -2,20 +2,24 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth,getAuth } from "@angular/fire/auth";
 import { provideFirestore,getFirestore } from "@angular/fire/firestore";
 
-import { environment } from "../environments/environment";
-
 import { AppRoutingModule } from "./app.routing";
 import { SharedModule } from "./shared/shared.module";
 
+import { environment } from "../environments/environment";
+
 import { AppComponent } from "./app.component";
-import { HomeComponent } from "./core/pages/home/home.component";
 import { ShortcutComponent } from "./core/components/shortcut/shortcut.component";
 import { SplashScreenComponent } from "./core/components/splash-screen/splash-screen.component";
+
+import { HomeComponent } from "./core/pages/home/home.component";
+import { ProfileComponent } from "./core/pages/profile/profile.component";
+
 
 const firebase = {
   projectId         : environment.FIREBASE.PROJECT_ID,
@@ -31,6 +35,7 @@ const firebase = {
   declarations: [
     AppComponent,
     HomeComponent,
+    ProfileComponent,
     ShortcutComponent,
     SplashScreenComponent
   ],
@@ -42,6 +47,7 @@ const firebase = {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     SharedModule
   ],

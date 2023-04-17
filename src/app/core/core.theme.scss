@@ -1,7 +1,9 @@
 @use './pages/home/home.component.theme.scss' as home;
+@use './pages/profile/profile.component.theme.scss' as profile;
 @use './components/splash-screen//splash-screen.component.theme.scss' as splash-screen;
 
 @mixin all-component-themes($theme) {
     @include home.theme($theme);
+    @include profile.theme($theme);
     @include splash-screen.theme($theme);
 };
