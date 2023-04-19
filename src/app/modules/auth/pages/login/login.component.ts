@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { AuthService } from "../../services/auth.service";
+import { SplashScreenService } from "src/app/core/services/splash-screen.service";
 
 @Component({
   selector: "auth-login",
@@ -23,6 +24,7 @@ export class LoginComponent{
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private splashScreen: SplashScreenService,
     private auth: AuthService
   ){}
 
@@ -33,6 +35,7 @@ export class LoginComponent{
     this.isLoading = true;
     this.auth.login(email, password)
       .finally(() => this.isLoading = false)
-      .then(() => this.router.navigate([""]));
+      .then(() => this.splashScreen.setLoading(true))
+      .then(() => setTimeout(() => this.router.navigate([""]), 200));
   }
 }
