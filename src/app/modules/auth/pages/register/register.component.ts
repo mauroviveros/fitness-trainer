@@ -10,12 +10,16 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent {
-  public isLoading = false;
-  public visibility: boolean[] = [false, false];
-  public visibilityIcon(i: number){ return this.visibility[i] ? "visibility_off" : "visibility"; }
-  public visibilityType(i: number){ return this.visibility[i] ? "text" : "password"; }
+  isLoading = false;
+  visibility: boolean[] = [false, false];
+  visibilityIcon(i: number){ return this.visibility[i] ? "visibility_off" : "visibility"; }
+  visibilityType(i: number){ return this.visibility[i] ? "text" : "password"; }
+  visibilityToggle(i: number, event: Event){
+    event.stopPropagation();
+    this.visibility[i] = !this.visibility[i];
+  }
 
-  public form = this.formBuilder.group({
+  form = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required]],
     password_confirm: ["", [Validators.required]]

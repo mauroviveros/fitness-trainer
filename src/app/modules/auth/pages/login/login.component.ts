@@ -11,12 +11,16 @@ import { SplashScreenService } from "src/app/core/services/splash-screen.service
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent{
-  public isLoading = false;
-  public visibility = false;
-  public visibilityIcon(){ return this.visibility ? "visibility_off" : "visibility"; }
-  public visibilityType(){ return this.visibility ? "text" : "password"; }
+  isLoading = false;
+  visibility = false;
+  visibilityIcon(){ return this.visibility ? "visibility_off" : "visibility"; }
+  visibilityType(){ return this.visibility ? "text" : "password"; }
+  visibilityToggle(event: Event){
+    event.stopPropagation();
+    this.visibility = !this.visibility;
+  }
 
-  public form = this.formBuilder.group({
+  form = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required]]
   });

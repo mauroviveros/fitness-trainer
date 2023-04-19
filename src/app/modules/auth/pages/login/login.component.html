@@ -10,7 +10,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input [type]="visibilityType()" matInput formControlName="password" placeholder="Ingrese su Contraseña" />
-        <button type="button" mat-icon-button matSuffix (click)="visibility = !visibility" tabindex="-1">
+        <button type="button" mat-icon-button matSuffix (click)="visibilityToggle($event)" tabindex="-1">
           <mat-icon>{{ visibilityIcon() }}</mat-icon>
         </button>
         <mat-error>El campo es obligatorio</mat-error>
