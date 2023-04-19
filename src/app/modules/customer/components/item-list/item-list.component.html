@@ -1,0 +1,9 @@
+<mat-list-item>
+  <mat-icon matListItemIcon>person</mat-icon>
+  <h5 matListItemTitle>{{ customer?.name | titlecase }} {{ customer?.surname | titlecase }}</h5>
+  <div matListItemMeta>
+    <button mat-icon-button (click)="test($event)">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</mat-list-item>

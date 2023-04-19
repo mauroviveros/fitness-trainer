@@ -23,5 +23,4 @@ export class ListComponent {
       this.customers = customers;
     });
   }
-
 }
