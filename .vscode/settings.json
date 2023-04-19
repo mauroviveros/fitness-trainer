@@ -21,7 +21,8 @@
     "auth",
     "core",
     "routines",
-    "customer"
+    "customer",
+    "shared"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
