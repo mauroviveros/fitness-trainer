@@ -1,13 +1,11 @@
 import { Component } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"]
+  templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
   isLoading = false;
@@ -19,14 +17,13 @@ export class RegisterComponent {
     this.visibility[i] = !this.visibility[i];
   }
 
-  form = this.formBuilder.group({
+  form: FormGroup = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required]],
     password_confirm: ["", [Validators.required]]
   });
 
   constructor(
-    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private router: Router,
     private auth: AuthService
@@ -34,12 +31,11 @@ export class RegisterComponent {
 
   public submit(){
     if(this.form.invalid) return;
-    const { email, password } = this.form.value as { email: string, password: string };
+    const { email, password } = this.form.value;
 
     this.isLoading = true;
     this.auth.register(email, password)
       .finally(() => this.isLoading = false)
-      .then(() => this.snackBar.open("✅ Cuenta creada correctamente", undefined))
       .then(() => this.router.navigate([""]));
   }
 }

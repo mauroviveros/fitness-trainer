@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { AuthService } from "../../services/auth.service";
@@ -7,8 +7,7 @@ import { SplashScreenService } from "src/app/core/services/splash-screen.service
 
 @Component({
   selector: "auth-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  templateUrl: "./login.component.html"
 })
 export class LoginComponent{
   isLoading = false;
@@ -20,7 +19,7 @@ export class LoginComponent{
     this.visibility = !this.visibility;
   }
 
-  form = this.formBuilder.group({
+  form: FormGroup = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required]]
   });
@@ -34,7 +33,7 @@ export class LoginComponent{
 
   submit(){
     if(this.form.invalid) return;
-    const { email, password } = this.form.value as { email: string, password: string };
+    const { email, password } = this.form.value;
 
     this.isLoading = true;
     this.auth.login(email, password)
