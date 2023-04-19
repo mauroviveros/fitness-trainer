@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-
 import { DomSanitizer } from "@angular/platform-browser";
 import { NativeDateModule, MAT_DATE_FORMATS } from "@angular/material/core";
 
@@ -23,50 +22,42 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { LayoutComponent } from "./components/layout/layout.component";
 
+import { FormErrorPipe } from "./pipes/form-error.pipe";
+
+const ANGULAR_MATERIAL = [
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatToolbarModule
+];
+
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,
+    FormErrorPipe
   ],
   imports: [
     CommonModule,
     RouterModule,
     NativeDateModule,
-
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatToolbarModule
+    ANGULAR_MATERIAL
   ],
   exports: [
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatToolbarModule,
-    LayoutComponent
+    ANGULAR_MATERIAL,
+    LayoutComponent,
+    FormErrorPipe
   ],
   providers: [
     {
