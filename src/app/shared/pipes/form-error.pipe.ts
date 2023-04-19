@@ -7,8 +7,9 @@ interface messages{
 }
 
 const messages: messages = {
-  required  : "El campo es obligatorio",
-  email     : "No es un email valido"
+  required        : "El campo es obligatorio",
+  email           : "No es un email valido",
+  confirmPassword : "Las contraseñas no coinciden"
 };
 
 
