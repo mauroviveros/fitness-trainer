@@ -6,7 +6,7 @@
 
     shared-layout {
         mat-nav-list, mat-list{
-            > mat-list-item{
+            mat-list-item{
                 *[matlistitemtitle] mat-icon{
                     color: gray;
                 }

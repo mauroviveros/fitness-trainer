@@ -7,7 +7,7 @@ import { SplashScreenService } from "./core/services/splash-screen.service";
     <core-splash-screen *ngIf="isLoading"></core-splash-screen>
     <router-outlet></router-outlet>
   `,
-  styles: [`:host{ display: flex; flex: 1; flex-direction: column; } `],
+  styles: [`:host{ display: flex; flex: 1; flex-direction: column; width: 100%; } `],
 })
 export class AppComponent {
   public isLoading = true;

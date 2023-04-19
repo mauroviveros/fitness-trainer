@@ -8,21 +8,21 @@
 }
 
 :host ::ng-deep{
-    section > *:not(mat-icon) {
+    > section > *:not(mat-icon) {
         flex: 1;
         width: 100%;
     }
 
-    section{
+    > section{
         display: flex;
         flex-direction: column;
         flex: 1;
         justify-content: center;
         align-items: center;
 
-        mat-list, mat-nav-list{
+        > mat-list, mat-nav-list{
             mat-list-item{
-                > *[matlistitemtitle] mat-icon{
+                > [matlistitemtitle] mat-icon{
                     font-size: 1rem !important;
                     width: 1rem !important;
                     height: 1rem !important;
@@ -35,6 +35,12 @@
                     font-size: 2rem !important;
                     width: 2rem !important;
                     height: 2rem !important;
+                }
+
+                > [matlistitemmeta]{
+                    height: 100%;
+                    display: flex !important;
+                    align-items: center;
                 }
             }
         }
