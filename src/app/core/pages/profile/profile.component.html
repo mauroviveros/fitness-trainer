@@ -12,7 +12,7 @@
       <mat-form-field appearance="fill" *ngFor="let field of fields">
         <mat-icon matPrefix color="primary">{{ field.icon }}</mat-icon>
         <mat-label>{{ field.label }}</mat-label>
-        <input matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [disabled]="true" [maxlength]="!!field.maxLength ? field.maxLength : null" />
+        <input matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [maxlength]="!!field.maxLength ? field.maxLength : null" />
         <mat-hint *ngIf="!!field.maxLength && !input.disabled" align="end">{{ input.value.length }}/{{ field.maxLength }}</mat-hint>
       </mat-form-field>
     </form>
