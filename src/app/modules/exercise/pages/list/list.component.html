@@ -1,0 +1,16 @@
+<shared-layout text="Ejercicios" [isLoading]="!this.exercises">
+  <div class="actions">
+    <button mat-icon-button><mat-icon>search</mat-icon></button>
+  </div>
+
+  <mat-nav-list class="content">
+    <ng-container *ngFor="let exercise of exercises">
+      <exercise-item-list [exercise]="exercise"></exercise-item-list>
+      <mat-divider></mat-divider>
+    </ng-container>
+
+    <button mat-fab color="primary" (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-nav-list>
+</shared-layout>
