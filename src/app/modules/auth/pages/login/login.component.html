@@ -4,7 +4,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email" formControlName="email" matInput placeholder="Ingrese su Email" />
-        <mat-error> El campo es obligatorio </mat-error>
+        <mat-error>{{ form.get('email')?.errors | formError }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -13,7 +13,7 @@
         <button type="button" mat-icon-button matSuffix (click)="visibilityToggle($event)" tabindex="-1">
           <mat-icon>{{ visibilityIcon() }}</mat-icon>
         </button>
-        <mat-error>El campo es obligatorio</mat-error>
+        <mat-error>{{ form.get('password')?.errors | formError }}</mat-error>
       </mat-form-field>
 
       <button type="submit" mat-stroked-button color="accent">Ingresar</button>

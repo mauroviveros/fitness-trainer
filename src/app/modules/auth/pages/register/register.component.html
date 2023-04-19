@@ -4,25 +4,24 @@
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email" matInput formControlName="email" placeholder="Ingrese su Email" />
-        <!-- <mat-icon matSuffix>mail_outlined</mat-icon> -->
-        <mat-error> El campo es obligatorio </mat-error>
+        <mat-error>{{ form.get('email')?.errors | formError }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input [type]="visibilityType(0)" matInput formControlName="password" placeholder="Ingrese su Contraseña" />
-        <button type="button" mat-icon-button matSuffix (click)="visibilityToggle(0, $event)" tabindex="-1">
+        <button type="button" mat-icon-button matSuffix (click)="visibilityToggle(0, $event)">
           <mat-icon>{{ visibilityIcon(0) }}</mat-icon>
         </button>
-        <mat-error>El campo es obligatorio</mat-error>
+        <mat-error>{{ form.get('password')?.errors | formError }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Confirma contraseña</mat-label>
         <input [type]="visibilityType(1)" matInput formControlName="password_confirm" placeholder="Ingrese su Contraseña" />
-        <button type="button" mat-icon-button matSuffix (click)="visibilityToggle(1, $event)" tabindex="-1">
+        <button type="button" mat-icon-button matSuffix (click)="visibilityToggle(1, $event)">
           <mat-icon>{{ visibilityIcon(1) }}</mat-icon>
         </button>
-        <mat-error>El campo es obligatorio</mat-error>
+        <mat-error>{{ form.get('password_confirm')?.errors | formError }}</mat-error>
       </mat-form-field>
 
       <button type="submit" mat-stroked-button color="accent" [disabled]="form.invalid">Registrar</button>
