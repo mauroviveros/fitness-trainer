@@ -23,8 +23,9 @@ interface Shortcut{
 export class HomeComponent {
   public user: UserDocument = {} as UserDocument;
   public shortcuts: Shortcut[] = [
-    { text: "Clientes", icon: "people", link: "/clientes", admin: true },
-    { text: "Mi rutina", icon: "fitness_center", disabled: true },
+    { text: "Clientes", icon: "people", link: "/customers", admin: true },
+    { text: "Ejercicios", icon: "fitness_center", link: "/exercises", admin: true },
+    { text: "Mi rutina", disabled: true },
     { text: "Mi nutrición", disabled: true },
     { text: "Calorias", disabled: true },
     { text: "Salir", action: "logout", icon: "logout" }

@@ -19,9 +19,14 @@ const routes: Routes = [
       { path: "", component: HomeComponent, },
       { path: "profile", component: ProfileComponent },
       {
-        path: "clientes",
+        path: "customers",
         canActivate: [AdminGuard],
         loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
+      },
+      {
+        path: "exercises",
+        canActivate: [AdminGuard],
+        loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
       }
     ]
   },
