@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.2...v0.1.3) (2023-04-19)
+
+
+### Features
+
+* :closed_lock_with_key: ignore environment.ts ([51cb080](https://github.com/maurodviveros/fitness-trainer/commit/51cb0802c2f5d4f1239d2655ad974a939a5f2d20))
+
+
+
 ## [0.1.2](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.1...v0.1.2) (2023-04-19)
 
 
