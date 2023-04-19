@@ -3,6 +3,19 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 
+
+const confirmPassword = (ctrlName: string, matchCtrlName: string) => {
+  return (formGroup: FormGroup) => {
+    const ctrl = formGroup.controls[ctrlName];
+    const matchCtrl = formGroup.controls[matchCtrlName];
+
+    if (matchCtrl.errors && !matchCtrl.errors["confirmPassword"]) return;
+
+    if (ctrl.value === matchCtrl.value) matchCtrl.setErrors(null);
+    else matchCtrl.setErrors({ confirmPassword: true });
+  };
+};
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html"
@@ -21,6 +34,8 @@ export class RegisterComponent {
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required]],
     password_confirm: ["", [Validators.required]]
+  },{
+    validator: confirmPassword("password", "password_confirm")
   });
 
   constructor(
