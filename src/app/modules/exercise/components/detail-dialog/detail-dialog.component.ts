@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Exercise, ExerciseOUT } from "src/app/shared/interfaces/exercises";
+import { environment } from "src/environments/environment";
 
 interface DialogData{
   exercise?: Exercise,
@@ -15,6 +16,7 @@ interface DialogData{
 })
 export class DetailDialogComponent {
   mode = 3;
+  maxLength = environment.maxLength;
   form: FormGroup = this.formBuilder.group({
     name        : [null, [Validators.required]],
     description : [null, [Validators.required]],

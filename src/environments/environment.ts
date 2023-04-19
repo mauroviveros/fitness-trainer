@@ -1,4 +1,5 @@
 export const environment = {
+  maxLength: 24,
   FIREBASE: {
     APP_ID              : "1:752639024627:web:a5f80ace707098191c0686",
     API_KEY             : "AIzaSyD8Cqe4iAUwHKlwYnCgQMbuiCYWFsN3T5c",

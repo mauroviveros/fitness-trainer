@@ -5,8 +5,8 @@
   <mat-dialog-content>
     <mat-form-field>
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name" placeholder="Ingrese un nombre" maxlength="24" #inputName />
-      <mat-hint align="end">{{ inputName.value.length }}/24</mat-hint>
+      <input matInput formControlName="name" placeholder="Ingrese un nombre" [maxlength]="maxLength" #inputName />
+      <mat-hint align="end">{{ inputName.value.length }}/{{ maxLength }}</mat-hint>
       <mat-error>El campo es obligatorio</mat-error>
     </mat-form-field>
 

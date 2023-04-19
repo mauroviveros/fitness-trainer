@@ -1,14 +1,17 @@
 import { Component, OnDestroy } from "@angular/core";
 import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription, map, filter, firstValueFrom } from "rxjs";
-import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
-import { WelcomeDialogComponent } from "../../components/welcome-dialog/welcome-dialog.component";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
+
+import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
+import { environment } from "src/environments/environment";
+
+import { WelcomeDialogComponent } from "../../components/welcome-dialog/welcome-dialog.component";
 
 
 interface Field{
@@ -40,16 +43,16 @@ export class ProfileComponent implements OnDestroy{
       icon: "person",
       label: "Nombre",
       placeholder: "Ingrese su nombre",
-      validators: [Validators.required, Validators.maxLength(24)],
-      maxLength: 24
+      validators: [Validators.required, Validators.maxLength(environment.maxLength)],
+      maxLength: environment.maxLength
     },
     {
       _id: "surname",
       icon: "badge",
       label: "Apellido",
       placeholder: "Ingrese su apellido",
-      validators: [Validators.required, Validators.maxLength(24)],
-      maxLength: 24
+      validators: [Validators.required, Validators.maxLength(environment.maxLength)],
+      maxLength: environment.maxLength
     },
     {
       _id: "email",
