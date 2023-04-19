@@ -34,8 +34,17 @@ export class AuthService {
     throw error;
   }
 
-  sendEmailVerification(user: User){ return sendEmailVerification(user).catch(error => this.catchError(error)); }
+  sendEmailVerification(user: User){
+    return sendEmailVerification(user)
+      .then(() => this.snackBar.open("✅ Te enviamos un correo para validar tu email", undefined))
+      .catch(error => this.catchError(error));
+  }
+  register(email: string, password: string){
+    return createUserWithEmailAndPassword(this.auth, email, password)
+      .then(() => this.snackBar.open("✅ Cuenta creada correctamente", undefined))
+      .catch(error => this.catchError(error));
+  }
+
   login(email: string, password: string){ return signInWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error)); }
-  register(email: string, password: string){ return createUserWithEmailAndPassword(this.auth, email, password).catch(error => this.catchError(error)); }
   logout(){ return signOut(this.auth); }
 }
