@@ -1,14 +1,9 @@
 {
-  "targets": {
-    "fitness-trainer-dev-a0ab6": {
-      "hosting": {
-        "fitness-trainer": [
-          "fitness-trainer-dev-a0ab6"
-        ]
-      }
-    }
-  },
   "projects": {
     "default": "fitness-trainer-dev-a0ab6"
-  }
+  },
+  "targets": {
+    "fitness-trainer-dev-a0ab6":{ "hosting": { "fitness-trainer": [ "fitness-trainer-dev-a0ab6" ] } }
+  },
+  "etags": {}
 }

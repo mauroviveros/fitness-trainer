@@ -15,6 +15,9 @@ jobs:
       - name: Install Project
         run: npm install
 
+      - name: use ENVIRONMENT
+        run: echo "${{ vars.ENVIRONMENT_DEV }}" > ./environments/environment.ts
+
       - name: Build project
         run: npm run build
 
