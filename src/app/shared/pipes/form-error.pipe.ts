@@ -18,7 +18,7 @@ export class FormErrorPipe implements PipeTransform {
   transform(errors: ValidationErrors | null | undefined): string | undefined {
     if(!errors) return;
     const type = Object.keys(errors)[0];
-    return messages[type];
+    return messages[type] || `ERROR: ${type}`;
   }
 
 }
