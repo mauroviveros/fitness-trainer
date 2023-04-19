@@ -6,7 +6,7 @@ import { Exercise, ExerciseAction } from "src/app/shared/interfaces/exercises";
 
 import { DetailDialogComponent } from "../detail-dialog/detail-dialog.component";
 import { ActionsSheetComponent } from "../actions-sheet/actions-sheet.component";
-import { ExcerciseService } from "../../services/excercise.service";
+import { ExerciseService } from "../../services/exercise.service";
 
 @Component({
   selector: "exercise-item-list",
@@ -18,7 +18,7 @@ export class ItemListComponent {
   constructor(
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
-    private exerciseService: ExcerciseService
+    private exerciseService: ExerciseService
   ){}
 
   openDialog(mode = 3){

@@ -8,8 +8,8 @@ import { Exercise, ExerciseOUT } from "src/app/shared/interfaces/exercises";
 @Injectable({
   providedIn: "root"
 })
-export class ExcerciseService {
-  private exerciseCollection = collection(this.firestore, "excercises");
+export class ExerciseService {
+  private exerciseCollection = collection(this.firestore, "exercises");
   private _exercises = new BehaviorSubject<Exercise[] | null>(null);
 
   get exercises(){
