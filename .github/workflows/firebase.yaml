@@ -1,6 +1,7 @@
 name: Despliegue de Angular a Desarrollo (Firebase Hosting)
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - '**'
@@ -14,6 +15,9 @@ jobs:
 
       - name: Install Project
         run: npm install
+
+      - name: use ENVIRONMENT
+        run: echo "${{ vars.ENVIRONMENT_DEV }}" > ./src/environments/environment.ts
 
       - name: Build project
         run: npm run build
