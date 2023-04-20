@@ -11,7 +11,7 @@ import { provideFirestore,getFirestore } from "@angular/fire/firestore";
 import { AppRoutingModule } from "./app.routing";
 import { SharedModule } from "./shared/shared.module";
 
-import { environment } from "../environments/environment";
+import { FIREBASE } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
 import { ShortcutComponent } from "./core/components/shortcut/shortcut.component";
@@ -19,17 +19,17 @@ import { SplashScreenComponent } from "./core/components/splash-screen/splash-sc
 
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ProfileComponent } from "./core/pages/profile/profile.component";
-import { WelcomeDialogComponent } from './core/components/welcome-dialog/welcome-dialog.component';
+import { WelcomeDialogComponent } from "./core/components/welcome-dialog/welcome-dialog.component";
 
 
 const firebase = {
-  projectId         : environment.FIREBASE.PROJECT_ID,
-  appId             : environment.FIREBASE.APP_ID,
-  storageBucket     : environment.FIREBASE.STORAGE_BUCKET,
-  apiKey            : environment.FIREBASE.API_KEY,
-  authDomain        : environment.FIREBASE.AUTH_DOMAIN,
-  messagingSenderId : environment.FIREBASE.MESSAGING_SENDER_ID,
-  measurementId     : environment.FIREBASE.MEASUREMENT_ID
+  projectId         : FIREBASE.PROJECT_ID,
+  appId             : FIREBASE.APP_ID,
+  storageBucket     : FIREBASE.STORAGE_BUCKET,
+  apiKey            : FIREBASE.API_KEY,
+  authDomain        : FIREBASE.AUTH_DOMAIN,
+  messagingSenderId : FIREBASE.MESSAGING_SENDER_ID,
+  measurementId     : FIREBASE.MEASUREMENT_ID
 };
 
 @NgModule({
