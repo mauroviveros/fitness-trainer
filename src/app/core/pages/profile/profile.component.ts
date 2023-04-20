@@ -2,11 +2,11 @@ import { Component, OnDestroy } from "@angular/core";
 import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { BehaviorSubject, Subscription, firstValueFrom } from "rxjs";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
+import { ProfileService } from "../../services/profile.service";
 
 import { UserDocumentOutput } from "src/app/modules/auth/interfaces/user";
 import { environment } from "src/environments/environment";
@@ -36,6 +36,8 @@ export class ProfileComponent implements OnDestroy{
   isLoading = false;
   form      = this.formBuilder.group({});
 
+  imageURL  = this.profileService.imageURL;
+
   fields: Field[] = [
     {
       _id: "name", icon: "person", label: "Nombre",
@@ -55,12 +57,12 @@ export class ProfileComponent implements OnDestroy{
   ];
 
   constructor(
-    private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private router: Router,
+    private authService: AuthService,
     private userService: UserService,
-    private authService: AuthService
+    private profileService: ProfileService
   ){
     this.fields.forEach(field => {
       this.form.addControl(field._id, this.formBuilder.control("", field.validators));
@@ -96,6 +98,14 @@ export class ProfileComponent implements OnDestroy{
   }
   private updateMode(num: number){ this.mode = num; this._mode.next(num); }
   closeEdit(){ this.updateMode(3); }
+
+  updateFile(event: Event){
+    const target = event.target as HTMLInputElement;
+    const file = target.files ? target.files[0] : null;
+    if(!file) return;
+
+    this.profileService.uploadPicture(file);
+  }
 
   submit(){
     if(this.mode === 3) return this.updateMode(2);
