@@ -1,7 +1,6 @@
 <mat-toolbar>
-  <a mat-icon-button routerLink="" *ngIf="!isLoading"><mat-icon>arrow_back</mat-icon></a>
+  <a mat-icon-button routerLink="" *ngIf="!isLoading && mode !== 1"><mat-icon>arrow_back</mat-icon></a>
   <h1>MI PERFIL</h1>
-  <button mat-icon-button (click)="resetPassword()"><mat-icon>lock_reset</mat-icon></button>
 </mat-toolbar>
 
 <figure>
