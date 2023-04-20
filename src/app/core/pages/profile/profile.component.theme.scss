@@ -8,11 +8,14 @@
         background-color: mat.get-color-from-palette($primary-palette, 300) !important;
         color: mat.get-contrast-color-from-palette($primary-palette, 300) !important;
     }
-    core-profile mat-card{
-        background-color: mat.get-color-from-palette($primary-palette, 50) !important;
-        color: mat.get-contrast-color-from-palette($primary-palette, 50);
-        .mdc-text-field{
-            background-color: transparent !important;
+
+    core-profile{
+        mat-card{
+            background-color: mat.get-color-from-palette($primary-palette, 50) !important;
+            color: mat.get-contrast-color-from-palette($primary-palette, 50);
+            .mdc-text-field{
+                background-color: transparent !important;
+            }
         }
     }
 }

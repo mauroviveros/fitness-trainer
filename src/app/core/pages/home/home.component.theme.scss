@@ -4,9 +4,10 @@
 @mixin color($config) {
     $primary-palette: map.get($config, primary);
 
-    core-home {
-        background-color: mat.get-color-from-palette($primary-palette, 300);
-
+    core-home, core-home mat-toolbar {
+        background-color: mat.get-color-from-palette($primary-palette, 300) !important;
+    }
+    core-home{
         figure, h1{ color: mat.get-contrast-color-from-palette($primary-palette, A100); }
         mat-card{
             background-color: mat.get-color-from-palette($primary-palette, 50) !important;
