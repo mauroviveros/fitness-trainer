@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Firestore, collection, doc, docSnapshots, DocumentData, DocumentSnapshot, setDoc, updateDoc } from "@angular/fire/firestore";
 import { map, switchMap, BehaviorSubject, filter, of, firstValueFrom } from "rxjs";
 
-import { UserDocument, UserDocumentOutput } from "../interfaces/user";
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
+
+import { UserDocument, UserDocumentOutput } from "../interfaces/user";
 
 @Injectable({
   providedIn: "root"
@@ -25,6 +27,7 @@ export class UserService {
   }
 
   constructor(
+    private snackBar: MatSnackBar,
     private router: Router,
     private firestore: Firestore,
     private auth: AuthService
@@ -53,13 +56,15 @@ export class UserService {
 
   update(fields: UserDocumentOutput){
     return firstValueFrom(this.auth.user).then(({ uid }) => {
-      return updateDoc(doc(this.usersCollection, uid), { data: fields });
+      return updateDoc(doc(this.usersCollection, uid), { data: fields })
+        .then(() => this.snackBar.open("✅ Usuario actualizado correctamente", undefined));
     });
   }
 
   create(fields: UserDocumentOutput){
     return firstValueFrom(this.auth.user).then(({ uid }) => {
-      return setDoc(doc(this.usersCollection, uid), { admin: false, ...fields});
+      return setDoc(doc(this.usersCollection, uid), { admin: false, ...fields})
+        .then(() => this.snackBar.open("✅ Usuario creado correctamente", undefined));
     });
   }
 

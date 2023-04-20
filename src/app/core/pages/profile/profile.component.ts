@@ -109,7 +109,6 @@ export class ProfileComponent implements OnDestroy{
     this.isLoading = true;
     promise()
       .finally(() => this.isLoading = false)
-      .then(() => this.snackBar.open("✅ Datos actualizados correctamente", undefined))
       .then(() => { if(isNew) this.router.navigate(["/"]); });
 
   }
