@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth,getAuth } from "@angular/fire/auth";
 import { provideFirestore,getFirestore } from "@angular/fire/firestore";
+import { getStorage, provideStorage } from "@angular/fire/storage";
 
 import { AppRoutingModule } from "./app.routing";
 import { SharedModule } from "./shared/shared.module";
@@ -45,6 +46,7 @@ const firebase = {
     provideFirebaseApp(() => initializeApp(firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
 
     BrowserModule,
     BrowserAnimationsModule,
@@ -54,6 +56,7 @@ const firebase = {
     SharedModule
   ],
   providers: [
+    // ProfileService
     // ScreenTrackingService,
     // UserTrackingService
   ],
