@@ -4,6 +4,7 @@ import { AuthGuard as FireAuthGuard, redirectUnauthorizedTo } from "@angular/fir
 
 import { EmailGuard } from "./modules/auth/guards/email.guard";
 import { AdminGuard } from "./modules/auth/guards/admin.guard";
+import { UserGuard } from "./modules/auth/guards/user.guard";
 
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ProfileComponent } from "./core/pages/profile/profile.component";
@@ -16,18 +17,27 @@ const routes: Routes = [
     canActivate: [FireAuthGuard, EmailGuard],
     data: { authGuardPipe: redirectUnauthorized },
     children: [
-      { path: "", component: HomeComponent, },
-      { path: "profile", component: ProfileComponent },
       {
-        path: "customers",
-        canActivate: [AdminGuard],
-        loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
+        path: "",
+        canActivate: [UserGuard],
+        children: [
+          {
+            path: "",
+            component: HomeComponent
+          },
+          {
+            path: "customers",
+            canActivate: [AdminGuard],
+            loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
+          },
+          {
+            path: "exercises",
+            canActivate: [AdminGuard],
+            loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
+          }
+        ]
       },
-      {
-        path: "exercises",
-        canActivate: [AdminGuard],
-        loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
-      }
+      { path: "profile", component: ProfileComponent }
     ]
   },
   {
