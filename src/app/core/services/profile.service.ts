@@ -21,7 +21,6 @@ export class ProfileService {
   ){
     this.getPictureURL().then(imageURL => {
       this._imageURL.next(imageURL);
-      this._imageURL.complete();
     });
   }
 
