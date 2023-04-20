@@ -1,9 +1,11 @@
 {
   "projects": {
-    "default": "fitness-trainer-dev-a0ab6"
+    "default": "fitness-trainer-dev-0",
+    "production": "fitness-trainer-0"
   },
   "targets": {
-    "fitness-trainer-dev-a0ab6":{ "hosting": { "fitness-trainer": [ "fitness-trainer-dev-a0ab6" ] } }
+    "fitness-trainer-dev-0":{ "hosting": { "fitness-trainer": [ "fitness-trainer-dev-0" ] } },
+    "fitness-trainer-0":{ "hosting": { "fitness-trainer": [ "fitness-trainer-0" ] } }
   },
   "etags": {}
 }
