@@ -1,37 +1,3 @@
-## [0.1.2](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.1...v0.1.2) (2023-04-19)
-
-
-### Bug Fixes
-
-* :wrench: use environments for maxLength ([82b8865](https://github.com/maurodviveros/fitness-trainer/commit/82b88656dd0f382888692a59cc2a62109baa6633))
-* **auth:** :adhesive_bandage: use formError pipe ([505a8c2](https://github.com/maurodviveros/fitness-trainer/commit/505a8c2079c50e82d37aaa25e39ac0ffdf29f4f4))
-* **auth:** :bug: fix clickProppagation ([8ffc5f3](https://github.com/maurodviveros/fitness-trainer/commit/8ffc5f3904a2ab285dc857cf80820dcc1ac1a12c))
-* **auth:** :lipstick: fix showPassword btn color ([7a5a87d](https://github.com/maurodviveros/fitness-trainer/commit/7a5a87d5e1d7810cf09012016c4c5e37176880b4))
-* **core:** :bug: fix splashScreen ([287b38c](https://github.com/maurodviveros/fitness-trainer/commit/287b38cce359696cc2674a0f3199d1197c66b2a1))
-* **core:** :lipstick: fix layout style ([328e20c](https://github.com/maurodviveros/fitness-trainer/commit/328e20c2bbaff3779f46ee1f55adcf2c6d1dd410))
-* **core:** :lipstick: remove disable attribute in profile component ([e05d730](https://github.com/maurodviveros/fitness-trainer/commit/e05d73072cf1ed26161de7b090d157c92d8f537c))
-* **customer:** :bug: fix loading spinner in list ([cac1123](https://github.com/maurodviveros/fitness-trainer/commit/cac112305e001cea7bbc6be7f28338fcc7433649))
-* **exercise:** :truck: rename exercise service ([d0111b9](https://github.com/maurodviveros/fitness-trainer/commit/d0111b9cc2591821b65d9f10070cf82a488bd805))
-* **shared:** :bug: add custom error if message[type] not defined ([4aa3ad1](https://github.com/maurodviveros/fitness-trainer/commit/4aa3ad1caf190cff033a8d1048bb6b38eca60eb9))
-
-
-### Features
-
-* **auth:** :safety_vest: add confirmPassword validator ([5b1edc4](https://github.com/maurodviveros/fitness-trainer/commit/5b1edc494a6791380c9b90197952128a810921ee))
-* **auth:** :sparkles: add snackBars on promise in service ([1810a1d](https://github.com/maurodviveros/fitness-trainer/commit/1810a1d656a810e6e523720f33e5071f68474153))
-* **core:** :sparkles: add exercises routing ([3c86b27](https://github.com/maurodviveros/fitness-trainer/commit/3c86b27d74bda6dfed5a550605f5d6316ca2ea5e))
-* **customer:** :sparkles: add itemList Component ([f2898e5](https://github.com/maurodviveros/fitness-trainer/commit/f2898e515f2360395cadf47ecbba80c0aae21ec3))
-* **exercise:** :alien: add exercise service ([29309e1](https://github.com/maurodviveros/fitness-trainer/commit/29309e1bedb8c7ca93d9612b391f58c73badb7e5))
-* **exercise:** :sparkles: add actions-sheet component ([1b1ee98](https://github.com/maurodviveros/fitness-trainer/commit/1b1ee983e48388f65d59f4fef4894dca8a6d670e))
-* **exercise:** :sparkles: add detail-dialog component ([0822220](https://github.com/maurodviveros/fitness-trainer/commit/0822220e3dc7a8c9bd417f4268be9d5e18269c70))
-* **exercise:** :sparkles: add exercise module ([5765102](https://github.com/maurodviveros/fitness-trainer/commit/57651020cc3a7a08eb8027916fb54de48d320120))
-* **exercise:** :sparkles: add item-list component ([43a052f](https://github.com/maurodviveros/fitness-trainer/commit/43a052f1983c64fad358b7db36f4096a6789aaaf))
-* **exercise:** :sparkles: add listPage component ([dcf1dbb](https://github.com/maurodviveros/fitness-trainer/commit/dcf1dbb79e67f9f3f1ce0175712b9f55b671b9c1))
-* **shared:** :art: add message confirmPassword ([44ae9dd](https://github.com/maurodviveros/fitness-trainer/commit/44ae9dd322fc741280db18b3ab70ccd636d88c7f))
-* **shared:** :art: add pipe form-errors ([14442a2](https://github.com/maurodviveros/fitness-trainer/commit/14442a2908ccb156f9831de3549a0a46042e417c))
-
-
-
 ## [0.1.1](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.0...v0.1.1) (2023-04-17)
 
 
