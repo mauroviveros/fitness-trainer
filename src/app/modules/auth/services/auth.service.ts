@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Auth, signInWithEmailAndPassword, signOut, User, user, createUserWithEmailAndPassword, sendEmailVerification } from "@angular/fire/auth";
+import { Auth, signInWithEmailAndPassword, signOut, User, user, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "@angular/fire/auth";
 import { BehaviorSubject, filter, map } from "rxjs";
 
 @Injectable({
@@ -34,6 +34,11 @@ export class AuthService {
     throw error;
   }
 
+  sendEmailPasswordReset(email: string){
+    return sendPasswordResetEmail(this.auth, email)
+      .then(() => this.snackBar.open("✅ Te enviamos un correo para restablecer tu contraseña", undefined))
+      .catch(error => this.catchError(error));
+  }
   sendEmailVerification(user: User){
     return sendEmailVerification(user)
       .then(() => this.snackBar.open("✅ Te enviamos un correo para validar tu email", undefined))
