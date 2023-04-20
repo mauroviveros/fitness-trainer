@@ -10,3 +10,10 @@ router-outlet + *{
     flex-direction: column;
     flex: 1;
 }
+
+img.profile{
+    border-radius: 50%;
+    width: 12rem;
+    height: 12rem;
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.3);
+}
