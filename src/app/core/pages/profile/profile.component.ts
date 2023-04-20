@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from "@angular/core";
 import { FormBuilder, ValidatorFn, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Subscription, map, filter, firstValueFrom } from "rxjs";
+import { BehaviorSubject, Subscription, firstValueFrom } from "rxjs";
 
 import { UserService } from "src/app/modules/auth/services/user.service";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
@@ -30,37 +30,28 @@ interface Field{
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnDestroy{
-  private subscription?: Subscription;
-
-  mode      = { icon: "edit", number: 2, new: false };
-  form      = this.formBuilder.group({});
+  private subscriptions: Subscription[] = [];
+  private email = "";
+  private _mode = new BehaviorSubject<number>(3);
+  mode      = 3;
   isLoading = false;
-
+  form      = this.formBuilder.group({});
 
   fields: Field[] = [
     {
-      _id: "name",
-      icon: "person",
-      label: "Nombre",
-      placeholder: "Ingrese su nombre",
-      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)],
-      maxLength: environment.MAX_LENGTH
+      _id: "name", icon: "person", label: "Nombre",
+      placeholder: "Ingrese su nombre", maxLength: environment.MAX_LENGTH,
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)]
     },
     {
-      _id: "surname",
-      icon: "badge",
-      label: "Apellido",
-      placeholder: "Ingrese su apellido",
-      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)],
-      maxLength: environment.MAX_LENGTH
+      _id: "surname", icon: "badge", label: "Apellido",
+      placeholder: "Ingrese su apellido", maxLength: environment.MAX_LENGTH,
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)]
     },
     {
-      _id: "email",
-      icon: "email",
-      label: "Email",
-      placeholder: "Ingrese su email",
-      validators: [Validators.required, Validators.email],
-      disabled: true
+      _id: "email", icon: "email", label: "Email",
+      placeholder: "Ingrese su email", disabled: true,
+      validators: [Validators.required, Validators.email]
     }
   ];
 
@@ -68,7 +59,6 @@ export class ProfileComponent implements OnDestroy{
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
     private authService: AuthService
@@ -77,64 +67,53 @@ export class ProfileComponent implements OnDestroy{
       this.form.addControl(field._id, this.formBuilder.control("", field.validators));
     });
 
-    this.route.queryParamMap.pipe(
-      map(query => parseInt(query.get("mode") || "3")),
-      filter(modeNum => {
-        if(this.mode.new) this.router.navigate(["/profile"], { queryParams: { mode: 2 }});
-        return modeNum === 3 || modeNum === 2;
-      }),
-    ).subscribe(modeNum => {
-      this.mode.number = modeNum;
-      this.mode.icon = modeNum === 3 ? "edit" : "save";
-
+    const subscription = this._mode.asObservable().subscribe(mode => {
       this.fields.forEach(field => {
         const control = this.form.get(field._id);
-        if(modeNum === 2 && !field.disabled) control?.enable();
+        if(mode !== 3 && !field.disabled) control?.enable();
         else control?.disable();
       });
-
     });
+    this.subscriptions.push(subscription);
 
     firstValueFrom(this.authService.user).then(({ email }) => {
-      this.subscription = this.userService.userObservable.subscribe(user => {
-        this.mode.new = !user;
+      if(email) this.email = email;
+      const subscription = this.userService.userObservable.subscribe(user => {
+        this.updateMode(!user ? 1 : 3);
 
-        if(this.mode.new){
-          this.dialog.open(WelcomeDialogComponent);
-          this.router.navigate(["/profile"], { queryParams: { mode: 2 } });
-        }
-        return this.fields.forEach(field => {
+        if(this.mode === 1) this.dialog.open(WelcomeDialogComponent);
+
+        this.fields.forEach(field => {
           let value = user ? user[field._id] : null;
           if(field._id === "email") value = email;
           this.form.get(field._id)?.setValue(value);
         });
       });
+      this.subscriptions.push(subscription);
     });
   }
 
   ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this.subscriptions.forEach(subscription => { subscription.unsubscribe(); });
   }
+  private updateMode(num: number){ this.mode = num; this._mode.next(num); }
+  closeEdit(){ this.updateMode(3); }
+  resetPassword(){ this.authService.sendEmailPasswordReset(this.email); }
 
   submit(){
-    const options = { queryParams: { mode: this.mode.number === 3 ? 2 : 3 } };
-    const fields = this.form.getRawValue() as UserDocumentOutput;
-
-    if(this.mode.number !== 2) return this.router.navigate([], options);
+    if(this.mode === 3) return this.updateMode(2);
     if(this.form.invalid) return this.form.markAllAsTouched();
 
+    const isNew = this.mode === 1;
+    const fields = this.form.getRawValue() as UserDocumentOutput;
     let promise = () => this.userService.update(fields);
-    if(this.mode.new) promise = () => this.userService.create(fields);
+    if(this.mode === 1) promise = () => this.userService.create(fields);
 
     this.isLoading = true;
-    const _new = this.mode.new;
     promise()
       .finally(() => this.isLoading = false)
       .then(() => this.snackBar.open("✅ Datos actualizados correctamente", undefined))
-      .then(() => {
-        if(_new) return this.router.navigate(["/"]);
-        return this.router.navigate(["/profile"], options);
-      });
+      .then(() => { if(isNew) this.router.navigate(["/"]); });
 
   }
 }
