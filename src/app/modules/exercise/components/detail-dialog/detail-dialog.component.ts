@@ -16,7 +16,7 @@ interface DialogData{
 })
 export class DetailDialogComponent {
   mode = 3;
-  maxLength = environment.maxLength;
+  maxLength = environment.MAX_LENGTH;
   form: FormGroup = this.formBuilder.group({
     name        : [null, [Validators.required]],
     description : [null, [Validators.required]],

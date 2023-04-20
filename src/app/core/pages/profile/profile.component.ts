@@ -43,16 +43,16 @@ export class ProfileComponent implements OnDestroy{
       icon: "person",
       label: "Nombre",
       placeholder: "Ingrese su nombre",
-      validators: [Validators.required, Validators.maxLength(environment.maxLength)],
-      maxLength: environment.maxLength
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)],
+      maxLength: environment.MAX_LENGTH
     },
     {
       _id: "surname",
       icon: "badge",
       label: "Apellido",
       placeholder: "Ingrese su apellido",
-      validators: [Validators.required, Validators.maxLength(environment.maxLength)],
-      maxLength: environment.maxLength
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)],
+      maxLength: environment.MAX_LENGTH
     },
     {
       _id: "email",
