@@ -22,6 +22,7 @@
         <mat-label>{{ field.label }}</mat-label>
         <input matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [maxlength]="!!field.maxLength ? field.maxLength : null" />
         <mat-hint *ngIf="!!field.maxLength && !input.disabled" align="end">{{ input.value.length }}/{{ field.maxLength }}</mat-hint>
+        <mat-error>{{ form.get(field._id)?.errors | formError }}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
