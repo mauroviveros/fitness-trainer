@@ -1,3 +1,29 @@
+## [0.1.5](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.4...v0.1.5) (2023-04-20)
+
+
+### Bug Fixes
+
+* :green_heart: add dispatch ([e0fdbcf](https://github.com/maurodviveros/fitness-trainer/commit/e0fdbcfa3dce8b6f204c0fc072c2c6cadab97b03))
+* :lock: deploy use github Variables ([db7f5e6](https://github.com/maurodviveros/fitness-trainer/commit/db7f5e6390e893281f2b4233ba8eb54358fe9ee2))
+* :see_no_evil: ignore environment.ts file ([4b1fbb9](https://github.com/maurodviveros/fitness-trainer/commit/4b1fbb95d9d8238f369610bfaaee1c685cdf1e08))
+* **core:** :adhesive_bandage: fix splashScreen service ([e721e51](https://github.com/maurodviveros/fitness-trainer/commit/e721e51e47d06ca7c85d12176d3de9a537b29cf3))
+* **core:** :adhesive_bandage: internal mode ([0eb6fe6](https://github.com/maurodviveros/fitness-trainer/commit/0eb6fe6d065375e895fe24f5068d9889ce465a09))
+
+
+### Features
+
+* **auth:** :alien: add method sendPasswordResetEmail in service ([e1f96f6](https://github.com/maurodviveros/fitness-trainer/commit/e1f96f6210212bc5e443badab72f19b965c6105d))
+* **core:** :sparkles: add closeFab & resetPassword btns in profile ([46ed4f9](https://github.com/maurodviveros/fitness-trainer/commit/46ed4f98fb49a6c38d3eed1d3911281b1f977a72))
+
+
+### Reverts
+
+* Revert "chore(release): :bookmark: v0.1.2" ([eccebe0](https://github.com/maurodviveros/fitness-trainer/commit/eccebe02c3983cab6973641fef7d6bd4bb59190f))
+* :rewind: revert ignore environments ([524cafb](https://github.com/maurodviveros/fitness-trainer/commit/524cafbab77f34eb210eda9b98adb60c26250af0))
+* :rewind: revert workflow ([c244547](https://github.com/maurodviveros/fitness-trainer/commit/c24454779e34af90d2ea31bf69decf12fad91b56))
+
+
+
 ## [0.1.3](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.2...v0.1.3) (2023-04-19)
 
 
