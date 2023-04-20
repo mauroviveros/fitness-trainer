@@ -2,7 +2,7 @@
   <h1></h1>
 </mat-toolbar>
 <figure>
-  <img src="https://via.placeholder.com/200" alt="Profile" routerLink="/profile" />
+  <img [src]="imageURL | async" class="profile" alt="Profile" routerLink="/profile" />
   <figcaption>Hola {{ user.name | titlecase }}</figcaption>
 </figure>
 
