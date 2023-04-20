@@ -31,7 +31,6 @@ interface Field{
 })
 export class ProfileComponent implements OnDestroy{
   private subscriptions: Subscription[] = [];
-  private email = "";
   private _mode = new BehaviorSubject<number>(3);
   mode      = 3;
   isLoading = false;
@@ -77,7 +76,6 @@ export class ProfileComponent implements OnDestroy{
     this.subscriptions.push(subscription);
 
     firstValueFrom(this.authService.user).then(({ email }) => {
-      if(email) this.email = email;
       const subscription = this.userService.userObservable.subscribe(user => {
         this.updateMode(!user ? 1 : 3);
 
@@ -98,7 +96,6 @@ export class ProfileComponent implements OnDestroy{
   }
   private updateMode(num: number){ this.mode = num; this._mode.next(num); }
   closeEdit(){ this.updateMode(3); }
-  resetPassword(){ this.authService.sendEmailPasswordReset(this.email); }
 
   submit(){
     if(this.mode === 3) return this.updateMode(2);
