@@ -1,10 +1,19 @@
 <mat-toolbar>
-  <a mat-icon-button routerLink="" *ngIf="!mode.new && !isLoading"><mat-icon>arrow_back</mat-icon></a>
+  <a mat-icon-button routerLink="" *ngIf="!isLoading"><mat-icon>arrow_back</mat-icon></a>
   <h1>MI PERFIL</h1>
+  <button mat-icon-button (click)="resetPassword()"><mat-icon>lock_reset</mat-icon></button>
 </mat-toolbar>
+
 <figure>
   <img src="https://via.placeholder.com/200" alt="Profile" />
+  <button mat-fab (click)="submit()" *ngIf="!isLoading">
+    <mat-icon>{{ mode !== 3 ? 'save' : 'edit' }}</mat-icon>
+  </button>
+  <button mat-mini-fab *ngIf="!isLoading" [class.active]="mode === 2" (click)="closeEdit()">
+    <mat-icon>close</mat-icon>
+  </button>
 </figure>
+
 <mat-card>
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <mat-card-content>
@@ -18,7 +27,3 @@
     </form>
   </mat-card-content>
 </mat-card>
-
-<button mat-fab color="primary" (click)="submit()" *ngIf="!isLoading">
-  <mat-icon>{{ mode.icon }}</mat-icon>
-</button>
