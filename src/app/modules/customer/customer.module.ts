@@ -5,12 +5,14 @@ import { CustomerRoutingModule } from "./customer.routing";
 import { ListComponent } from "./pages/list/list.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { ItemListComponent } from "./components/item-list/item-list.component";
+import { ActionsSheetComponent } from "./components/actions-sheet/actions-sheet.component";
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    ItemListComponent
+    ItemListComponent,
+    ActionsSheetComponent
   ],
   imports: [
     CommonModule,
