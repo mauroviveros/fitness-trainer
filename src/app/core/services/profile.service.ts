@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Storage, ref, getDownloadURL, uploadBytes } from "@angular/fire/storage";
 import { AuthService } from "../../modules/auth/services/auth.service";
-import { firstValueFrom, BehaviorSubject, filter } from "rxjs";
+import { firstValueFrom, BehaviorSubject, filter, map } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable({
@@ -10,11 +10,12 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class ProfileService {
   private validTypes = ["image/png", "image/jpeg", "image/jpg"];
   private getSizeMB(size: number){ return size / 1024 / 1024; }
-  private _imageURL = new BehaviorSubject<string | null>(null);
+  private _imageURL = new BehaviorSubject<string | null | undefined>(null);
 
   get imageURL(){
     return this._imageURL.pipe(
-      filter(url => !!url)
+      filter(url => url !== null),
+      map(url => url as string | undefined)
     );
   }
 
@@ -25,6 +26,8 @@ export class ProfileService {
   ){
     this.getPictureURL().then(imageURL => {
       this._imageURL.next(imageURL);
+    }).catch(() => {
+      this._imageURL.next(undefined);
     });
   }
 
@@ -44,8 +47,8 @@ export class ProfileService {
     try {
       if(!this.validTypes.includes(file.type)) throw "Tipo de archivo no valido. PNG/JPG/JPEG";
       if(this.getSizeMB(file.size) > 5) throw "Tamaño de imagen no soportada. Limite 5MB";
-      return uploadBytes(ref, file).then(() => {
-        this._imageURL.next(`${this._imageURL.getValue()}?${new Date().getTime()}`);
+      return uploadBytes(ref, file).then(async () => {
+        this._imageURL.next(`${await this.getPictureURL()}?${new Date().getTime()}`);
         this.snackBar.open("✅ Foto de perfil actualizada correctamente.");
       });
     } catch (error) {
