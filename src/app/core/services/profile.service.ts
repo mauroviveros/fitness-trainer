@@ -40,7 +40,10 @@ export class ProfileService {
     try {
       if(!this.validTypes.includes(file.type)) throw "Tipo de archivo no valido. PNG/JPG/JPEG";
       if(this.getSizeMB(file.size) > 5) throw "Tamaño de imagen no soportada. Limite 5MB";
-      return uploadBytes(ref, file);
+      return uploadBytes(ref, file).then(() => {
+        this._imageURL.next(`${this._imageURL.getValue()}?${new Date().getTime()}`);
+        this.snackBar.open("✅ Foto de perfil actualizada correctamente.");
+      });
     } catch (error) {
       this.snackBar.open(error as string, "cerrar", { duration: 5000 });
       throw error;
