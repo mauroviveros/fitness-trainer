@@ -1,0 +1,3 @@
+<img *ngIf="isLoading" src="/assets/profile.png" class="profile" />
+<img [src]="imageURL | async" class="profile" (load)="onLoad()" [hidden]="isLoading" />
+<mat-spinner *ngIf="isLoading || isUpdated"></mat-spinner>

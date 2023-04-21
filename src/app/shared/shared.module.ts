@@ -20,7 +20,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
+
 import { LayoutComponent } from "./components/layout/layout.component";
+import { ProfileImgComponent } from "./components/profile-img/profile-img.component";
 
 import { FormErrorPipe } from "./pipes/form-error.pipe";
 
@@ -46,7 +48,8 @@ const ANGULAR_MATERIAL = [
 @NgModule({
   declarations: [
     LayoutComponent,
-    FormErrorPipe
+    FormErrorPipe,
+    ProfileImgComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +60,8 @@ const ANGULAR_MATERIAL = [
   exports: [
     ANGULAR_MATERIAL,
     LayoutComponent,
-    FormErrorPipe
+    FormErrorPipe,
+    ProfileImgComponent
   ],
   providers: [
     {
