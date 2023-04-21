@@ -36,8 +36,6 @@ export class ProfileComponent implements OnDestroy{
   isLoading = false;
   form      = this.formBuilder.group({});
 
-  imageURL  = this.profileService.imageURL;
-
   fields: Field[] = [
     {
       _id: "name", icon: "person", label: "Nombre",
@@ -103,8 +101,9 @@ export class ProfileComponent implements OnDestroy{
     const target = event.target as HTMLInputElement;
     const file = target.files ? target.files[0] : null;
     if(!file) return;
-
-    this.profileService.uploadPicture(file);
+    this.isLoading = true;
+    this.profileService.uploadPicture(file)
+      .finally(() => this.isLoading = false);
   }
 
   submit(){
