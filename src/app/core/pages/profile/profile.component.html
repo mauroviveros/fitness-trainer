@@ -9,7 +9,7 @@
 <input type="file" (change)="updateFile($event)" accept=".png, .jpeg, .jpg" hidden #inputFile />
 
 <figure>
-  <img [src]="imageURL | async" class="profile" alt="Profile" />
+  <shared-profile-img></shared-profile-img>
 
   <button mat-fab (click)="submit()" *ngIf="!isLoading">
     <mat-icon>{{ mode !== 3 ? 'save' : 'edit' }}</mat-icon>

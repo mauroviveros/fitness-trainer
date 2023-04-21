@@ -5,7 +5,6 @@ import { AuthService } from "src/app/modules/auth/services/auth.service";
 import { UserService } from "src/app/modules/auth/services/user.service";
 
 import { UserDocument } from "src/app/modules/auth/interfaces/user";
-import { ProfileService } from "../../services/profile.service";
 
 interface Shortcut{
   text: string,
@@ -37,13 +36,11 @@ export class HomeComponent {
     else return "Buenas Noches!";
   }
 
-  imageURL  = this.profileService.imageURL;
 
   constructor(
     private router: Router,
     private auth: AuthService,
-    private userService: UserService,
-    private profileService: ProfileService
+    private userService: UserService
   ){
     this.userService.user.subscribe(user => {
       this.user = user;

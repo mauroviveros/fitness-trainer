@@ -2,7 +2,7 @@
   <h1></h1>
 </mat-toolbar>
 <figure>
-  <img [src]="imageURL | async" class="profile" alt="Profile" routerLink="/profile" />
+  <shared-profile-img routerLink="/profile"></shared-profile-img>
   <figcaption>Hola {{ user.name | titlecase }}</figcaption>
 </figure>
 
