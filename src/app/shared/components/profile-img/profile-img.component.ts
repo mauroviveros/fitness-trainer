@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { tap } from "rxjs";
+import { Component, OnDestroy } from "@angular/core";
+import { Subscription, tap } from "rxjs";
 import { ProfileService } from "src/app/core/services/profile.service";
 
 @Component({
@@ -7,20 +7,24 @@ import { ProfileService } from "src/app/core/services/profile.service";
   templateUrl: "./profile-img.component.html",
   styleUrls: ["./profile-img.component.scss"]
 })
-export class ProfileImgComponent {
+export class ProfileImgComponent implements OnDestroy{
+  subscription? : Subscription;
   isLoading = true;
-  isUpdated = false;
+  imgURL? : string;
 
   constructor(
     private profileService: ProfileService
-  ){}
-
-  imageURL  = this.profileService.imageURL.pipe(
-    tap(() => this.isUpdated = true)
-  );
-
-  onLoad(){
-    this.isUpdated = false;
-    this.isLoading = false;
+  ){
+    this.subscription = this.profileService.imageURL.pipe(
+      tap(url => this.isLoading = !!url)
+    ).subscribe(url => {
+      this.imgURL = url;
+    });
   }
+
+  ngOnDestroy(){
+    this.subscription?.unsubscribe();
+  }
+
+  onLoad(){ this.isLoading = false; }
 }
