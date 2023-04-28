@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 
+import { ActionSheet } from "src/app/shared/interfaces/interface";
+
 @Component({
   selector: "app-actions-sheet",
   templateUrl: "./actions-sheet.component.html"
@@ -10,7 +12,7 @@ export class ActionsSheetComponent {
     private bottomSheetRef: MatBottomSheetRef<ActionsSheetComponent>
   ){}
 
-  action(action: string){
+  action(action: ActionSheet){
     this.bottomSheetRef.dismiss(action);
   }
 }
