@@ -2,12 +2,14 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
-import { NativeDateModule, MAT_DATE_FORMATS } from "@angular/material/core";
+import { NativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatChipsModule } from "@angular/material/chips";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -25,12 +27,15 @@ import { LayoutComponent } from "./components/layout/layout.component";
 import { ProfileImgComponent } from "./components/profile-img/profile-img.component";
 
 import { FormErrorPipe } from "./pipes/form-error.pipe";
+import { CustomerPipe } from "./pipes/customer.pipe";
 
 const ANGULAR_MATERIAL = [
+  MatAutocompleteModule,
   MatBottomSheetModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
   MatFormFieldModule,
@@ -48,8 +53,9 @@ const ANGULAR_MATERIAL = [
 @NgModule({
   declarations: [
     LayoutComponent,
-    FormErrorPipe,
-    ProfileImgComponent
+    ProfileImgComponent,
+    CustomerPipe,
+    FormErrorPipe
   ],
   imports: [
     CommonModule,
@@ -60,13 +66,18 @@ const ANGULAR_MATERIAL = [
   exports: [
     ANGULAR_MATERIAL,
     LayoutComponent,
-    FormErrorPipe,
-    ProfileImgComponent
+    ProfileImgComponent,
+    CustomerPipe,
+    FormErrorPipe
   ],
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
       useValue: { duration: 2500 }
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: "es-AR"
     },
     {
       provide: MAT_DATE_FORMATS,
@@ -81,7 +92,7 @@ const ANGULAR_MATERIAL = [
           monthYearA11yLabel: "MMMM YYYY",
         },
       },
-    },
+    }
   ]
 })
 export class SharedModule {
