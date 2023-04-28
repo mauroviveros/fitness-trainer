@@ -20,7 +20,7 @@
   "conventionalCommits.scopes": [
     "auth",
     "core",
-    "routines",
+    "routine",
     "customer",
     "shared",
     "exercise"
