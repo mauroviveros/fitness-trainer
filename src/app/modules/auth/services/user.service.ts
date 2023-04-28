@@ -54,6 +54,14 @@ export class UserService {
     });
   }
 
+  async reference(_id?: string){
+    if(!_id){
+      const user = await firstValueFrom(this.auth.user);
+      _id = user.uid;
+    }
+    return doc(this.usersCollection, _id);
+  }
+
   update(fields: UserDocumentOutput){
     return firstValueFrom(this.auth.user).then(({ uid }) => {
       return updateDoc(doc(this.usersCollection, uid), { data: fields })
