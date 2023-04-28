@@ -1,0 +1,68 @@
+<form [formGroup]="form" #form2 (submit)="submit()">
+  <shared-layout text="crear rutina" [isLoading]="false">
+    <div class="actions">
+      <button type="submit" mat-icon-button>
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+
+    <article class="content">
+      <mat-form-field>
+        <mat-label>Dias de entrenamiento</mat-label>
+        <mat-chip-listbox #chipList>
+          <mat-chip *ngFor="let day of daysChip; let i = index" [removable]="true" (removed)="removeChip(i)">
+            {{ day }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-listbox>
+        <mat-error>{{ form.get('days')?.errors | formError }}</mat-error>
+        <mat-select multiple formControlName="days">
+          <mat-option *ngFor="let day of days; let i = index" [value]="i">{{ day }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Periodo</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="fecha inicio" formControlName="dateIN" />
+          <input matEndDate placeholder="fecha fin" formControlName="dateOUT" />
+        </mat-date-range-input>
+        <mat-error>{{ form.get('dateIN')?.errors | formError }}</mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker [dateClass]="selectedDays"></mat-date-range-picker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+
+        <mat-select formControlName="customer">
+          <mat-option *ngFor="let customer of customers" [value]="customer._id"> {{ customer.name }} {{ customer.surname }} </mat-option>
+        </mat-select>
+        <mat-error>{{ form.get('customer')?.errors | formError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nivel de actividad</mat-label>
+        <mat-select formControlName="level">
+          <mat-option *ngFor="let level of levels" [value]="level">
+            {{ level | titlecase }}
+          </mat-option>
+        </mat-select>
+        <mat-error>{{ form.get('level')?.errors | formError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>Kal. para el objetivo</mat-label>
+        <input type="number" matInput class="right" placeholder="0" formControlName="kal" />
+        <span matTextSuffix>.00 Kal</span>
+        <mat-error>{{ form.get('kal')?.errors | formError }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Objetivo</mat-label>
+        <textarea matInput [rows]="4" formControlName="objective"></textarea>
+        <mat-error>{{ form.get('objective')?.errors | formError }}</mat-error>
+      </mat-form-field>
+    </article>
+  </shared-layout>
+</form>
