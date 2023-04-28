@@ -34,6 +34,10 @@ const routes: Routes = [
             path: "exercises",
             canActivate: [AdminGuard],
             loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
+          },
+          {
+            path: "",
+            loadChildren: () => import("./modules/routine/routine.module").then(m => m.RoutineModule)
           }
         ]
       },
