@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+  <h2>Agregar ejercicio</h2>
+</mat-toolbar>
+<form [formGroup]="form" (submit)="submit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Ejercicio</mat-label>
+      <mat-select formControlName="exercise">
+        <mat-option *ngFor="let exercise of exercises" [value]="exercise._id">{{ exercise.name }}</mat-option>
+      </mat-select>
+      <mat-error>{{ form.get('exercise')?.errors | formError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Dia de la semana</mat-label>
+      <mat-select formControlName="day" (selectionChange)="updateWeights($event.value)">
+        <mat-option *ngFor="let day of enableDays; let i = index" [value]="day._id">{{ day.name | titlecase }}</mat-option>
+      </mat-select>
+      <mat-error>{{ form.get('exercise')?.errors | formError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="number-field">
+      <mat-label>Series</mat-label>
+      <input type="number" matInput formControlName="series" placeholder="0" />
+      <span matTextSuffix>series</span>
+      <mat-error>{{ form.get('series')?.errors | formError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="number-field">
+      <mat-label>Repeticiones</mat-label>
+      <input type="number" matInput formControlName="reps" placeholder="0" />
+      <span matTextSuffix>reps</span>
+      <mat-error>{{ form.get('reps')?.errors | formError }}</mat-error>
+    </mat-form-field>
+
+    <div class="weighs-group" formArrayName="weighs" *ngIf="weighsForm.controls.length">
+      <mat-form-field class="number-field" *ngFor="let weigh of weighsForm.controls; let i = index">
+        <mat-label>Peso semana nro {{ i + 1 }}</mat-label>
+        <input type="number" matInput [formControlName]="i" placeholder="0" />
+        <span matTextSuffix> KGs</span>
+        <mat-error>{{ weigh.errors | formError }}</mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>cancelar</button>
+    <button type="submit" mat-button color="primary">guardar</button>
+  </mat-dialog-actions>
+</form>
