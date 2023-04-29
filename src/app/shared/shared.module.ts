@@ -28,6 +28,8 @@ import { ProfileImgComponent } from "./components/profile-img/profile-img.compon
 
 import { FormErrorPipe } from "./pipes/form-error.pipe";
 import { CustomerPipe } from "./pipes/customer.pipe";
+import { HighlightPipe } from "./pipes/highlight.pipe";
+import { ExercisePipe } from "./pipes/exercise.pipe";
 
 const ANGULAR_MATERIAL = [
   MatAutocompleteModule,
@@ -55,7 +57,9 @@ const ANGULAR_MATERIAL = [
     LayoutComponent,
     ProfileImgComponent,
     CustomerPipe,
-    FormErrorPipe
+    FormErrorPipe,
+    HighlightPipe,
+    ExercisePipe
   ],
   imports: [
     CommonModule,
@@ -68,7 +72,9 @@ const ANGULAR_MATERIAL = [
     LayoutComponent,
     ProfileImgComponent,
     CustomerPipe,
-    FormErrorPipe
+    FormErrorPipe,
+    HighlightPipe,
+    ExercisePipe
   ],
   providers: [
     {
