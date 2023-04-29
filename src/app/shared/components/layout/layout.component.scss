@@ -20,8 +20,8 @@
         justify-content: center;
         align-items: center;
 
-        > mat-list, mat-nav-list{
-            mat-list-item{
+        mat-list, mat-nav-list, mat-selection-list{
+            mat-list-item, mat-list-option{
                 > [matlistitemtitle] mat-icon{
                     font-size: 1rem !important;
                     width: 1rem !important;
