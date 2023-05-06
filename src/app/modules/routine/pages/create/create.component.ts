@@ -89,7 +89,7 @@ export class CreateComponent implements OnDestroy{
     if(this.form.invalid) return;
     const { customer, ...value } = this.form.getRawValue();
     this.routineService.create(value, customer).then(routineID => {
-      this.router.navigate(["/routine", routineID]);
+      this.router.navigate(["/routine", routineID, "update"]);
     });
   }
 }
