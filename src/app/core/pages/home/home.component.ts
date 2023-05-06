@@ -5,6 +5,7 @@ import { AuthService } from "src/app/modules/auth/services/auth.service";
 import { UserService } from "src/app/modules/auth/services/user.service";
 
 import { UserDocument } from "src/app/modules/auth/interfaces/user";
+import { RoutineService } from "src/app/modules/routine/services/routine.service";
 
 interface Shortcut{
   text: string,
@@ -40,10 +41,21 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private routineService: RoutineService
   ){
     this.userService.user.subscribe(user => {
       this.user = user;
+    });
+
+    this.routineService.getByUser(this.user._id).subscribe(routine => {
+      if(routine){
+        this.shortcuts.unshift({
+          text: "Mi Rutina",
+          icon: "fitness_center",
+          link: "/routine"
+        });
+      }
     });
   }
 
