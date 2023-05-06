@@ -1,6 +1,5 @@
 import { DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { UserDocument } from "src/app/modules/auth/interfaces/user";
-import { Exercise } from "./exercises";
 
 export interface Routine{
     _id         : string
@@ -19,11 +18,15 @@ export interface RoutineExerciseWeigh{
     meta: number
     real: number
 }
-export interface RoutineExercise extends Exercise{
-    day: number
-    reps: number
-    series: number
-    weighs: RoutineExerciseWeigh[]
+export interface RoutineExercise{
+    _id         : string | DocumentReference<DocumentData>,
+    name?       : string,
+    description?: string,
+    video?      : string
+    day         : number
+    reps        : number
+    series      : number
+    weighs      : RoutineExerciseWeigh[]
 }
 
 export interface RoutineOUT{
