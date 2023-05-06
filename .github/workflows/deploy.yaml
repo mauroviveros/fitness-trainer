@@ -42,4 +42,6 @@ jobs:
         working-directory: ./artifact
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase deploy --project production --token $FIREBASE_TOKEN
+        run: |
+          firebase use production
+          firebase deploy --token $FIREBASE_TOKEN
