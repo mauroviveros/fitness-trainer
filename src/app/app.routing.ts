@@ -8,13 +8,14 @@ import { UserGuard } from "./modules/auth/guards/user.guard";
 
 import { HomeComponent } from "./core/pages/home/home.component";
 import { ProfileComponent } from "./core/pages/profile/profile.component";
+import { TokenGuard } from "./modules/auth/guards/token.guard";
 
 const redirectUnauthorized = () => redirectUnauthorizedTo(["login"]);
 
 const routes: Routes = [
   {
     path: "",
-    canActivate: [FireAuthGuard, EmailGuard],
+    canActivate: [FireAuthGuard, EmailGuard, TokenGuard],
     data: { authGuardPipe: redirectUnauthorized },
     children: [
       {
