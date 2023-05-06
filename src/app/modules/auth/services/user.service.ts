@@ -64,7 +64,7 @@ export class UserService {
 
   update(fields: UserDocumentOutput){
     return firstValueFrom(this.auth.user).then(({ uid }) => {
-      return updateDoc(doc(this.usersCollection, uid), { data: fields })
+      return updateDoc(doc(this.usersCollection, uid), { ...fields })
         .then(() => this.snackBar.open("✅ Usuario actualizado correctamente", undefined));
     });
   }
