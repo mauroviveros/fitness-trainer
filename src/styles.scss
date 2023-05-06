@@ -15,7 +15,7 @@ router-outlet + *{
 }
 
 @media #{$media-small-up}{
-    router-outlet + *{
+    router-outlet + *:not(auth-login):not(auth-register){
         width: 70%;
         max-width: 600px;
     }
@@ -26,4 +26,9 @@ img.profile{
     width: 12rem;
     height: 12rem;
     box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.3);
+}
+
+
+.mdc-list{
+    position: relative;
 }
