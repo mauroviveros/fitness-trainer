@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+@import "themes/primary";
+
+@include mat.core();
+
+
+
+@include mat.typography-hierarchy($typography);
+@include mat.all-component-themes($theme);
