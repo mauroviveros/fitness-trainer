@@ -11,6 +11,12 @@
     [mat-calendar-body] .selected_date{
         background-color: mat.get-color-from-palette($primary-palette, 50);
     }
+
+    .empty-banner{
+        mat-icon, h4{
+            color: mat.get-color-from-palette($primary-palette, 400);
+        }
+    }
 }
 
 @mixin theme($theme) {
