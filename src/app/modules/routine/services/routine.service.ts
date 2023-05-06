@@ -5,7 +5,7 @@ import { Firestore, collection, doc, setDoc, docData, updateDoc, collectionData,
 import { UserService } from "../../auth/services/user.service";
 
 import { Routine, RoutineOUT, RoutineExercise } from "src/app/shared/interfaces/routine";
-import { map, switchMap } from "rxjs";
+import { map, switchMap, of } from "rxjs";
 import { ExerciseService } from "../../exercise/services/exercise.service";
 
 
@@ -45,6 +45,7 @@ export class RoutineService {
       { idField: "_id" }
     ).pipe(
       switchMap(routines => {
+        if(!routines[0]) return of(routines);
         const adminRef = doc(this.firestore, routines[0]["admin"].path);
         return docData(adminRef).pipe(
           map(admin => {
@@ -55,6 +56,7 @@ export class RoutineService {
         );
       }),
       switchMap(routines => {
+        if(!routines[0]) return of(routines);
         const customerRef = doc(this.firestore, routines[0]["customer"].path);
         return docData(customerRef).pipe(
           map(customer => {
@@ -65,8 +67,10 @@ export class RoutineService {
         );
       }),
       map(routine => {
-        if(routine[0]["dateIN"].toDate) routine[0]["dateIN"] = routine[0]["dateIN"].toDate();
-        if(routine[0]["dateOUT"].toDate) routine[0]["dateOUT"] = routine[0]["dateOUT"].toDate();
+        if(routine[0]){
+          if(routine[0]["dateIN"].toDate) routine[0]["dateIN"] = routine[0]["dateIN"].toDate();
+          if(routine[0]["dateOUT"].toDate) routine[0]["dateOUT"] = routine[0]["dateOUT"].toDate();
+        }
         return routine[0] as Routine;
       })
     );
