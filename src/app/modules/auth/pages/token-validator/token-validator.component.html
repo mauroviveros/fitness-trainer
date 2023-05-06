@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">Validador de Token</mat-toolbar>
+<article class="empty-banner">
+  <mat-icon>vpn_key</mat-icon>
+  <h4>Tienes que solicitar un token para seguir navegando por la APP</h4>
+
+  <form [formGroup]="form" (submit)="submit(formRef)" #formRef="ngForm">
+    <h1>Autogestión Token</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Token</mat-label>
+      <input matInput formControlName="token" />
+      <mat-error>Campo obligatorio</mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="primary" [disabled]="form.invalid">INGRESAR TOKEN</button>
+  </form>
+</article>
