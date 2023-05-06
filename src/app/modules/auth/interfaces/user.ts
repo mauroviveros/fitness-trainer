@@ -1,3 +1,4 @@
+import { Routine } from "src/app/shared/interfaces/routine";
 
 export interface UserDocument {
     _id     : string,
@@ -5,7 +6,8 @@ export interface UserDocument {
     name    : string,
     surname : string,
     admin   : boolean,
-    [key: string]: string | boolean | undefined
+    routine?: Routine,
+    [key: string]: string | boolean | undefined | Routine
 }
 
 export interface UserDocumentOutput{
