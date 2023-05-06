@@ -1,8 +1,8 @@
 <shared-layout text="Clientes" [isLoading]="isLoading">
-  <mat-nav-list class="content">
+  <mat-list class="content">
     <ng-container *ngFor="let customer of customers">
       <customer-item-list [customer]="customer"></customer-item-list>
       <mat-divider></mat-divider>
     </ng-container>
-  </mat-nav-list>
+  </mat-list>
 </shared-layout>
