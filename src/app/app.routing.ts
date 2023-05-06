@@ -15,12 +15,12 @@ const redirectUnauthorized = () => redirectUnauthorizedTo(["login"]);
 const routes: Routes = [
   {
     path: "",
-    canActivate: [FireAuthGuard, EmailGuard, TokenGuard],
+    canActivate: [FireAuthGuard, EmailGuard],
     data: { authGuardPipe: redirectUnauthorized },
     children: [
       {
         path: "",
-        canActivate: [UserGuard],
+        canActivate: [UserGuard, TokenGuard],
         children: [
           {
             path: "",
