@@ -17,7 +17,7 @@ const confirmPassword = (ctrlName: string, matchCtrlName: string) => {
 };
 
 @Component({
-  selector: "app-register",
+  selector: "auth-register",
   templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
