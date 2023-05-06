@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
   templateUrl: "./item-list.component.html"
 })
 export class ItemListComponent {
+  routineStatus = { text: "", class: "" };
   @Input() customer?: UserDocument;
 
   constructor(
@@ -22,11 +23,13 @@ export class ItemListComponent {
 
   actions(event: Event){
     event.stopPropagation();
-    this.bottomSheet.open(ActionsSheetComponent).afterDismissed().subscribe((action: ActionSheet) => {
+    const hide = { read: true, update: true, create: false, delete: true };
+    if(this.customer?.routine){ hide.read = false; hide.update = false; hide.create = true; hide.delete = false; }
+    this.bottomSheet.open(ActionsSheetComponent, { data: { hide } }).afterDismissed().subscribe((action: ActionSheet) => {
       switch(action){
-      case "create": this.router.navigate(["routine", "create"], { queryParams: { customer: this.customer?._id } });
-      // case "update":
-      // case "read":
+      case "create": this.router.navigate(["routine", "create"], { queryParams: { customer: this.customer?._id } }); break;
+      case "update": this.router.navigate(["routine", this.customer?.routine?._id, "update"]); break;
+      case "read": this.router.navigate(["routine", this.customer?._id]); break;
       // case "delete":
       }
     });
