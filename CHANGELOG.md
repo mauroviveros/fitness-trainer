@@ -1,3 +1,22 @@
+## [1.0.2](https://github.com/maurodviveros/fitness-trainer/compare/v1.0.1...v1.0.2) (2023-05-06)
+
+
+### Bug Fixes
+
+* **auth:** :ambulance: fix tokenGuard ([fae04a3](https://github.com/maurodviveros/fitness-trainer/commit/fae04a3f45cb85c8cd62ef0959129be79b5e422f))
+* **auth:** :poop: remove console.log ([79b788c](https://github.com/maurodviveros/fitness-trainer/commit/79b788cb380aec6c0131e30b67f34124d44d0c1e))
+* **auth:** :truck: rename selector register ([d9b40b7](https://github.com/maurodviveros/fitness-trainer/commit/d9b40b7fb359bd8054306bcf6c2087415deddfac))
+* **core:** :adhesive_bandage: set background on root ([4e987d4](https://github.com/maurodviveros/fitness-trainer/commit/4e987d456f57ee85113d8c412e223cf4eb1e85ab))
+* **core:** :iphone: add responsive in all component pages ([c472755](https://github.com/maurodviveros/fitness-trainer/commit/c472755a560e4d9658653b70b4d9186c1dfa9f4f))
+* **core:** :lipstick: set background color on all sections ([c23a501](https://github.com/maurodviveros/fitness-trainer/commit/c23a501a806479742d89c364703d500f09a9725c))
+
+
+### Features
+
+* **core:** :iphone: add responsive design ([1175800](https://github.com/maurodviveros/fitness-trainer/commit/1175800dda167406681334938be606f4dd1eeb80))
+
+
+
 ## [1.0.1](https://github.com/maurodviveros/fitness-trainer/compare/v1.0.0...v1.0.1) (2023-05-06)
 
 
