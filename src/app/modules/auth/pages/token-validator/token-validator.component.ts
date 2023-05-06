@@ -20,16 +20,13 @@ export class TokenValidatorComponent {
   ){}
 
   submit(form: FormGroupDirective){
-    console.log("submit");
     if(this.form.invalid) return;
     if(!this.form.value.token) return;
     const token = this.form.value.token;
     this.form.reset();
     form.resetForm();
 
-    this.token.set(token).then(response => {
-      console.log(response);
-      
+    this.token.set(token).then(() => {
       this.router.navigate(["/"]);
     });
   }
