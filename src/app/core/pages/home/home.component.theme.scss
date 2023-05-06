@@ -4,7 +4,7 @@
 @mixin color($config) {
     $primary-palette: map.get($config, primary);
 
-    core-home, core-home mat-toolbar {
+    app-root, core-home, core-home mat-toolbar {
         background-color: mat.get-color-from-palette($primary-palette, 300) !important;
     }
     core-home{
