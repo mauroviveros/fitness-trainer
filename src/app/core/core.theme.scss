@@ -17,6 +17,9 @@
             color: mat.get-color-from-palette($primary-palette, 400);
         }
     }
+    section .mdc-list, shared-layout > section{
+        background-color: mat.get-color-from-palette($primary-palette, 50);
+    }
 }
 
 @mixin theme($theme) {
