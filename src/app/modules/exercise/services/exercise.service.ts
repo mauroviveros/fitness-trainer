@@ -28,6 +28,10 @@ export class ExerciseService {
     });
   }
 
+  async reference(_id: string){
+    return doc(this.exerciseCollection, _id);
+  }
+
   create(fields: ExerciseOUT){
     return setDoc(doc(this.exerciseCollection), fields)
       .then(() => this.snackBar.open("✅ Ejercicio creado correctamente"));
