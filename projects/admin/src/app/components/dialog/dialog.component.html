@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">TOKEN</mat-toolbar>
+<div mat-dialog-content>
+  <code>{{ data.token | json }}</code>
+  <blockquote>
+    <span>Valido hasta: {{ data.expirationDate | date : 'dd/MM/YYYY' }}</span>
+    <span>
+      docRef: <code>{{ data.docRef | json }}</code>
+    </span>
+  </blockquote>
+</div>
