@@ -55,11 +55,14 @@
       </p>
 
       <mat-nav-list>
-        <ng-container *ngFor="let exercise of daySelected.exercises">
+        <ng-container *ngFor="let exercise of daySelected.exercises; let i = index">
           <mat-list-item (click)="open(exercise)">
             <mat-icon matListItemIcon>fitness_center</mat-icon>
             <h5 matListItemTitle>{{ exercise.name }}</h5>
             <p matListItemLine>{{ exercise.description }}</p>
+            <div matListItemMeta>
+              <button mat-icon-button (click)="deleteExercise($event, i)"><mat-icon>delete</mat-icon></button>
+            </div>
           </mat-list-item>
           <mat-divider></mat-divider>
         </ng-container>
