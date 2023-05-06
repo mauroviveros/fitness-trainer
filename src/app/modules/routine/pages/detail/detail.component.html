@@ -1,0 +1,84 @@
+<input matInput [matDatepicker]="picker" [formControl]="fecha" [matDatepickerFilter]="dateFilter" (dateChange)="onDateChange($event)" />
+<mat-datepicker touchUi #picker></mat-datepicker>
+
+<shared-layout text="mi rutina" [isLoading]="!routine._id">
+  <div class="actions">
+    <button mat-icon-button (click)="picker.open()">
+      <mat-icon>date_range</mat-icon>
+    </button>
+  </div>
+  <mat-tab-group backgroundColor="primary" class="content">
+    <mat-tab label="Detalle">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListItemIcon>today</mat-icon>
+          <h5 matListItemTitle>{{ 'fecha inicio:' | titlecase }}</h5>
+          <span matListItemLine>{{ routine.dateIN | date : 'dd/MM/yyyy' }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <mat-icon matListItemIcon>event</mat-icon>
+          <h5 matListItemTitle>{{ 'fecha fin:' | titlecase }}</h5>
+          <span matListItemLine>{{ routine.dateOUT | date : 'dd/MM/yyyy' }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item style="height: auto">
+          <mat-icon matListItemIcon>calendar_month</mat-icon>
+          <h5 matListItemTitle>{{ 'dias de entrenamiento:' | titlecase }}</h5>
+          <mat-chip-listbox matListItemLine>
+            <mat-chip *ngFor="let day of routine.days">{{ dayName[day] | titlecase }}</mat-chip>
+          </mat-chip-listbox>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <mat-icon matListItemIcon>speed</mat-icon>
+          <h5 matListItemTitle>{{ 'nivel de actividad:' | titlecase }}</h5>
+          <span matListItemLine>{{ routine.level | titlecase }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <mat-icon matListItemIcon>science</mat-icon>
+          <h5 matListItemTitle>{{ 'kal para el objetivo:' | titlecase }}</h5>
+          <span matListItemLine>{{ routine.kal | number : '1.2-2' }} kal</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+          <mat-icon matListItemIcon>flag</mat-icon>
+          <h5 matListItemTitle>{{ 'objetivo:' | titlecase }}</h5>
+          <span matListItemLine>{{ routine.objective }}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </mat-tab>
+    <mat-tab label="Ejercicios">
+      <article class="empty-banner" *ngIf="!isAvailableDay(); else list">
+        <mat-icon>spa</mat-icon>
+        <h4>No hay Ejercicios para el dia de Hoy, tomate un descanso. 😴</h4>
+      </article>
+
+      <ng-template #list>
+        <mat-selection-list *ngIf="daySelected.exercises.length; else emptyList">
+          <ng-container *ngFor="let exercise of daySelected.exercises; let i = index">
+            <mat-list-option (click)="open(option, exercise)" #option [selected]="hasRealWeight(exercise)" [disabled]="isDisabledOption()">
+              <mat-icon matListItemIcon>fitness_center</mat-icon>
+              <h5 matListItemTitle>{{ exercise.name }}</h5>
+              <p matListItemLine>{{ exercise.description }}</p>
+            </mat-list-option>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-selection-list>
+      </ng-template>
+      <ng-template #emptyList>
+        <article class="empty-banner">
+          <mat-icon>history_toggle_off</mat-icon>
+          <h4>No hay Ejercicios para la fecha seleccionada.</h4>
+        </article>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</shared-layout>
