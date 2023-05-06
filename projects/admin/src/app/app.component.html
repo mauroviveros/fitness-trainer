@@ -1,0 +1,11 @@
+<img src="assets/isotipo.png" alt="fitness-trainer" />
+<form [formGroup]="form" (submit)="submit(formRef)" #formRef="ngForm">
+  <h1>Autogestión Token</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>UID</mat-label>
+    <input matInput formControlName="uid" />
+    <mat-error>Campo obligatorio</mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-flat-button color="primary" [disabled]="form.invalid">GENERAR TOKEN</button>
+</form>
