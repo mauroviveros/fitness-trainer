@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/maurodviveros/fitness-trainer/compare/v1.0.0...v1.0.1) (2023-05-06)
+
+
+
 # [1.0.0](https://github.com/maurodviveros/fitness-trainer/compare/v0.1.5...v1.0.0) (2023-05-06)
 
 
