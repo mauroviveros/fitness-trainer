@@ -54,6 +54,7 @@
 
         mat-card-content{
             padding: 2rem;
+            overflow: auto;
             mat-form-field{ width: 100%; }
         }
     }
