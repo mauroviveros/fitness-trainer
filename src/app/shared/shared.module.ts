@@ -104,5 +104,6 @@ const ANGULAR_MATERIAL = [
 export class SharedModule {
   constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
     matIconRegistry.addSvgIcon("youtube", domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/youtube.svg"));
+    matIconRegistry.addSvgIcon("instagram", domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/instagram.svg"));
   }
 }
