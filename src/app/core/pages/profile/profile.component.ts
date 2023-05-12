@@ -21,6 +21,8 @@ interface Field{
   placeholder : string,
   validators  : ValidatorFn[],
   maxLength?  : number,
+  type?       : string,
+  svgIcon?    : boolean,
   disabled?   : true
 }
 
@@ -48,10 +50,20 @@ export class ProfileComponent implements OnDestroy{
       validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH)]
     },
     {
+      _id: "instagram", icon: "instagram", label: "Instagram", svgIcon: true,
+      placeholder: "Ingrese su instagram", maxLength: environment.MAX_LENGTH * 2,
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH * 2)]
+    },
+    {
+      _id: "years", icon: "person_pin", label: "Edad",
+      placeholder: "Ingrese su edad", maxLength: environment.MAX_LENGTH * 2, type: "number",
+      validators: [Validators.required, Validators.maxLength(environment.MAX_LENGTH * 2)]
+    },
+    {
       _id: "email", icon: "email", label: "Email",
       placeholder: "Ingrese su email", disabled: true,
       validators: [Validators.required, Validators.email]
-    }
+    },
   ];
 
   constructor(

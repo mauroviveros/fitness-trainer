@@ -24,9 +24,9 @@
   <mat-card-content>
     <form [formGroup]="form">
       <mat-form-field appearance="fill" *ngFor="let field of fields">
-        <mat-icon matPrefix color="primary">{{ field.icon }}</mat-icon>
+        <mat-icon matPrefix color="primary" [svgIcon]="field.svgIcon ? field.icon : ''">{{ field.icon }}</mat-icon>
         <mat-label>{{ field.label }}</mat-label>
-        <input matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [maxlength]="!!field.maxLength ? field.maxLength : null" />
+        <input [type]="field.type || 'text'" matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [maxlength]="!!field.maxLength ? field.maxLength : null" />
         <mat-hint *ngIf="!!field.maxLength && !input.disabled" align="end">{{ input.value.length }}/{{ field.maxLength }}</mat-hint>
         <mat-error>{{ form.get(field._id)?.errors | formError }}</mat-error>
       </mat-form-field>
