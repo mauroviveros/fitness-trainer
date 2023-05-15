@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/fitness-trainer
+            dist/fitness_trainer
             .firebaserc
             firebase.json
 

@@ -1,7 +1,7 @@
 {
   "hosting": {
     "target": "fitness-trainer",
-    "public": "dist/fitness-trainer",
+    "public": "dist/fitness_trainer",
     "ignore": [
       "**/.*"
     ],
