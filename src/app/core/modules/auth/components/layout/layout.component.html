@@ -1,0 +1,19 @@
+<figure>
+  <img src="assets/logotipo.png" alt="Logo Fitness Trainer" />
+</figure>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>{{ layout?.title }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <router-outlet></router-outlet>
+  </mat-card-content>
+
+  <mat-card-footer *ngIf="layout?.footer">
+    <span>{{ layout?.footer?.label }}</span>
+    <a [routerLink]="layout?.footer?.link">{{ layout?.footer?.button }}</a>
+  </mat-card-footer>
+</mat-card>

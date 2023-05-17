@@ -1,0 +1,47 @@
+:host{
+    figure{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        margin: 0;
+        position: relative;
+        img{
+            width: 70%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+    }
+    mat-card{
+        flex-grow: 1;
+        justify-content: center;
+        border-radius: 0;
+        width: 100%;
+
+        mat-card-header{
+            justify-content: center;
+            padding: 1rem;
+        }
+        mat-card-content{
+            flex-grow: 1;
+        }
+        mat-card-footer{
+            display: flex;
+            justify-content: center;
+            gap: .5rem;
+            padding: 1rem;
+        }
+    }
+}
+
+:host::ng-deep{
+    mat-progress-bar{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    form{
+        mat-form-field, button{ width: 100%; }
+    }
+}

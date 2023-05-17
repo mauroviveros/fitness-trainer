@@ -1,5 +1,0 @@
-@use './components/wrapper/wrapper.component.theme.scss' as wrapper;
-
-@mixin all-component-themes($theme) {
-    @include wrapper.theme($theme);
-};
