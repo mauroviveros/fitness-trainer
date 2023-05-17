@@ -1,38 +1,5 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  h1 { text-align: center; }
-  figure, mat-card { flex: 1; }
-
-  figure {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-
-    img {
-      border-radius: 50%;
-      cursor: pointer;
-
-      &:hover{
-        opacity: .8;
-      }
-    }
-  }
-
-  mat-card {
-    border-radius: 2.5rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0px -2px 1px -1px rgba(0, 0, 0, 0.2), 0px -1px 1px 0px rgba(0, 0, 0, 0.14), 0px -1px 3px 0px rgba(0, 0, 0, 0.12);
-    justify-content: center;
-    mat-card-content {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-  }
+:host{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }

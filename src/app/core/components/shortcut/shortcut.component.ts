@@ -6,8 +6,8 @@ import { Component, Input } from "@angular/core";
   styleUrls: ["./shortcut.component.scss"]
 })
 export class ShortcutComponent {
-  @Input() public text = "dashboard";
-  @Input() public icon?: string;
-  @Input() public link?: string;
-  @Input() public disabled?: boolean;
+  @Input() public label = "dashboard";
+  @Input() public icon = "dashboard";
+  @Input() public link = "";
+  @Input() public disabled = false;
 }

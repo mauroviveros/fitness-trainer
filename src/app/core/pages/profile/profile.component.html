@@ -1,35 +1,30 @@
-<mat-toolbar>
-  <a mat-icon-button routerLink="/" *ngIf="!isLoading && mode !== 1"><mat-icon>arrow_back</mat-icon></a>
-  <h1>MI PERFIL</h1>
-  <button mat-icon-button (click)="inputFile.click()">
-    <mat-icon>add_photo_alternate</mat-icon>
-  </button>
-</mat-toolbar>
-
-<input type="file" (change)="updateFile($event)" accept=".png, .jpeg, .jpg" hidden #inputFile />
-
-<figure>
-  <shared-profile-img></shared-profile-img>
-
-  <button mat-fab (click)="submit()" *ngIf="!isLoading">
-    <mat-icon>{{ mode !== 3 ? 'save' : 'edit' }}</mat-icon>
-  </button>
-  <button mat-mini-fab *ngIf="!isLoading" [class.active]="mode === 2" (click)="closeEdit()">
-    <mat-icon>close</mat-icon>
-  </button>
-</figure>
-
-<mat-card>
+<form>
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-  <mat-card-content>
-    <form [formGroup]="form">
-      <mat-form-field appearance="fill" *ngFor="let field of fields">
-        <mat-icon matPrefix color="primary" [svgIcon]="field.svgIcon ? field.icon : ''">{{ field.icon }}</mat-icon>
-        <mat-label>{{ field.label }}</mat-label>
-        <input [type]="field.type || 'text'" matInput #input [placeholder]="field.placeholder" [formControlName]="field._id" [maxlength]="!!field.maxLength ? field.maxLength : null" />
-        <mat-hint *ngIf="!!field.maxLength && !input.disabled" align="end">{{ input.value.length }}/{{ field.maxLength }}</mat-hint>
-        <mat-error>{{ form.get(field._id)?.errors | formError }}</mat-error>
-      </mat-form-field>
-    </form>
-  </mat-card-content>
-</mat-card>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input placeholder="Ingrese su nombre" matInput focus />
+    <mat-error></mat-error>
+    <mat-icon matPrefix>person</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Apellido</mat-label>
+    <input placeholder="Ingrese su apellido" matInput />
+    <mat-error></mat-error>
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input placeholder="Ingrese su email" matInput />
+    <mat-error></mat-error>
+    <mat-icon matPrefix>email</mat-icon>
+  </mat-form-field>
+</form>
+
+<button mat-mini-fab *ngIf="!isLoading">
+  <mat-icon>close</mat-icon>
+</button>
+<button mat-fab *ngIf="!isLoading">
+  <mat-icon>save</mat-icon>
+</button>
