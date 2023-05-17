@@ -1,9 +1,0 @@
-:host{
-    [mat-dialog-title]{ color: inherit; }
-    mat-dialog-actions{
-        justify-content: flex-end;
-        [mat-button]{
-            text-transform: uppercase;
-        }
-    }
-}
