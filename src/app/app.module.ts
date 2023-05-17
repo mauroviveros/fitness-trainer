@@ -1,27 +1,18 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
-import { ReactiveFormsModule } from "@angular/forms";
+import { AppRoutingModule } from "./app.routing";
 
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth,getAuth } from "@angular/fire/auth";
 import { provideFirestore,getFirestore } from "@angular/fire/firestore";
-import { getStorage, provideStorage } from "@angular/fire/storage";
-
-import { AppRoutingModule } from "./app.routing";
-import { SharedModule } from "./shared/shared.module";
+import { provideStorage, getStorage } from "@angular/fire/storage";
+import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
 
 import { FIREBASE } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
-import { ShortcutComponent } from "./core/components/shortcut/shortcut.component";
-import { SplashScreenComponent } from "./core/components/splash-screen/splash-screen.component";
-
-import { HomeComponent } from "./core/pages/home/home.component";
-import { ProfileComponent } from "./core/pages/profile/profile.component";
-import { WelcomeDialogComponent } from "./core/components/welcome-dialog/welcome-dialog.component";
-
+import { CoreModule } from "./core/core.module";
 
 const firebase = {
   projectId         : FIREBASE.PROJECT_ID,
@@ -36,29 +27,22 @@ const firebase = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ProfileComponent,
-    ShortcutComponent,
-    SplashScreenComponent,
-    WelcomeDialogComponent
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    provideAnalytics(() => getAnalytics()),
 
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    SharedModule
+    CoreModule
   ],
   providers: [
-    // ProfileService
-    // ScreenTrackingService,
-    // UserTrackingService
+    ScreenTrackingService,
+    UserTrackingService
   ],
   bootstrap: [AppComponent]
 })

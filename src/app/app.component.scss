@@ -1,0 +1,9 @@
+:host::ng-deep{
+    > router-outlet + *{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}

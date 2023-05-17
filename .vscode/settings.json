@@ -18,13 +18,9 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.inlineSuggest.enabled": true,
   "conventionalCommits.scopes": [
-    "auth",
     "core",
-    "routine",
-    "customer",
-    "shared",
-    "exercise",
-    "admin"
+    "core.auth",
+    "core.shared"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"

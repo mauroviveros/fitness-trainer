@@ -1,15 +1,6 @@
 @use '@angular/material' as mat;
-@use './app/core/core.theme.scss' as core;
-@use './app/shared/shared.theme.scss' as shared;
-@use './app/modules/auth/auth.theme.scss' as auth;
 @import "themes/primary";
 
 @include mat.core();
-
-
-
 @include mat.typography-hierarchy($typography);
 @include mat.all-component-themes($theme);
-@include core.all-component-themes($theme);
-@include shared.all-component-themes($theme);
-@include auth.all-component-themes($theme);
