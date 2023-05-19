@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { AuthService } from "../../modules/auth/services/auth.service";
-import { UserService } from "../../modules/auth/services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "core-home",
@@ -8,8 +8,9 @@ import { UserService } from "../../modules/auth/services/user.service";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent {
-  private auth = inject(AuthService);
-  private user = inject(UserService);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
   logout(){ this.auth.logout(); }
+  profile(){ this.router.navigate(["profile"]); }
 }
