@@ -6,12 +6,14 @@ import { AuthService } from "./auth.service";
 
 import { UserDoc } from "src/app/shared/interfaces/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { DialogService } from "src/app/shared/services/dialog.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
   private readonly auth = inject(AuthService);
+  private readonly dialog = inject(DialogService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "users");
@@ -20,9 +22,15 @@ export class UserService {
     switchMap(user => docSnapshots(doc(this.collection, user.uid))),
     map((user) => { 
       const data = user.data();
-      return { ...data, _id: user.id } as UserDoc;
+      if(data) return { ...data, _id: user.id } as UserDoc;
+      else throw `profile is not defined "${user.ref.path}"`;
     })
   );
+
+  constructor(){
+    firstValueFrom(this.$data)
+      .catch(() => this.dialog.showWelcome());
+  }
 
   private catchError(error: Error){
     this.snackBar.open(`❌ ${error.message}`, "cerrar", { duration: 3000 });

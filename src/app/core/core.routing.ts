@@ -19,12 +19,13 @@ const routes: Routes = [
         path: "",
         title: "Fitness - Trainer | Inicio",
         canActivate: [UserGuard],
-        component: HomeComponent,
+        component: HomeComponent
       },
       {
         path: "profile",
         title: "Fitness - Trainer | Perfil",
-        component: ProfileComponent,
+        // canDeactivate: [UserGuard],
+        component: ProfileComponent
       }
     ]
   }
