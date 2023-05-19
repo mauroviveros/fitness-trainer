@@ -1,0 +1,4 @@
+<input type="file" [accept]="accept" (change)="uploadIMG($event)" hidden #inputFile />
+<button mat-icon-button (click)="inputFile.click()">
+  <mat-icon>add_photo_alternate</mat-icon>
+</button>
