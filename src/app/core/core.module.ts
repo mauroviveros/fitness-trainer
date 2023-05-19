@@ -9,6 +9,7 @@ import { ShortcutComponent } from "./components/shortcut/shortcut.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { ImageUploadComponent } from "./components/image-upload/image-upload.component";
 import { ProfileImageComponent } from "./components/profile-image/profile-image.component";
+import { SplashScreenComponent } from "./components/splash-screen/splash-screen.component";
 
 @NgModule({
   declarations: [
@@ -17,12 +18,16 @@ import { ProfileImageComponent } from "./components/profile-image/profile-image.
     ShortcutComponent,
     ProfileComponent,
     ImageUploadComponent,
-    ProfileImageComponent
+    ProfileImageComponent,
+    SplashScreenComponent
   ],
   imports: [
     SharedModule,
     CoreRoutingModule,
     AuthModule
+  ],
+  exports: [
+    SplashScreenComponent
   ]
 })
 export class CoreModule { }
