@@ -18,7 +18,7 @@ const routes: Routes = [
       {
         path: "",
         title: "Fitness - Trainer | Inicio",
-        // canActivate: [UserGuard],
+        canActivate: [UserGuard],
         component: HomeComponent,
       },
       {
