@@ -8,8 +8,8 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
-  private formBuilder = inject(FormBuilder);
-  private auth = inject(AuthService);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
   isLoading = false;
 
   form: FormGroup = this.formBuilder.group({

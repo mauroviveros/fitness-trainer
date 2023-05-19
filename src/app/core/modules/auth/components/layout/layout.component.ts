@@ -18,23 +18,23 @@ interface Layout{
   styleUrls: ["./layout.component.scss"]
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private subscription?: Subscription;
   layout?: Layout;
 
   ngOnInit(){
-    this.setLayout();
+    this.subscription = this.initLayout();
   }
   ngOnDestroy(){
     this.subscription?.unsubscribe();
   }
 
-  private setLayout(){
+  private initLayout(){
     const getData = () => this.route.firstChild?.snapshot.data as Layout;
 
     this.layout = getData();
-    this.subscription = this.router.events.pipe(
+    return this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => getData())
     ).subscribe(data => {

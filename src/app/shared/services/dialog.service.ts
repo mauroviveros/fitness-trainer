@@ -3,7 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { User } from "@angular/fire/auth";
 
 import { AuthService } from "src/app/core/modules/auth/services/auth.service";
-import { DialogComponent } from "../component/dialog/dialog.component";
+import { DialogComponent } from "../components/dialog/dialog.component";
 
 interface DialogAction{
   _id: string
@@ -22,8 +22,8 @@ interface DialogContent{
   providedIn: "root"
 })
 export class DialogService {
-  private auth = inject(AuthService);
-  private dialog = inject(MatDialog);
+  private readonly auth = inject(AuthService);
+  private readonly dialog = inject(MatDialog);
 
   open(dialogContent: DialogContent){
     return this.dialog.open(DialogComponent, { data: dialogContent });

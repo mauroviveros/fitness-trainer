@@ -8,12 +8,12 @@ import { filter, map } from "rxjs";
   providedIn: "root"
 })
 export class AuthService {
-  private auth = inject(Auth);
-  private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
+  private readonly auth = inject(Auth);
+  private readonly router = inject(Router);
+  private readonly snackBar = inject(MatSnackBar);
 
 
-  user = user(this.auth).pipe(
+  $user = user(this.auth).pipe(
     filter(user => user !== null),
     map(user => user as User)
   );

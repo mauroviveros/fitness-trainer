@@ -9,11 +9,11 @@ import { DialogService } from "src/app/shared/services/dialog.service";
   providedIn: "root"
 })
 export class EmailGuard {
-  private auth = inject(AuthService);
-  private dialog = inject(DialogService);
+  private readonly auth = inject(AuthService);
+  private readonly dialog = inject(DialogService);
 
   canActivate(): Observable<boolean | UrlTree>{
-    return this.auth.user.pipe(
+    return this.auth.$user.pipe(
       map(user => {
         if(!user.emailVerified){
           this.dialog.showEmailValidation(user);
