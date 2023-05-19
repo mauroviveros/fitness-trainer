@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { NavigationStart, Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
@@ -15,12 +15,12 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   ]
 })
 export class LayoutComponent implements OnInit {
-  private router = inject(Router);
+  private readonly router = inject(Router);
   expand = true;
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart){
+      if (event instanceof NavigationEnd){
         this.expand = false;
         setTimeout(() => { this.expand = true; }, 100);
       }
