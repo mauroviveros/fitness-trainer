@@ -6,6 +6,6 @@ export interface DialogAction{
 export interface DialogContent{
     title: string
     icon: string
-    text: string
+    texts: string[]
     action?: DialogAction
 }
