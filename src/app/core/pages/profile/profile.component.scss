@@ -7,6 +7,8 @@
 
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
+
+        mat-form-field{ width: 100%; }
         mat-progress-bar{
             position: absolute;
             top: 0;

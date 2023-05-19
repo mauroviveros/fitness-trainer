@@ -1,30 +1,35 @@
-<form>
+<form id="profileForm" [formGroup]="form" (submit)="submit()">
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <mat-form-field>
     <mat-label>Nombre</mat-label>
-    <input placeholder="Ingrese su nombre" matInput focus />
-    <mat-error></mat-error>
+    <input placeholder="Ingrese su nombre" formControlName="name" matInput #inputName />
+    <mat-error>{{ form.controls['name'].errors | error }}</mat-error>
+    <mat-hint align="end">{{ inputName.value.length }}/{{ 24 }}</mat-hint>
     <mat-icon matPrefix>person</mat-icon>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Apellido</mat-label>
-    <input placeholder="Ingrese su apellido" matInput />
-    <mat-error></mat-error>
+    <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
+    <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
+    <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
     <mat-icon matPrefix>badge</mat-icon>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Email</mat-label>
-    <input placeholder="Ingrese su email" matInput />
-    <mat-error></mat-error>
+    <input placeholder="Ingrese su email" formControlName="email" matInput />
+    <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
     <mat-icon matPrefix>email</mat-icon>
   </mat-form-field>
 </form>
 
-<button mat-mini-fab *ngIf="!isLoading">
+<button mat-mini-fab *ngIf="!isLoading" [class.active]="mode.value === 2" (click)="mode.next(3)">
   <mat-icon>close</mat-icon>
 </button>
-<button mat-fab *ngIf="!isLoading">
+<button mat-fab *ngIf="!isLoading && mode.value !== 3" type="submit" form="profileForm">
   <mat-icon>save</mat-icon>
+</button>
+<button mat-fab *ngIf="!isLoading && mode.value === 3" (click)="mode.next(2)">
+  <mat-icon>edit</mat-icon>
 </button>
