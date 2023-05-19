@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ErrorPipe } from "./pipes/error.pipe";
 import { CommonModule } from "@angular/common";
 
-import { DialogComponent } from "./component/dialog/dialog.component";
+import { DialogComponent } from "./components/dialog/dialog.component";
 
 @NgModule({
   declarations: [

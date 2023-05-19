@@ -8,7 +8,7 @@ import { DialogContent } from "../../interfaces/dialog";
   styleUrls: ["./dialog.component.scss"]
 })
 export class DialogComponent {
-  private dialogRef = inject(MatDialogRef);
+  private readonly dialogRef = inject(MatDialogRef);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogContent){}
 
