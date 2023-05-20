@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { BehaviorSubject, Subscription, switchMap, tap } from "rxjs";
 
 import { AuthService } from "../../modules/auth/services/auth.service";
@@ -16,11 +16,10 @@ export class ProfileComponent implements OnInit {
   private readonly user = inject(UserService);
   private readonly formBuider = inject(FormBuilder);
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
   private subscriptions: Subscription[] = [];
 
   isLoading = false;
-  mode = new BehaviorSubject<number>(3);
+  $mode = new BehaviorSubject<number>(3);
 
   form: FormGroup = this.formBuider.group({
     name: [null, [Validators.required]],
@@ -34,11 +33,11 @@ export class ProfileComponent implements OnInit {
   }
 
   private initMode(){
-    return this.mode.subscribe(mode => {
+    return this.$mode.subscribe($mode => {
       const controlsName = Object.keys(this.form.controls).filter(key => key !== "email");
 
       controlsName.forEach(controlName => {
-        if(mode !== 3) this.form.controls[controlName].enable();
+        if($mode !== 3) this.form.controls[controlName].enable();
         else this.form.controls[controlName].disable();
       });
     });
@@ -50,9 +49,9 @@ export class ProfileComponent implements OnInit {
         this.form.controls["email"].setValue(user?.email);
         this.form.controls["email"].disable();
       }),
-      switchMap(() => this.route.data),
-    ).subscribe(({ userData: data }) => {
-      if(!data) this.mode.next(1);
+      switchMap(() => this.user.$data),
+    ).subscribe(data => {
+      if(!data) this.$mode.next(1);
       else{
         const controlsName = Object.keys(this.form.controls).filter(key => key !== "email");
         controlsName.forEach(controlName => this.form.controls[controlName].setValue(data[controlName]));
