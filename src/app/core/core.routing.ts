@@ -6,8 +6,6 @@ import { FormGuard } from "../shared/guards/form.guard";
 import { EmailGuard } from "./modules/auth/guards/email.guard";
 import { UserGuard } from "./modules/auth/guards/user.guard";
 
-import { ProfileResolver } from "./resolvers/profile.resolver";
-
 import { LayoutComponent } from "./components/layout/layout.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
@@ -29,9 +27,6 @@ const routes: Routes = [
         path: "profile",
         title: "Fitness - Trainer | Perfil",
         canDeactivate: [FormGuard],
-        resolve: {
-          userData: ProfileResolver
-        },
         component: ProfileComponent
       }
     ]
