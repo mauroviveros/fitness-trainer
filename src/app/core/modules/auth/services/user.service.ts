@@ -7,6 +7,7 @@ import { AuthService } from "./auth.service";
 import { UserDoc } from "src/app/shared/interfaces/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DialogService } from "src/app/shared/services/dialog.service";
+import { User } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root"
@@ -19,17 +20,26 @@ export class UserService {
   private readonly collection = collection(this.firestore, "users");
 
   $data = this.auth.$user.pipe(
-    switchMap(user => docSnapshots(doc(this.collection, user.uid))),
-    map((user) => { 
+    switchMap(async user => {
+      try {
+        return await firstValueFrom(docSnapshots(doc(this.collection, user?.uid)));
+      } catch (error) {
+        return undefined;
+      }
+    }),
+    map(user => {
+      if(user === undefined) return undefined;
       const data = user.data();
-      if(data) return { ...data, _id: user.id } as UserDoc;
-      else throw `profile is not defined "${user.ref.path}"`;
+      if(!data) return null;
+      return { ...data, _id: user?.id } as UserDoc;
     })
   );
 
   constructor(){
     firstValueFrom(this.$data)
-      .catch(() => this.dialog.showWelcome());
+      .then(data => {
+        if(data === null) this.dialog.showWelcome();
+      });
   }
 
   private catchError(error: Error){
@@ -39,7 +49,7 @@ export class UserService {
 
   async upload(fields: UserDoc){
     try {
-      const { uid } = await firstValueFrom(this.auth.$user);
+      const { uid } = await firstValueFrom(this.auth.$user) as User;
       await setDoc(doc(this.collection, uid), { admin: false, ...fields });
       this.snackBar.open("✅ Perfil generado correctamente");
     } catch (error) { this.catchError(error as Error); }

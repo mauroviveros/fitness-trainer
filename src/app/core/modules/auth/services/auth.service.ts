@@ -2,7 +2,6 @@ import { Injectable, inject } from "@angular/core";
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, User, user } from "@angular/fire/auth";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { filter, map } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -12,11 +11,9 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly snackBar = inject(MatSnackBar);
 
+  $authState = user(this.auth);
 
-  $user = user(this.auth).pipe(
-    filter(user => user !== null),
-    map(user => user as User)
-  );
+  $user = user(this.auth);
 
   private catchError(error: Error){
     if(!error) error = new Error("ERROR: catchError");
