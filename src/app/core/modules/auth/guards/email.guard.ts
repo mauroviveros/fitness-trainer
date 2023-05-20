@@ -15,8 +15,8 @@ export class EmailGuard {
   canActivate(): Observable<boolean | UrlTree>{
     return this.auth.$user.pipe(
       map(user => {
-        if(!user.emailVerified){
-          this.dialog.showEmailValidation(user);
+        if(user !== null && !user?.emailVerified){
+          this.dialog.showEmailValidation(user).subscribe();
           this.auth.logout();
         }
         return user?.emailVerified || false;
