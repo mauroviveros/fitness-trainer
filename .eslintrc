@@ -17,20 +17,14 @@
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
+          { "type": "attribute", "style": "camelCase" }
         ],
         "@angular-eslint/component-selector": [
           "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ]
+          { "type": "attribute", "style": "kebab-case" }
+        ],
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
       }
     },
     {
