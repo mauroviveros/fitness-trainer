@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { Firestore, collection, doc, docSnapshots, setDoc } from "@angular/fire/firestore";
-import { firstValueFrom, map, switchMap } from "rxjs";
+import { catchError, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { AuthService } from "./auth.service";
 
@@ -8,6 +8,7 @@ import { UserDoc } from "src/app/shared/interfaces/user";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DialogService } from "src/app/shared/services/dialog.service";
 import { User } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -15,18 +16,14 @@ import { User } from "@angular/fire/auth";
 export class UserService {
   private readonly auth = inject(AuthService);
   private readonly dialog = inject(DialogService);
+  private readonly router = inject(Router);
   private readonly snackBar = inject(MatSnackBar);
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "users");
 
   $data = this.auth.$user.pipe(
-    switchMap(async user => {
-      try {
-        return await firstValueFrom(docSnapshots(doc(this.collection, user?.uid)));
-      } catch (error) {
-        return undefined;
-      }
-    }),
+    switchMap(user => docSnapshots(doc(this.collection, user?.uid))),
+    catchError(() => of(undefined)),
     map(user => {
       if(user === undefined) return undefined;
       const data = user.data();
@@ -36,10 +33,12 @@ export class UserService {
   );
 
   constructor(){
-    firstValueFrom(this.$data)
-      .then(data => {
-        if(data === null) this.dialog.showWelcome();
-      });
+    this.$data.subscribe(data => {
+      if(data === null){
+        this.dialog.showWelcome();
+        this.router.navigate(["profile"]);
+      }
+    });
   }
 
   private catchError(error: Error){
