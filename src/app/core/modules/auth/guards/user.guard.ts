@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { Router, UrlTree } from "@angular/router";
-import { Observable, catchError, map, of } from "rxjs";
+import { Observable, map } from "rxjs";
 
 import { UserService } from "../services/user.service";
 
@@ -13,14 +13,10 @@ export class UserGuard {
 
   canActivate(): Observable<boolean | UrlTree> {
     return this.user.$data.pipe(
-      map(() => true),
-      catchError(() => of(this.router.createUrlTree(["profile"])))
+      map(user => {
+        if(user) return true;
+        return this.router.createUrlTree(["profile"]);
+      })
     );
   }
-
-  // canDeactivate(): Observable<boolean> | boolean{
-  //   this.auth.logout();
-  //   return true;
-  // }
-  
 }
