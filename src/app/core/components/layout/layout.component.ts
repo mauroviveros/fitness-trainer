@@ -1,6 +1,11 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { NavigationEnd, Router } from "@angular/router";
+import { Subscription } from "rxjs";
+
+import { UserService } from "../../modules/auth/services/user.service";
+
+import { UserDoc } from "src/app/shared/interfaces/user";
 
 @Component({
   selector: "core-layout",
@@ -14,16 +19,37 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
     ])
   ]
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
+  private readonly user = inject(UserService);
   private readonly router = inject(Router);
+  private subscriptions: Subscription[] = [];
+  userData?: UserDoc | null;
   expand = true;
 
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
+    this.subscriptions.push(this.initUserData());
+    this.subscriptions.push(this.initNavigationCatch());
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+  }
+
+  private initNavigationCatch(){
+    return this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd){
         this.expand = false;
         setTimeout(() => { this.expand = true; }, 100);
       }
+    });
+  }
+
+  private initUserData(){
+    return this.user.$data.pipe(
+    ).subscribe(data => {
+      this.userData = data;
     });
   }
 }
