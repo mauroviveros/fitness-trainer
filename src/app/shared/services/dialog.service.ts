@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { User } from "@angular/fire/auth";
-import { map } from "rxjs";
+import { map, tap } from "rxjs";
 
 import { AuthService } from "src/app/core/modules/auth/services/auth.service";
 
@@ -18,18 +18,18 @@ export class DialogService {
 
   open(dialogContent: DialogContent){
     return this.dialog.open(DialogComponent, { data: dialogContent })
-      .afterClosed().pipe(map(action => action === dialogContent.action));
+      .afterClosed().pipe(map(action => action === dialogContent.action?._id));
   }
 
   showEmailValidation(user: User){
-    this.open({
+    return this.open({
       title: "Verifica tu email",
       icon: "security",
       texts: ["Tu email no ha sido verificado todavía. Por favor verifica tu dirección de correo electrónico para acceder a todas las funcionalidades de nuestra plataforma."],
       action: { _id: "sendEmail", label: "Enviar Email" }
-    }).subscribe(boolean => {
-      if(boolean) this.auth.sendEmailVerification(user);
-    });
+    }).pipe(
+      tap(boolean => { if(boolean) this.auth.sendEmailVerification(user); })
+    );
   }
 
   showWelcome(){
@@ -44,7 +44,7 @@ export class DialogService {
   }
 
   showUnsavedChanges(){
-    this.open({
+    return this.open({
       title: "¡Cambios no guardados!",
       icon: "error",
       texts: [
@@ -64,6 +64,8 @@ export class DialogService {
         "Si lo desea puede cerrar la sesión"
       ],
       action: { _id: "logout", label: "Cerrar Sesión" }
-    });
+    }).pipe(
+      tap(boolean => { if(boolean) this.auth.logout(); })
+    );
   }
 }
