@@ -1,9 +1,10 @@
 import { Injectable, inject } from "@angular/core";
 import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
-import { BehaviorSubject, catchError, firstValueFrom, of, switchMap } from "rxjs";
+import { BehaviorSubject, filter, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { AuthService } from "../modules/auth/services/auth.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { User } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: "root"
@@ -16,6 +17,8 @@ export class ProfileImageService {
   private time = new BehaviorSubject<Date>(new Date());
 
   $ref = this.auth.$user.pipe(
+    filter(user => user !== null),
+    map(user => user as User),
     switchMap(({ uid }) => {
       return of(ref(this.storage, `users/${uid}/profile`));
     })
@@ -23,8 +26,13 @@ export class ProfileImageService {
 
   $src = this.time.pipe(
     switchMap(() => this.$ref),
-    switchMap(async (reference) => await getDownloadURL(reference)),
-    catchError(() => of("/assets/profile.png"))
+    switchMap(async (reference) => {
+      try {
+        return await getDownloadURL(reference);
+      } catch (error) {
+        return "/assets/profile.png";
+      }
+    })
   );
 
   private getSizeMB(sizeBytes: number){

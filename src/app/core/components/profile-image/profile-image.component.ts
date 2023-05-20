@@ -11,7 +11,9 @@ export class ProfileImageComponent {
   private readonly profileImage = inject(ProfileImageService);
   isLoading = true;
 
-  $src = this.profileImage.$src.pipe(tap(() => this.isLoading = true));
+  $src = this.profileImage.$src.pipe(
+    tap(() => this.isLoading = true)
+  );
 
   onLoad(){ this.isLoading = false; }
 }
