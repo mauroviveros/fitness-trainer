@@ -1,6 +1,9 @@
 export interface UserDoc{
-    _id: string
-    name: string
-    surname: string
-    [key: string]: string
+  _id: string
+  name: string
+  surname: string
+  gender: string
+  birthday: Date
+  [key: string]: string | boolean | Date
+  _admin: boolean
   }
