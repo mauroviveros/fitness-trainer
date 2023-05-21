@@ -17,6 +17,7 @@ const routes: Routes = [
       {
         path: "login",
         title: "Fitness - Trainer | Identifícate",
+        component: LoginComponent,
         data: {
           loading: false,
           title: "Iniciar sesión",
@@ -25,13 +26,12 @@ const routes: Routes = [
             button: "Registrate aqui",
             link: "register"
           }
-        },
-        component: LoginComponent,
-
+        }
       },
       {
         path: "register",
         title: "Fitness - Trainer | Crea tu cuenta",
+        component: RegisterComponent,
         data: {
           title: "Registrarse",
           footer: {
@@ -39,14 +39,13 @@ const routes: Routes = [
             button: "Ingresa aqui",
             link: "login"
           }
-        },
-        component: RegisterComponent
+        }
       },
-      {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "login"
-      }
+      // {
+      //   path: "",
+      //   pathMatch: "full",
+      //   redirectTo: "login"
+      // }
     ]
   }
 ];
