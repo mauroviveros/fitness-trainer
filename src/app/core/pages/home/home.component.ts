@@ -13,4 +13,5 @@ export class HomeComponent {
 
   logout(){ this.auth.logout(); }
   profile(){ this.router.navigate(["profile"]); }
+  exercises(){ this.router.navigate(["exercises"]); }
 }
