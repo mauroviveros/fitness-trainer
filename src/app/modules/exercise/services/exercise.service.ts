@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Firestore, collection, collectionData, doc, docData, setDoc } from "@angular/fire/firestore";
+import { Firestore, collection, collectionData, deleteDoc, doc, docData, setDoc, updateDoc } from "@angular/fire/firestore";
 import { map } from "rxjs";
 
 import { MessageService } from "src/app/shared/services/message.service";
@@ -28,14 +28,27 @@ export class ExerciseService {
   async upload(fields: Exercise){
     try {
       const { _id, ...exercise } = fields;
-      let _doc = doc(this.collection);
-      if(_id) _doc = doc(this.collection, _id);
 
-      await setDoc(_doc, { ...exercise });
-      this.message.success("Ejercicio generado correctamente");
+      if(!_id){
+        await setDoc(doc(this.collection), { ...exercise });
+        this.message.success("Ejercicio generado correctamente");
+      } else{
+        await updateDoc(doc(this.collection, _id), { ...exercise });
+        this.message.success("Ejercicio actualizado correctamente");
+      }
+
     } catch (error) {
       this.message.error(error as Error);
       throw error;
+    }
+  }
+
+  async delete(_id: string){
+    try {
+      await deleteDoc(doc(this.collection, _id));
+      this.message.success("Ejercicio borrado correctamente");
+    } catch (error) {
+      this.message.error(error as Error); throw error;
     }
   }
 }
