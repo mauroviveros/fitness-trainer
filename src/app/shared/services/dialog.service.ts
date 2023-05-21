@@ -8,6 +8,7 @@ import { AuthService } from "src/app/core/modules/auth/services/auth.service";
 import { DialogComponent } from "../components/dialog/dialog.component";
 
 import { DialogContent } from "../interfaces/dialog";
+import { VideoDialogComponent } from "../components/video-dialog/video-dialog.component";
 
 @Injectable({
   providedIn: "root"
@@ -21,6 +22,15 @@ export class DialogService {
       .afterClosed().pipe(map(action => action === dialogContent.action?._id));
   }
 
+  openVideoFrame(title: string, url: string){
+    return this.dialog.open(VideoDialogComponent, {
+      data: { title, url },
+      width: "calc(100% - 2rem)",
+      height: "calc(100% - 2rem)",
+      maxWidth: "100%",
+    }).afterClosed();
+  }
+
   showEmailValidation(user: User){
     return this.open({
       title: "Verifica tu email",
@@ -29,6 +39,20 @@ export class DialogService {
       action: { _id: "sendEmail", label: "Enviar Email" }
     }).pipe(
       tap(boolean => { if(boolean) this.auth.sendEmailVerification(user); })
+    );
+  }
+
+  showMandatoryProfile(){
+    return this.open({
+      title: "¡Formulario obligatorio!",
+      icon: "error",
+      texts: [
+        "Es obligatorio completar el formulario antes de poder continuar. Por favor, proporciona la información requerida para continuar",
+        "Si lo desea puede cerrar la sesión"
+      ],
+      action: { _id: "logout", label: "Cerrar Sesión" }
+    }).pipe(
+      tap(boolean => { if(boolean) this.auth.logout(); })
     );
   }
 
@@ -55,17 +79,15 @@ export class DialogService {
     });
   }
 
-  showMandatoryProfile(){
+  showConfirmDelete(title: string, docName: string){
     return this.open({
-      title: "¡Formulario obligatorio!",
-      icon: "error",
+      title,
+      icon: "delete",
       texts: [
-        "Es obligatorio completar el formulario antes de poder continuar. Por favor, proporciona la información requerida para continuar",
-        "Si lo desea puede cerrar la sesión"
+        `Vas a borrar: "${docName}".`,
+        "¿Estas seguro de que desea borrarlo?"
       ],
-      action: { _id: "logout", label: "Cerrar Sesión" }
-    }).pipe(
-      tap(boolean => { if(boolean) this.auth.logout(); })
-    );
+      action: { _id: "confirm", label: "Confirmar" }
+    });
   }
 }
