@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
-import { environment } from "src/environments/environment";
-import { ExerciseService } from "../../services/exercise.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject, Subscription, catchError, of, switchMap } from "rxjs";
+import { environment } from "src/environments/environment";
+
+import { ExerciseService } from "../../services/exercise.service";
+
 import { Exercise } from "src/app/shared/interfaces/exercise";
+
 
 interface ExerciseCategory{
   _id: string
