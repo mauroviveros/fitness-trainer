@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <button mat-icon-button type="button" *ngIf="!layout.back && !layout.close; else backNavigation">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <h1>{{ layout.title }}</h1>
+
+  <ng-container *ngFor="let action of layout.actions">
+    <button mat-icon-button [type]="action.type || 'button'" (click)="onAction(action._id)">
+      <mat-icon>{{ action.icon }}</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>
+<section>
+  <ng-content></ng-content>
+</section>
+
+<ng-template #backNavigation>
+  <button mat-icon-button (click)="navigate()">
+    <mat-icon>{{ layout.close ? 'close' : 'arrow_back' }}</mat-icon>
+  </button>
+</ng-template>
