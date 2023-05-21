@@ -1,6 +1,6 @@
 <mat-list-item [routerLink]="exercise._id">
   <mat-icon matListItemIcon>{{ categoryIcon }}</mat-icon>
-  <span matListItemTitle>{{ exercise.name }}</span>
+  <span matListItemTitle>{{ exercise.name | titlecase }}</span>
   <span matListItemLine>{{ exercise.description }}</span>
   <div matListItemMeta (click)="$event.stopPropagation()">
     <button mat-icon-button (click)="showVideo()">
