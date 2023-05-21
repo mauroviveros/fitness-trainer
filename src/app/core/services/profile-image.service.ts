@@ -1,22 +1,22 @@
 import { Injectable, inject } from "@angular/core";
+import { User } from "@angular/fire/auth";
 import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
 import { BehaviorSubject, filter, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { AuthService } from "../modules/auth/services/auth.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { User } from "@angular/fire/auth";
+import { MessageService } from "src/app/shared/services/message.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProfileImageService {
   private readonly auth = inject(AuthService);
-  private readonly snackBar = inject(MatSnackBar);
   private readonly storage = inject(Storage);
-  private validTypes = ["image/png", "image/jpeg", "image/jpg"];
-  private time = new BehaviorSubject<Date>(new Date());
+  private readonly message = inject(MessageService);
+  private readonly validTypes = ["image/png", "image/jpeg", "image/jpg"];
+  private readonly $time = new BehaviorSubject<Date>(new Date());
 
-  $ref = this.auth.$user.pipe(
+  readonly $ref = this.auth.$user.pipe(
     filter(user => user !== null),
     map(user => user as User),
     switchMap(({ uid }) => {
@@ -24,7 +24,7 @@ export class ProfileImageService {
     })
   );
 
-  $src = this.time.pipe(
+  readonly $src = this.$time.pipe(
     switchMap(() => this.$ref),
     switchMap(async (reference) => {
       try {
@@ -35,26 +35,24 @@ export class ProfileImageService {
     })
   );
 
-  private getSizeMB(sizeBytes: number){
+  private getSizeMB(sizeBytes: number): number{
     return sizeBytes / 1024 / 1024;
   }
 
 
-  async upload(file: File){
+  async upload(file: File): Promise<string>{
     try {
       if(!this.validTypes.includes(file.type)) throw "Tipo de archivo no valido. PNG/JPG/JPEG";
       if(this.getSizeMB(file.size) > 5) throw "Tamaño de imagen no soportada. Limite 5MB";
 
       const ref = await firstValueFrom(this.$ref);
       return uploadBytes(ref, file).then(response => {
-        this.snackBar.open("✅ Foto de perfil actualizada correctamente.");
-        this.time.next(new Date());
+        this.message.success("✅ Foto de perfil actualizada correctamente.");
+        this.$time.next(new Date());
         return response.ref.fullPath;
       });
     } catch (error) {
-      if(error instanceof Error){
-        this.snackBar.open(`❌ ${error.message}`, "cerrar", { duration: 3000 });
-      }
+      if(error instanceof Error){ this.message.error(error); }
       throw error;
     }
   }
