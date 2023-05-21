@@ -20,7 +20,8 @@
   "conventionalCommits.scopes": [
     "core",
     "core.auth",
-    "core.shared"
+    "core.shared",
+    "exercise"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
