@@ -1,0 +1,9 @@
+<shared-layout>
+  <mat-nav-list>
+    <exercise-item-list *ngFor="let exercise of list" [exercise]="exercise"></exercise-item-list>
+  </mat-nav-list>
+
+  <button mat-fab (click)="create()">
+    <mat-icon>add</mat-icon>
+  </button>
+</shared-layout>
