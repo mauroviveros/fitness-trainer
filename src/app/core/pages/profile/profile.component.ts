@@ -23,7 +23,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   readonly form: FormGroup = this.formBuider.group({
     name: [null, [Validators.required]],
     surname: [null, [Validators.required]],
-    email: [null, [Validators.required, Validators.email]]
+    email: [null, [Validators.required, Validators.email]],
+    gender: [null, [Validators.required]],
+    birthday: [null, [Validators.required]]
   });
 
   ngOnInit(){
@@ -67,14 +69,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   submit(){
     if(this.form.invalid) return;
-    
+
     this.isLoading = true;
-    this.user.upload(this.form.value)
+    this.user.upload(this.form.value, this.$mode.value === 1)
       .then(() => {
         this.form.markAsPristine();
         this.router.navigate([""]);
-      })
-      .finally(() => this.isLoading = false);
+      }).finally(() => this.isLoading = false);
   }
 
 }

@@ -10,10 +10,31 @@
 
   <mat-form-field>
     <mat-label>Apellido</mat-label>
-    <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
-    <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
-    <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
     <mat-icon matPrefix>badge</mat-icon>
+    <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
+    <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
+    <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fecha de nacimiento</mat-label>
+    <mat-icon matPrefix>cake</mat-icon>
+    <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-error>{{ form.controls['birthday'].errors | error }}</mat-error>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+    <input placeholder="Elige una fecha" formControlName="birthday" [matDatepicker]="picker" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Género</mat-label>
+    <mat-icon matPrefix>wc</mat-icon>
+    <mat-error>{{ form.controls['gender'].errors | error }}</mat-error>
+    <mat-select placeholder="Ingrese su género" formControlName="gender">
+      <mat-option value="MALE">Hombre</mat-option>
+      <mat-option value="FEMALE">Mujer</mat-option>
+      <mat-option value="OTHER">Otro</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>

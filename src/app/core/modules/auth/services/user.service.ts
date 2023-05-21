@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "@angular/fire/auth";
-import { Firestore, collection, doc, docSnapshots, setDoc } from "@angular/fire/firestore";
+import { Firestore, collection, doc, docSnapshots, setDoc, updateDoc } from "@angular/fire/firestore";
 import { catchError, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { DialogService } from "src/app/shared/services/dialog.service";
@@ -28,6 +28,7 @@ export class UserService {
       if(user === undefined) return undefined;
       const data = user.data();
       if(!data) return null;
+      data["birthday"] = data["birthday"].toDate();
       return { ...data, _id: user?.id } as UserDoc;
     })
   );
@@ -42,12 +43,18 @@ export class UserService {
     });
   }
 
-  async upload(fields: UserDoc){
+  async upload(fields: UserDoc, isNew: boolean){
+    const extra = { _admin: false };
+
     try {
       const { uid } = await firstValueFrom(this.auth.$user) as User;
-      const response = await setDoc(doc(this.collection, uid), { admin: false, ...fields });
-      this.message.success("Perfil generado correctamente");
-      return response;
+      if(isNew){
+        await setDoc(doc(this.collection, uid), { ...extra, ...fields });
+        this.message.success("Perfil generado correctamente");
+      } else{
+        await updateDoc(doc(this.collection, uid), { ...fields });
+        this.message.success("Perfil actualizado correctamente");
+      }
     } catch (error) { this.message.error(error as Error); throw error; }
   }
 }
