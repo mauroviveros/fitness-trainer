@@ -2,12 +2,14 @@ import { Component, Input, inject } from "@angular/core";
 
 import { Exercise } from "src/app/shared/interfaces/exercise";
 import { DialogService } from "src/app/shared/services/dialog.service";
+import { ExerciseService } from "../../services/exercise.service";
 
 @Component({
   selector: "exercise-item-list",
   templateUrl: "./item-list.component.html"
 })
 export class ItemListComponent {
+  private readonly service = inject(ExerciseService);
   private readonly dialog = inject(DialogService);
   @Input() exercise!: Exercise;
 
@@ -33,7 +35,8 @@ export class ItemListComponent {
   }
 
   deleteItem(){
-    this.dialog.showConfirmDelete("Borrando ejercicio", this.exercise.name);
-    // TODO delete method
+    this.dialog.showConfirmDelete("Borrando ejercicio", this.exercise.name).subscribe(boolean => {
+      if(boolean) this.service.delete(this.exercise._id);
+    });
   }
 }
