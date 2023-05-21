@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { ValidationErrors } from "@angular/forms";
 
+import { environment } from "src/environments/environment";
 
 interface messages{ [key: string]: string }
 const messages: messages = {
@@ -8,13 +9,15 @@ const messages: messages = {
   email           : "No es un email valido",
   confirmPassword : "Las contraseñas no coinciden",
   min             : "El campo debe ser mayor a",
-  minlength       : "Debe contener al menos"
+  minlength       : "Debe contener al menos",
+  maxlength       : "Debe contener como máximo"
 };
 
 @Pipe({
   name: "error"
 })
 export class ErrorPipe implements PipeTransform {
+  private readonly maxlength = environment.MAX_LENGTH;
 
   transform(errors: ValidationErrors | null, arg?: number): string | undefined {
     if(!errors) return;
@@ -24,6 +27,7 @@ export class ErrorPipe implements PipeTransform {
 
     if(type === "min") message = `${message}: ${arg || NaN}`;
     if(type === "minlength") message = `${message}: ${arg || NaN} caracteres`;
+    if(type === "maxlength") message = `${message}: ${arg || this.maxlength || NaN} caracteres`;
 
     return message;
   }
