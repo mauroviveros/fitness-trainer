@@ -1,3 +1,18 @@
-<core-shortcut icon="fitness_center" label="Ejercicios" (click)="exercises()"></core-shortcut>
-<core-shortcut icon="manage_accounts" label="Mis Datos" (click)="profile()"></core-shortcut>
-<core-shortcut icon="logout" label="Cerrar Sesión" (click)="logout()"></core-shortcut>
+<section>
+  <figure>
+    <core-profile-image></core-profile-image>
+    <figcaption>
+      <h2>Hola</h2>
+      <h3>Buenas Tardes!</h3>
+    </figcaption>
+  </figure>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <core-shortcut icon="fitness_center" label="Ejercicios" (click)="exercises()"></core-shortcut>
+      <core-shortcut icon="manage_accounts" label="Mis Datos" (click)="profile()"></core-shortcut>
+      <core-shortcut icon="logout" label="Cerrar Sesión" (click)="logout()"></core-shortcut>
+    </mat-card-content>
+  </mat-card>
+</section>
