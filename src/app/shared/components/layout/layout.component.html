@@ -1,19 +1,40 @@
-<mat-toolbar>
-  <button mat-icon-button type="button" *ngIf="!layout.back && !layout.close; else backNavigation">
-    <mat-icon>menu</mat-icon>
-  </button>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer mode="push">
+    <mat-nav-list>
+      <mat-list-item routerLink="">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span matListItemTitle>Inicio</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-icon-button type="button" (click)="drawer.toggle()" *ngIf="!layout.back && !layout.close; else backNavigation">
+        <mat-icon>menu</mat-icon>
+      </button>
 
-  <h1>{{ layout.title | titlecase }}</h1>
+      <h1>{{ layout.title | titlecase }}</h1>
 
-  <ng-container *ngFor="let action of layout.actions">
-    <button mat-icon-button [type]="action.type || 'button'" (click)="onAction(action._id)">
-      <mat-icon>{{ action.icon }}</mat-icon>
-    </button>
-  </ng-container>
-</mat-toolbar>
-<section>
-  <ng-content></ng-content>
-</section>
+      <ng-container *ngFor="let action of layout.actions">
+        <button mat-icon-button [type]="action.type || 'button'" (click)="onAction(action._id)">
+          <mat-icon>{{ action.icon }}</mat-icon>
+        </button>
+      </ng-container>
+    </mat-toolbar>
+    <section>
+      <ng-content></ng-content>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<ng-template #MenuNavigation>
+  <mat-nav-list>
+    <mat-list-item>
+      <mat-icon matListItemIcon>home</mat-icon>
+      <span matListItemTitle>Inicio</span>
+    </mat-list-item>
+  </mat-nav-list>
+</ng-template>
 
 <ng-template #backNavigation>
   <button mat-icon-button (click)="navigate()">
