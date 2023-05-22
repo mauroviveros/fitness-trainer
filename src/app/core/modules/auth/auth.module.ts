@@ -7,7 +7,6 @@ import { LayoutComponent } from "./components/layout/layout.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { PasswordFormFieldComponent } from "./components/password-form-field/password-form-field.component";
 
-
 @NgModule({
   declarations: [
     RegisterComponent,
@@ -16,8 +15,8 @@ import { PasswordFormFieldComponent } from "./components/password-form-field/pas
     PasswordFormFieldComponent
   ],
   imports: [
-    SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    SharedModule
   ]
 })
 export class AuthModule { }

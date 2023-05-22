@@ -2,34 +2,29 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 
-import { FormGuard } from "../shared/guards/form.guard";
 import { EmailGuard } from "./modules/auth/guards/email.guard";
 import { UserGuard } from "./modules/auth/guards/user.guard";
+import { FormGuard } from "../shared/guards/form.guard";
 
-import { LayoutComponent } from "./components/layout/layout.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
+
 
 const routes: Routes = [
   {
     path: "",
-    component: LayoutComponent,
+    title: "Fitness - Trainer | Inicio",
+    component: HomeComponent,
+    canActivate: [AuthGuard, EmailGuard, UserGuard],
+    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) }
+  },
+  {
+    path: "profile",
+    title: "Fitness - Trainer | Perfil",
+    component: ProfileComponent,
     canActivate: [AuthGuard, EmailGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) },
-    children: [
-      {
-        path: "",
-        title: "Fitness - Trainer | Inicio",
-        canActivate: [UserGuard],
-        component: HomeComponent
-      },
-      {
-        path: "profile",
-        title: "Fitness - Trainer | Perfil",
-        canDeactivate: [FormGuard],
-        component: ProfileComponent
-      }
-    ]
+    canDeactivate: [FormGuard],
+    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) }
   }
 ];
 
