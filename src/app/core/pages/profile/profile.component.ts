@@ -74,8 +74,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.user.upload(this.form.value, this.$mode.value === 1)
       .then(() => {
         this.form.markAsPristine();
-        this.router.navigate([""]);
+        if(this.$mode.value === 1) this.router.navigate([""]);
       }).finally(() => this.isLoading = false);
   }
-
 }

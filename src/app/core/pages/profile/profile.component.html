@@ -1,56 +1,73 @@
-<form id="profileForm" [formGroup]="form" (submit)="submit()">
-  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-  <mat-form-field>
-    <mat-label>Nombre</mat-label>
-    <input placeholder="Ingrese su nombre" formControlName="name" matInput #inputName />
-    <mat-error>{{ form.controls['name'].errors | error }}</mat-error>
-    <mat-hint align="end">{{ inputName.value.length }}/{{ 24 }}</mat-hint>
-    <mat-icon matPrefix>person</mat-icon>
-  </mat-form-field>
+<mat-toolbar>
+  <a mat-icon-button routerLink=""><mat-icon>arrow_back</mat-icon></a>
+  <h1>MI PERFIL</h1>
+  <core-image-upload></core-image-upload>
+</mat-toolbar>
 
-  <mat-form-field>
-    <mat-label>Apellido</mat-label>
-    <mat-icon matPrefix>badge</mat-icon>
-    <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
-    <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
-    <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
-  </mat-form-field>
+<section>
+  <figure>
+    <core-profile-image></core-profile-image>
 
-  <mat-form-field>
-    <mat-label>Fecha de nacimiento</mat-label>
-    <mat-icon matPrefix>cake</mat-icon>
-    <mat-hint>DD/MM/YYYY</mat-hint>
-    <mat-error>{{ form.controls['birthday'].errors | error }}</mat-error>
-    <mat-datepicker #picker></mat-datepicker>
-    <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
-    <input placeholder="Elige una fecha" formControlName="birthday" [matDatepicker]="picker" matInput />
-  </mat-form-field>
+    <button mat-mini-fab *ngIf="$mode.value === 2 && !isLoading" (click)="$mode.next(3)">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-fab type="submit" form="profileForm" *ngIf="$mode.value !== 3 && !isLoading">
+      <mat-icon>save</mat-icon>
+    </button>
 
-  <mat-form-field>
-    <mat-label>Género</mat-label>
-    <mat-icon matPrefix>wc</mat-icon>
-    <mat-error>{{ form.controls['gender'].errors | error }}</mat-error>
-    <mat-select placeholder="Ingrese su género" formControlName="gender">
-      <mat-option value="MALE">Hombre</mat-option>
-      <mat-option value="FEMALE">Mujer</mat-option>
-      <mat-option value="OTHER">Otro</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <button mat-fab *ngIf="$mode.value === 3 && !isLoading" (click)="$mode.next(2)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </figure>
 
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input placeholder="Ingrese su email" formControlName="email" matInput />
-    <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
-    <mat-icon matPrefix>email</mat-icon>
-  </mat-form-field>
-</form>
+  <mat-card>
+    <mat-card-content>
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+      <form id="profileForm" [formGroup]="form" (submit)="submit()">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-hint align="end">{{ inputName.value.length }}/{{ 24 }}</mat-hint>
+          <mat-error>{{ form.controls['name'].errors | error }}</mat-error>
+          <input placeholder="Ingrese su nombre" formControlName="name" matInput #inputName />
+        </mat-form-field>
 
-<button mat-mini-fab *ngIf="!isLoading" [class.active]="$mode.value === 2" (click)="$mode.next(3)">
-  <mat-icon>close</mat-icon>
-</button>
-<button mat-fab *ngIf="!isLoading && $mode.value !== 3" type="submit" form="profileForm">
-  <mat-icon>save</mat-icon>
-</button>
-<button mat-fab *ngIf="!isLoading && $mode.value === 3" (click)="$mode.next(2)">
-  <mat-icon>edit</mat-icon>
-</button>
+        <mat-form-field>
+          <mat-label>Apellido</mat-label>
+          <mat-icon matPrefix>badge</mat-icon>
+          <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
+          <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
+          <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha de nacimiento</mat-label>
+          <mat-icon matPrefix>cake</mat-icon>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-error>{{ form.controls['birthday'].errors | error }}</mat-error>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+          <input placeholder="Elige una fecha" formControlName="birthday" [matDatepicker]="picker" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Género</mat-label>
+          <mat-icon matPrefix>wc</mat-icon>
+          <mat-error>{{ form.controls['gender'].errors | error }}</mat-error>
+          <mat-select placeholder="Ingrese su género" formControlName="gender">
+            <mat-option value="MALE">Hombre</mat-option>
+            <mat-option value="FEMALE">Mujer</mat-option>
+            <mat-option value="OTHER">Otro</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
+          <input placeholder="Ingrese su email" formControlName="email" matInput />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
