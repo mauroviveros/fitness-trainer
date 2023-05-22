@@ -15,8 +15,8 @@ import { DetailComponent } from "./pages/detail/detail.component";
     DetailComponent
   ],
   imports: [
-    SharedModule,
-    ExerciseRoutingModule
+    ExerciseRoutingModule,
+    SharedModule
   ]
 })
 export class ExerciseModule { }
