@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { Subscription, filter, map } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
 interface Footer{
   label: string
@@ -19,7 +19,6 @@ interface Layout{
 })
 export class LayoutComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
   private subscription?: Subscription;
   layout?: Layout;
 
@@ -31,14 +30,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   private initLayout(){
-    const getData = () => this.route.firstChild?.snapshot.data as Layout;
-
-    this.layout = getData();
-    return this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(() => getData())
-    ).subscribe(data => {
-      this.layout = data;
+    return this.route.data.subscribe(({ layout }) => {
+      this.layout = layout;
     });
   }
 }

@@ -1,4 +1,9 @@
 :host{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+
     figure{
         display: flex;
         flex-direction: column;
@@ -13,6 +18,7 @@
             box-sizing: border-box;
         }
     }
+
     mat-card{
         flex-grow: 1;
         justify-content: center;
@@ -21,7 +27,7 @@
 
         mat-card-header{
             justify-content: center;
-            padding: 1rem;
+            padding: 1rem 1rem 0;
         }
         mat-card-content{
             flex-grow: 1;
@@ -30,7 +36,7 @@
             display: flex;
             justify-content: center;
             gap: .5rem;
-            padding: 1rem;
+            padding: 0 1rem 1rem;
         }
     }
 }

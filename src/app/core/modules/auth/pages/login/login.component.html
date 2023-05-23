@@ -1,13 +1,16 @@
-<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-<form [formGroup]="form" (submit)="submit(ngForm)" #ngForm="ngForm">
-  <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input type="email" formControlName="email" placeholder="Ingrese su email" matInput />
-    <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
-    <mat-icon matPrefix>email</mat-icon>
-  </mat-form-field>
+<auth-layout>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
-  <auth-password-form-field [group]="form" name="password" label="Contraseña"></auth-password-form-field>
+  <form [formGroup]="form" (submit)="submit(ngForm)" #ngForm="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <mat-icon matPrefix>email</mat-icon>
+      <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
+      <input type="email" formControlName="email" placeholder="Ingrese su email" matInput />
+    </mat-form-field>
 
-  <button type="submit" mat-stroked-button color="accent">Ingresar</button>
-</form>
+    <auth-password-form-field [group]="form" name="password" label="Contraseña"></auth-password-form-field>
+
+    <button type="submit" mat-stroked-button color="accent" [disabled]="form.invalid">Ingresar</button>
+  </form>
+</auth-layout>
