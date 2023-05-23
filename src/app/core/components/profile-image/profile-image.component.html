@@ -1,2 +1,3 @@
-<img [src]="$src | async" alt="profile" (load)="onLoad()" />
+<img src="assets/images/profile.png" alt="profile" *ngIf="!hasLoaded" />
+<img [src]="$src | async" alt="profile" (load)="onLoad()" *ngIf="hasLoaded || isLoading" />
 <mat-spinner *ngIf="isLoading"></mat-spinner>

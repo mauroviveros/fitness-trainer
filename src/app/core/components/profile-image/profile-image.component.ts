@@ -10,10 +10,14 @@ import { tap } from "rxjs";
 export class ProfileImageComponent {
   private readonly profileImage = inject(ProfileImageService);
   isLoading = true;
+  hasLoaded = false;
 
   $src = this.profileImage.$src.pipe(
     tap(() => this.isLoading = true)
   );
 
-  onLoad(){ this.isLoading = false; }
+  onLoad(){
+    this.isLoading = false;
+    this.hasLoaded = true;
+  }
 }
