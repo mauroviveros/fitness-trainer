@@ -1,11 +1,13 @@
 import { NgModule } from "@angular/core";
 
-import { AuthRoutingModule } from "./auth.routing";
+import { SharedModule } from "src/app/shared/shared.module";
+
+import { LayoutComponent } from "./components/layout/layout.component";
+import { PasswordFormFieldComponent } from "./components/password-form-field/password-form-field.component";
+
 import { RegisterComponent } from "./pages/register/register.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { LayoutComponent } from "./components/layout/layout.component";
-import { SharedModule } from "src/app/shared/shared.module";
-import { PasswordFormFieldComponent } from "./components/password-form-field/password-form-field.component";
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,6 @@ import { PasswordFormFieldComponent } from "./components/password-form-field/pas
     PasswordFormFieldComponent
   ],
   imports: [
-    AuthRoutingModule,
     SharedModule
   ]
 })

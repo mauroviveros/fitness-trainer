@@ -26,6 +26,7 @@ import { LayoutComponent } from "./components/layout/layout.component";
   exports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     MaterialModule,
     ErrorPipe,
     LayoutComponent

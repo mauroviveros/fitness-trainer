@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 
-import { CoreRoutingModule } from "./core.routing";
-import { AuthModule } from "./modules/auth/auth.module";
 import { SharedModule } from "../shared/shared.module";
+import { AuthModule } from "./modules/auth/auth.module";
 
 import { ShortcutComponent } from "./components/shortcut/shortcut.component";
 import { ImageUploadComponent } from "./components/image-upload/image-upload.component";
@@ -23,9 +22,8 @@ import { ProfileComponent } from "./pages/profile/profile.component";
     ProfileComponent
   ],
   imports: [
-    CoreRoutingModule,
+    AuthModule,
     SharedModule,
-    AuthModule
   ],
   exports: [
     SplashScreenComponent
