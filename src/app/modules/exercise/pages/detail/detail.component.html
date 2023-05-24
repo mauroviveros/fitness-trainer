@@ -1,39 +1,37 @@
 <form [formGroup]="form" (submit)="submit()">
   <shared-layout (action)="onAction($event)">
-    <article>
-      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-      <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <mat-icon matIconPrefix>label</mat-icon>
-        <mat-error>{{ this.form.controls['name'].errors | error }}</mat-error>
-        <mat-hint align="end">{{ inputName.value.length }}/{{ maxlength }}</mat-hint>
-        <input type="text" formControlName="name" placeholder="Ingrese el nombre del ejercicio" [maxlength]="maxlength" matInput #inputName />
-      </mat-form-field>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <mat-icon matIconPrefix>label</mat-icon>
+      <mat-error>{{ this.form.controls['name'].errors | error }}</mat-error>
+      <mat-hint align="end">{{ inputName.value.length }}/{{ maxlength }}</mat-hint>
+      <input type="text" formControlName="name" placeholder="Ingrese el nombre del ejercicio" [maxlength]="maxlength" matInput #inputName />
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>URL del video</mat-label>
-        <mat-icon matIconPrefix>videocam</mat-icon>
-        <mat-error>{{ this.form.controls['video'].errors | error }}</mat-error>
-        <input type="url" formControlName="video" placeholder="Ingrese la URL del video" matInput />
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>URL del video</mat-label>
+      <mat-icon matIconPrefix>videocam</mat-icon>
+      <mat-error>{{ this.form.controls['video'].errors | error }}</mat-error>
+      <input type="url" formControlName="video" placeholder="Ingrese la URL del video" matInput />
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Tipo de Ejercicio</mat-label>
-        <mat-icon matIconPrefix>{{ categoryIcon }}</mat-icon>
-        <mat-error>{{ this.form.controls['category'].errors | error }}</mat-error>
-        <mat-select formControlName="category" placeholder="Seleccione el tipo de ejercicio" (valueChange)="onChangeCategory($event)">
-          <mat-option *ngFor="let category of categories" [value]="category._id">
-            {{ category.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipo de Ejercicio</mat-label>
+      <mat-icon matIconPrefix>{{ categoryIcon }}</mat-icon>
+      <mat-error>{{ this.form.controls['category'].errors | error }}</mat-error>
+      <mat-select formControlName="category" placeholder="Seleccione el tipo de ejercicio" (valueChange)="onChangeCategory($event)">
+        <mat-option *ngFor="let category of categories" [value]="category._id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Descripción del ejercicio</mat-label>
-        <mat-icon matIconPrefix>description</mat-icon>
-        <mat-error>{{ this.form.controls['description'].errors | error }}</mat-error>
-        <textarea formControlName="description" placeholder="Ingrese una descripción del ejercicio" matInput></textarea>
-      </mat-form-field>
-    </article>
+    <mat-form-field>
+      <mat-label>Descripción del ejercicio</mat-label>
+      <mat-icon matIconPrefix>description</mat-icon>
+      <mat-error>{{ this.form.controls['description'].errors | error }}</mat-error>
+      <textarea formControlName="description" placeholder="Ingrese una descripción del ejercicio" matInput></textarea>
+    </mat-form-field>
   </shared-layout>
 </form>

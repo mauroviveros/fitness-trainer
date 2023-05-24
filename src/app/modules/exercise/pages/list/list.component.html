@@ -1,4 +1,4 @@
-<shared-layout>
+<shared-layout [loading]="isLoading">
   <mat-nav-list>
     <exercise-item-list *ngFor="let exercise of list" [exercise]="exercise"></exercise-item-list>
   </mat-nav-list>
