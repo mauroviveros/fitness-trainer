@@ -22,10 +22,16 @@
       </ng-container>
     </mat-toolbar>
     <section>
-      <ng-content></ng-content>
+      <article *ngIf="!loading; else loadingScreen">
+        <ng-content></ng-content>
+      </article>
     </section>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<ng-template #loadingScreen>
+  <mat-spinner></mat-spinner>
+</ng-template>
 
 <ng-template #MenuNavigation>
   <mat-nav-list>

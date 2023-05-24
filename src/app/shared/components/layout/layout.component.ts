@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, inject } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 interface Action{
@@ -23,6 +23,7 @@ export class LayoutComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   @Output() action = new EventEmitter<string>;
+  @Input() loading = false;
   layout!: Layout;
 
   ngOnInit(){

@@ -11,59 +11,81 @@
         flex-direction: column;
         flex-grow: 1;
         width: 100%;
-    }
 
-    mat-toolbar{
-        min-height: 64px;
-        @media #{$media-xsmall}{ min-height: 56px; }
-        h1{
-            padding: 0 .25rem;
-            width: 100%;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
+        mat-drawer-content{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            mat-toolbar{
+                min-height: 64px;
+                @media #{$media-xsmall}{ min-height: 56px; }
+                h1{
+                    padding: 0 .25rem;
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+            }
+
+            section{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                overflow-y: auto;
+                flex: 1;
+
+                article{
+                    display: flex;
+                    flex-direction: column;
+                    padding: .5rem 0 4.5rem;
+                    position: relative;
+                    width: 100%;
+                    flex: 1;
+                }
+            }
         }
     }
 
-    section{
-        flex-grow: 1;
-        overflow-y: auto;
-    }
 }
 
 :host::ng-deep{
-
-    section{
-        & > *:first-child {
-            position: relative;
-            padding: .5rem 0 4.5rem;
-        }
-        & > article{ padding: .5rem 1.75rem 4.5rem !important; }
-
+    article{
         [matlistitemicon]{
             display: flex;
             align-items: center;
-            height: 100% !important;
+            height: 100%;
             margin-top: 0 !important;
-            margin-left: 1.75rem !important;
-            margin-right: 1.25rem !important;
+            margin-left: 1.75rem;
+            margin-right: 1rem;
         }
+
         [matlistitemmeta]{
             display: flex !important;
             align-items: center;
             height: 100%;
         }
 
-        & > [mat-fab]{
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-        }
-
         mat-progress-bar{
             position: absolute;
             top: 0;
             left: 0;
+        }
+
+        mat-form-field{
+            padding: 0 1.75rem;
+        }
+
+        mat-nav-list{
+            padding: 0;
+        }
+
+        & > [mat-fab]{
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
         }
     }
 }
