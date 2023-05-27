@@ -10,9 +10,12 @@
   <mat-card>
     <mat-card-content>
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-      <core-shortcut icon="fitness_center" label="ejercicios" (click)="exercises()"></core-shortcut>
-      <core-shortcut icon="manage_accounts" label="mis datos" (click)="profile()"></core-shortcut>
-      <core-shortcut icon="logout" label="cerrar sesión" (click)="logout()"></core-shortcut>
+      <core-shortcut
+        *ngFor="let shortcut of navigation.shortcut"
+        [label]="shortcut.label"
+        [icon]="shortcut.icon"
+        [routerLink]="shortcut.link"
+        (click)="navigation.onNavigation(shortcut._id)"></core-shortcut>
     </mat-card-content>
   </mat-card>
 </section>
