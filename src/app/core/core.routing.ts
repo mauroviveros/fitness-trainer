@@ -13,18 +13,21 @@ import { ProfileComponent } from "./pages/profile/profile.component";
 const routes: Routes = [
   {
     path: "",
-    title: "Fitness - Trainer | Inicio",
-    component: HomeComponent,
     canActivate: [AuthGuard, EmailGuard, UserGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) }
-  },
-  {
-    path: "profile",
-    title: "Fitness - Trainer | Perfil",
-    component: ProfileComponent,
-    canActivate: [AuthGuard, EmailGuard],
-    canDeactivate: [FormGuard],
-    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) }
+    data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) },
+    children: [
+      {
+        path: "",
+        title: "Fitness - Trainer | Inicio",
+        component: HomeComponent
+      },
+      {
+        path: "profile",
+        title: "Fitness - Trainer | Perfil",
+        component: ProfileComponent,
+        canDeactivate: [FormGuard]
+      }
+    ]
   }
 ];
 
