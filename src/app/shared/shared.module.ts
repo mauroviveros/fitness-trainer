@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "./modules/material.module";
 
 import { ErrorPipe } from "./pipes/error.pipe";
+import { CustomerPipe } from "./pipes/customer.pipe";
 
 import { DialogComponent } from "./components/dialog/dialog.component";
 import { VideoDialogComponent } from "./components/video-dialog/video-dialog.component";
@@ -17,6 +18,7 @@ import { LayoutComponent } from "./components/layout/layout.component";
     DialogComponent,
     VideoDialogComponent,
     LayoutComponent,
+    CustomerPipe
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { LayoutComponent } from "./components/layout/layout.component";
     RouterModule,
     MaterialModule,
     ErrorPipe,
+    CustomerPipe,
     LayoutComponent
   ]
 })
