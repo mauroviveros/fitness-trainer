@@ -1,0 +1,65 @@
+<form [formGroup]="form" (submit)="submit()">
+  <shared-layout>
+    <mat-progress-bar mode="indeterminate" *ngIf="isSaving"></mat-progress-bar>
+    <mat-form-field>
+      <mat-label>Dias de entrenamiento</mat-label>
+      <mat-icon matPrefix>calendar_month</mat-icon>
+      <mat-error>{{ form.controls['days'].errors | error }}</mat-error>
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let chip of chips; let i = index" [removable]="true" (removed)="onRemovedChip(i)">
+          <span>{{ chip }}</span>
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-listbox>
+
+      <mat-select formControlName="days" multiple>
+        <mat-option *ngFor="let day of dateUtils.DAYS; let index = index" [value]="index">{{ day | titlecase }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Periodo</mat-label>
+      <mat-icon matPrefix>event</mat-icon>
+      <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+      <mat-error>{{ form.controls['dateIN'].errors || form.controls['dateOUT'].errors | error }}</mat-error>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Fecha inicio" formControlName="dateIN" />
+        <input matEndDate placeholder="Fecha fin" formControlName="dateOUT" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker [dateClass]="highlightSelected" #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cliente</mat-label>
+      <mat-icon matPrefix>person</mat-icon>
+      <mat-error>{{ form.controls['customer'].errors | error }}</mat-error>
+      <mat-select formControlName="customer">
+        <mat-option *ngFor="let customer of $customers | async" [value]="customer._id">{{ customer | customer | titlecase }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nivel de actividad</mat-label>
+      <mat-icon matPrefix>speed</mat-icon>
+      <mat-error>{{ form.controls['level'].errors | error }}</mat-error>
+      <mat-select formControlName="level">
+        <mat-option *ngFor="let level of levels; let index = index" [value]="index">{{ level | titlecase }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Kal. para el objetivo</mat-label>
+      <mat-icon matPrefix>science</mat-icon>
+      <mat-error>{{ form.controls['kal'].errors | error }}</mat-error>
+      <input type="number" placeholder="0 kals" formControlName="kal" matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Objetivo</mat-label>
+      <mat-icon matPrefix>flag</mat-icon>
+      <mat-error>{{ form.controls['objective'].errors | error }}</mat-error>
+      <textarea placeholder="Objetivo a conseguir.." formControlName="objective" matInput></textarea>
+    </mat-form-field>
+  </shared-layout>
+</form>
