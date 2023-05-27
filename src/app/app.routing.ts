@@ -9,6 +9,14 @@ const routes: Routes = [
     loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
   },
   {
+    path: "customers",
+    loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
+  },
+  {
+    path: "routines",
+    loadChildren: () => import("./modules/routine/routine.module").then(m => m.RoutineModule)
+  },
+  {
     path: "**",
     redirectTo: ""
   }
