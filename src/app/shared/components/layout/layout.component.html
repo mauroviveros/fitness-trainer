@@ -1,11 +1,6 @@
 <mat-drawer-container [hasBackdrop]="true">
   <mat-drawer #drawer mode="push">
-    <mat-nav-list>
-      <mat-list-item routerLink="">
-        <mat-icon matListItemIcon>home</mat-icon>
-        <span matListItemTitle>Inicio</span>
-      </mat-list-item>
-    </mat-nav-list>
+    <ng-container *ngTemplateOutlet="MenuNavigation"></ng-container>
   </mat-drawer>
   <mat-drawer-content>
     <mat-toolbar>
@@ -35,15 +30,20 @@
 
 <ng-template #MenuNavigation>
   <mat-nav-list>
-    <mat-list-item>
-      <mat-icon matListItemIcon>home</mat-icon>
-      <span matListItemTitle>Inicio</span>
+    <mat-list-item
+      *ngFor="let shortcut of navigation.menu"
+      [routerLink]="[shortcut.link]"
+      [routerLinkActiveOptions]="routerLinkOptions"
+      routerLinkActive="active"
+      (click)="navigation.onNavigation(shortcut._id)">
+      <mat-icon matListItemIcon>{{ shortcut.icon }}</mat-icon>
+      <span matListItemTitle>{{ shortcut.label | titlecase }}</span>
     </mat-list-item>
   </mat-nav-list>
 </ng-template>
 
 <ng-template #backNavigation>
-  <button mat-icon-button (click)="navigate()">
+  <button mat-icon-button (click)="navigate()" type="button">
     <mat-icon>{{ layout.close ? 'close' : 'arrow_back' }}</mat-icon>
   </button>
 </ng-template>

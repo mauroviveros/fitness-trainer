@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { NavigationService } from "src/app/core/services/navigation.service";
 
 interface Action{
   _id: string
@@ -22,6 +23,8 @@ interface Layout{
 export class LayoutComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  readonly navigation = inject(NavigationService);
+  readonly routerLinkOptions = { exact: true };
   @Output() action = new EventEmitter<string>;
   @Input() loading = false;
   layout!: Layout;
