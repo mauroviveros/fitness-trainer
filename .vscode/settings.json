@@ -21,7 +21,8 @@
     "core",
     "core.auth",
     "core.shared",
-    "exercise"
+    "exercise",
+    "customer"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
