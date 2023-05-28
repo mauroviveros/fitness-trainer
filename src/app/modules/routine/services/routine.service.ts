@@ -1,5 +1,6 @@
 import { Injectable, inject } from "@angular/core";
-import { Firestore, collection, doc, setDoc } from "@angular/fire/firestore";
+import { DocumentData, Firestore, collection, collectionData, doc, setDoc } from "@angular/fire/firestore";
+import { from, map, switchMap } from "rxjs";
 
 import { MessageService } from "src/app/shared/services/message.service";
 
@@ -14,6 +15,23 @@ export class RoutineService {
   private readonly message = inject(MessageService);
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "routines");
+
+  readonly $list = collectionData(this.collection, { idField: "_id" }).pipe(
+    map(routines => routines.map(routine => {
+      routine["dateIN"] = routine["dateIN"].toDate();
+      routine["dateOUT"] = routine["dateOUT"].toDate();
+      return routine;
+    })),
+    switchMap(routines => from(routines).pipe(
+      switchMap(routine => this.user.doc(routine["admin"]).pipe(
+        map(admin => ({ ...routine, admin } as DocumentData))
+      )),
+      switchMap(routine => this.user.doc(routine["customer"]).pipe(
+        map(customer => ({ ...routine, customer } as DocumentData))
+      ))
+    )),
+    map(routines => routines as Routine[])
+  );
 
   async upload(fields: Routine){
     try {
