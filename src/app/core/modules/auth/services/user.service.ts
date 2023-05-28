@@ -45,7 +45,7 @@ export class UserService {
     });
   }
 
-  private convert(document: DocumentData){
+  convert(document: DocumentData){
     if(document["birthday"]) document["birthday"] = document["birthday"].toDate();
     return document as UserDoc;
   }
