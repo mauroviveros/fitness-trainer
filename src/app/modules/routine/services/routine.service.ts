@@ -28,7 +28,11 @@ export class RoutineService {
       )),
       switchMap(routine => this.user.doc(routine["customer"]).pipe(
         map(customer => ({ ...routine, customer } as DocumentData))
-      ))
+      )),
+      map((routine, index) => {
+        routines[index] = routine;
+        return routines;
+      })
     )),
     map(routines => routines as Routine[])
   );
