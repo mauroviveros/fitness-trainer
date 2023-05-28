@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "@angular/fire/auth";
-import { Firestore, collection, doc, docSnapshots, setDoc, updateDoc } from "@angular/fire/firestore";
+import { Firestore, collection, doc, docData, docSnapshots, setDoc, updateDoc, DocumentReference, DocumentData } from "@angular/fire/firestore";
 import { catchError, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { DialogService } from "src/app/shared/services/dialog.service";
@@ -22,14 +22,16 @@ export class UserService {
   private readonly message = inject(MessageService);
 
   readonly $data = this.auth.$user.pipe(
+    // TODO chage docSnapshots to docData. it's possible?
     switchMap(user => docSnapshots(doc(this.collection, user?.uid))),
     catchError(() => of(undefined)),
     map(user => {
       if(user === undefined) return undefined;
       const data = user.data();
       if(!data) return null;
-      data["birthday"] = data["birthday"].toDate();
-      return { ...data, _id: user?.id } as UserDoc;
+      data["_id"] = user.id;
+
+      return this.convert(data);
     })
   );
 
@@ -41,6 +43,21 @@ export class UserService {
       }
       console.debug(data); //TODO add UserTracking
     });
+  }
+
+  private convert(document: DocumentData){
+    if(document["birthday"]) document["birthday"] = document["birthday"].toDate();
+    return document as UserDoc;
+  }
+
+  ref(_id: string){
+    return doc(this.collection, _id);
+  }
+
+  doc(reference: DocumentReference){
+    return docData(reference, { idField: "_id" }).pipe(
+      map(document => this.convert(document))
+    );
   }
 
   async upload(fields: UserDoc, isNew: boolean){
