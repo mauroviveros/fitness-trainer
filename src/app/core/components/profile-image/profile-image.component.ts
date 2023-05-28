@@ -16,6 +16,10 @@ export class ProfileImageComponent {
     tap(() => this.isLoading = true)
   );
 
+  onError(){
+    this.isLoading = false;
+  }
+
   onLoad(){
     this.isLoading = false;
     this.hasLoaded = true;
