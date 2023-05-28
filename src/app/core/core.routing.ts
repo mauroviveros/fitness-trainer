@@ -13,12 +13,13 @@ import { ProfileComponent } from "./pages/profile/profile.component";
 const routes: Routes = [
   {
     path: "",
-    canActivate: [AuthGuard, EmailGuard, UserGuard],
+    canActivate: [AuthGuard, EmailGuard],
     data: { authGuardPipe: () => redirectUnauthorizedTo(["login"]) },
     children: [
       {
         path: "",
         title: "Fitness - Trainer | Inicio",
+        canActivate: [UserGuard],
         component: HomeComponent
       },
       {
