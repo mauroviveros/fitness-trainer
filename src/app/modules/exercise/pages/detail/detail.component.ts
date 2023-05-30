@@ -30,6 +30,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   readonly $mode = new BehaviorSubject<3 | 2 | 1>(3);
   categoryIcon = "category";
   isLoading = false;
+  isSaving = false;
 
   readonly categories: ExerciseCategory[] = [
     { _id: "TRAINING", name: "Entrenamiento", icon: "fitness_center" },
@@ -76,10 +77,12 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   private initExerciseData(){
+    this.isLoading = true;
     return this.$mode.pipe(
       switchMap(() => this.exercise.detail(this.route.snapshot.params["_id"])),
       catchError(() => of({} as Exercise))
     ).subscribe(exercise => {
+      this.isLoading = false;
       const controlsName = Object.keys(this.form.controls);
       controlsName.forEach(controlName => {
         this.form.controls[controlName].setValue(exercise[controlName]);
@@ -103,9 +106,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   submit(){
     if(this.form.invalid) return;
 
-    this.isLoading = true;
+    this.isSaving = true;
     this.exercise.upload(this.form.value)
       .then(() => this.router.navigate([".."], { relativeTo: this.route }))
-      .finally(() => this.isLoading = false);
+      .finally(() => this.isSaving = false);
   }
 }

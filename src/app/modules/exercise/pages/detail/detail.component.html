@@ -1,5 +1,5 @@
 <form [formGroup]="form" (submit)="submit()">
-  <shared-layout (action)="onAction($event)">
+  <shared-layout (action)="onAction($event)" [loadingData]="isLoading" [loading]="isSaving">
     <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     <mat-form-field>
       <mat-label>Nombre</mat-label>
