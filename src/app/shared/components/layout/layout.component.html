@@ -11,13 +11,14 @@
       <h1>{{ layout.title | titlecase }}</h1>
 
       <ng-container *ngFor="let action of layout.actions">
-        <button mat-icon-button [type]="action.type || 'button'" (click)="onAction(action._id)">
+        <button mat-icon-button [type]="action.type || 'button'" [disabled]="loading || loadingData" (click)="onAction(action._id)">
           <mat-icon>{{ action.icon }}</mat-icon>
         </button>
       </ng-container>
     </mat-toolbar>
     <section>
-      <article *ngIf="!loading; else loadingScreen">
+      <article *ngIf="!loadingData; else loadingScreen">
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         <ng-content></ng-content>
       </article>
     </section>
@@ -43,7 +44,7 @@
 </ng-template>
 
 <ng-template #backNavigation>
-  <button mat-icon-button (click)="navigate()" type="button">
+  <button mat-icon-button (click)="navigate()" type="button" [disabled]="loading || loadingData">
     <mat-icon>{{ layout.close ? 'close' : 'arrow_back' }}</mat-icon>
   </button>
 </ng-template>

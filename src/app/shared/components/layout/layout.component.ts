@@ -26,6 +26,7 @@ export class LayoutComponent implements OnInit {
   readonly navigation = inject(NavigationService);
   readonly routerLinkOptions = { exact: true };
   @Output() action = new EventEmitter<string>;
+  @Input() loadingData = false;
   @Input() loading = false;
   layout!: Layout;
 

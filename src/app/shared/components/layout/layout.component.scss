@@ -53,6 +53,12 @@
                     width: 100%;
                     height: 0;
                     flex: 1;
+
+                    mat-progress-bar{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
                 }
             }
         }
@@ -75,12 +81,6 @@
             display: flex !important;
             align-items: center;
             height: 100%;
-        }
-
-        mat-progress-bar{
-            position: absolute;
-            top: 0;
-            left: 0;
         }
 
         mat-form-field{
