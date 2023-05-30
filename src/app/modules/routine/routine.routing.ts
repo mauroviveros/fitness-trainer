@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ListComponent } from "./pages/list/list.component";
 import { CreateComponent } from "./pages/create/create.component";
 import { UpdateComponent } from "./pages/update/update.component";
+import { FormGuard } from "src/app/shared/guards/form.guard";
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: "create",
     title: "Fitness - Trainer | Crear Rutina",
     component: CreateComponent,
+    canDeactivate: [FormGuard],
     data: {
       layout: {
         title: "Crear rutina",
