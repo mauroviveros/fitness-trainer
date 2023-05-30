@@ -1,10 +1,10 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData, doc, setDoc } from "@angular/fire/firestore";
-import { from, map, switchMap } from "rxjs";
+import { DocumentData, Firestore, collection, collectionData, doc, docData, setDoc } from "@angular/fire/firestore";
+import { from, map, of, switchMap, take } from "rxjs";
 
 import { MessageService } from "src/app/shared/services/message.service";
 
-import { Routine } from "src/app/shared/interfaces/routine";
+import { Routine, RoutineOUT } from "src/app/shared/interfaces/routine";
 import { UserService } from "src/app/core/modules/auth/services/user.service";
 
 @Injectable({
@@ -17,27 +17,40 @@ export class RoutineService {
   private readonly collection = collection(this.firestore, "routines");
 
   readonly $list = collectionData(this.collection, { idField: "_id" }).pipe(
-    map(routines => routines.map(routine => {
-      routine["dateIN"] = routine["dateIN"].toDate();
-      routine["dateOUT"] = routine["dateOUT"].toDate();
-      return routine;
-    })),
-    switchMap(routines => from(routines).pipe(
-      switchMap(routine => this.user.doc(routine["admin"]).pipe(
-        map(admin => ({ ...routine, admin } as DocumentData))
-      )),
-      switchMap(routine => this.user.doc(routine["customer"]).pipe(
-        map(customer => ({ ...routine, customer } as DocumentData))
-      )),
-      map((routine, index) => {
-        routines[index] = routine;
-        return routines;
-      })
-    )),
-    map(routines => routines as Routine[])
+    switchMap(routines => this.convert(routines).pipe(take(1)))
   );
 
-  async upload(fields: Routine){
+  get(_id: string){
+    return docData(doc(this.collection, _id), { idField: "_id" }).pipe(
+      switchMap(routine => this.convert([routine]).pipe(take(1))),
+      map(routines => routines[0])
+    );
+  }
+
+  private convert(routines: DocumentData[]){
+    return of(routines).pipe(
+      map(routines => routines.map(routine => {
+        routine["dateIN"] = routine["dateIN"].toDate();
+        routine["dateOUT"] = routine["dateOUT"].toDate();
+        return routine;
+      })),
+      switchMap(routines => from(routines).pipe(
+        switchMap(routine => this.user.doc(routine["admin"]).pipe(
+          map(admin => ({ ...routine, admin } as DocumentData))
+        )),
+        switchMap(routine => this.user.doc(routine["customer"]).pipe(
+          map(customer => ({ ...routine, customer } as DocumentData))
+        )),
+        map((routine, index) => {
+          routines[index] = routine;
+          return routines;
+        })
+      )),
+      map(routines => routines as Routine[])
+    );
+  }
+
+  async upload(fields: RoutineOUT){
     try {
       const { admin, customer, ...routine } = fields;
       const adminRef = this.user.ref(admin);
