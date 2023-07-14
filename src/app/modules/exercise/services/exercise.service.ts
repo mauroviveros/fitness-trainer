@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Firestore, collection, collectionData, deleteDoc, doc, docData, setDoc, updateDoc } from "@angular/fire/firestore";
+import { DocumentReference, Firestore, collection, collectionData, deleteDoc, doc, docData, setDoc, updateDoc } from "@angular/fire/firestore";
 import { map } from "rxjs";
 
 import { MessageService } from "src/app/shared/services/message.service";
@@ -20,6 +20,17 @@ export class ExerciseService {
 
   detail(_id: string){
     return docData(doc(this.collection, _id), { idField: "_id" }).pipe(
+      map(exercise => exercise as Exercise)
+    );
+  }
+
+
+  ref(_id: string){
+    return doc(this.collection, _id);
+  }
+
+  doc(reference: DocumentReference){
+    return docData(reference, { idField: "_id" }).pipe(
       map(exercise => exercise as Exercise)
     );
   }
