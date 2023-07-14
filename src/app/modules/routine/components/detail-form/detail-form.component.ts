@@ -17,19 +17,19 @@ export class DetailFormComponent {
   @Input() form!: FormGroup;
 
   get chips(){
-    return this.dateUtils.getDays(this.form.controls["days"].value);
+    return this.dateUtils.getDays(this.form.controls["daysOfWeek"].value);
   }
 
 
   highlightSelected: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-    const ctrlValue = this.form.controls["days"].value;
+    const ctrlValue = this.form.controls["daysOfWeek"].value;
     if(view !== "month" || !ctrlValue) return "";
     const date = cellDate.getDay();
     return ctrlValue.includes(date) ? "day_selected" : "";
   };
 
   onRemovedChip(indexRemoved: number){
-    const ctrl = this.form.controls["days"];
+    const ctrl = this.form.controls["daysOfWeek"];
     const value = ctrl.value.filter((_: number, i: number) => i !== indexRemoved);
     ctrl.setValue(value);
   }

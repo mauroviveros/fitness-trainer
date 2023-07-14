@@ -2,15 +2,14 @@
   <mat-form-field>
     <mat-label>Dias de entrenamiento</mat-label>
     <mat-icon matPrefix>calendar_month</mat-icon>
-    <mat-error>{{ form.controls['days'].errors | error }}</mat-error>
+    <mat-error>{{ form.controls['daysOfWeek'].errors | error }}</mat-error>
     <mat-chip-listbox>
       <mat-chip *ngFor="let chip of chips; let i = index" [removable]="true" (removed)="onRemovedChip(i)">
         <span>{{ chip }}</span>
-        <mat-icon matChipRemove>cancel</mat-icon>
+        <mat-icon *ngIf="!selectDaysChips.disabled" matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-listbox>
-
-    <mat-select formControlName="days" multiple>
+    <mat-select formControlName="daysOfWeek" multiple #selectDaysChips>
       <mat-option *ngFor="let day of dateUtils.DAYS; let index = index" [value]="index">{{ day | titlecase }}</mat-option>
     </mat-select>
   </mat-form-field>
