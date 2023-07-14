@@ -1,0 +1,42 @@
+<form [formGroup]="form" (submit)="submit()">
+  <mat-toolbar mat-dialog-title>
+    <h2>{{ data.mode === 1 ? 'Nuevo Ejercicio' : 'Ejercicio' }}</h2>
+  </mat-toolbar>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Ejercicio</mat-label>
+      <mat-icon matPrefix>category</mat-icon>
+      <mat-error>{{ form.controls['exercise'].errors | error }}</mat-error>
+      <mat-select formControlName="exercise">
+        <mat-option *ngFor="let exercise of $exercises | async" [value]="exercise._id">{{ exercise.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Series</mat-label>
+      <mat-icon matPrefix>format_list_numbered</mat-icon>
+      <mat-error>{{ form.controls['series'].errors | error }}</mat-error>
+      <input type="number" formControlName="series" matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Repeticiones</mat-label>
+      <mat-icon matPrefix>replay</mat-icon>
+      <mat-error>{{ form.controls['reps'].errors | error }}</mat-error>
+      <input type="number" formControlName="reps" matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>RIR</mat-label>
+      <mat-icon matPrefix>accessibility_new</mat-icon>
+      <mat-error>{{ form.controls['rir'].errors | error }}</mat-error>
+      <mat-select formControlName="rir">
+        <mat-option *ngFor="let rir of RIR" [value]="rir.value">{{ rir.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="button" mat-button [mat-dialog-close]="undefined">cancelar</button>
+    <button type="submit" mat-button cdkFocusInitial>aceptar</button>
+  </mat-dialog-actions>
+</form>
