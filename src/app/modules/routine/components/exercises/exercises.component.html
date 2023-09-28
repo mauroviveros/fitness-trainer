@@ -1,0 +1,18 @@
+<routine-week-day [daysOfWeek]="daysOfWeek" (changeDayOfWeek)="onChangeDayOfWeek($event)"></routine-week-day>
+
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<mat-selection-list>
+  <ng-container *ngFor="let schemeCategory of schemesCategory; let last = last">
+    <mat-list-option *ngFor="let scheme of schemeCategory" (click)="openSheet(schemeOption, scheme)" #schemeOption [disabled]="!canComplete" [selected]="scheme.weights.length > 0">
+      <mat-icon matListItemIcon matPrefix>{{ getCategoryIcon(scheme.exercise.category) }}</mat-icon>
+      <span matListItemTitle>{{ scheme.exercise.name | titlecase }}</span>
+      <span matListItemLine>Series: {{ scheme.series }}</span>
+      <span matListItemLine>Repeticiones: {{ scheme.reps }}. RIR: {{ scheme.rir === -1 ? 'al fallo' : scheme.rir }}</span>
+    </mat-list-option>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </ng-container>
+</mat-selection-list>
+
+<button mat-fab (click)="add()">
+  <mat-icon>add</mat-icon>
+</button>
