@@ -68,6 +68,11 @@
 
 :host::ng-deep{
     article{
+
+        mat-list-option{
+            align-items: center;
+        }
+
         [matlistitemicon]{
             display: flex;
             align-items: center;
@@ -91,7 +96,7 @@
             padding: 0;
         }
 
-        & > [mat-fab]{
+        [mat-fab]{
             position: absolute;
             bottom: 1rem;
             right: 1rem;
