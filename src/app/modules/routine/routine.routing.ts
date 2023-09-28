@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ListComponent } from "./pages/list/list.component";
 import { CreateComponent } from "./pages/create/create.component";
-import { UpdateComponent } from "./pages/update/update.component";
+import { DetailComponent } from "./pages/detail/detail.component";
 import { FormGuard } from "src/app/shared/guards/form.guard";
 
 const routes: Routes = [
@@ -31,22 +31,23 @@ const routes: Routes = [
       }
     }
   },
-  // {
-  //   path: ":_id",
-  //   title: "Fitness - Trainer | Detalle Rutina",
-  //   // component: DetailComponent,
-  //   data: {
-  //     layout: {
-  //       title: "Detalle Rutina",
-  //       back: true,
-  //       actions: []
-  //     }
-  //   }
-  // },
+  {
+    path: ":_id",
+    title: "Fitness - Trainer | Detalle Rutina",
+    component: DetailComponent,
+    data: {
+      canComplete: true,
+      layout: {
+        title: "Detalle Rutina",
+        back: true,
+        actions: []
+      }
+    }
+  },
   {
     path: ":_id/edit",
     title: "Fitness - Trainer | Actualizar Rutina",
-    component: UpdateComponent,
+    component: DetailComponent,
     data: {
       layout: {
         title: "Actualizar Rutina",
