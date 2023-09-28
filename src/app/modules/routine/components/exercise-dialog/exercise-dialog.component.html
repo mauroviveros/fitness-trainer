@@ -1,40 +1,64 @@
 <form [formGroup]="form" (submit)="submit()">
   <mat-toolbar mat-dialog-title>
-    <h2>{{ data.mode === 1 ? 'Nuevo Ejercicio' : 'Ejercicio' }}</h2>
+    <h2>{{ data.mode === 1 ? 'Nuevo Ejercicio' : (data.scheme.exercise.name | titlecase) }}</h2>
   </mat-toolbar>
   <mat-dialog-content>
-    <mat-form-field>
-      <mat-label>Ejercicio</mat-label>
-      <mat-icon matPrefix>category</mat-icon>
-      <mat-error>{{ form.controls['exercise'].errors | error }}</mat-error>
-      <mat-select formControlName="exercise">
-        <mat-option *ngFor="let exercise of $exercises | async" [value]="exercise._id">{{ exercise.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <ng-container *ngIf="data.mode === 1">
+      <mat-form-field>
+        <mat-label>Ejercicio</mat-label>
+        <mat-icon matPrefix>category</mat-icon>
+        <mat-error>{{ form.controls['exercise'].errors | error }}</mat-error>
+        <mat-select formControlName="exercise" placeholder="Seleccione un ejercicio">
+          <mat-option *ngFor="let exercise of $exercises | async" [value]="exercise._id">{{ exercise.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Series</mat-label>
-      <mat-icon matPrefix>format_list_numbered</mat-icon>
-      <mat-error>{{ form.controls['series'].errors | error }}</mat-error>
-      <input type="number" formControlName="series" matInput />
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Series</mat-label>
+        <mat-icon matPrefix>format_list_numbered</mat-icon>
+        <mat-error>{{ form.controls['series'].errors | error }}</mat-error>
+        <input type="number" formControlName="series" placeholder="Cantidad de series a realizar" matInput />
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Repeticiones</mat-label>
-      <mat-icon matPrefix>replay</mat-icon>
-      <mat-error>{{ form.controls['reps'].errors | error }}</mat-error>
-      <input type="number" formControlName="reps" matInput />
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>Repeticiones</mat-label>
+        <mat-icon matPrefix>replay</mat-icon>
+        <mat-error>{{ form.controls['reps'].errors | error }}</mat-error>
+        <input type="number" formControlName="reps" placeholder="Cantidad de repeticiones a realizar por serie" matInput />
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>RIR</mat-label>
-      <mat-icon matPrefix>accessibility_new</mat-icon>
-      <mat-error>{{ form.controls['rir'].errors | error }}</mat-error>
-      <mat-select formControlName="rir">
-        <mat-option *ngFor="let rir of RIR" [value]="rir.value">{{ rir.label }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field>
+        <mat-label>RIR</mat-label>
+        <mat-icon matPrefix>accessibility_new</mat-icon>
+        <mat-error>{{ form.controls['rir'].errors | error }}</mat-error>
+        <mat-select formControlName="rir" placeholder="Seleccione un tipo de RIR">
+          <mat-option *ngFor="let rir of RIR" [value]="rir.value">{{ rir.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="data.mode !== 1">
+      <mat-list>
+        <span matListItemTitle>Repeticiones: {{ data.scheme.reps }}. RIR: {{ data.scheme.rir === -1 ? 'al fallo' : data.scheme.rir }}</span>
+      </mat-list>
+      <ng-container formArrayName="weights">
+        <mat-form-field *ngFor="let serie of weights.controls; let i = index">
+          <mat-label>KGs en serie {{ i + 1 }}</mat-label>
+          <mat-icon matPrefix>scale</mat-icon>
+          <mat-error>{{ weights.controls[i].errors | error }}</mat-error>
+          <input type="number" [formControlName]="i" placeholder="KGs utilizados" matInput />
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field>
+        <mat-label>Sensaciones</mat-label>
+        <mat-icon matIconPrefix>comment</mat-icon>
+        <mat-error>{{ form.controls['sensations'].errors | error }}</mat-error>
+        <textarea formControlName="sensations" placeholder="Indique como le fue el ejercicio, si hubo complicaciones o algo por el estilo" [rows]="4" [disabled]="data.mode === 3" matInput></textarea>
+      </mat-form-field>
+    </ng-container>
   </mat-dialog-content>
+
   <mat-dialog-actions align="end">
     <button type="button" mat-button [mat-dialog-close]="undefined">cancelar</button>
     <button type="submit" mat-button cdkFocusInitial>aceptar</button>

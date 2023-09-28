@@ -1,8 +1,9 @@
-import { Component, Inject, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, Inject, OnInit, inject } from "@angular/core";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
 import { Scheme } from "src/app/shared/interfaces/scheme";
+import { RoutineUtilsService } from "../../services/routine-utils.service";
 
 interface DialogData{
   scheme: Scheme,
@@ -25,33 +26,48 @@ const RIR = [
   templateUrl: "./exercise-dialog.component.html",
   styleUrls: ["./exercise-dialog.component.scss"]
 })
-export class ExerciseDialogComponent {
+export class ExerciseDialogComponent implements OnInit {
+  private readonly routineUtils = inject(RoutineUtilsService);
   private readonly exercises = inject(ExerciseService);
   private readonly formBuilder = inject(FormBuilder);
   private readonly dialogRef = inject(MatDialogRef);
   readonly $exercises = this.exercises.$list;
   readonly RIR = RIR;
+  readonly getCategoryIcon = this.routineUtils.getCategoryIcon;
 
   readonly form: FormGroup = this.formBuilder.group({
     _id: [null],
+    sensations: [null],
     customer: [null, [Validators.required]],
     dayOfWeek: [null, [Validators.required]],
     exercise: [null, [Validators.required]],
     series: [null, [Validators.required]],
     reps: [null, [Validators.required]],
-    rir: [-1, [Validators.required]]
+    rir: [-1, [Validators.required]],
+    weights: this.formBuilder.array([])
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData){
+  get weights(){
+    return this.form.get("weights") as FormArray;
+  }
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData){}
+
+  ngOnInit(){
+    for(let i = 0; i < this.data.scheme.series; i++){
+      this.weights.push(this.formBuilder.control(null, [Validators.required]));
+    }
+
     Object.keys(this.form.controls).forEach(controlName => {
+      if(this.data.mode === 3) this.form.controls[controlName].disable();
       if(!this.data.scheme[controlName]) return;
 
       let value = this.data.scheme[controlName];
-      if(controlName === "customer") value = this.data.scheme[controlName]._id;
-      if(controlName === "exercise") value = this.data.scheme[controlName]._id;
+      if(controlName === "customer" || controlName === "exercise") value = this.data.scheme[controlName]._id;
       this.form.controls[controlName].setValue(value);
     });
-    if(this.data.customer) this.form.controls["customer"].setValue(this.data.customer);
+
+    if(!this.form.controls["customer"].value) this.form.controls["customer"].setValue(this.data.customer);
   }
 
   submit(){
