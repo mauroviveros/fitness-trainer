@@ -1,6 +1,6 @@
 import { UserDoc } from "./user";
 
-type daysOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type daysOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 // 0 domingo, 1 lunes, 2 martes, 3 miercoles, 4 jueves, 5 viernes, 6 sabado
 
 type levelObjetive = 0 | 1 | 2 | 3;
@@ -13,7 +13,7 @@ export interface Routine {
     objective: string,
     kal: number
     level: levelObjetive
-    days: daysOfWeek[]
+    daysOfWeek: daysOfWeek[]
     dateIN: Date
     dateOUT: Date
     [key: string]: string | Date | number | daysOfWeek[] | UserDoc
@@ -26,7 +26,7 @@ export interface RoutineOUT {
     objective: string
     kal: number
     level: number
-    days: number[]
+    daysOfWeek: number[]
     dateIN: Date
     dateOUT: Date
 }

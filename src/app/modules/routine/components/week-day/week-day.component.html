@@ -1,0 +1,9 @@
+<button mat-icon-button (click)="next('before')" [disabled]="!canNext('before')">
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+
+<h4>{{ dateUtils.DAYS[daysOfWeek[dayIndex]] }}</h4>
+
+<button mat-icon-button (click)="next('after')" [disabled]="!canNext('after')">
+  <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
