@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "@angular/fire/auth";
 import { Firestore, collection, doc, docData, docSnapshots, setDoc, updateDoc, DocumentReference, DocumentData } from "@angular/fire/firestore";
-import { catchError, firstValueFrom, map, of, switchMap } from "rxjs";
+import { catchError, filter, firstValueFrom, map, of, switchMap } from "rxjs";
 
 import { DialogService } from "src/app/shared/services/dialog.service";
 import { MessageService } from "src/app/shared/services/message.service";
@@ -57,6 +57,14 @@ export class UserService {
   doc(reference: DocumentReference){
     return docData(reference, { idField: "_id" }).pipe(
       map(document => this.convert(document))
+    );
+  }
+
+  isAdmin(){
+    return this.$data.pipe(
+      filter(user => user !== null && user !== undefined),
+      map(user => user as UserDoc),
+      map(user => user._admin)
     );
   }
 
