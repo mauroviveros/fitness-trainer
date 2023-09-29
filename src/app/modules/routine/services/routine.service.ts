@@ -1,11 +1,12 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData, doc, docData, setDoc } from "@angular/fire/firestore";
-import { from, map, of, switchMap, take } from "rxjs";
+import { DocumentData, Firestore, collection, collectionData, doc, docData, query, setDoc, where } from "@angular/fire/firestore";
+import { filter, from, map, of, switchMap, take, tap } from "rxjs";
 
 import { MessageService } from "src/app/shared/services/message.service";
 
 import { Routine, RoutineOUT } from "src/app/shared/interfaces/routine";
 import { UserService } from "src/app/core/modules/auth/services/user.service";
+import { UserDoc } from "src/app/shared/interfaces/user";
 
 @Injectable({
   providedIn: "root"
@@ -24,6 +25,19 @@ export class RoutineService {
     return docData(doc(this.collection, _id), { idField: "_id" }).pipe(
       switchMap(routine => this.convert([routine]).pipe(take(1))),
       map(routines => routines[0])
+    );
+  }
+
+  getOwn(){
+    return this.user.$data.pipe(
+      filter(user => user !== null && user !== undefined),
+      map(user => user as UserDoc),
+      switchMap(user => collectionData(query(this.collection, where("customer", "==", this.user.ref(user._id))))),
+      switchMap(routines => this.convert(routines).pipe(take(1))),
+      map(routines => routines[0]),
+      tap(routine => {
+        console.log(routine);
+      })
     );
   }
 
