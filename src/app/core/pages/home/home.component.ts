@@ -5,6 +5,7 @@ import { UserService } from "../../modules/auth/services/user.service";
 import { NavigationService } from "../../services/navigation.service";
 
 import { UserDoc } from "src/app/shared/interfaces/user";
+import { Shortcut } from "src/app/shared/interfaces/shortcut";
 
 @Component({
   selector: "core-home",
@@ -24,5 +25,11 @@ export class HomeComponent implements OnInit {
       this.isLoading = false;
       this.data = data;
     });
+  }
+
+
+  canSee(shortcut: Shortcut){
+    if(shortcut.admin) return this.data?._admin;
+    return true;
   }
 }

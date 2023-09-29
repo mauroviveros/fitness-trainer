@@ -34,10 +34,7 @@ export class RoutineService {
       map(user => user as UserDoc),
       switchMap(user => collectionData(query(this.collection, where("customer", "==", this.user.ref(user._id))))),
       switchMap(routines => this.convert(routines).pipe(take(1))),
-      map(routines => routines[0]),
-      tap(routine => {
-        console.log(routine);
-      })
+      map(routines => routines[0])
     );
   }
 

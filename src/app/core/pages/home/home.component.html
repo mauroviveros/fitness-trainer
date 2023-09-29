@@ -10,12 +10,9 @@
   <mat-card>
     <mat-card-content>
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-      <core-shortcut
-        *ngFor="let shortcut of navigation.shortcut"
-        [label]="shortcut.label"
-        [icon]="shortcut.icon"
-        [routerLink]="shortcut.link"
-        (click)="navigation.onNavigation(shortcut._id)"></core-shortcut>
+      <ng-container *ngFor="let shortcut of navigation.shortcut">
+        <core-shortcut *ngIf="canSee(shortcut)" [label]="shortcut.label" [icon]="shortcut.icon" [routerLink]="shortcut.link" (click)="navigation.onNavigation(shortcut._id)"></core-shortcut>
+      </ng-container>
     </mat-card-content>
   </mat-card>
 </section>
