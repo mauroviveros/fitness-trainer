@@ -15,7 +15,7 @@ export class NavigationService {
     { _id: "home", icon: "home", label: "inicio", link: "" },
     { _id: "customer", icon: "people", label: "clientes", link: "/customers", admin: true },
     { _id: "exercise", icon: "fitness_center", label: "ejercicios", link: "/exercises", admin: true },
-    { _id: "profile", icon: "manage_accounts", label: "mis datos", link: "/profile", admin: true },
+    { _id: "profile", icon: "manage_accounts", label: "mis datos", link: "/profile" },
     { _id: "logout", icon: "logout", label: "cerrar sesión" }
   ];
 
