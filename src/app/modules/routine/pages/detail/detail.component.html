@@ -1,10 +1,10 @@
 <shared-layout [loadingData]="isLoading" [loading]="isSaving">
   <mat-tab-group>
+    <mat-tab label="Ejercicios">
+      <routine-exercises [daysOfWeek]="form.controls['daysOfWeek'].value" [customer]="form.controls['customer'].value" [canComplete]="canComplete" [isAdmin]="isAdmin"></routine-exercises>
+    </mat-tab>
     <mat-tab label="Detalle">
       <routine-detail-form [form]="form"></routine-detail-form>
-    </mat-tab>
-    <mat-tab label="Ejercicios">
-      <routine-exercises [daysOfWeek]="form.controls['daysOfWeek'].value" [customer]="form.controls['customer'].value" [canComplete]="canComplete"></routine-exercises>
     </mat-tab>
   </mat-tab-group>
 </shared-layout>

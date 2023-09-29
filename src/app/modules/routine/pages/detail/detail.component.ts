@@ -21,6 +21,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   canComplete = false;
   isLoading = false;
   isSaving = false;
+  isAdmin = false;
 
   ngOnInit(){
     this.subscription = this.initRoutine();
@@ -32,7 +33,11 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   private initRoutine(){
     this.isLoading = true;
-    return combineLatest([this.routine.get(this.route.snapshot.params["_id"]), this.user.$data]).subscribe(([routine, user]) => {
+    const subscriptions = !this.route.snapshot.params["_id"] ?
+      combineLatest([this.routine.getOwn(), this.user.$data]) :
+      combineLatest([this.routine.get(this.route.snapshot.params["_id"]), this.user.$data]);
+
+    return subscriptions.subscribe(([routine, user]) => {
       Object.keys(this.form.controls).forEach(controlName => {
         let value = routine[controlName];
         if(controlName === "customer") value = routine.customer._id;
@@ -40,6 +45,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.form.controls[controlName].disable();
       });
 
+      this.isAdmin = user ? user._admin : false;
       this.canComplete = this.route.snapshot.data["canComplete"] && routine.customer._id === user?._id;
       this.isLoading = false;
     });
