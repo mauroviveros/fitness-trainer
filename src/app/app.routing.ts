@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule)
   },
   {
-    path: "routines",
+    path: "",
     loadChildren: () => import("./modules/routine/routine.module").then(m => m.RoutineModule)
   },
   {
