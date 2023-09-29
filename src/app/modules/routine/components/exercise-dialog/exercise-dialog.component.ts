@@ -64,6 +64,7 @@ export class ExerciseDialogComponent implements OnInit {
 
       let value = this.data.scheme[controlName];
       if(controlName === "customer" || controlName === "exercise") value = this.data.scheme[controlName]._id;
+      if(Array.isArray(value) && value.length === 0) return;
       this.form.controls[controlName].setValue(value);
     });
 
