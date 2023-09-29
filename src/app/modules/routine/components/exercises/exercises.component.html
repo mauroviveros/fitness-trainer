@@ -13,6 +13,6 @@
   </ng-container>
 </mat-selection-list>
 
-<button mat-fab (click)="add()">
+<button mat-fab (click)="add()" *ngIf="isAdmin">
   <mat-icon>add</mat-icon>
 </button>

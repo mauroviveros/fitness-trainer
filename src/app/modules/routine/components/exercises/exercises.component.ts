@@ -19,6 +19,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   @Input() daysOfWeek: number[] = [];
   @Input() customer!: string;
   @Input() canComplete!: boolean;
+  @Input() isAdmin!: boolean;
   isLoading = false;
 
   schemesCategory: Scheme[][] = [];
