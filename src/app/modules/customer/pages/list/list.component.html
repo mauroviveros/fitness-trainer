@@ -3,6 +3,13 @@
     <mat-list-item *ngFor="let customer of list">
       <mat-icon matListItemIcon>person</mat-icon>
       <span matListItemTitle>{{ customer | customer | titlecase }}</span>
+      <span matListItemLine *ngIf="hasRoutine(customer._id)">Desde: {{ getRoutine(customer._id)?.["dateIN"] | date: 'dd/MM/YYYY' }}</span>
+      <span matListItemLine *ngIf="hasRoutine(customer._id)">Hasta{{ getRoutine(customer._id)?.["dateOUT"] | date: 'dd/MM/YYYY' }}</span>
+      <div matListItemMeta>
+        <a mat-icon-button *ngIf="hasRoutine(customer._id)" [routerLink]="['/routines', getRoutine(customer._id)?._id]">
+          <mat-icon>playlist_play</mat-icon>
+        </a>
+      </div>
     </mat-list-item>
   </mat-list>
 </shared-layout>

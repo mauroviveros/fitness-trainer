@@ -30,7 +30,7 @@ const routes: Routes = [
         data: {
           layout: {
             title: "Actualizar Rutina",
-            close: true
+            back: true
           }
         }
       }
