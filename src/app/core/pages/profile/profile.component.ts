@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   readonly form: FormGroup = this.formBuider.group({
     name: [null, [Validators.required]],
     surname: [null, [Validators.required]],
+    instagram: [null, [Validators.required]],
     email: [null, [Validators.required, Validators.email]],
     gender: [null, [Validators.required]],
     birthday: [null, [Validators.required]]

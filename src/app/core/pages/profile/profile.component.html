@@ -41,6 +41,14 @@
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Instagram</mat-label>
+          <mat-icon [svgIcon]="'instagram'" matPrefix></mat-icon>
+          <mat-hint align="end">{{ inputInstagram.value.length }}/{{ 30 }}</mat-hint>
+          <mat-error>{{ form.controls['instagram'].errors | error }}</mat-error>
+          <input placeholder="Ingrese su instagram" formControlName="instagram" matInput #inputInstagram />
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>Fecha de nacimiento</mat-label>
           <mat-icon matPrefix>cake</mat-icon>
           <mat-hint>DD/MM/YYYY</mat-hint>

@@ -13,6 +13,7 @@ import { FIREBASE } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
+import { HttpClientModule } from "@angular/common/http";
 
 const firebase = {
   projectId         : FIREBASE.PROJECT_ID,
@@ -37,6 +38,7 @@ const firebase = {
 
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     CoreModule
   ],
