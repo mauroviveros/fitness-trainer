@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Router, UrlTree } from "@angular/router";
+import { Router } from "@angular/router";
 import { Observable, map, tap } from "rxjs";
 
 import { AuthService } from "../services/auth.service";
@@ -13,7 +13,7 @@ export class EmailGuard {
   private readonly auth   = inject(AuthService);
   private readonly dialog = inject(DialogService);
 
-  canActivate(): Observable<boolean | UrlTree>{
+  canActivate(): Observable<boolean>{
     return this.auth.$user.pipe(
       tap(user => user.emailVerified ? null : this.dialog.showEmailValidation(user).subscribe()),
       tap(user => user.emailVerified ? null : this.auth.logout()),
