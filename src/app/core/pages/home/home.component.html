@@ -2,16 +2,14 @@
   <figure>
     <core-profile-image></core-profile-image>
     <figcaption>
-      <h2>Hola {{ data?.name }} {{ data?.surname }}</h2>
-      <h3>Buenas Tardes!</h3>
+      <h1>Hola {{ user.name }} {{ user.surname }}!</h1>
     </figcaption>
   </figure>
 
   <mat-card>
     <mat-card-content>
-      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-      <ng-container *ngFor="let shortcut of navigation.shortcut">
-        <core-shortcut *ngIf="canSee(shortcut)" [label]="shortcut.label" [icon]="shortcut.icon" [routerLink]="shortcut.link" (click)="navigation.onNavigation(shortcut._id)"></core-shortcut>
+      <ng-container *ngFor="let shortcut of shortcuts">
+        <core-shortcut [shortcut]="shortcut"></core-shortcut>
       </ng-container>
     </mat-card-content>
   </mat-card>

@@ -1,35 +1,29 @@
-import { Component, OnInit, inject } from "@angular/core";
-import { tap } from "rxjs";
-
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { UserService } from "../../modules/auth/services/user.service";
-import { NavigationService } from "../../services/navigation.service";
-
 import { UserDoc } from "src/app/shared/interfaces/user";
 import { Shortcut } from "src/app/shared/interfaces/shortcut";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "core-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"]
 })
-export class HomeComponent implements OnInit {
-  private readonly user = inject(UserService);
-  readonly navigation = inject(NavigationService);
-  isLoading = true;
-  data?: UserDoc | null;
+export class HomeComponent implements OnInit, OnDestroy {
+  private readonly userSrv = inject(UserService);
+  private subscription? : Subscription;
+  user: UserDoc = {} as UserDoc;
+
+  shortcuts: Shortcut[] = [
+    { _id: "profile", icon: "manage_accounts", label: "mis datos", link: "/profile" },
+    { _id: "logout", icon: "logout", label: "cerrar sesión" }
+  ];
 
   ngOnInit(){
-    this.user.$data.pipe(
-      tap(() => this.isLoading = true),
-    ).subscribe(data => {
-      this.isLoading = false;
-      this.data = data;
-    });
+    this.subscription = this.userSrv.$data.subscribe(user => this.user = user);
   }
 
-
-  canSee(shortcut: Shortcut){
-    if(shortcut.admin) return this.data?._admin;
-    return true;
+  ngOnDestroy(){
+    this.subscription?.unsubscribe();
   }
 }
