@@ -1,12 +1,11 @@
 import { Injectable, inject } from "@angular/core";
+import { DocumentData, DocumentSnapshot, Firestore, collection, doc, docSnapshots, setDoc, updateDoc } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
 import { User } from "@angular/fire/auth";
-import { Firestore, collection, doc, docData, docSnapshots, setDoc, updateDoc, DocumentReference, DocumentData } from "@angular/fire/firestore";
-import { catchError, filter, firstValueFrom, map, of, switchMap } from "rxjs";
+import { Observable, filter, firstValueFrom, map, switchMap, tap } from "rxjs";
 
-import { DialogService } from "src/app/shared/services/dialog.service";
-import { MessageService } from "src/app/shared/services/message.service";
 import { AuthService } from "./auth.service";
+import { MessageService } from "src/app/shared/services/message.service";
 
 import { UserDoc } from "src/app/shared/interfaces/user";
 
@@ -16,56 +15,33 @@ import { UserDoc } from "src/app/shared/interfaces/user";
 export class UserService {
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "users");
-  private readonly router = inject(Router);
   private readonly auth = inject(AuthService);
-  private readonly dialog = inject(DialogService);
   private readonly message = inject(MessageService);
+  private readonly router = inject(Router);
 
-  readonly $data = this.auth.$user.pipe(
-    // TODO chage docSnapshots to docData. it's possible?
-    switchMap(user => docSnapshots(doc(this.collection, user?.uid))),
-    catchError(() => of(undefined)),
-    map(user => {
-      if(user === undefined) return undefined;
-      const data = user.data();
-      if(!data) return null;
-      data["_id"] = user.id;
+  readonly $snapshot : Observable<DocumentSnapshot<DocumentData>> = this.auth.$user.pipe(
+    switchMap(user => docSnapshots(doc(this.collection, user.uid)))
+  );
 
-      return this.convert(data);
-    })
+  readonly $data : Observable<UserDoc> = this.$snapshot.pipe(
+    filter(user => user.exists()),
+    map(user => this.convert(user) as UserDoc),
   );
 
   constructor(){
-    this.$data.subscribe(data => {
-      if(data === null){
-        this.dialog.showWelcome();
-        this.router.navigate(["profile"]);
-      }
-      console.debug(data); //TODO add UserTracking
-    });
+    this.$snapshot.pipe(
+      tap(user => console.log(user.exists())),
+      tap(user => user.exists() ? null : this.router.navigate(["profile"])),
+    ).subscribe();
   }
 
-  convert(document: DocumentData){
+  private convert(snapshot: DocumentSnapshot<DocumentData>){
+    const document = snapshot.data();
+    if(!document) return undefined;
+
+    document["_id"] = snapshot.id;
     if(document["birthday"]) document["birthday"] = document["birthday"].toDate();
     return document as UserDoc;
-  }
-
-  ref(_id: string){
-    return doc(this.collection, _id);
-  }
-
-  doc(reference: DocumentReference){
-    return docData(reference, { idField: "_id" }).pipe(
-      map(document => this.convert(document))
-    );
-  }
-
-  isAdmin(){
-    return this.$data.pipe(
-      filter(user => user !== null && user !== undefined),
-      map(user => user as UserDoc),
-      map(user => user._admin)
-    );
   }
 
   async upload(fields: UserDoc, isNew: boolean){
