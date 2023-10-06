@@ -11,7 +11,7 @@ import { ProfileImageService } from "../../services/profile-image.service";
 export class ProfileImageComponent implements OnInit, OnDestroy {
   private readonly profileImage = inject(ProfileImageService);
   private readonly subscriptions: Subscription[] = [];
-  isLoading = true;
+  isLoading = false;
   src? : string;
 
   ngOnInit(){

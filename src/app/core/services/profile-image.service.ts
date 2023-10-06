@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { AuthService } from "../modules/auth/services/auth.service";
 import { Storage, StorageReference, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
 import { MessageService } from "src/app/shared/services/message.service";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -18,7 +18,7 @@ export class ProfileImageService {
   };
 
   private ref! : StorageReference;
-  readonly $src = new Subject<string>();
+  readonly $src = new BehaviorSubject<string | undefined>(undefined);
   readonly $upload = new Subject<boolean>();
 
   constructor(){
