@@ -1,5 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { AuthService } from "../../services/auth.service";
 
@@ -8,8 +9,9 @@ import { AuthService } from "../../services/auth.service";
   templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
-  private readonly formBuilder = inject(FormBuilder);
-  private readonly auth = inject(AuthService);
+  private readonly router       = inject(Router);
+  private readonly formBuilder  = inject(FormBuilder);
+  private readonly auth         = inject(AuthService);
   isLoading = false;
 
   form: FormGroup = this.formBuilder.group({
@@ -35,7 +37,9 @@ export class RegisterComponent {
     this.isLoading = true;
     const { email, password } = this.form.value;
     this.auth.register(email, password)
+      .then(credential => this.auth.sendEmailVerification(credential.user))
       .then(() => form.resetForm())
+      .then(() => this.router.navigate([""]))
       .finally(() => this.isLoading = false);
   }
 }
