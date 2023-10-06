@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+
+
+@mixin color($config) {
+    $primary-palette: map.get($config, primary);
+
+  mat-dialog-container {
+   	mat-toolbar{
+      background-color: mat.get-color-from-palette($primary-palette, 500) !important;
+      color: mat.get-contrast-color-from-palette($primary-palette, 500) !important;
+    }
+    mat-dialog-content, mat-dialog-actions{
+      background-color: mat.get-color-from-palette($primary-palette, 50) !important;
+      color: mat.get-contrast-color-from-palette($primary-palette, 50) !important;
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null { @include color($color-config); }
+}
