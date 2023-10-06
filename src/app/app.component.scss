@@ -1,9 +1,21 @@
+@import "breakpoints";
+
 :host::ng-deep{
-    > router-outlet + *{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    router-outlet + *{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
+        width: 100%;
+        @media #{$media-small-up}{
+            width: $screen-xsmall;
+        }
     }
 }

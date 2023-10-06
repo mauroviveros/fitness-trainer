@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Subscription, switchMap, tap } from "rxjs";
 
 import { AuthService } from "./core/modules/auth/services/auth.service";
 import { UserService } from "./core/modules/auth/services/user.service";
-
-import { Subscription, switchMap, tap } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -28,9 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private initLoadingChecker(){
-    return this.auth.$authState.pipe(
+    return this.auth.$user.pipe(
       tap(() => this.isLoading = true),
-      switchMap(() => this.user.$data),
+      switchMap(() => this.user.$snapshot),
     ).subscribe(() => this.isLoading = false);
   }
 }

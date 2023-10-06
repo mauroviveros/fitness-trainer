@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AppRoutingModule } from "./app.routing";
+import { HttpClientModule } from "@angular/common/http";
 
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth,getAuth } from "@angular/fire/auth";
@@ -11,9 +11,10 @@ import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingServ
 
 import { FIREBASE } from "../environments/environment";
 
-import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
-import { HttpClientModule } from "@angular/common/http";
+
+import { AppRoutingModule } from "./app.routing";
+import { AppComponent } from "./app.component";
 
 const firebase = {
   projectId         : FIREBASE.PROJECT_ID,
