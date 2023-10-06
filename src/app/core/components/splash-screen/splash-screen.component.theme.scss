@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($config) {
+  $primary-palette: map.get($config, primary);
+
+  core-splash-screen{ background-color: mat.get-color-from-palette($primary-palette, 500); }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null { @include color($color-config); };
+};

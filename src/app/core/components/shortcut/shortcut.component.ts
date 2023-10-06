@@ -1,4 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, inject } from "@angular/core";
+import { Shortcut } from "src/app/shared/interfaces/shortcut";
+import { AuthService } from "../../modules/auth/services/auth.service";
 
 @Component({
   selector: "core-shortcut",
@@ -6,8 +8,11 @@ import { Component, Input } from "@angular/core";
   styleUrls: ["./shortcut.component.scss"]
 })
 export class ShortcutComponent {
-  @Input() public label = "dashboard";
-  @Input() public icon = "dashboard";
-  @Input() public link = "";
-  @Input() public disabled = false;
+  private readonly auth = inject(AuthService);
+
+  @Input() public shortcut!: Shortcut;
+
+  action(ID:string){
+    if(ID === "logout") this.auth.logout();
+  }
 }

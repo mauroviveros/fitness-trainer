@@ -1,5 +1,5 @@
-<a mat-fab color="primary" [routerLink]="link" [disabled]="disabled">
-  <mat-icon>{{ icon }}</mat-icon>
+<a mat-fab color="primary" [routerLink]="shortcut.link" (click)="action(shortcut._id)">
+  <mat-icon>{{ shortcut.icon }}</mat-icon>
 </a>
 
-<span>{{ label | titlecase }}</span>
+<span>{{ shortcut.label | titlecase }}</span>

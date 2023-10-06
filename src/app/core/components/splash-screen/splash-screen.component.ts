@@ -13,5 +13,5 @@ import { Component, HostBinding } from "@angular/core";
   ]
 })
 export class SplashScreenComponent {
-  @HostBinding("@fade") fade?: undefined;
+  @HostBinding("@fade") fade: undefined;
 }
