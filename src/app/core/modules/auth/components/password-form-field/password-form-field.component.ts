@@ -4,7 +4,7 @@ import { FormGroup } from "@angular/forms";
 @Component({
   selector: "auth-password-form-field",
   templateUrl: "./password-form-field.component.html",
-  styleUrls: ["./password-form-field.component.scss"]
+  styles: [".gray{ color: #d3d3d3 }"]
 })
 export class PasswordFormFieldComponent implements OnInit {
   @Input() group!: FormGroup;
