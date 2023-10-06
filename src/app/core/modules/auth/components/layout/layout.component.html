@@ -3,17 +3,15 @@
 </figure>
 <mat-card>
   <mat-card-header>
-    <mat-card-title>
-      <h1>{{ layout?.title }}</h1>
-    </mat-card-title>
+    <mat-card-title>{{ layout.title }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <ng-content></ng-content>
   </mat-card-content>
 
-  <mat-card-footer *ngIf="layout?.footer">
-    <span>{{ layout?.footer?.label }}</span>
-    <a [routerLink]="['..', layout?.footer?.link]">{{ layout?.footer?.button }}</a>
+  <mat-card-footer>
+    <span style="color: black">{{ layout.footer?.label }}</span>
+    <a [routerLink]="['/', layout.footer?.link]">{{ layout.footer?.button }}</a>
   </mat-card-footer>
 </mat-card>
