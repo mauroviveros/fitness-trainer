@@ -1,47 +1,51 @@
-:host{
-  section{
-      height: 100%;
-      width: 100%;
-      padding-top: 56px;
+:host {
+  section {
+    height: 100%;
+    width: 100%;
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    figure {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin: 0;
       flex: 1;
 
-      figure{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-          margin: 0;
-          flex: 1;
+      figcaption {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex: 1;
 
-          figcaption{
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              text-align: center;
-              flex: 1;
-
-              h1{ font-size: 2rem; }
-          }
+        h1 {
+          font-size: 2rem;
+        }
       }
+    }
+    core-profile-image {
+      cursor: pointer;
+    }
 
+    mat-card {
+      border-radius: 2rem;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      flex: 1;
+      overflow: hidden;
 
-      mat-card{
-          border-radius: 2rem;
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-          flex: 1;
-          overflow: hidden;
+      box-shadow: 0 -2px 1px -1px #0003, 0 -1px 1px #00000024, 0 -1px 3px #0000001f;
 
-          box-shadow: 0 -2px 1px -1px #0003, 0 -1px 1px #00000024, 0 -1px 3px #0000001f;
-
-          mat-card-content{
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: 1rem;
-          }
+      mat-card-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
       }
+    }
   }
 }
