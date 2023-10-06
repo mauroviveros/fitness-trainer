@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
-
 import { EmailGuard } from "./modules/auth/guards/email.guard";
 import { UserGuard } from "./modules/auth/guards/user.guard";
 import { FormGuard } from "../shared/guards/form.guard";
@@ -25,9 +24,9 @@ const routes: Routes = [
       {
         path: "profile",
         title: "Fitness - Trainer | Perfil",
-        component: ProfileComponent,
-        canDeactivate: [FormGuard]
-      }
+        canDeactivate: [FormGuard],
+        component: ProfileComponent
+      },
     ]
   }
 ];
