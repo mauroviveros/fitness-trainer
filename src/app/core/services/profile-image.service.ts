@@ -1,59 +1,57 @@
 import { Injectable, inject } from "@angular/core";
-import { User } from "@angular/fire/auth";
-import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
-import { BehaviorSubject, filter, firstValueFrom, map, of, switchMap } from "rxjs";
-
 import { AuthService } from "../modules/auth/services/auth.service";
+import { Storage, StorageReference, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
 import { MessageService } from "src/app/shared/services/message.service";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProfileImageService {
-  private readonly auth = inject(AuthService);
   private readonly storage = inject(Storage);
+  private readonly auth = inject(AuthService);
   private readonly message = inject(MessageService);
-  private readonly validTypes = ["image/png", "image/jpeg", "image/jpg"];
-  private readonly $time = new BehaviorSubject<Date>(new Date());
 
-  readonly $ref = this.auth.$user.pipe(
-    filter(user => user !== null),
-    map(user => user as User),
-    switchMap(({ uid }) => {
-      return of(ref(this.storage, `users/${uid}/profile`));
-    })
-  );
+  readonly valid = {
+    types: ["image/png", "image/jpeg", "image/jpg"],
+    extensions: [".png", ".jpeg", ".jpg"]
+  };
 
-  readonly $src = this.$time.pipe(
-    switchMap(() => this.$ref),
-    switchMap(async (reference) => {
-      try {
-        return await getDownloadURL(reference);
-      } catch (error) {
-        return "/assets/profile.png";
-      }
-    })
-  );
+  private ref! : StorageReference;
+  readonly $src = new Subject<string>();
+  readonly $upload = new Subject<boolean>();
 
-  private getSizeMB(sizeBytes: number): number{
-    return sizeBytes / 1024 / 1024;
+  constructor(){
+    this.auth.$user.subscribe(user => {
+      this.ref = ref(this.storage, `users/${user.uid}/profile`);
+      this.updateSrc();
+    });
   }
 
+  private updateSrc(){
+    return getDownloadURL(this.ref)
+      .then(src => { this.$src.next(src); })
+      .catch(() => { this.$upload.next(false); });
+  }
 
-  async upload(file: File): Promise<string>{
+  private getSizeMB(sizeBytes: number): number{ return sizeBytes / 1024 / 1024; }
+
+
+  async upload(file: File): Promise<void>{
+    this.$upload.next(true);
     try {
-      if(!this.validTypes.includes(file.type)) throw "Tipo de archivo no valido. PNG/JPG/JPEG";
+      if(!this.valid.types.includes(file.type)) throw "Tipo de archivo no valido. PNG/JPG/JPEG";
       if(this.getSizeMB(file.size) > 5) throw "Tamaño de imagen no soportada. Limite 5MB";
 
-      const ref = await firstValueFrom(this.$ref);
-      return uploadBytes(ref, file).then(response => {
-        this.message.success("✅ Foto de perfil actualizada correctamente.");
-        this.$time.next(new Date());
-        return response.ref.fullPath;
+      return uploadBytes(this.ref, file).then(response => {
+        this.message.success("Foto de perfil actualizada correctamente.");
+        this.ref = response.ref;
+        return this.updateSrc();
       });
     } catch (error) {
       if(error instanceof Error){ this.message.error(error); }
       throw error;
     }
   }
+
 }

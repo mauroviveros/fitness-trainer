@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ProfileImageService } from "../../services/profile-image.service";
 
 @Component({
@@ -7,16 +7,16 @@ import { ProfileImageService } from "../../services/profile-image.service";
 })
 export class ImageUploadComponent {
   private readonly profileImage = inject(ProfileImageService);
-  @Output() private upload = new EventEmitter<string>();
+  disabled = false;
   accept = [".png", ".jpeg", ".jpg"];
 
   uploadIMG(event: Event){
     const element = event.currentTarget as HTMLInputElement;
     if(!element.files) return;
 
+    this.disabled = true;
     const file = element.files[0];
-    this.profileImage.upload(file).then(response => {
-      this.upload.emit(response);
-    });
+    this.profileImage.upload(file)
+      .finally(() => this.disabled = false);
   }
 }

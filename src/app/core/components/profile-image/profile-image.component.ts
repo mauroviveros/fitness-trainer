@@ -1,27 +1,26 @@
-import { Component, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Subscription } from "rxjs";
+
 import { ProfileImageService } from "../../services/profile-image.service";
-import { tap } from "rxjs";
 
 @Component({
   selector: "core-profile-image",
   templateUrl: "./profile-image.component.html",
   styleUrls: ["./profile-image.component.scss"]
 })
-export class ProfileImageComponent {
+export class ProfileImageComponent implements OnInit, OnDestroy {
   private readonly profileImage = inject(ProfileImageService);
+  private readonly subscriptions: Subscription[] = [];
   isLoading = true;
-  hasLoaded = false;
+  src? : string;
 
-  $src = this.profileImage.$src.pipe(
-    tap(() => this.isLoading = true)
-  );
-
-  onError(){
-    this.isLoading = false;
+  ngOnInit(){
+    this.subscriptions.push(this.profileImage.$upload.subscribe(bool => this.isLoading = bool));
+    this.subscriptions.push(this.profileImage.$src.subscribe(src => this.src = src));
   }
 
-  onLoad(){
-    this.isLoading = false;
-    this.hasLoaded = true;
+  ngOnDestroy(){
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
+
 }
