@@ -30,7 +30,6 @@ export class UserService {
 
   constructor(){
     this.$snapshot.pipe(
-      tap(user => console.log(user.exists())),
       tap(user => user.exists() ? null : this.router.navigate(["profile"])),
     ).subscribe();
   }

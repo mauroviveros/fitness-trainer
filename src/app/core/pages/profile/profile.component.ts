@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { BehaviorSubject, Subscription, filter, switchMap, tap } from "rxjs";
+import { BehaviorSubject, Subscription, filter, switchMap, take, tap } from "rxjs";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../../modules/auth/services/auth.service";
 import { UserService } from "../../modules/auth/services/user.service";
@@ -57,8 +57,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private initNewUser(){
     return this.user.$snapshot.pipe(
       filter(user => !user.exists()),
+      take(1),
       tap(() => this.$mode.next(1)),
-      switchMap(() => this.dialog.showWelcome())
+      tap(() => this.dialog.showWelcome().subscribe())
     ).subscribe();
   }
 
@@ -74,6 +75,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       controlsName.forEach(controlName => this.form.controls[controlName].setValue(data[controlName]));
     });
   }
+
+  logout(){ this.auth.logout(); }
 
   submit(){
     if(this.form.invalid) return;
