@@ -1,0 +1,35 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './components/splash-screen/splash-screen.component.theme.scss' as splash-screen;
+// @use './pages/home/home.component.theme.scss' as home;
+@use './pages/profile/profile.component.theme.scss' as profile;
+@use '../shared/shared.theme.scss' as shared;
+
+
+
+@mixin color($config) {
+    $primary-palette: map.get($config, primary);
+
+    body{ 
+        background-color: mat.get-color-from-palette($primary-palette, 300);
+        color: mat.get-contrast-color-from-palette($primary-palette, 300);
+    }
+    auth-wrapper{
+      background-color: mat.get-color-from-palette($primary-palette, 500);
+      color: mat.get-contrast-color-from-palette($primary-palette, 500);
+      mat-card-title{ color: mat.get-color-from-palette($primary-palette, 500); }
+    }
+}
+
+@mixin theme($theme) {
+    $color-config: mat.get-color-config($theme);
+    @if $color-config != null { @include color($color-config); }
+}
+
+@mixin all-component-themes($theme) {
+    @include theme($theme);
+    @include shared.theme($theme);
+    // @include home.theme($theme);
+    @include profile.theme($theme);
+    @include splash-screen.theme($theme);
+};

@@ -27,7 +27,7 @@
       <form id="profileForm" [formGroup]="form" (submit)="submit()">
         <mat-form-field>
           <mat-label>Nombre</mat-label>
-          <mat-icon matPrefix>person</mat-icon>
+          <mat-icon color="primary" matPrefix>person</mat-icon>
           <mat-hint align="end">{{ inputName.value.length }}/{{ MAX_LENGTH }}</mat-hint>
           <mat-error>{{ form.controls['name'].errors | error : MAX_LENGTH }}</mat-error>
           <input placeholder="Ingrese su nombre" formControlName="name" matInput #inputName />
@@ -35,7 +35,7 @@
 
         <mat-form-field>
           <mat-label>Apellido</mat-label>
-          <mat-icon matPrefix>badge</mat-icon>
+          <mat-icon color="primary" matPrefix>badge</mat-icon>
           <mat-hint align="end">{{ inputSurname.value.length }}/{{ MAX_LENGTH }}</mat-hint>
           <mat-error>{{ form.controls['surname'].errors | error : MAX_LENGTH }}</mat-error>
           <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
@@ -43,7 +43,7 @@
 
         <mat-form-field>
           <mat-label>Instagram</mat-label>
-          <mat-icon [svgIcon]="'instagram'" matPrefix></mat-icon>
+          <mat-icon [svgIcon]="'instagram'" color="primary" matPrefix></mat-icon>
           <mat-hint align="end">{{ inputInstagram.value.length }}/{{ 30 }}</mat-hint>
           <mat-error>{{ form.controls['instagram'].errors | error : 30 }}</mat-error>
           <input placeholder="Ingrese su instagram" formControlName="instagram" matInput #inputInstagram />
@@ -51,7 +51,7 @@
 
         <mat-form-field>
           <mat-label>Fecha de nacimiento</mat-label>
-          <mat-icon matPrefix>cake</mat-icon>
+          <mat-icon color="primary" matPrefix>cake</mat-icon>
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-error>{{ form.controls['birthday'].errors | error }}</mat-error>
           <mat-datepicker #picker></mat-datepicker>
@@ -61,7 +61,7 @@
 
         <mat-form-field>
           <mat-label>Género</mat-label>
-          <mat-icon matPrefix>wc</mat-icon>
+          <mat-icon color="primary" matPrefix>wc</mat-icon>
           <mat-error>{{ form.controls['gender'].errors | error }}</mat-error>
           <mat-select placeholder="Ingrese su género" formControlName="gender">
             <mat-option value="MALE">Hombre</mat-option>
@@ -72,7 +72,7 @@
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <mat-icon matPrefix>email</mat-icon>
+          <mat-icon color="primary" matPrefix>email</mat-icon>
           <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
           <input placeholder="Ingrese su email" formControlName="email" matInput />
         </mat-form-field>
