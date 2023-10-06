@@ -11,7 +11,7 @@
     <button mat-mini-fab *ngIf="$mode.value === 2 && !isLoading" (click)="$mode.next(3)">
       <mat-icon>close</mat-icon>
     </button>
-    <button mat-fab type="submit" form="profileForm" *ngIf="$mode.value !== 3 && !isLoading">
+    <button mat-fab type="submit" form="profileForm" *ngIf="$mode.value !== 3 && !isLoading" [disabled]="form.invalid">
       <mat-icon>save</mat-icon>
     </button>
 
@@ -27,16 +27,16 @@
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <mat-icon matPrefix>person</mat-icon>
-          <mat-hint align="end">{{ inputName.value.length }}/{{ 24 }}</mat-hint>
-          <mat-error>{{ form.controls['name'].errors | error }}</mat-error>
+          <mat-hint align="end">{{ inputName.value.length }}/{{ MAX_LENGTH }}</mat-hint>
+          <mat-error>{{ form.controls['name'].errors | error : MAX_LENGTH }}</mat-error>
           <input placeholder="Ingrese su nombre" formControlName="name" matInput #inputName />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Apellido</mat-label>
           <mat-icon matPrefix>badge</mat-icon>
-          <mat-hint align="end">{{ inputSurname.value.length }}/{{ 24 }}</mat-hint>
-          <mat-error>{{ form.controls['surname'].errors | error }}</mat-error>
+          <mat-hint align="end">{{ inputSurname.value.length }}/{{ MAX_LENGTH }}</mat-hint>
+          <mat-error>{{ form.controls['surname'].errors | error : MAX_LENGTH }}</mat-error>
           <input placeholder="Ingrese su apellido" formControlName="surname" matInput #inputSurname />
         </mat-form-field>
 
@@ -44,7 +44,7 @@
           <mat-label>Instagram</mat-label>
           <mat-icon [svgIcon]="'instagram'" matPrefix></mat-icon>
           <mat-hint align="end">{{ inputInstagram.value.length }}/{{ 30 }}</mat-hint>
-          <mat-error>{{ form.controls['instagram'].errors | error }}</mat-error>
+          <mat-error>{{ form.controls['instagram'].errors | error : 30 }}</mat-error>
           <input placeholder="Ingrese su instagram" formControlName="instagram" matInput #inputInstagram />
         </mat-form-field>
 
@@ -54,7 +54,7 @@
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-error>{{ form.controls['birthday'].errors | error }}</mat-error>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-datepicker-toggle [for]="picker" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker-toggle [for]="picker" matIconSuffix [tabIndex]="-1"></mat-datepicker-toggle>
           <input placeholder="Elige una fecha" formControlName="birthday" [matDatepicker]="picker" matInput />
         </mat-form-field>
 

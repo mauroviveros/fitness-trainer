@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { BehaviorSubject, Subscription, switchMap, tap } from "rxjs";
-
+import { BehaviorSubject, Subscription, filter, switchMap, tap } from "rxjs";
+import { environment } from "src/environments/environment";
 import { AuthService } from "../../modules/auth/services/auth.service";
 import { UserService } from "../../modules/auth/services/user.service";
+import { DialogService } from "src/app/shared/services/dialog.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "core-profile",
@@ -12,18 +13,21 @@ import { UserService } from "../../modules/auth/services/user.service";
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  private readonly auth = inject(AuthService);
-  private readonly user = inject(UserService);
   private readonly formBuider = inject(FormBuilder);
-  private readonly router = inject(Router);
+  private readonly router     = inject(Router);
+  private readonly auth   = inject(AuthService);
+  private readonly user   = inject(UserService);
+  private readonly dialog = inject(DialogService);
   private readonly subscriptions: Subscription[] = [];
+  
+  readonly MAX_LENGTH = environment.MAX_LENGTH;
   readonly $mode = new BehaviorSubject<number>(3);
   isLoading = false;
 
   readonly form: FormGroup = this.formBuider.group({
-    name: [null, [Validators.required]],
-    surname: [null, [Validators.required]],
-    instagram: [null, [Validators.required]],
+    name: [null, [Validators.required, Validators.maxLength(this.MAX_LENGTH)]],
+    surname: [null, [Validators.required, Validators.maxLength(this.MAX_LENGTH)]],
+    instagram: [null, [Validators.required, Validators.maxLength(30)]],
     email: [null, [Validators.required, Validators.email]],
     gender: [null, [Validators.required]],
     birthday: [null, [Validators.required]]
@@ -32,12 +36,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.subscriptions.push(this.initMode());
     this.subscriptions.push(this.initUserData());
+    this.subscriptions.push(this.initNewUser());
   }
 
   ngOnDestroy(){
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   private initMode(){
@@ -51,22 +54,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  private initNewUser(){
+    return this.user.$snapshot.pipe(
+      filter(user => !user.exists()),
+      tap(() => this.$mode.next(1)),
+      switchMap(() => this.dialog.showWelcome())
+    ).subscribe();
+  }
+
   private initUserData(){
     return this.auth.$user.pipe(
       tap(user => {
-        this.form.controls["email"].setValue(user?.email);
+        this.form.controls["email"].setValue(user.email);
         this.form.controls["email"].disable();
       }),
       switchMap(() => this.user.$data),
     ).subscribe(data => {
-      if(!data) this.$mode.next(1);
-      else{
-        const controlsName = Object.keys(this.form.controls).filter(key => key !== "email");
-        controlsName.forEach(controlName => this.form.controls[controlName].setValue(data[controlName]));
-      }
+      const controlsName = Object.keys(this.form.controls).filter(key => key !== "email");
+      controlsName.forEach(controlName => this.form.controls[controlName].setValue(data[controlName]));
     });
   }
-
 
   submit(){
     if(this.form.invalid) return;

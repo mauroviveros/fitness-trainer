@@ -1,58 +1,58 @@
 :host{
 
-    mat-toolbar{
-        h1{ text-align: center; flex: 1; }
-    }
+  mat-toolbar{
+      h1{ text-align: center; flex: 1; }
+  }
 
 
-    section{
-        height: calc(100% - 56px);
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        flex: 1;
+  section{
+      height: calc(100% - 56px);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      flex: 1;
 
-        figure{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-            margin: 0;
+      figure{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          z-index: 2;
+          margin: 0;
 
-            button[mat-mini-fab], button[mat-fab]{ position: absolute; }
-            button[mat-fab]{ bottom: -1.75rem; right: 1rem; }
-            button[mat-mini-fab]{
-                right: 1.5rem;
-                right: 5rem;
-                bottom: -1.25rem
-            }
-        }
+          button[mat-mini-fab], button[mat-fab]{ position: absolute; }
+          button[mat-fab]{ bottom: -1.75rem; right: 1rem; }
+          button[mat-mini-fab]{
+              right: 1.5rem;
+              right: 5rem;
+              bottom: -1.25rem
+          }
+      }
 
-        mat-card{
-            border-radius: 2rem;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            flex: 99;
-            overflow: hidden;
+      mat-card{
+          border-radius: 2rem;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          flex: 99;
+          overflow: hidden;
 
-            mat-progress-bar{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-            }
+          mat-progress-bar{
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: 1;
+          }
 
-            mat-card-content{
-                overflow: auto;
+          mat-card-content{
+              overflow: auto;
 
-                form{
-                    display: flex;
-                    flex-direction: column;
-                    padding: 1rem 1rem 0;
-                }
-            }
-        }
-    }
+              form{
+                  display: flex;
+                  flex-direction: column;
+                  padding: 1rem 1rem 0;
+              }
+          }
+      }
+  }
 }
