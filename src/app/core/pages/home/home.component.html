@@ -2,7 +2,7 @@
   <figure>
     <core-profile-image [routerLink]="['/profile']"></core-profile-image>
     <figcaption>
-      <h1>Hola {{ user.name }} {{ user.surname }}!</h1>
+      <h1>Hola {{ user | user | titlecase }}!</h1>
     </figcaption>
   </figure>
 
