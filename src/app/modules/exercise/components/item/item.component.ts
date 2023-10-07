@@ -8,8 +8,7 @@ import { DialogService } from "src/app/shared/services/dialog.service";
 
 @Component({
   selector: "exercise-item",
-  templateUrl: "./item.component.html",
-  styleUrls: ["./item.component.scss"]
+  templateUrl: "./item.component.html"
 })
 export class ItemComponent {
   private readonly dialog = inject(DialogService);
