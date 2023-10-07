@@ -9,7 +9,7 @@
   <mat-card>
     <mat-card-content>
       <ng-container *ngFor="let shortcut of shortcuts">
-        <core-shortcut [shortcut]="shortcut"></core-shortcut>
+        <core-shortcut [shortcut]="shortcut" *ngIf="shortcut.admin ? user._admin : true"></core-shortcut>
       </ng-container>
     </mat-card-content>
   </mat-card>

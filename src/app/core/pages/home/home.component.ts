@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   user: UserDoc = {} as UserDoc;
 
   shortcuts: Shortcut[] = [
+    { _id: "exercises", icon: "fitness_center", label: "ejercicios", link: "/exercises", admin: true },
+    { _id: "customers", icon: "people", label: "clientes", link: "/customers", admin: true },
     { _id: "profile", icon: "manage_accounts", label: "mis datos", link: "/profile" },
     { _id: "logout", icon: "logout", label: "cerrar sesión" }
   ];
