@@ -6,6 +6,7 @@ import { AuthService } from "../../modules/auth/services/auth.service";
 import { UserService } from "../../modules/auth/services/user.service";
 import { DialogService } from "src/app/shared/services/dialog.service";
 import { Router } from "@angular/router";
+import { MediaService } from "src/app/shared/services/media.service";
 
 @Component({
   selector: "core-profile",
@@ -18,10 +19,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private readonly auth   = inject(AuthService);
   private readonly user   = inject(UserService);
   private readonly dialog = inject(DialogService);
+  private readonly media  = inject(MediaService);
   private readonly subscriptions: Subscription[] = [];
   
   readonly MAX_LENGTH = environment.MAX_LENGTH;
   readonly $mode = new BehaviorSubject<number>(3);
+  readonly $isMobile = this.media.$isMobile;
   isLoading = false;
 
   readonly form: FormGroup = this.formBuider.group({
