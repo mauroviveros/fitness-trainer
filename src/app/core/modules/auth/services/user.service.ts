@@ -25,7 +25,7 @@ export class UserService {
 
   readonly $data : Observable<UserDoc> = this.$snapshot.pipe(
     filter(user => user.exists()),
-    map(user => this.convert(user) as UserDoc),
+    map(user => this.convertSnapshot(user) as UserDoc),
   );
 
   constructor(){
@@ -34,11 +34,15 @@ export class UserService {
     ).subscribe();
   }
 
-  private convert(snapshot: DocumentSnapshot<DocumentData>){
+  private convertSnapshot(snapshot: DocumentSnapshot<DocumentData>){
     const document = snapshot.data();
     if(!document) return undefined;
 
     document["_id"] = snapshot.id;
+    return this.convert(document);
+  }
+
+  convert(document: DocumentData){
     if(document["birthday"]) document["birthday"] = document["birthday"].toDate();
     return document as UserDoc;
   }
