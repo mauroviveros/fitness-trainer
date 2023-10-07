@@ -1,19 +1,12 @@
 import { Component, Inject, inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { DomSanitizer } from "@angular/platform-browser";
+import { SafeResourceUrl } from "@angular/platform-browser";
+import { VideoService } from "../../services/video.service";
 
 interface VideoDialogContent{
   title: string
   url: string
 }
-
-const converters = [
-  {
-    web: "https://vimeo.com",
-    iframe: "https://player.vimeo.com/video",
-    queryParams: "autoplay=1"
-  }
-];
 
 @Component({
   selector: "shared-video-dialog",
@@ -21,18 +14,12 @@ const converters = [
   styleUrls: ["./video-dialog.component.scss"]
 })
 export class VideoDialogComponent {
-  private readonly sanitizer = inject(DomSanitizer);
-  iframeUrl;
+  private readonly video = inject(VideoService);
+  iframeUrl? : SafeResourceUrl | null;
+  title? : string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: VideoDialogContent){
-
-    converters.forEach(converter => {
-      if(this.data.url.includes(converter.web)){
-        const id = this.data.url.split("/").at(-1)?.split("?")[0];
-        this.data.url = `${converter.iframe}/${id}?${converter.queryParams}`;
-      }
-    });
-
-    this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.url);
+  constructor(@Inject(MAT_DIALOG_DATA) data: VideoDialogContent){
+    this.title = data.title;
+    this.iframeUrl = this.video.getIframeUrl(data.url);
   }
 }

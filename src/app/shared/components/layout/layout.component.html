@@ -1,50 +1,35 @@
 <mat-drawer-container [hasBackdrop]="true">
-  <mat-drawer #drawer mode="push">
-    <ng-container *ngTemplateOutlet="MenuNavigation"></ng-container>
-  </mat-drawer>
+  <mat-drawer #drawer mode="push"> </mat-drawer>
+
   <mat-drawer-content>
-    <mat-toolbar>
-      <button mat-icon-button type="button" (click)="drawer.toggle()" *ngIf="!layout.back && !layout.close; else backNavigation">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" *ngIf="!mode || mode === 3; else closeBtn">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <h1>{{ layout.title | titlecase }}</h1>
+      <h1>{{ text }}</h1>
 
-      <ng-container *ngFor="let action of layout.actions">
-        <button mat-icon-button [type]="action.type || 'button'" [disabled]="loading || loadingData" (click)="onAction(action._id)">
-          <mat-icon>{{ action.icon }}</mat-icon>
-        </button>
-      </ng-container>
+      <ng-content select=".actions"></ng-content>
     </mat-toolbar>
-    <section>
-      <article *ngIf="!loadingData; else loadingScreen">
-        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-        <ng-content></ng-content>
-      </article>
-    </section>
+    <main>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <section>
+        <article *ngIf="!loadingDM; else loadingScreen">
+          <ng-content></ng-content>
+        </article>
+      </section>
+    </main>
   </mat-drawer-content>
 </mat-drawer-container>
 
 <ng-template #loadingScreen>
+  <!-- <article class="banner"> -->
   <mat-spinner></mat-spinner>
+  <!-- </article> -->
 </ng-template>
 
-<ng-template #MenuNavigation>
-  <mat-nav-list>
-    <mat-list-item
-      *ngFor="let shortcut of navigation.menu"
-      [routerLink]="[shortcut.link]"
-      [routerLinkActiveOptions]="routerLinkOptions"
-      routerLinkActive="active"
-      (click)="navigation.onNavigation(shortcut._id)">
-      <mat-icon matListItemIcon>{{ shortcut.icon }}</mat-icon>
-      <span matListItemTitle>{{ shortcut.label | titlecase }}</span>
-    </mat-list-item>
-  </mat-nav-list>
-</ng-template>
-
-<ng-template #backNavigation>
-  <button mat-icon-button (click)="navigate()" type="button" [disabled]="loading || loadingData">
-    <mat-icon>{{ layout.close ? 'close' : 'arrow_back' }}</mat-icon>
-  </button>
+<ng-template #closeBtn>
+  <a mat-icon-button [routerLink]="['..']">
+    <mat-icon>close</mat-icon>
+  </a>
 </ng-template>

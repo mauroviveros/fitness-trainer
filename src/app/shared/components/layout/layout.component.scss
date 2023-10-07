@@ -1,105 +1,70 @@
-@import "breakpoints";
-
 :host{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+
+  mat-drawer-container{
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    height: 100%;
-    width: 100%;
+    flex: 1;
+  }
 
-    mat-nav-list{
-        mat-list-item.active{
-            background-color: rgba(0, 0, 0, 0.1);
-        }
+  mat-drawer-content{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+
+    mat-toolbar{
+      padding: 0 .25rem;
+      h1{
+        flex: 1;
+        padding: 0 1rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
     }
 
-    mat-drawer-container{
+    main{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: auto;
+      flex: 1;
+
+      height: 50%;
+
+      section{
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        height: 100%;
+        flex: 1;
 
-        mat-drawer-content{
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-
-            mat-toolbar{
-                min-height: 64px;
-                @media #{$media-xsmall}{ min-height: 56px; }
-                h1{
-                    padding: 0 .25rem;
-                    width: 100%;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
-                }
-            }
-
-            section{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                overflow-y: auto;
-                padding-top: 0px;
-                flex: 1;
-
-                article{
-                    display: flex;
-                    flex-direction: column;
-                    padding: 0;
-                    position: relative;
-                    width: 100%;
-                    height: 0;
-                    flex: 1;
-
-                    mat-progress-bar{
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                    }
-                }
-            }
+        article{
+          width: 100%;
+          height: 100%;
         }
+
+      }
     }
+  }
 
 }
 
 :host::ng-deep{
-    article{
+  form{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
 
-        mat-list-option{
-            align-items: center;
-        }
-
-        [matlistitemicon]{
-            display: flex;
-            align-items: center;
-            height: 100%;
-            margin-top: 0 !important;
-            margin-left: 1.75rem;
-            margin-right: 1rem;
-        }
-
-        [matlistitemmeta]{
-            display: flex !important;
-            align-items: center;
-            height: 100%;
-        }
-
-        mat-form-field{
-            padding: 0 1.75rem;
-        }
-
-        mat-nav-list{
-            padding: 0;
-        }
-
-        [mat-fab]{
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-        }
-    }
+  }
 }

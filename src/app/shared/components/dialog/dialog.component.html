@@ -1,8 +1,6 @@
-<mat-toolbar mat-dialog-title>
-  <h2>{{ data.title | titlecase }}</h2>
-</mat-toolbar>
+<mat-toolbar mat-dialog-title>{{ data.title | titlecase }}</mat-toolbar>
 <mat-dialog-content>
-  <mat-icon>{{ data.icon }}</mat-icon>
+  <mat-icon color="primary">{{ data.icon }}</mat-icon>
   <p *ngFor="let text of data.texts">{{ text }}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -1,9 +1,7 @@
-<mat-toolbar mat-dialog-title>
-  <h2>{{ data.title }}</h2>
-</mat-toolbar>
+<mat-toolbar mat-dialog-title>{{ title }}</mat-toolbar>
 <mat-dialog-content>
-  <iframe [src]="iframeUrl" width="100%" frameborder="0" allow="autoplay"></iframe>
+  <iframe [src]="iframeUrl" width="100%" frameborder="0" allow="autoplay" *ngIf="iframeUrl"></iframe>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>cancelar</button>
+  <button mat-button mat-dialog-close>aceptar</button>
 </mat-dialog-actions>
