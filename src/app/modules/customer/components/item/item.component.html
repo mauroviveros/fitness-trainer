@@ -1,6 +1,7 @@
 <mat-list-item>
   <mat-icon matListItemIcon>person</mat-icon>
-  <div matListItemTitle>{{ customer.name | titlecase }} {{ customer.surname | titlecase }}</div>
+  <div matListItemTitle>{{ customer | user | titlecase }}</div>
+  <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions>
   <!-- <span matListItemLine>{{ user }}</span> -->
   <!-- <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions> -->
 </mat-list-item>
