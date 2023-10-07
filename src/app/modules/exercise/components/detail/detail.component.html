@@ -1,6 +1,4 @@
-<mat-toolbar mat-dialog-title>
-  <h2>{{ title | titlecase }}</h2>
-</mat-toolbar>
+<mat-toolbar mat-dialog-title>{{ title | titlecase }}</mat-toolbar>
 
 <mat-dialog-content>
   <mat-progress-bar mode="indeterminate" *ngIf="isSaving"></mat-progress-bar>
@@ -29,6 +27,7 @@
       <mat-label>URL del video</mat-label>
       <mat-icon color="primary" matIconPrefix>videocam</mat-icon>
       <mat-error>{{ form.controls['video'].errors | error }}</mat-error>
+      <mat-hint>Solo videos de Vimeo o YouTube</mat-hint>
       <input type="url" formControlName="video" placeholder="Ingrese la URL del video" matInput />
     </mat-form-field>
 
