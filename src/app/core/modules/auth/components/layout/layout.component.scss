@@ -46,11 +46,6 @@
 }
 
 :host::ng-deep{
-  mat-progress-bar{
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
   form{
     mat-form-field, button{ width: 100%; }
   }

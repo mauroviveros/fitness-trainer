@@ -16,6 +16,14 @@
       color: mat.get-contrast-color-from-palette($primary-palette, 50) !important;
     }
   }
+
+  mat-nav-list{
+    mat-list-item{
+      *[matListItemIcon]{
+        color: mat.get-color-from-palette($primary-palette, 500) !important;
+      }
+    }
+  }
 }
 
 @mixin theme($theme) {
