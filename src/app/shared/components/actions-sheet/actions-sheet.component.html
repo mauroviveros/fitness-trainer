@@ -1,0 +1,6 @@
+<mat-nav-list>
+  <mat-list-item *ngFor="let action of actions" (click)="select(action)">
+    <mat-icon matListItemIcon>{{ action.icon }}</mat-icon>
+    <div matListItemTitle>{{ action.text }}</div>
+  </mat-list-item>
+</mat-nav-list>
