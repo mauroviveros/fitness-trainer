@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly auth = inject(AuthService);
   private readonly user = inject(UserService);
   private subscription?: Subscription;
-  isLoading = false;
+  isLoading = true;
 
   ngOnInit(){
     this.subscription = this.initLoadingChecker();
@@ -27,8 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private initLoadingChecker(){
-    return this.auth.$user.pipe(
-      tap(() => this.isLoading = true),
+    return this.auth.$snapshot.pipe(
+      tap(user => this.isLoading = !!user),
       switchMap(() => this.user.$snapshot),
     ).subscribe(() => this.isLoading = false);
   }

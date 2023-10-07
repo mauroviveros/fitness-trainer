@@ -4,7 +4,11 @@ import { CoreRoutingModule } from "./core/core.routing";
 import { AuthRoutingModule } from "./core/modules/auth/auth.routing";
 
 const routes: Routes = [
-  
+  {
+    path: "exercises",
+    loadChildren: () => import("./modules/exercise/exercise.module").then(m => m.ExerciseModule)
+    // loadChildren: () => ExerciseRoutingModule
+  }
 ];
 
 @NgModule({
