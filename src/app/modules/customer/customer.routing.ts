@@ -5,13 +5,8 @@ import { ListComponent } from "./pages/list/list.component";
 const routes: Routes = [
   {
     path: "",
-    title: "Fitness - Trainer | Clientes Listado",
-    component: ListComponent,
-    data: {
-      layout: {
-        title: "Listado Clientes"
-      }
-    }
+    title: "Fitness - Trainer | Listado Clientes",
+    component: ListComponent
   }
 ];
 
