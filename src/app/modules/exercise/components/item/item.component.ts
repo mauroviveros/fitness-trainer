@@ -1,4 +1,4 @@
-import { Component, Input, inject } from "@angular/core";
+import { Component, EventEmitter, Input, Output, inject } from "@angular/core";
 
 import { Exercise } from "src/app/shared/interfaces/exercise";
 import { ExerciseService } from "../../services/exercise.service";
@@ -14,6 +14,7 @@ import { DialogService } from "src/app/shared/services/dialog.service";
 export class ItemComponent {
   private readonly dialog = inject(DialogService);
   private readonly service = inject(ExerciseService);
+  @Output() loading = new EventEmitter<boolean>();
   @Input() exercise!: Exercise;
 
   actions: Action[] = [
@@ -25,10 +26,14 @@ export class ItemComponent {
 
   onAction(action: string){
     switch(action){
-      case "video": console.log("video"); break;
+      case "video": this.dialog.openVideoFrame(this.exercise.name, this.exercise.video); break;
       case "update": this.open(2); break;
-      case "delete": console.log("delete"); break;
+      case "delete": this.delete(); break;
     }
+  }
+
+  delete(){
+    this.service.delete(this.exercise._id);
   }
 
   open(mode: 1 | 2 | 3){

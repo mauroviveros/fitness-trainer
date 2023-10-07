@@ -1,9 +1,9 @@
-<shared-layout [loadingData]="isLoading">
-  <mat-nav-list>
-    <exercise-item-list *ngFor="let exercise of list" [exercise]="exercise"></exercise-item-list>
+<shared-layout text="Listado Ejercicios" [loading]="isLoading" [loadingDM]="isLoadingDM">
+  <mat-nav-list class="padding">
+    <exercise-item *ngFor="let exercise of exercises" [exercise]="exercise" (loading)="isLoading = $event"></exercise-item>
   </mat-nav-list>
 
-  <button mat-fab (click)="create()">
+  <button mat-fab (click)="create()" class="absolute">
     <mat-icon>add</mat-icon>
   </button>
 </shared-layout>

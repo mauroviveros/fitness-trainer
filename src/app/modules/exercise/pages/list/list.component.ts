@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription } from "rxjs";
-
-import { ExerciseService } from "../../services/exercise.service";
 
 import { Exercise } from "src/app/shared/interfaces/exercise";
+import { ExerciseService } from "../../services/exercise.service";
+import { Subscription, tap } from "rxjs";
 
 @Component({
   selector: "exercise-list",
@@ -12,28 +10,27 @@ import { Exercise } from "src/app/shared/interfaces/exercise";
 })
 export class ListComponent implements OnInit, OnDestroy {
   private readonly exercise = inject(ExerciseService);
-  private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
-  private subscription?: Subscription;
-  isLoading = true;
-  list: Exercise[] = [];
+  private readonly subscriptions : Subscription[] = [];
+  exercises: Exercise[] = [];
+  isLoadingDM = true;
+  isLoading = false;
+
 
   ngOnInit(){
-    this.subscription = this.initList();
+    this.subscriptions.push(this.initList());
   }
 
   ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   private initList(){
-    return this.exercise.$list.subscribe(exercises => {
-      this.isLoading = false;
-      this.list = exercises;
-    });
+    return this.exercise.$list.pipe(
+      tap(() => this.isLoadingDM = false)
+    ).subscribe(exercises => this.exercises = exercises);
   }
 
   create(){
-    this.router.navigate(["create"], { relativeTo: this.route });
+    this.exercise.openExercise(1);
   }
 }
