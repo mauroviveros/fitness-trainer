@@ -24,6 +24,16 @@
       }
     }
   }
+
+  main{
+    background-color: mat.get-color-from-palette($primary-palette, 100) !important;
+    // color: mat.get-contrast-color-from-palette($primary-palette, 500) !important;
+  }
+
+  .highlight_day{
+    background-color: rgba(255, 0, 0, .15)!important;
+  }
+
 }
 
 @mixin theme($theme) {
