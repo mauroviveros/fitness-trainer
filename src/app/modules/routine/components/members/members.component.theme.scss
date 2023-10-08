@@ -5,9 +5,11 @@
   $primary-palette: map.get($config, primary);
 
   routine-members{
-    border-color: mat.get-color-from-palette($primary-palette, 500) !important;
-    background-color: mat.get-color-from-palette($primary-palette, 100) !important;
-    color: mat.get-contrast-color-from-palette($primary-palette, 100) !important;
+    article{
+      border-color: mat.get-color-from-palette($primary-palette, 500) !important;
+      background-color: mat.get-color-from-palette($primary-palette, 100) !important;
+      color: mat.get-contrast-color-from-palette($primary-palette, 100) !important;
+    }
   }
 }
 

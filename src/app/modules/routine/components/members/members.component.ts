@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, Input, OnChanges, OnDestroy, inject } from "@angular/core";
 import { DocumentReference } from "@angular/fire/firestore";
 import { Subscription } from "rxjs";
 
@@ -11,17 +11,17 @@ import { UserDoc } from "src/app/shared/interfaces/user";
   templateUrl: "./members.component.html",
   styleUrls: ["./members.component.scss"]
 })
-export class MembersComponent implements OnInit, OnDestroy {
+export class MembersComponent implements OnChanges, OnDestroy {
   private readonly user = inject(UserService);
   readonly subscriptions : Subscription[] = [];
   @Input() customerRef? : DocumentReference;
   @Input() adminRef? : DocumentReference;
-  customer: UserDoc = {} as UserDoc;
-  admin: UserDoc = {} as UserDoc;
+  admin?: UserDoc = {} as UserDoc;
+  customer?: UserDoc;
 
-  ngOnInit(){
-    if(this.adminRef) this.subscriptions.push(this.user.doc(this.adminRef).subscribe(admin => this.admin = admin));
-    if(this.customerRef) this.subscriptions.push(this.user.doc(this.customerRef).subscribe(customer => this.customer = customer));
+  ngOnChanges(){
+    if(this.adminRef) this.subscriptions[0] = this.user.doc(this.adminRef).subscribe(admin => this.admin = admin);
+    if(this.customerRef) this.subscriptions[1] = this.user.doc(this.customerRef).subscribe(customer => this.customer = customer);
   }
 
   ngOnDestroy(){

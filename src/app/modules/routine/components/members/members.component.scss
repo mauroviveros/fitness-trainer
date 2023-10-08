@@ -1,19 +1,24 @@
 :host{
   display: flex;
   flex-direction: column;
-  padding: .5rem;
-  border-width: .125rem;
-  border-style: solid;
-  border-radius: .5rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  box-sizing: border-box;
 
-  p{
+  article{
     display: flex;
-    align-self: center;
+    flex-direction: column;
+    padding: .5rem;
+    border-width: .125rem;
+    border-style: solid;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
     width: 100%;
-    margin: 0;
-    gap: .5rem;
+    box-sizing: border-box;
+
+    p{
+      display: flex;
+      align-self: center;
+      width: 100%;
+      margin: 0;
+      gap: .5rem;
+    }
   }
 }

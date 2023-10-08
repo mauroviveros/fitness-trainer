@@ -1,8 +1,10 @@
-<p>
-  <mat-icon color="primary" matIconPrefix>person</mat-icon>
-  <span *ngIf="customer">Para: {{ customer | user | titlecase }}</span>
-</p>
-<p>
-  <mat-icon color="primary" matIconPrefix>supervised_user_circle</mat-icon>
-  <span *ngIf="admin">{{ admin | user | titlecase }}</span>
-</p>
+<article>
+  <p *ngIf="customer">
+    <mat-icon color="primary" matIconPrefix>person</mat-icon>
+    <span>Para: {{ customer | user | titlecase }}</span>
+  </p>
+  <p>
+    <mat-icon color="primary" matIconPrefix>supervised_user_circle</mat-icon>
+    <span *ngIf="admin">{{ admin | user | titlecase }}</span>
+  </p>
+</article>
