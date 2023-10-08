@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject } from "@angular/core";
+import { filter, switchMap } from "rxjs";
 
 import { Exercise } from "src/app/shared/interfaces/exercise";
 import { ExerciseService } from "../../services/exercise.service";
@@ -32,7 +33,10 @@ export class ItemComponent {
   }
 
   delete(){
-    this.service.delete(this.exercise._id);
+    this.dialog.showConfirmDelete("Borrando Ejercicio", this.exercise.name).pipe(
+      filter(boolean => boolean),
+      switchMap(() => this.service.delete(this.exercise._id))
+    ).subscribe();
   }
 
   open(mode: 1 | 2 | 3){

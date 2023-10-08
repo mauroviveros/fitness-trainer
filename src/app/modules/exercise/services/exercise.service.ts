@@ -70,9 +70,8 @@ export class ExerciseService {
 
   async delete(_id: string) : Promise<void> {
     try {
-      const response = await deleteDoc(doc(this.collection, _id));
+      await deleteDoc(doc(this.collection, _id));
       this.message.success("Ejercicio borrado correctamente");
-      return response;
     } catch (error) {
       this.message.error(error as Error); throw error;
     }
