@@ -2,6 +2,7 @@
   <mat-icon matListItemIcon>person</mat-icon>
   <div matListItemTitle>{{ customer | user | titlecase }}</div>
   <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions>
-  <!-- <span matListItemLine>{{ user }}</span> -->
-  <!-- <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions> -->
+  <span matListItemLine *ngIf="routines.length">
+    <mat-chip>{{ routines[0].dateIN | date : 'mediumDate' }} - {{ routines[0].dateOUT | date : 'mediumDate' }}</mat-chip>
+  </span>
 </mat-list-item>

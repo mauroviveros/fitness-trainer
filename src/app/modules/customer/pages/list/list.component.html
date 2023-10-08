@@ -1,5 +1,5 @@
 <shared-layout text="Listado Clientes" [loading]="isLoading" [loadingDM]="isLoadingDM">
   <mat-nav-list class="padding">
-    <customer-item *ngFor="let customer of customers" [customer]="customer"></customer-item>
+    <customer-item *ngFor="let customer of customers" [customer]="customer" [routines]="getRoutines(customer)"></customer-item>
   </mat-nav-list>
 </shared-layout>
