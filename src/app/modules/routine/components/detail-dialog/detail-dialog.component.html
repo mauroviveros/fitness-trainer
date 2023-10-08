@@ -3,7 +3,7 @@
 <mat-dialog-content>
   <mat-progress-bar mode="indeterminate" *ngIf="isSaving"></mat-progress-bar>
 
-  <routine-members [customer]="form.controls['customer'].value" [admin]="form.controls['admin'].value"></routine-members>
+  <routine-members [customerRef]="form.controls['customer'].value" [adminRef]="form.controls['admin'].value"></routine-members>
 
   <form [formGroup]="form" id="Routine" (submit)="submit()">
     <mat-form-field>

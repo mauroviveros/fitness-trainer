@@ -67,13 +67,9 @@ export class DetailDialogComponent {
   submit() : void {
     if(this.form.invalid) return;
     this.isSaving = true;
-    
+
     this.routine.upload(this.form.value)
       .then(() => this.dialog.close())
       .finally(() => this.isSaving = false);
-
-    setTimeout(() => {
-      this.isSaving = false;
-    }, 3000);
   }
 }
