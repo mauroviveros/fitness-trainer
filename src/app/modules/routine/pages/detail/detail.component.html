@@ -1,4 +1,4 @@
-<shared-layout text="Detalle Rutina">
+<shared-layout text="Detalle Rutina" [loadingDM]="isLoading">
   <mat-tab-group backgroundColor="primary" dynamicHeight>
     <mat-tab label="Información"><routine-information [routine]="routine"></routine-information></mat-tab>
     <mat-tab label="Cliente"><routine-customer [routine]="routine"></routine-customer></mat-tab>
