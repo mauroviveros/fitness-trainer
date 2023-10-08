@@ -5,18 +5,23 @@ import { MatCalendarCellClassFunction } from "@angular/material/datepicker";
   providedIn: "root"
 })
 export class DateService {
-  
 
+  get daysOfWeek() : string[] { return this.getDaysOfWeek("long"); }
 
-
-  get daysOfWeek() : string[] {
+  getDaysOfWeek(weekday? : "long" | "short" | "narrow") : string[] {
     const daysOfWeek: string[] = [];
     for (let i = 0; i < 7; i++) {
       const date = new Date("01-01-2023"); // 1 Enero 2023 - Domingo
       date.setDate(date.getDate() + i);
-      daysOfWeek.push(date.toLocaleDateString("es-AR", { weekday: "long" }));
+      daysOfWeek.push(date.toLocaleDateString("es-AR", { weekday }));
     }
     return daysOfWeek;
+  }
+
+  getAge(birthdate: Date) : number{
+    const timeDiff = Math.abs(Date.now() - birthdate.getTime());
+    const age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    return age;
   }
 
   highlightCalendar(daysOfWeek?: number[]) : MatCalendarCellClassFunction<Date> {
