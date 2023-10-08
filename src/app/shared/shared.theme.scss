@@ -17,7 +17,7 @@
     }
   }
 
-  mat-nav-list{
+  mat-list, mat-nav-list{
     mat-list-item{
       *[matListItemIcon]{
         color: mat.get-color-from-palette($primary-palette, 500) !important;
