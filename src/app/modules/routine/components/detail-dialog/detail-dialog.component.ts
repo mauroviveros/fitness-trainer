@@ -14,7 +14,7 @@ interface DetailDialogContent {
 @Component({
   selector: "routine-detail-dialog",
   templateUrl: "./detail-dialog.component.html",
-  styles: ["routine-members{ width: 100% }"]
+  styles: ["routine-members{ width: 100%; margin-bottom: .75rem; }"]
 })
 export class DetailDialogComponent {
   private readonly formBuilder = inject(FormBuilder);
