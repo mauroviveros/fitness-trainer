@@ -4,6 +4,6 @@
   <p *ngFor="let text of data.texts">{{ text }}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>cancelar</button>
-  <button mat-button mat-dialog-close *ngIf="data.action" (click)="onAction()" cdkFocusInitial>{{ data.action.label }}</button>
+  <button type="button" color="primary" mat-button mat-dialog-close>cancelar</button>
+  <button type="button" color="primary" *ngIf="data.action" (click)="onAction()" mat-raised-button cdkFocusInitial>{{ data.action.label }}</button>
 </mat-dialog-actions>

@@ -41,6 +41,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close *ngIf="!isSaving">{{ mode === 3 ? 'aceptar' : 'cancelar' }}</button>
-  <button type="submit" form="Exercise" mat-button *ngIf="mode !== 3" [disabled]="isSaving || form.invalid">guardar</button>
+  <button type="button" color="primary" *ngIf="!isSaving" mat-button mat-dialog-close>{{ mode === 3 ? 'aceptar' : 'cancelar' }}</button>
+  <button type="submit" color="primary" form="Exercise" [disabled]="isSaving || form.invalid" *ngIf="mode !== 3" mat-raised-button>guardar</button>
 </mat-dialog-actions>
