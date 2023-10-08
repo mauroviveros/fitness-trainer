@@ -1,5 +1,13 @@
 <shared-layout text="Listado Clientes" [loading]="isLoading" [loadingDM]="isLoadingDM">
-  <mat-nav-list class="padding">
+  <mat-nav-list class="padding" *ngIf="customers.length; else emptyBanner">
     <customer-item *ngFor="let customer of customers" [customer]="customer" [routines]="getRoutines(customer)"></customer-item>
   </mat-nav-list>
 </shared-layout>
+
+<ng-template #emptyBanner>
+  <shared-empty-banner>
+    <mat-icon color="accent">supervised_user_circle</mat-icon>
+    <h3>No tienes clientes</h3>
+    <p>Necesitas nuevos usuarios (clientes) para empezar a gestionar sus rutinas</p>
+  </shared-empty-banner>
+</ng-template>
