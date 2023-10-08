@@ -10,8 +10,8 @@
       color: mat.get-contrast-color-from-palette($primary-palette, 300) !important;
     }
     mat-card{
-      background-color: mat.get-color-from-palette($primary-palette, 50) !important;
-      color: mat.get-contrast-color-from-palette($primary-palette, 50);
+      background-color: mat.get-color-from-palette($primary-palette, 100) !important;
+      color: mat.get-contrast-color-from-palette($primary-palette, 100);
       .mdc-text-field{ background-color: transparent !important; }
     }
   }
