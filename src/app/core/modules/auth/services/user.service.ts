@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, DocumentReference, DocumentSnapshot, Firestore, collection, doc, docSnapshots, setDoc, updateDoc } from "@angular/fire/firestore";
+import { DocumentData, DocumentReference, DocumentSnapshot, Firestore, collection, doc, docData, docSnapshots, setDoc, updateDoc } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
 import { User } from "@angular/fire/auth";
 import { Observable, filter, firstValueFrom, map, switchMap, tap } from "rxjs";
@@ -49,6 +49,12 @@ export class UserService {
 
   ref(user: UserDoc) : DocumentReference<DocumentData> {
     return doc(this.collection, user._id);
+  }
+
+  doc(reference: DocumentReference) : Observable<UserDoc> {
+    return docData(reference, { idField: "_id" }).pipe(
+      map(document => this.convert(document) as UserDoc)
+    );
   }
 
   async upload(fields: UserDoc, isNew: boolean){
