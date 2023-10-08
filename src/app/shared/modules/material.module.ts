@@ -44,14 +44,8 @@ import { DomSanitizer } from "@angular/platform-browser";
     MatToolbarModule
   ],
   providers: [
-    {
-      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-      useValue: { duration: 1500 }
-    },
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: "es-AR"
-    }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    { provide: MAT_DATE_LOCALE, useValue: "es-AR" }
   ]
 })
 export class MaterialModule {
