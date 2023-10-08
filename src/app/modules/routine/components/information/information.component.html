@@ -1,0 +1,38 @@
+<mat-list>
+  <mat-list-item>
+    <mat-icon matListItemIcon>calendar_month</mat-icon>
+    <div matListItemTitle>Dias de entrenamiento</div>
+    <mat-chip-listbox [selectable]="false" matListItemLine multiple>
+      <mat-chip-option *ngFor="let dayOfWeek of daysOfWeek; let i = index" [selected]="selectDay(i)" disableRipple>{{ dayOfWeek }}</mat-chip-option>
+    </mat-chip-listbox>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <mat-icon matListItemIcon>event</mat-icon>
+    <div matListItemTitle>Periodo</div>
+    <span matListItemLine>Desde: {{ routine?.dateIN | date : 'longDate' }}</span>
+    <span matListItemLine>Hasta: {{ routine?.dateOUT | date : 'longDate' }}</span>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <mat-icon matListItemIcon>speed</mat-icon>
+    <div matListItemTitle>Nivel de Intensidad</div>
+    <p matListItemLine *ngIf="routine">{{ levels[routine.level] | uppercase }}</p>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <mat-icon matListItemIcon>science</mat-icon>
+    <div matListItemTitle>Kal. para el objetivo</div>
+    <p matListItemLine>{{ routine?.kal | number : '1.2-2' }} Kals</p>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+
+  <mat-list-item [lines]="3">
+    <mat-icon matListItemIcon>flag</mat-icon>
+    <div matListItemTitle>Objetivo</div>
+    <p matListItemLine style="white-space: normal">{{ routine?.objective }}</p>
+  </mat-list-item>
+</mat-list>

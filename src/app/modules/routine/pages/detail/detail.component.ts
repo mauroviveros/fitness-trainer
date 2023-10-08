@@ -1,53 +1,32 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { RoutineUtilsService } from "../../services/routine-utils.service";
 import { ActivatedRoute } from "@angular/router";
+
 import { RoutineService } from "../../services/routine.service";
-import { Subscription, combineLatest } from "rxjs";
-import { UserService } from "src/app/core/modules/auth/services/user.service";
+
+import { Routine } from "src/app/shared/interfaces/routine";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: "app-detail",
+  selector: "routine-detail",
   templateUrl: "./detail.component.html",
   styleUrls: ["./detail.component.scss"]
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  private readonly routineUtils = inject(RoutineUtilsService);
-  private readonly routine = inject(RoutineService);
   private readonly route = inject(ActivatedRoute);
-  private readonly user  = inject(UserService);
-  readonly form = this.routineUtils.createForm();
-  private subscription?: Subscription;
-
-  canComplete = false;
-  isLoading = false;
-  isSaving = false;
-  isAdmin = false;
+  private readonly RoutineSrv = inject(RoutineService);
+  private readonly subscriptions : Subscription[] = [];
+  routine? : Routine;
 
   ngOnInit(){
-    this.subscription = this.initRoutine();
-  }
-
-  ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this.subscriptions.push(this.initRoutine());
   }
 
   private initRoutine(){
-    this.isLoading = true;
-    const subscriptions = !this.route.snapshot.params["_id"] ?
-      combineLatest([this.routine.getOwn(), this.user.$data]) :
-      combineLatest([this.routine.get(this.route.snapshot.params["_id"]), this.user.$data]);
+    return this.RoutineSrv.detail(this.route.snapshot.params["_id"])
+      .subscribe(routine => this.routine = routine);
+  }
 
-    return subscriptions.subscribe(([routine, user]) => {
-      Object.keys(this.form.controls).forEach(controlName => {
-        let value = routine[controlName];
-        if(controlName === "customer") value = routine.customer._id;
-        this.form.controls[controlName].setValue(value);
-        this.form.controls[controlName].disable();
-      });
-
-      this.isAdmin = user ? user._admin : false;
-      this.canComplete = this.route.snapshot.data["canComplete"] && routine.customer._id === user?._id;
-      this.isLoading = false;
-    });
+  ngOnDestroy(){
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
