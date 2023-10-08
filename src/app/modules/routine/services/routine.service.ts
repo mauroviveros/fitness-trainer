@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData, doc, orderBy, query, setDoc } from "@angular/fire/firestore";
+import { DocumentData, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc } from "@angular/fire/firestore";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Observable, map } from "rxjs";
 
@@ -35,6 +35,12 @@ export class RoutineService {
     if(document["dateIN"]) document["dateIN"] = document["dateIN"].toDate();
     if(document["dateOUT"]) document["dateOUT"] = document["dateOUT"].toDate();
     return document as Routine;
+  }
+
+  detail(_id: string){
+    return docData(doc(this.collection, _id), { idField: "_id" }).pipe(
+      map(routine => this.convert(routine) as Routine)
+    );
   }
 
   openRoutine(mode: 1 | 2 | 3 = 3, routine?: Routine, customer?: UserDoc) : MatDialogRef<DetailDialogComponent> {
