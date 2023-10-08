@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { BehaviorSubject, Subscription, filter, switchMap, take, tap } from "rxjs";
-import { environment } from "src/environments/environment";
 import { AuthService } from "../../modules/auth/services/auth.service";
 import { UserService } from "../../modules/auth/services/user.service";
 import { DialogService } from "src/app/shared/services/dialog.service";
-import { Router } from "@angular/router";
 import { MediaService } from "src/app/shared/services/media.service";
+
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "core-profile",
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private readonly dialog = inject(DialogService);
   private readonly media  = inject(MediaService);
   private readonly subscriptions: Subscription[] = [];
-  
+
+  readonly genres = this.user.genres;
   readonly MAX_LENGTH = environment.MAX_LENGTH;
   readonly $mode = new BehaviorSubject<number>(3);
   readonly $isMobile = this.media.$isMobile;

@@ -54,9 +54,7 @@
           <mat-icon color="primary" matIconPrefix>wc</mat-icon>
           <mat-error>{{ form.controls['gender'].errors | error }}</mat-error>
           <mat-select placeholder="Ingrese su género" formControlName="gender">
-            <mat-option value="MALE">Hombre</mat-option>
-            <mat-option value="FEMALE">Mujer</mat-option>
-            <mat-option value="OTHER">Otro</mat-option>
+            <mat-option *ngFor="let gender of genres" [value]="gender.value">{{ gender.text }}</mat-option>
           </mat-select>
         </mat-form-field>
 

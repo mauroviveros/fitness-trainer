@@ -19,6 +19,16 @@ export class UserService {
   private readonly message = inject(MessageService);
   private readonly router = inject(Router);
 
+  readonly genres = [
+    { value: 2, text: "HOMBRE" },
+    { value: 1, text: "MUJER" },
+    { value: 0, text: "PREFIERO NO DECIRLO" },
+  ];
+
+  getGender(value: number) : string | undefined {
+    return this.genres.find(gender => gender.value === value)?.text;
+  }
+
   readonly $snapshot : Observable<DocumentSnapshot<DocumentData>> = this.auth.$user.pipe(
     switchMap(user => docSnapshots(doc(this.collection, user.uid)))
   );
