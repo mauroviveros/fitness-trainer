@@ -27,7 +27,7 @@
 
   main{
     background-color: mat.get-color-from-palette($primary-palette, 100) !important;
-    // color: mat.get-contrast-color-from-palette($primary-palette, 500) !important;
+    color: mat.get-contrast-color-from-palette($primary-palette, 100) !important;
   }
 
   .highlight_day{
@@ -36,7 +36,25 @@
 
 }
 
+@mixin typography($config) {
+  shared-empty-banner{
+    h3{
+      font-size: mat.font-size($config, 'headline-6') !important;
+      line-height: mat.line-height($config, 'headline-6') !important;
+      font-weight: mat.font-weight($config, 'headline-6') !important;
+    }
+    p{
+      font-size: mat.font-size($config, 'subtitle-2') !important;
+      line-height: mat.line-height($config, 'subtitle-2') !important;
+      font-weight: mat.font-weight($config, 'subtitle-2') !important;
+    }
+  }
+}
+
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
+  $typography-config: mat.get-typography-config($theme);
+
   @if $color-config != null { @include color($color-config); }
+  @if $typography-config != null { @include typography($typography-config); }
 }
