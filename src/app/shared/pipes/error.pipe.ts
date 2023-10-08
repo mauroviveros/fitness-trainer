@@ -10,7 +10,8 @@ const messages: messages = {
   confirmPassword : "Las contraseñas no coinciden",
   min             : "El campo debe ser mayor a",
   minlength       : "Debe contener al menos",
-  maxlength       : "Debe contener como máximo"
+  maxlength       : "Debe contener como máximo",
+  videoUrl        : "Debe ser de Vimeo o YouTube"
 };
 
 @Pipe({
