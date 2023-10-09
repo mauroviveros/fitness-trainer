@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { Subscription } from "rxjs";
+import { ProfileImageService } from "src/app/core/services/profile-image.service";
 
-import { ProfileImageService } from "../../services/profile-image.service";
+// import { ProfileImageService } from "../../services/profile-image.service";
 
 @Component({
-  selector: "core-profile-image",
+  selector: "shared-profile-image",
   templateUrl: "./profile-image.component.html",
   styleUrls: ["./profile-image.component.scss"]
 })
