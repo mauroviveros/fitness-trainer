@@ -6,8 +6,8 @@ import { UserDoc } from "../interfaces/user";
 })
 export class UserPipe implements PipeTransform {
 
-  transform(user: UserDoc): string {
-    return `${user.name} ${user.surname}`;
+  transform(user: UserDoc | null): string {
+    return user ? `${user.name} ${user.surname}` : "";
   }
 
 }
