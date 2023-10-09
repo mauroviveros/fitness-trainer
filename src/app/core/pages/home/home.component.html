@@ -2,14 +2,14 @@
   <figure>
     <core-profile-image [routerLink]="['/profile']"></core-profile-image>
     <figcaption>
-      <h1>Hola {{ user | user | titlecase }}!</h1>
+      <h1>Hola {{ $user | async | user | titlecase }}!</h1>
     </figcaption>
   </figure>
 
   <mat-card>
     <mat-card-content>
-      <ng-container *ngFor="let shortcut of shortcuts">
-        <core-shortcut [shortcut]="shortcut" *ngIf="shortcut.admin ? user._admin : true"></core-shortcut>
+      <ng-container *ngFor="let shortcut of $shortcuts | async">
+        <core-shortcut [shortcut]="shortcut"></core-shortcut>
       </ng-container>
     </mat-card-content>
   </mat-card>

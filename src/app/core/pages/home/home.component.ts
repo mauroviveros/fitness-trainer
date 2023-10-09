@@ -1,31 +1,20 @@
-import { Component, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { map } from "rxjs";
+
 import { UserService } from "../../modules/auth/services/user.service";
-import { UserDoc } from "src/app/shared/interfaces/user";
-import { Shortcut } from "src/app/shared/interfaces/shortcut";
-import { Subscription } from "rxjs";
+import { ShortcutsService } from "src/app/shared/services/shortcuts.service";
 
 @Component({
   selector: "core-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"]
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  private readonly userSrv = inject(UserService);
-  private subscription? : Subscription;
-  user: UserDoc = {} as UserDoc;
+export class HomeComponent {
+  private readonly user = inject(UserService);
+  private readonly shortcuts = inject(ShortcutsService);
 
-  shortcuts: Shortcut[] = [
-    { _id: "exercises", icon: "fitness_center", label: "ejercicios", link: "/exercises", admin: true },
-    { _id: "customers", icon: "people", label: "clientes", link: "/customers", admin: true },
-    { _id: "profile", icon: "manage_accounts", label: "mis datos", link: "/profile" },
-    { _id: "logout", icon: "logout", label: "cerrar sesión" }
-  ];
-
-  ngOnInit(){
-    this.subscription = this.userSrv.$data.subscribe(user => this.user = user);
-  }
-
-  ngOnDestroy(){
-    this.subscription?.unsubscribe();
-  }
+  readonly $user = this.user.$data;
+  readonly $shortcuts = this.shortcuts.$shortcuts.pipe(
+    map(shortcuts => shortcuts.filter(shortcut => shortcut._id !== "home"))
+  );
 }
