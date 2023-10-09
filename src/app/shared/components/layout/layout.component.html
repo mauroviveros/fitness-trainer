@@ -1,5 +1,21 @@
 <mat-drawer-container [hasBackdrop]="true">
-  <mat-drawer #drawer mode="push"> </mat-drawer>
+  <mat-drawer #drawer mode="push">
+    <mat-toolbar color="primary">
+      <shared-profile-image></shared-profile-image>
+      <h2>{{ $user | async | user | titlecase }}</h2>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let shortcut of $shortcuts | async"
+        (click)="shortcut._id === 'logout' ? logout() : undefined"
+        [routerLink]="shortcut.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListItemIcon>{{ shortcut.icon }}</mat-icon>
+        <div>{{ shortcut.label | titlecase }}</div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
 
   <mat-drawer-content>
     <mat-toolbar color="primary">
