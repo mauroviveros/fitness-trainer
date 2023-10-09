@@ -6,7 +6,7 @@
       <mat-label>Email</mat-label>
       <mat-icon matIconPrefix color="primary">email</mat-icon>
       <mat-error>{{ form.controls['email'].errors | error }}</mat-error>
-      <input type="email" formControlName="email" placeholder="Ingrese su email" matInput />
+      <input type="email" formControlName="email" placeholder="Ingrese su email" matInput autocomplete="email" />
     </mat-form-field>
 
     <auth-password-form-field [group]="form" name="password" label="Contraseña"></auth-password-form-field>
