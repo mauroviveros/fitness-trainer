@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc } from "@angular/fire/firestore";
+import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc } from "@angular/fire/firestore";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Observable, map } from "rxjs";
 
@@ -9,6 +9,8 @@ import { DetailDialogComponent } from "../components/detail-dialog/detail-dialog
 
 import { Routine } from "src/app/shared/interfaces/routine";
 import { UserDoc } from "src/app/shared/interfaces/user";
+import { ExerciseDialogComponent } from "../components/exercise-dialog/exercise-dialog.component";
+import { Scheme } from "src/app/shared/interfaces/scheme";
 
 @Injectable({
   providedIn: "root"
@@ -19,10 +21,9 @@ export class RoutineService {
   private readonly dialog = inject(MatDialog);
   private readonly user = inject(UserService);
   private readonly message = inject(MessageService);
-
+  readonly levels = ["Baja", "Media", "Intensa", "Muy intensa"];
   private userData?: UserDoc;
 
-  readonly levels = ["Baja", "Media", "Intensa", "Muy intensa"];
   readonly $list : Observable<Routine[]> = collectionData(query(this.collection, orderBy("dateIN", "desc")), { idField: "_id" }).pipe(
     map(routines => routines.map(routine => this.convert(routine) as Routine))
   );
@@ -35,6 +36,11 @@ export class RoutineService {
     if(document["dateIN"]) document["dateIN"] = document["dateIN"].toDate();
     if(document["dateOUT"]) document["dateOUT"] = document["dateOUT"].toDate();
     return document as Routine;
+  }
+
+
+  ref(routine: Routine) : DocumentReference<DocumentData> {
+    return doc(this.collection, routine._id);
   }
 
   detail(_id: string){
@@ -54,13 +60,15 @@ export class RoutineService {
     return this.dialog.open(DetailDialogComponent, { disableClose: true, data });
   }
 
+  openExercise(mode: 1 | 2 | 3 = 3, scheme: Scheme){
+    const data = { mode, scheme };
+    return this.dialog.open(ExerciseDialogComponent, { disableClose: true, data });
+  }
+
 
   async upload(fields: Routine) : Promise<void> {
     try {
       const { admin, customer, ...routine } = fields;
-
-      // const adminRef = this.user.ref(admin);
-      // const customerRef = this.user.ref(customer);
 
       await setDoc(doc(this.collection), { admin, customer, ...routine });
       this.message.success("Rutina creada correctamente");
