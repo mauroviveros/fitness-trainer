@@ -1,79 +1,77 @@
-import { Component, Inject, OnInit, inject } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Component, Inject, inject } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
+import { Category, Exercise } from "src/app/shared/interfaces/exercise";
+import { SchemeService } from "../../services/scheme.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Scheme } from "src/app/shared/interfaces/scheme";
-import { RoutineUtilsService } from "../../services/routine-utils.service";
+import { MatSelectChange } from "@angular/material/select";
+import { firstValueFrom } from "rxjs";
 
-interface DialogData{
-  scheme: Scheme,
-  mode: 1 | 2 | 3
-  customer?: string
+interface DetailDialogContent {
+  mode: 1 | 2 | 3,
+  scheme: Scheme
 }
-
-const RIR = [
-  { value: -1, label: "AL FALLO" },
-  { value: 0, label: "0" },
-  { value: 1, label: "1" },
-  { value: 2, label: "2" },
-  { value: 3, label: "3" },
-  { value: 4, label: "4" },
-  { value: 5, label: "5" }
-];
 
 @Component({
   selector: "routine-exercise-dialog",
-  templateUrl: "./exercise-dialog.component.html",
-  styleUrls: ["./exercise-dialog.component.scss"]
+  templateUrl: "./exercise-dialog.component.html"
 })
-export class ExerciseDialogComponent implements OnInit {
-  private readonly routineUtils = inject(RoutineUtilsService);
-  private readonly exercises = inject(ExerciseService);
+export class ExerciseDialogComponent {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly dialogRef = inject(MatDialogRef);
-  readonly $exercises = this.exercises.$list;
-  readonly RIR = RIR;
-  readonly getCategoryIcon = this.routineUtils.getCategoryIcon;
+  private readonly dialog = inject(MatDialogRef<ExerciseDialogComponent>);
+  private readonly exercise = inject(ExerciseService);
+  private readonly scheme = inject(SchemeService);
+  
+  $exercises = this.exercise.$list;
+  RIR = this.scheme.RIR;
+  isSaving = false;
+  mode : 1 | 2 | 3 = 3;
+  ref(exercise: Exercise){ return this.exercise.ref(exercise); }
 
   readonly form: FormGroup = this.formBuilder.group({
     _id: [null],
-    sensations: [null],
-    customer: [null, [Validators.required]],
+    weekOfMonth: [null, [Validators.required]],
     dayOfWeek: [null, [Validators.required]],
+    routine: [null, [Validators.required]],
     exercise: [null, [Validators.required]],
-    series: [null, [Validators.required]],
-    reps: [null, [Validators.required]],
-    rir: [-1, [Validators.required]],
-    weights: this.formBuilder.array([])
+    category: [null, [Validators.required]],
+    series: [null, [Validators.required, Validators.min(0)]],
+    reps: [null, [Validators.required, Validators.min(0)]],
+    rir: [-1, [Validators.required]]
   });
 
-  get weights(){
-    return this.form.get("weights") as FormArray;
+  constructor(@Inject(MAT_DIALOG_DATA) data: DetailDialogContent){
+    this.mode = data.mode;
+    if(!data.scheme) return;
+    const controlsName = Object.keys(this.form.controls);
+    controlsName.forEach(controlName => {
+      if(controlName === "rir" && !data.scheme[controlName]) data.scheme[controlName] = -1;
+
+      this.form.controls[controlName].setValue(data.scheme[controlName]);
+
+      if(data.mode === 3) this.form.controls[controlName].disable();
+      if(data.mode !== 1) this.form.controls[controlName].markAsTouched();
+    });
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData){}
 
-  ngOnInit(){
-    for(let i = 0; i < this.data.scheme.series; i++){
-      this.weights.push(this.formBuilder.control(null, [Validators.required]));
-    }
+  getCategoryIcon(category: Category){
+    return this.exercise.getIcon(category);
+  }
 
-    Object.keys(this.form.controls).forEach(controlName => {
-      if(this.data.mode === 3) this.form.controls[controlName].disable();
-      if(!this.data.scheme[controlName]) return;
-
-      let value = this.data.scheme[controlName];
-      if(controlName === "customer" || controlName === "exercise") value = this.data.scheme[controlName]._id;
-      if(Array.isArray(value) && value.length === 0) return;
-      this.form.controls[controlName].setValue(value);
+  onChangeExercise(select: MatSelectChange){
+    firstValueFrom(this.exercise.detail(select.value.id)).then(exercise => {
+      this.form.controls["category"].setValue(exercise?.category);
     });
-
-    if(!this.form.controls["customer"].value) this.form.controls["customer"].setValue(this.data.customer);
   }
 
   submit(){
     if(this.form.invalid) return;
+    this.isSaving = true;
 
-    this.dialogRef.close(this.form.value);
+    this.scheme.upload(this.form.value)
+      .then(() => this.dialog.close())
+      .finally(() => this.isSaving = false);
   }
 }
