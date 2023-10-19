@@ -11,8 +11,8 @@
   <mat-list-item>
     <mat-icon matListItemIcon>event</mat-icon>
     <div matListItemTitle>Periodo</div>
-    <span matListItemLine>Desde: {{ routine?.dateIN | date : 'longDate' }}</span>
-    <span matListItemLine>Hasta: {{ routine?.dateOUT | date : 'longDate' }}</span>
+    <span matListItemLine>Desde: {{ routine.dateIN | date : 'longDate' }}</span>
+    <span matListItemLine>Hasta: {{ routine.dateOUT | date : 'longDate' }}</span>
   </mat-list-item>
   <mat-divider></mat-divider>
 
@@ -26,13 +26,13 @@
   <mat-list-item>
     <mat-icon matListItemIcon>science</mat-icon>
     <div matListItemTitle>Kal. para el objetivo</div>
-    <p matListItemLine>{{ routine?.kal | number : '1.2-2' }} Kals</p>
+    <p matListItemLine>{{ routine.kal | number : '1.2-2' }} Kals</p>
   </mat-list-item>
   <mat-divider></mat-divider>
 
   <mat-list-item [lines]="3">
     <mat-icon matListItemIcon>flag</mat-icon>
     <div matListItemTitle>Objetivo</div>
-    <p matListItemLine style="white-space: normal">{{ routine?.objective }}</p>
+    <p matListItemLine style="white-space: normal">{{ routine.objective }}</p>
   </mat-list-item>
 </mat-list>

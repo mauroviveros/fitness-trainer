@@ -17,11 +17,11 @@ export class CustomerComponent implements OnChanges, OnDestroy {
   private readonly date = inject(DateService);
   readonly subscriptions : Subscription[] = [];
   readonly getAge = this.date.getAge;
-  @Input() routine?: Routine;
+  @Input() routine!: Routine;
   customer?: UserDoc;
 
   ngOnChanges(){
-    if(this.routine?.customer) this.subscriptions[0] = this.user.doc(this.routine.customer).subscribe(customer => this.customer = customer);
+    if(this.routine.customer) this.subscriptions[0] = this.user.doc(this.routine.customer).subscribe(customer => this.customer = customer);
   }
   ngOnDestroy(){ this.subscriptions.forEach(subscription => subscription.unsubscribe()); }
 

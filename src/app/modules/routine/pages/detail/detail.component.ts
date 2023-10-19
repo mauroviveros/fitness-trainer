@@ -16,7 +16,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly RoutineSrv = inject(RoutineService);
   private readonly subscriptions : Subscription[] = [];
-  routine? : Routine;
+  routine : Routine = {} as Routine;
 
   isLoading = true;
 
