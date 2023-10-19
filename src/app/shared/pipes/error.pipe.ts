@@ -26,9 +26,9 @@ export class ErrorPipe implements PipeTransform {
     const type = Object.keys(errors)[0];
     let message = messages[type] || `ERROR: ${type}`;
 
-    if(type === "min") message = `${message}: ${arg || NaN}`;
-    if(type === "minlength") message = `${message}: ${arg || NaN} caracteres`;
-    if(type === "maxlength") message = `${message}: ${arg || this.maxlength || NaN} caracteres`;
+    if(type === "min") message = `${message}: ${arg === undefined ? NaN : arg}`;
+    if(type === "minlength") message = `${message}: ${arg === undefined ? NaN : arg} caracteres`;
+    if(type === "maxlength") message = `${message}: ${arg !== undefined ? arg : this.maxlength || NaN} caracteres`;
 
     return message;
   }
