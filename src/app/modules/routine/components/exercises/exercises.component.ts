@@ -1,11 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
-import { BehaviorSubject, Subscription, filter, switchMap, tap } from "rxjs";
-
-import { RoutineUtilsService } from "../../services/routine-utils.service";
-
+import { dayOfWeek } from "src/app/shared/interfaces/interfaces";
+import { Routine } from "src/app/shared/interfaces/routine";
+import { RoutineService } from "../../services/routine.service";
+import { BehaviorSubject, Subscription, combineLatest, filter, switchMap, tap } from "rxjs";
 import { Scheme } from "src/app/shared/interfaces/scheme";
 import { SchemeService } from "../../services/scheme.service";
-import { MatListOption } from "@angular/material/list";
 
 @Component({
   selector: "routine-exercises",
@@ -13,55 +12,47 @@ import { MatListOption } from "@angular/material/list";
   styleUrls: ["./exercises.component.scss"]
 })
 export class ExercisesComponent implements OnInit, OnDestroy {
-  private readonly routineUtils = inject(RoutineUtilsService);
   private readonly scheme = inject(SchemeService);
-  private subscription?: Subscription;
-  @Input() daysOfWeek: number[] = [];
-  @Input() customer!: string;
-  @Input() canComplete!: boolean;
-  @Input() isAdmin!: boolean;
-  isLoading = false;
+  private readonly routineService = inject(RoutineService);
+  private subscriptions : Subscription[] = [];
+  @Input() routine!: Routine;
 
-  schemesCategory: Scheme[][] = [];
-  $dayOfWeek = new BehaviorSubject<number | undefined>(undefined);
-  getCategoryIcon = this.routineUtils.getCategoryIcon;
+  schemesDM : Scheme[][] = [];
+
+  isLoading = true;
+  $day = new BehaviorSubject<dayOfWeek | undefined>(undefined);
 
   ngOnInit(){
-    this.subscription = this.initList();
+    this.subscriptions.push(this.initSchemes());
   }
+
   ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  private initList(){
-    return this.$dayOfWeek.pipe(
-      filter(number => number !== undefined),
+  initSchemes(){
+    return this.$day.pipe(
+      filter(day => day !== undefined),
       tap(() => this.isLoading = true),
-      switchMap(number => this.scheme.$list(number || 0, this.customer))
-    ).subscribe(schemes => {
+      switchMap(day => {
+        return combineLatest([
+          this.scheme.getList(this.routineService.ref(this.routine), day as dayOfWeek, "WARM_UP"),
+          this.scheme.getList(this.routineService.ref(this.routine), day as dayOfWeek, "TRAINING"),
+        ]);
+      })
+    ).subscribe(schemesDM => {
+      this.schemesDM = schemesDM;
       this.isLoading = false;
-
-      this.schemesCategory = [];
-      schemes.forEach(scheme => {
-        let index = 0;
-        if(scheme.exercise.category !== "WARM_UP") index = 1;
-        if(!this.schemesCategory[index]) this.schemesCategory[index] = [];
-        this.schemesCategory[index].push(scheme);
-      });
     });
   }
 
-  onChangeDayOfWeek(number: number){
-    this.$dayOfWeek.next(number);
-  }
+  create(){
+    if(!this.routine || this.$day.value === undefined) return;
+    const scheme = {} as Scheme;
+    scheme.routine = this.routineService.ref(this.routine);
+    scheme.weekOfMonth = 0;
+    scheme.dayOfWeek = this.$day.value;
 
-  openSheet(option: MatListOption, scheme: Scheme){
-    if(!option.disabled) option.toggle();
-    this.routineUtils.openBottomSheet(scheme, this.canComplete);
-  }
-
-  add(){
-    const newExercise = { dayOfWeek: this.$dayOfWeek.value } as Scheme;
-    this.routineUtils.openExercise(newExercise, 1, this.customer);
+    this.routineService.openExercise(1, scheme);
   }
 }
