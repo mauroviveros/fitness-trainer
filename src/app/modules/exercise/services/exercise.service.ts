@@ -1,10 +1,11 @@
 import { Injectable, inject } from "@angular/core";
-import { Firestore, collection, collectionData, deleteDoc, doc, docData, setDoc, updateDoc } from "@angular/fire/firestore";
+import { DocumentData, DocumentReference, Firestore, collection, collectionData, deleteDoc, doc, docData, setDoc, updateDoc } from "@angular/fire/firestore";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Observable, map } from "rxjs";
-import { Exercise } from "src/app/shared/interfaces/exercise";
+
 import { MessageService } from "src/app/shared/services/message.service";
 import { DetailComponent } from "../components/detail/detail.component";
+import { Exercise } from "src/app/shared/interfaces/exercise";
 
 interface Category {
   _id: string
@@ -21,18 +22,22 @@ export class ExerciseService {
   private readonly dialog = inject(MatDialog);
   private readonly message = inject(MessageService);
 
-  readonly $list = collectionData(this.collection, { idField: "_id" }).pipe(
-    map(exercises => exercises as Exercise[])
-  );
-
   readonly categories : Category[] = [
     { _id: "TRAINING", name: "Entrenamiento", icon: "fitness_center" },
     { _id: "WARM_UP", name: "Calentamiento", icon: "directions_run" }
   ];
 
-  getIcon(categoryName: string) : string{
+  readonly $list = collectionData(this.collection, { idField: "_id" }).pipe(
+    map(exercises => exercises as Exercise[])
+  );
+
+  getIcon(categoryName?: string) : string{
     const category = this.categories.find(category => category._id === categoryName);
     return category ? category.icon : "category";
+  }
+
+  ref(exercise: Exercise) : DocumentReference<DocumentData> {
+    return doc(this.collection, exercise._id);
   }
 
 
