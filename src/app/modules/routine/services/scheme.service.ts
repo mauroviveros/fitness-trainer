@@ -1,61 +1,54 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, Firestore, collection, collectionData, doc, orderBy, query, setDoc, where } from "@angular/fire/firestore";
-import { firstValueFrom, from, map, mergeMap, switchMap, toArray } from "rxjs";
-
-import { UserService } from "src/app/core/modules/auth/services/user.service";
-import { ExerciseService } from "../../exercise/services/exercise.service";
+import { Firestore, collection, setDoc, doc, collectionData, query, where, DocumentReference, deleteDoc } from "@angular/fire/firestore";
+import { Observable, map } from "rxjs";
+import { dayOfWeek } from "src/app/shared/interfaces/interfaces";
+import { Scheme } from "src/app/shared/interfaces/scheme";
 import { MessageService } from "src/app/shared/services/message.service";
-
-import { Scheme, SchemeOUT } from "src/app/shared/interfaces/scheme";
+import { Category } from "src/app/shared/interfaces/exercise";
 
 @Injectable({
   providedIn: "root"
 })
 export class SchemeService {
-  private readonly user = inject(UserService);
-  private readonly exercise = inject(ExerciseService);
-  private readonly message = inject(MessageService);
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "schemes");
+  private readonly message = inject(MessageService);
+  readonly RIR = [ -1, 0, 1, 2, 3, 4, 5 ];
 
-  $list(dayOfWeek: number, customer: string){
-    const queryRef = query(
-      this.collection,
-      where("dayOfWeek", "==", dayOfWeek),
-      where("customer", "==", this.user.ref(customer)),
-    );
-    return collectionData(queryRef, { idField: "_id" }).pipe(
-      switchMap(schemes => this.convert(schemes))
-    );
-  }
+  readonly $list : Observable<Scheme[]> = collectionData(this.collection, { idField: "_id" }).pipe(
+    map(schemes => schemes as Scheme[])
+  );
 
-  private convert(schemes: DocumentData[]){
-    return from(schemes).pipe(
-      mergeMap(async scheme => {
-        scheme["customer"] = await firstValueFrom(this.user.doc(scheme["customer"]));
-        scheme["exercise"] = await firstValueFrom(this.exercise.doc(scheme["exercise"]));
-        return scheme;
-      }),
-      toArray(),
+  getList(routine: DocumentReference, dayOfWeek: dayOfWeek, category: Category) : Observable<Scheme[]> {
+    return collectionData(query(this.collection, where("category", "==", category), where("routine", "==", routine), where("dayOfWeek", "==", dayOfWeek)), { idField: "_id" }).pipe(
       map(schemes => schemes as Scheme[])
     );
   }
 
-
-  async upload(fields: SchemeOUT){
+  async upload(fields: Scheme) : Promise<void> {
     try {
-      const { _id, customer, exercise, ...routine } = fields;
-      const customerRef = this.user.ref(customer);
-      const exerciseRef = this.exercise.ref(exercise);
-      let routineDoc = doc(this.collection);
-      if(_id) routineDoc = doc(this.collection, _id);
+      const { _id, ...exercise } = fields;
 
-      await setDoc(routineDoc, { customer: customerRef, exercise: exerciseRef, ...routine });
+      if(!_id){
+        await setDoc(doc(this.collection), { ...exercise });
+        this.message.success("Ejercicio creado correctamente");
+      } else{
+        // await updateDoc(doc(this.collection, _id), { ...exercise });
+        // this.message.success("Ejercicio actualizado correctamente");
+      }
 
-      if(_id) this.message.success("Ejercicio agregado correctamente");
-      else this.message.success("Ejercicio actualizado correctamente");
+    } catch (error) {
+      if(error instanceof Error){ this.message.error(error); }
+      throw error;
+    }
+  }
 
-      return routineDoc.id;
-    } catch (error) { this.message.error(error as Error); throw error; }
+  async delete(_id: string) : Promise<void> {
+    try {
+      await deleteDoc(doc(this.collection, _id));
+      this.message.success("Ejercicio borrado correctamente");
+    } catch (error) {
+      this.message.error(error as Error); throw error;
+    }
   }
 }
