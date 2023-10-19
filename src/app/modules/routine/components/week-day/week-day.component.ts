@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, inject } from "@angular/core";
-import { DateUtilsService } from "src/app/shared/services/date-utils.service";
+import { DateService } from "src/app/shared/services/date.service";
+
 
 @Component({
   selector: "routine-week-day",
@@ -7,28 +8,21 @@ import { DateUtilsService } from "src/app/shared/services/date-utils.service";
   styleUrls: ["./week-day.component.scss"]
 })
 export class WeekDayComponent implements OnChanges {
-  readonly dateUtils = inject(DateUtilsService);
-  @Input() daysOfWeek: number[] = [];
-  @Output() changeDayOfWeek = new EventEmitter();
-  dayIndex = 0;
+  private readonly date = inject(DateService);
+  readonly daysOfWeek = this.date.getDaysOfWeek("long");
+  @Input() days? : number[];
+  @Output() changeDay = new EventEmitter();
+  index = -1;
 
   ngOnChanges(){
-    this.changeDayOfWeek.emit(this.daysOfWeek[0]);
+    if(this.days) this.next(1);
   }
 
-  canNext(direction: "before" | "after"){
-    switch(direction){
-      case "after": return this.dayIndex < this.daysOfWeek.length - 1;
-      case "before": return this.dayIndex > 0;
-      default: return false;
-    }
-  }
+  next(move: 1 | -1){
+    if(!this.days) return;
+    const index = this.days.at(this.days.indexOf(this.index) + move);
+    this.index = index !== undefined ? index : 0;
 
-  next(direction: "before" | "after"){
-    let sum = 0;
-    if(direction === "after" && this.canNext(direction)) sum = 1;
-    if(direction === "before" && this.canNext(direction)) sum = -1;
-    this.dayIndex = this.dayIndex + sum;
-    this.changeDayOfWeek.emit(this.daysOfWeek[this.dayIndex]);
+    this.changeDay.emit(this.index);
   }
 }
