@@ -2,7 +2,7 @@
 
 <routine-week-day [days]="routine.daysOfWeek" [date]="date" (changeDay)="changeDate.emit($event)" *ngIf="user?._admin"></routine-week-day>
 
-<mat-nav-list *ngIf="schemesDM[0].length; else routineBanne">
+<mat-nav-list *ngIf="schemesDM[0].length || schemesDM[1].length; else routineBanne">
   <ng-container *ngFor="let schemes of schemesDM; let last = last">
     <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme"></routine-exercise>
     <mat-divider *ngIf="!last && schemes.length"></mat-divider>
