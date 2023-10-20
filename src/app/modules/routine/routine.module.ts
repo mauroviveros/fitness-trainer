@@ -11,6 +11,7 @@ import { ExercisesComponent } from "./components/exercises/exercises.component";
 import { ExerciseDialogComponent } from "./components/exercise-dialog/exercise-dialog.component";
 import { WeekDayComponent } from "./components/week-day/week-day.component";
 import { ExerciseComponent } from "./components/exercise/exercise.component";
+import { FormsModule } from "@angular/forms";
 
 
 
@@ -27,6 +28,7 @@ import { ExerciseComponent } from "./components/exercise/exercise.component";
     ExerciseComponent
   ],
   imports: [
+    FormsModule,
     RoutineRoutingModule,
     SharedModule
   ]
