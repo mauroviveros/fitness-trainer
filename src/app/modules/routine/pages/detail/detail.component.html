@@ -2,7 +2,7 @@
 <mat-datepicker touchUi #picker></mat-datepicker>
 
 <shared-layout text="Detalle Rutina" [loadingDM]="isLoading">
-  <div class="actions">
+  <div class="actions" *ngIf="isAdmin">
     <button mat-icon-button (click)="picker.open()"><mat-icon>date_range</mat-icon></button>
   </div>
 

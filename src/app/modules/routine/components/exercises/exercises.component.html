@@ -1,6 +1,6 @@
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
-<routine-week-day [days]="routine.daysOfWeek" [date]="date" (changeDay)="changeDate.emit($event)"></routine-week-day>
+<routine-week-day [days]="routine.daysOfWeek" [date]="date" (changeDay)="changeDate.emit($event)" *ngIf="user?._admin"></routine-week-day>
 
 <mat-nav-list>
   <ng-container *ngFor="let schemes of schemesDM; let last = last">
