@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc, where } from "@angular/fire/firestore";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { Observable, map, switchMap, tap } from "rxjs";
+import { Observable, map, switchMap } from "rxjs";
 
 import { UserService } from "src/app/core/modules/auth/services/user.service";
 import { MessageService } from "src/app/shared/services/message.service";
