@@ -49,7 +49,6 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   delete(){
     if(!this.exercise) return;
-    console.log(this.scheme);
     this.dialog.showConfirmDelete("Borrando Ejercicio", this.exercise.name).pipe(
       filter(boolean => boolean),
       switchMap(() => this.service.delete(this.scheme._id))

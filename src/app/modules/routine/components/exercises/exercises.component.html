@@ -2,13 +2,45 @@
 
 <routine-week-day [days]="routine.daysOfWeek" [date]="date" (changeDay)="changeDate.emit($event)" *ngIf="user?._admin"></routine-week-day>
 
-<mat-nav-list>
+<mat-nav-list *ngIf="schemesDM[0].length; else routineBanne">
   <ng-container *ngFor="let schemes of schemesDM; let last = last">
     <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme"></routine-exercise>
     <mat-divider *ngIf="!last && schemes.length"></mat-divider>
   </ng-container>
 </mat-nav-list>
 
-<button mat-fab class="absolute" (click)="create()" *ngIf="user?._admin && canCreateThisDay()">
+<button mat-fab class="absolute" (click)="create()" *ngIf="user?._admin && isRoutinePeriod()">
   <mat-icon>add</mat-icon>
 </button>
+
+<ng-template #routineBanne>
+  <shared-empty-banner *ngIf="!isRoutinePeriod(); else emptyBanner">
+    <mat-icon color="accent">event_busy</mat-icon>
+    <h3>Fuera del Rango de Entrenamiento</h3>
+    <p>Hoy es una fecha que está fuera del rango de entrenamiento de la rutina. Asegurate de cambiar la fecha dentro del rango de entrenamiento.</p>
+  </shared-empty-banner>
+</ng-template>
+
+<ng-template #emptyBanner>
+  <shared-empty-banner *ngIf="isTrainingDay(); else restBanner">
+    <mat-icon color="accent">fitness_center</mat-icon>
+    <h3>¡Entrenamiento en Progreso!</h3>
+    <p>¡Hoy es un día de entrenamiento! Sin embargo, parece que los ejercicios aún no están disponibles.</p>
+    <p *ngIf="user?._admin; else messageCustomer">Empieza cargando ejercicios dandole al boton de "+"</p>
+  </shared-empty-banner>
+</ng-template>
+
+<ng-template #messageCustomer>
+  <p>Mantén la motivación y mantén un ojo en la programación. Pronto podrás comenzar tu entrenamiento y seguir trabajando para alcanzar tus objetivos.</p>
+</ng-template>
+
+<ng-template #restBanner>
+  <shared-empty-banner>
+    <mat-icon color="accent">schedule</mat-icon>
+    <h3>¡Día de Descanso!</h3>
+    <p>
+      Hoy es un día de descanso, y eso es igual de importante que el ejercicio. El descanso permite que tus músculos se reparen y crezcan. Así que relájate, disfruta de un merecido descanso y vuelve
+      mañana con más energía para seguir entrenando hacia tus metas.
+    </p>
+  </shared-empty-banner>
+</ng-template>

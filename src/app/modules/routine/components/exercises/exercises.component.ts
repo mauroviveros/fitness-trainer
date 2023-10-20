@@ -26,7 +26,7 @@ export class ExercisesComponent implements OnInit, OnChanges, OnDestroy {
   @Input() routine!: Routine;
   @Input() date!: Date;
 
-  schemesDM : Scheme[][] = [];
+  schemesDM : Scheme[][] = [[], []];
 
   isLoading = true;
   user?: UserDoc;
@@ -70,8 +70,12 @@ export class ExercisesComponent implements OnInit, OnChanges, OnDestroy {
     return this.userService.$data.subscribe(user => this.user = user);
   }
 
-  canCreateThisDay() : boolean {
+  isRoutinePeriod() : boolean {
     return this.date >= this.routine.dateIN && this.date <= this.routine.dateOUT;
+  }
+
+  isTrainingDay() : boolean {
+    return this.routine.daysOfWeek.includes(this.date.getDay() as dayOfWeek);
   }
 
   create() : void {
