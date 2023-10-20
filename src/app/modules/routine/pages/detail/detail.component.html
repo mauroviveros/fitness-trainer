@@ -9,6 +9,6 @@
   <mat-tab-group backgroundColor="primary" dynamicHeight>
     <mat-tab label="Ejercicios"><routine-exercises [routine]="routine" [date]="date" (changeDate)="date = $event"></routine-exercises></mat-tab>
     <mat-tab label="Información"><routine-information [routine]="routine"></routine-information></mat-tab>
-    <mat-tab label="Cliente"><routine-customer [routine]="routine"></routine-customer></mat-tab>
+    <mat-tab label="Cliente" *ngIf="isAdmin"><routine-customer [routine]="routine"></routine-customer></mat-tab>
   </mat-tab-group>
 </shared-layout>
