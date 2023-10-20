@@ -3,8 +3,8 @@ export interface UserDoc{
   name: string
   surname: string
   instagram: string
-  gender: string
+  gender: number
   birthday: Date
-  [key: string]: string | boolean | Date
+  [key: string]: string | number | boolean | Date
   _admin: boolean
   }

@@ -1,25 +1,21 @@
-import { Exercise } from "./exercise";
-import { daysOfWeek } from "./routine";
-import { UserDoc } from "./user";
+import { DocumentData, DocumentReference } from "@angular/fire/firestore";
+import { dayOfWeek } from "./interfaces";
+import { Category } from "./exercise";
 
-export interface Scheme{
-    _id: string
-    customer: UserDoc
-    exercise: Exercise
-    dayOfWeek: daysOfWeek
-    series: number
-    reps: number
-    rir: number
-    weights: number[]
-    [key: string]: number | number[] | string | UserDoc | Exercise
-}
 
-export interface SchemeOUT {
-    _id: string
-    customer: string
-    exercise: string
-    dayOfWeek: number
-    series: number
-    reps: number
-    rir: number
+export interface Scheme {
+  _id: string
+  routine: DocumentReference<DocumentData>
+  exercise: DocumentReference<DocumentData>
+
+  weekOfMonth: number
+  dayOfWeek: dayOfWeek
+
+  category: Category
+  series: number
+  reps: number
+  rir: number
+  // weights?: number[]
+
+  [key: string]: string | number | DocumentReference<DocumentData>
 }
