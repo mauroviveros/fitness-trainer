@@ -31,4 +31,19 @@ export class DateService {
       return daysOfWeek.includes(date) ? "highlight_day" : "";
     };
   }
+
+  getDayOfWeek(date: Date): number { return date.getDay(); }
+
+  getWeekOfMonth(date: Date) {
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const firstWeekday = new Date(year, month, 1).getDay();
+    const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+    const offsetDate = date.getDate() + firstWeekday - 1;
+    const index = 1;
+    const weeksInMonth = index + Math.ceil((lastDateOfMonth + firstWeekday - 7) / 7);
+    const week = index + Math.floor(offsetDate / 7);
+
+    return (week === weeksInMonth ? index + 5 : week) - 1;
+}
 }
