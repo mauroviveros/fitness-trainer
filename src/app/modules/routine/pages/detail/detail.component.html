@@ -1,6 +1,13 @@
+<input matInput [matDatepicker]="picker" [(ngModel)]="date" hidden [matDatepickerFilter]="dateFilter" />
+<mat-datepicker touchUi #picker></mat-datepicker>
+
 <shared-layout text="Detalle Rutina" [loadingDM]="isLoading">
+  <div class="actions">
+    <button mat-icon-button (click)="picker.open()"><mat-icon>date_range</mat-icon></button>
+  </div>
+
   <mat-tab-group backgroundColor="primary" dynamicHeight>
-    <mat-tab label="Ejercicios"><routine-exercises [routine]="routine"></routine-exercises></mat-tab>
+    <mat-tab label="Ejercicios"><routine-exercises [routine]="routine" [date]="date" (changeDate)="date = $event"></routine-exercises></mat-tab>
     <mat-tab label="Información"><routine-information [routine]="routine"></routine-information></mat-tab>
     <mat-tab label="Cliente"><routine-customer [routine]="routine"></routine-customer></mat-tab>
   </mat-tab-group>

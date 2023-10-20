@@ -19,8 +19,8 @@ export class SchemeService {
     map(schemes => schemes as Scheme[])
   );
 
-  getList(routine: DocumentReference, dayOfWeek: dayOfWeek, category: Category) : Observable<Scheme[]> {
-    return collectionData(query(this.collection, where("category", "==", category), where("routine", "==", routine), where("dayOfWeek", "==", dayOfWeek)), { idField: "_id" }).pipe(
+  getList(routine: DocumentReference, dayOfWeek: dayOfWeek, weekOfMonth: number, category: Category) : Observable<Scheme[]> {
+    return collectionData(query(this.collection, where("category", "==", category), where("routine", "==", routine), where("dayOfWeek", "==", dayOfWeek), where("weekOfMonth", "==", weekOfMonth)), { idField: "_id" }).pipe(
       map(schemes => schemes as Scheme[])
     );
   }

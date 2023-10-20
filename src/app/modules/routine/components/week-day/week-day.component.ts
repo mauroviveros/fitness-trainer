@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, inject } from "@angular/core";
-import { DateService } from "src/app/shared/services/date.service";
 
+import { DateService } from "src/app/shared/services/date.service";
 
 @Component({
   selector: "routine-week-day",
@@ -8,21 +8,35 @@ import { DateService } from "src/app/shared/services/date.service";
   styleUrls: ["./week-day.component.scss"]
 })
 export class WeekDayComponent implements OnChanges {
-  private readonly date = inject(DateService);
-  readonly daysOfWeek = this.date.getDaysOfWeek("long");
+  private readonly dateService = inject(DateService);
+  readonly daysOfWeek = this.dateService.getDaysOfWeek("long");
   @Input() days? : number[];
-  @Output() changeDay = new EventEmitter();
+  @Input() date! : Date;
+  @Output() changeDay = new EventEmitter<Date>();
   index = -1;
 
   ngOnChanges(){
-    if(this.days) this.next(1);
+    this.set(this.date);
   }
 
-  next(move: 1 | -1){
+  set(date: Date) : void {
+    this.index = date.getDay();
+  }
+
+  next(move: 1 | -1) : void {
     if(!this.days) return;
-    const index = this.days.at(this.days.indexOf(this.index) + move);
-    this.index = index !== undefined ? index : 0;
 
-    this.changeDay.emit(this.index);
+    const date = new Date(this.date);
+    let index = this.index;
+    let noFound = true;
+
+    while(noFound){
+      date.setDate(date.getDate() + move);
+      index = date.getDay();
+      if(this.days.includes(index)) noFound = false;
+    }
+
+    this.changeDay.emit(date);
   }
+
 }
