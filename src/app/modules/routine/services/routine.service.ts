@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
-import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc } from "@angular/fire/firestore";
+import { DocumentData, DocumentReference, Firestore, collection, collectionData, doc, docData, orderBy, query, setDoc, where } from "@angular/fire/firestore";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { Observable, map } from "rxjs";
+import { Observable, map, switchMap, tap } from "rxjs";
 
 import { UserService } from "src/app/core/modules/auth/services/user.service";
 import { MessageService } from "src/app/shared/services/message.service";
@@ -11,6 +11,7 @@ import { Routine } from "src/app/shared/interfaces/routine";
 import { UserDoc } from "src/app/shared/interfaces/user";
 import { ExerciseDialogComponent } from "../components/exercise-dialog/exercise-dialog.component";
 import { Scheme } from "src/app/shared/interfaces/scheme";
+import { AuthService } from "src/app/core/modules/auth/services/auth.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,6 +20,7 @@ export class RoutineService {
   private readonly firestore = inject(Firestore);
   private readonly collection = collection(this.firestore, "routines");
   private readonly dialog = inject(MatDialog);
+  private readonly auth = inject(AuthService);
   private readonly user = inject(UserService);
   private readonly message = inject(MessageService);
   readonly levels = ["Baja", "Media", "Intensa", "Muy intensa"];
@@ -46,6 +48,12 @@ export class RoutineService {
   detail(_id: string){
     return docData(doc(this.collection, _id), { idField: "_id" }).pipe(
       map(routine => this.convert(routine) as Routine)
+    );
+  }
+  getOwn(){
+    return this.user.$data.pipe(
+      switchMap(user => collectionData(query(this.collection, where("customer", "==", this.user.ref(user))), { idField: "_id" })),
+      map(routines => routines.map(routine => this.convert(routine) as Routine))
     );
   }
 
