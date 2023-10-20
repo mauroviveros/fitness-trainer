@@ -13,6 +13,8 @@ import { LayoutComponent } from "./components/layout/layout.component";
 import { ActionsComponent } from "./components/actions/actions.component";
 import { ActionsSheetComponent } from "./components/actions-sheet/actions-sheet.component";
 import { EmptyBannerComponent } from "./components/empty-banner/empty-banner.component";
+import { ProfileImageComponent } from "./components/profile-image/profile-image.component";
+import { RirPipe } from "./pipes/rir.pipe";
 
 @NgModule({
   declarations: [
@@ -22,8 +24,10 @@ import { EmptyBannerComponent } from "./components/empty-banner/empty-banner.com
     ActionsComponent,
     ActionsSheetComponent,
     EmptyBannerComponent,
+    ProfileImageComponent,
     ErrorPipe,
     UserPipe,
+    RirPipe,
   ],
   imports: [
     CommonModule,
@@ -40,8 +44,10 @@ import { EmptyBannerComponent } from "./components/empty-banner/empty-banner.com
     LayoutComponent,
     ActionsComponent,
     EmptyBannerComponent,
+    ProfileImageComponent,
     ErrorPipe,
-    UserPipe
+    UserPipe,
+    RirPipe
   ]
 })
 export class SharedModule { }

@@ -17,10 +17,21 @@
     }
   }
 
-  mat-list, mat-nav-list{
-    mat-list-item{
+  mat-list, mat-nav-list, mat-selection-list{
+    mat-list-item, mat-list-option{
       *[matListItemIcon]{
         color: mat.get-color-from-palette($primary-palette, 500) !important;
+      }
+    }
+  }
+
+  shared-layout mat-drawer{
+    background-color: mat.get-color-from-palette($primary-palette, 100) !important;
+    color: mat.get-contrast-color-from-palette($primary-palette, 100) !important;
+    mat-nav-list{
+      .active{
+        background-color: mat.get-color-from-palette($primary-palette, 200) !important;
+        color: mat.get-contrast-color-from-palette($primary-palette, 200) !important;
       }
     }
   }
