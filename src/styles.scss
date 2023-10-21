@@ -1,7 +1,7 @@
 html, body{ height: 100%; margin: 0; overflow: hidden; }
 
-mat-list, mat-nav-list{
-  mat-list-item{
+mat-list, mat-nav-list, mat-selection-list{
+  mat-list-item, mat-list-option{
     *[matListItemMeta], *[matListItemIcon]{
       display: flex !important;
       align-items: center;
