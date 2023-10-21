@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Firestore, collection, setDoc, doc, collectionData, query, where, DocumentReference, deleteDoc } from "@angular/fire/firestore";
+import { Firestore, collection, setDoc, doc, collectionData, query, where, DocumentReference, deleteDoc, updateDoc } from "@angular/fire/firestore";
 import { Observable, map } from "rxjs";
 import { dayOfWeek } from "src/app/shared/interfaces/interfaces";
 import { Scheme } from "src/app/shared/interfaces/scheme";
@@ -33,8 +33,8 @@ export class SchemeService {
         await setDoc(doc(this.collection), { ...exercise });
         this.message.success("Ejercicio creado correctamente");
       } else{
-        // await updateDoc(doc(this.collection, _id), { ...exercise });
-        // this.message.success("Ejercicio actualizado correctamente");
+        await updateDoc(doc(this.collection, _id), { ...exercise });
+        this.message.success("Ejercicio realizado correctamente");
       }
 
     } catch (error) {
