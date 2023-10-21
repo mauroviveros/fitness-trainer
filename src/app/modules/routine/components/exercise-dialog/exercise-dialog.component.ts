@@ -1,5 +1,5 @@
 import { Component, Inject, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
 import { Category, Exercise } from "src/app/shared/interfaces/exercise";
 import { SchemeService } from "../../services/scheme.service";
@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Scheme } from "src/app/shared/interfaces/scheme";
 import { MatSelectChange } from "@angular/material/select";
 import { firstValueFrom } from "rxjs";
+import { DocumentData, DocumentReference } from "@angular/fire/firestore";
 
 interface DetailDialogContent {
   mode: 1 | 2 | 3,
@@ -27,7 +28,6 @@ export class ExerciseDialogComponent {
   RIR = this.scheme.RIR;
   isSaving = false;
   mode : 1 | 2 | 3 = 3;
-  ref(exercise: Exercise){ return this.exercise.ref(exercise); }
 
   readonly form: FormGroup = this.formBuilder.group({
     _id: [null],
@@ -38,15 +38,33 @@ export class ExerciseDialogComponent {
     category: [null, [Validators.required]],
     series: [null, [Validators.required, Validators.min(0)]],
     reps: [null, [Validators.required, Validators.min(0)]],
-    rir: [-1, [Validators.required]]
+    rir: [-1, [Validators.required]],
+    sensations: [null],
+    weights: this.formBuilder.array([])
   });
+
+  get weights(){
+    return this.form.get("weights") as FormArray;
+  }
+
+  get title() : string {
+    if(this.mode === 1) return "Creando ejercicio";
+    else if(this.mode === 2) return "Completando ejercicio";
+    else return "Detalle del ejercicio";
+  }
 
   constructor(@Inject(MAT_DIALOG_DATA) data: DetailDialogContent){
     this.mode = data.mode;
     if(!data.scheme) return;
-    const controlsName = Object.keys(this.form.controls);
-    controlsName.forEach(controlName => {
+
+    for(let i = 0; i < data.scheme.series; i++){
+      this.weights.push(this.formBuilder.control(null, [Validators.required]));
+    }
+
+    Object.keys(this.form.controls).forEach(controlName => {
       if(controlName === "rir" && !data.scheme[controlName]) data.scheme[controlName] = -1;
+      if(controlName === "sensations" && !data.scheme[controlName]) return;
+      if(controlName === "weights" && !data.scheme[controlName]?.length) return;
 
       this.form.controls[controlName].setValue(data.scheme[controlName]);
 
@@ -55,18 +73,23 @@ export class ExerciseDialogComponent {
     });
   }
 
+  ref(exercise: Exercise){ return this.exercise.ref(exercise); }
 
-  getCategoryIcon(category: Category){
+  getCategoryIcon(category: Category) : string {
     return this.exercise.getIcon(category);
   }
 
-  onChangeExercise(select: MatSelectChange){
+  compareRef(value: DocumentReference<DocumentData>, reference: DocumentReference<DocumentData>) : boolean {
+    return value.id === reference.id;
+  }
+
+  onChangeExercise(select: MatSelectChange) : void {
     firstValueFrom(this.exercise.detail(select.value.id)).then(exercise => {
       this.form.controls["category"].setValue(exercise?.category);
     });
   }
 
-  submit(){
+  submit() : void {
     if(this.form.invalid) return;
     this.isSaving = true;
 
