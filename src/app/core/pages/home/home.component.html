@@ -8,6 +8,7 @@
 
   <mat-card>
     <mat-card-content>
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
       <ng-container *ngFor="let shortcut of $shortcuts | async">
         <core-shortcut [shortcut]="shortcut"></core-shortcut>
       </ng-container>

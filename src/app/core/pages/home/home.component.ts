@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { map } from "rxjs";
+import { map, tap } from "rxjs";
 
 import { UserService } from "../../modules/auth/services/user.service";
 import { ShortcutsService } from "src/app/shared/services/shortcuts.service";
@@ -12,9 +12,11 @@ import { ShortcutsService } from "src/app/shared/services/shortcuts.service";
 export class HomeComponent {
   private readonly user = inject(UserService);
   private readonly shortcuts = inject(ShortcutsService);
+  isLoading = true;
 
   readonly $user = this.user.$data;
   readonly $shortcuts = this.shortcuts.$shortcuts.pipe(
-    map(shortcuts => shortcuts.filter(shortcut => shortcut._id !== "home"))
+    map(shortcuts => shortcuts.filter(shortcut => shortcut._id !== "home")),
+    tap(() => this.isLoading = false)
   );
 }
