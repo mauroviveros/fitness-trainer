@@ -15,7 +15,9 @@ export interface Scheme {
   series: number
   reps: number
   rir: number
-  // weights?: number[]
 
-  [key: string]: string | number | DocumentReference<DocumentData>
+  weights?: number[]
+  sensations?: string
+
+  [key: string]: undefined | string | number | number[] | DocumentReference<DocumentData>
 }
