@@ -2,14 +2,25 @@
 
 <routine-week-day [days]="routine.daysOfWeek" [date]="date" (changeDay)="changeDate.emit($event)" *ngIf="user?._admin"></routine-week-day>
 
-<mat-nav-list *ngIf="schemesDM[0].length || schemesDM[1].length; else routineBanne">
-  <ng-container *ngFor="let schemes of schemesDM; let last = last">
-    <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme"></routine-exercise>
-    <mat-divider *ngIf="!last && schemes.length"></mat-divider>
-  </ng-container>
-</mat-nav-list>
+<ng-container *ngIf="schemesDM[0].length || schemesDM[1].length; else routineBanne">
+  <mat-nav-list *ngIf="user?._admin; else customerList">
+    <ng-container *ngFor="let schemes of schemesDM; let last = last">
+      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [isAdmin]="user?._admin || false"></routine-exercise>
+      <mat-divider *ngIf="!last && schemes.length"></mat-divider>
+    </ng-container>
+  </mat-nav-list>
+</ng-container>
 
-<button mat-fab class="absolute" (click)="create()" *ngIf="user?._admin && isRoutinePeriod()">
+<ng-template #customerList>
+  <mat-selection-list>
+    <ng-container *ngFor="let schemes of schemesDM; let last = last">
+      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [isAdmin]="user?._admin || false"></routine-exercise>
+      <mat-divider *ngIf="!last && schemes.length"></mat-divider>
+    </ng-container>
+  </mat-selection-list>
+</ng-template>
+
+<button mat-fab class="absolute" (click)="create()" *ngIf="user?._admin && isRoutinePeriod() && isTrainingDay()">
   <mat-icon>add</mat-icon>
 </button>
 
