@@ -1,4 +1,4 @@
-<mat-list-item [routerLink]="routines.length === 1 ? ['/routine', routines[0]._id] : undefined" [disableRipple]="routines.length !== 1">
+<mat-list-item [routerLink]="routines.length === 1 ? ['/routine', routines[0]._id] : undefined" (click)="routines.length > 1 ? openBottomSheet() : undefined" [disableRipple]="routines.length !== 1">
   <mat-icon matListItemIcon>person</mat-icon>
   <div matListItemTitle>{{ customer | user | titlecase }}</div>
   <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions>
