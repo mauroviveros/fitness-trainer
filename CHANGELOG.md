@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.0...v2.0.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **core.shared:** :adhesive_bandage: fix iframe url ([39214a3](https://github.com/maurodviveros/fitness_trainer/commit/39214a3288e9b6f9e628a4318c948881dd31996c))
+
+
+
 # [2.0.0](https://github.com/maurodviveros/fitness_trainer/compare/v1.0.2...v2.0.0) (2023-10-23)
 
 

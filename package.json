@@ -2,7 +2,7 @@
   "name": "fitness_trainer",
   "description": "The Fitness Trainer project is a frontend web application designed for managing routines and exercises for clients.",
   "author": "Mauro Daniel Viveros <maurod.viveros@gmail.com> (TRY Ubbe)",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "private": true,
   "scripts": {
