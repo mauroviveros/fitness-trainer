@@ -41,7 +41,7 @@
       <ng-container formArrayName="weights">
         <mat-form-field *ngFor="let serie of weights.controls; let i = index">
           <mat-label>serie {{ i + 1 }}</mat-label>
-          <mat-icon matPrefix>scale</mat-icon>
+          <mat-icon color="primary" matPrefix>scale</mat-icon>
           <mat-error>{{ weights.controls[i].errors | error }}</mat-error>
           <input type="number" [formControlName]="i" placeholder="KGs utilizados" matInput />
         </mat-form-field>
@@ -49,7 +49,7 @@
 
       <mat-form-field>
         <mat-label>Sensaciones</mat-label>
-        <mat-icon matIconPrefix>comment</mat-icon>
+        <mat-icon color="primary" matIconPrefix>comment</mat-icon>
         <mat-error>{{ form.controls['sensations'].errors | error }}</mat-error>
         <textarea formControlName="sensations" placeholder="Describe tus sensaciones después de completar el ejercicio.." [rows]="4" [disabled]="true" matInput></textarea>
       </mat-form-field>
