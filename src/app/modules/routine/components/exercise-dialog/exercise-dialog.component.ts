@@ -13,6 +13,7 @@ interface DetailDialogContent {
   mode: 1 | 2 | 3,
   scheme: Scheme
   isEdit: boolean
+  months?: number
 }
 
 @Component({
@@ -29,6 +30,7 @@ export class ExerciseDialogComponent {
   RIR = this.scheme.RIR;
   isSaving = false;
   isEdit = false;
+  months = 0;
   mode : 1 | 2 | 3 = 3;
 
   readonly form: FormGroup = this.formBuilder.group({
@@ -59,6 +61,7 @@ export class ExerciseDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) data: DetailDialogContent){
     this.mode = data.mode;
     this.isEdit = data.isEdit;
+    this.months = data.months || 0;
     if(!data.scheme) return;
 
     for(let i = 0; i < data.scheme.series; i++){
@@ -98,12 +101,18 @@ export class ExerciseDialogComponent {
     });
   }
 
-  submit() : void {
+  async submit() : Promise<void> {
+
     if(this.form.invalid) return;
     this.isSaving = true;
 
-    this.scheme.upload(this.form.value)
-      .then(() => this.dialog.close())
-      .finally(() => this.isSaving = false);
+    for(let i = 0; i <= this.months; i++){
+      const scheme = { ...this.form.value };
+      scheme.weekOfMonth = i;
+      await this.scheme.upload(scheme);
+    }
+
+    this.dialog.close();
+    this.isSaving = false;
   }
 }

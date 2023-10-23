@@ -85,6 +85,8 @@ export class ExercisesComponent implements OnInit, OnChanges, OnDestroy {
     scheme.weekOfMonth = this.$week.value as number;
     scheme.dayOfWeek = this.$day.value as dayOfWeek;
 
-    this.routineService.openExercise(1, scheme);
+    const months = this.dateService.countWeeksOfMonth(this.routine.dateIN, this.routine.dateOUT, scheme.dayOfWeek);
+
+    this.routineService.openExercise(1, scheme, false, months);
   }
 }

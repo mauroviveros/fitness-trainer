@@ -68,8 +68,8 @@ export class RoutineService {
     return this.dialog.open(DetailDialogComponent, { disableClose: true, data });
   }
 
-  openExercise(mode: 1 | 2 | 3 = 3, scheme?: Scheme, isEdit?: boolean){
-    const data = { mode, scheme, isEdit };
+  openExercise(mode: 1 | 2 | 3 = 3, scheme?: Scheme, isEdit?: boolean, months?: number){
+    const data = { mode, scheme, isEdit, months };
     return this.dialog.open(ExerciseDialogComponent, { disableClose: true, data });
   }
 
