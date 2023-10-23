@@ -24,6 +24,7 @@ export class VideoService {
 
   validate() : (control : AbstractControl) => ValidationErrors | null{
     return (control : AbstractControl) : ValidationErrors | null => {
+      if(!control.value) return null;
       const isValid = this.players.some(player => player.regexp.test(control.value));
       return isValid ? null : { videoUrl: true };
     };

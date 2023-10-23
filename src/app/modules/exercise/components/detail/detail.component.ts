@@ -30,9 +30,9 @@ export class DetailComponent {
   readonly form: FormGroup = this.formBuilder.group({
     _id: [null],
     name: [null, [Validators.required, Validators.maxLength(this.MAX_LENGTH)]],
-    description: [null, [Validators.required]],
     category: [null, [Validators.required]],
-    video: [null, [Validators.required, this.video.validate()]]
+    description: [null],
+    video: [null, [this.video.validate()]]
   });
 
   get categoryIcon(){ return this.exercise.getIcon(this.form.controls["category"].value); }
