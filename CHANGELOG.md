@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.2...v2.0.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* **routine:** :adhesive_bandage: fix actions ([2bfc202](https://github.com/maurodviveros/fitness_trainer/commit/2bfc20249aa0e4fb42daaa6bd825bb457579baf0))
+
+
+
 ## [2.0.2](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.1...v2.0.2) (2023-10-23)
 
 
