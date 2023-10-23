@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, Input, OnChanges, OnDestroy, OnInit, inject } from "@angular/core";
 import { DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { User } from "@angular/fire/auth";
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
@@ -22,7 +22,7 @@ import { Scheme } from "src/app/shared/interfaces/scheme";
   templateUrl: "./exercise.component.html",
   styles: [" .disabled{ color: var(--mdc-list-list-item-leading-icon-color) !important; } "]
 })
-export class ExerciseComponent implements OnInit, OnDestroy {
+export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
   private readonly dialog = inject(DialogService);
   private readonly bottomSheet = inject(MatBottomSheet);
   private readonly service = inject(SchemeService);
@@ -38,7 +38,14 @@ export class ExerciseComponent implements OnInit, OnDestroy {
 
   get icon(){ return this.exerciseService.getIcon(this.exercise ? this.exercise.category : this.scheme.category); }
 
-  get actions() : Action[] {
+  actions: Action[] = [];
+
+  ngOnInit(){
+    this.subscriptions.push(this.initExercise());
+    this.subscriptions.push(this.initUser());
+  }
+  
+  ngOnChanges(){
     let actions : Action[] = [
       { _id: "view", icon: "visibility", text: "Ver ejercicio realizado" },
       { _id: "check", icon: "done", text: "Completar Ejercicio", },
@@ -52,15 +59,10 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     if(this.user?.uid !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
     if(this.scheme.weights?.length) actions = actions.filter(action => action._id !== "check");
     if(!this.scheme.weights?.length) actions = actions.filter(action => action._id !== "edit" && action._id !== "view");
-    
 
-    return actions;
+    this.actions = actions;
   }
 
-  ngOnInit(){
-    this.subscriptions.push(this.initExercise());
-    this.subscriptions.push(this.initUser());
-  }
   ngOnDestroy(){
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
