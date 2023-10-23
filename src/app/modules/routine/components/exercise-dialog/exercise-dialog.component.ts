@@ -62,7 +62,7 @@ export class ExerciseDialogComponent {
     if(!data.scheme) return;
 
     for(let i = 0; i < data.scheme.series; i++){
-      this.weights.push(this.formBuilder.control(null, [Validators.required]));
+      this.weights.push(this.formBuilder.control(null, [Validators.required, Validators.min(0)]));
     }
 
     if(this.mode === 3) this.form.controls["sensations"].disable();

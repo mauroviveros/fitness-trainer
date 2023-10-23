@@ -42,7 +42,7 @@
         <mat-form-field *ngFor="let serie of weights.controls; let i = index">
           <mat-label>serie {{ i + 1 }}</mat-label>
           <mat-icon color="primary" matPrefix>scale</mat-icon>
-          <mat-error>{{ weights.controls[i].errors | error }}</mat-error>
+          <mat-error>{{ weights.controls[i].errors | error : 0 }}</mat-error>
           <input type="number" [formControlName]="i" placeholder="KGs utilizados" matInput />
         </mat-form-field>
       </ng-container>
