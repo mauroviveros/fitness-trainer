@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, inject } from "@angular
 import { DocumentData, DocumentReference } from "@angular/fire/firestore";
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { MatListOption } from "@angular/material/list";
-import { Observable, Subscription, filter, switchMap } from "rxjs";
+import { Observable, Subscription, filter, switchMap, tap } from "rxjs";
 
 import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
 import { DialogService } from "src/app/shared/services/dialog.service";
@@ -44,6 +44,14 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
   }
   
   ngOnChanges(){
+    this.actions = this.initActions();
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  private initActions() : Action[] {
     let actions : Action[] = [
       { _id: "view", icon: "visibility", text: "Ver ejercicio realizado" },
       { _id: "check", icon: "done", text: "Completar Ejercicio", },
@@ -58,15 +66,19 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
     if(this.scheme.weights?.length) actions = actions.filter(action => action._id !== "check");
     if(!this.scheme.weights?.length) actions = actions.filter(action => action._id !== "edit" && action._id !== "view");
 
-    this.actions = actions;
-  }
-
-  ngOnDestroy(){
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    return actions;
   }
 
   private initExercise() : Subscription {
-    return this.exerciseService.detail(this.scheme.exercise.id).subscribe(exercise => this.exercise = exercise);
+    return this.exerciseService.detail(this.scheme.exercise.id).pipe(
+      tap(exercise => {
+        this.actions = this.initActions().filter(action => {
+          if(action._id === "video") return exercise?.video;
+          if(action._id === "detail") return exercise?.description;
+          return true;
+        });
+      })
+    ).subscribe(exercise => this.exercise = exercise);
   }
 
   onAction(action: string) : void {
@@ -81,12 +93,12 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   showVideo() : Observable<boolean> | undefined {
-    if(!this.exercise) return;
+    if(!this.exercise || !this.exercise.video) return;
     return this.dialog.openVideoFrame(this.exercise.name, this.exercise.video);
   }
 
   showDetail() : Observable<boolean> | undefined {
-    if(!this.exercise) return;
+    if(!this.exercise || !this.exercise.description) return;
     return this.dialog.open({ icon: this.icon, title: this.exercise.name, texts: [this.exercise.description] });
   }
 
