@@ -18,7 +18,7 @@ const messages: messages = {
   name: "error"
 })
 export class ErrorPipe implements PipeTransform {
-  private readonly maxlength = environment.MAX_LENGTH;
+  private readonly maxlength = environment.MAX_LENGTH || 24;
 
   transform(errors: ValidationErrors | null, arg?: number): string | undefined {
     if(!errors) return;

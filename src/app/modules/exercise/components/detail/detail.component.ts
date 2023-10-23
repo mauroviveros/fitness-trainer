@@ -22,7 +22,7 @@ export class DetailComponent {
   private readonly exercise = inject(ExerciseService);
   private readonly video = inject(VideoService);
 
-  readonly MAX_LENGTH = environment.MAX_LENGTH;
+  readonly MAX_LENGTH = environment.MAX_LENGTH || 24;
   readonly categories = this.exercise.categories;
   mode : 1 | 2 | 3 = 3;
   isSaving = false;

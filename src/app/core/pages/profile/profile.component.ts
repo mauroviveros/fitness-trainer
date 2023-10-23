@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
 
   readonly genres = this.user.genres;
-  readonly MAX_LENGTH = environment.MAX_LENGTH;
+  readonly MAX_LENGTH = environment.MAX_LENGTH || 24;
   readonly $mode = new BehaviorSubject<number>(3);
   readonly $isMobile = this.media.$isMobile;
   isLoading = false;
