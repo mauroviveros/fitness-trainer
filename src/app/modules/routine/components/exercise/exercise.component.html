@@ -2,7 +2,10 @@
   <mat-icon matListItemIcon [class.disabled]="!scheme.weights?.length">{{ icon }}</mat-icon>
   <div matListItemTitle>{{ exercise?.name }}</div>
   <span matListItemLine>Series: {{ scheme.series }}</span>
-  <span matListItemLine>Repeticiones: {{ scheme.reps }}. RIR: {{ scheme.rir | rir }}</span>
+  <span matListItemLine>
+    Repeticiones: {{ scheme.reps }}
+    <span *ngIf="scheme.rir">. RIR: {{ scheme.rir | rir }}</span>
+  </span>
   <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions>
 </mat-list-item>
 
@@ -11,6 +14,9 @@
     <mat-icon matListItemIcon>{{ icon }}</mat-icon>
     <div matListItemTitle>{{ exercise?.name }}</div>
     <span matListItemLine>Series: {{ scheme.series }}</span>
-    <span matListItemLine>Repeticiones: {{ scheme.reps }}. RIR: {{ scheme.rir | rir }}</span>
+    <span matListItemLine>
+      Repeticiones: {{ scheme.reps }}
+      <span *ngIf="scheme.rir">. RIR: {{ scheme.rir | rir }}</span>
+    </span>
   </mat-list-option>
 </ng-template>

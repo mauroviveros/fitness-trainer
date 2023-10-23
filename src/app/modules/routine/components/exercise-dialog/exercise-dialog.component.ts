@@ -40,7 +40,7 @@ export class ExerciseDialogComponent {
     category: [null, [Validators.required]],
     series: [null, [Validators.required, Validators.min(0)]],
     reps: [null, [Validators.required, Validators.min(0)]],
-    rir: [-1, [Validators.required]],
+    rir: [null],
     sensations: [null],
     weights: this.formBuilder.array([])
   });
@@ -68,7 +68,7 @@ export class ExerciseDialogComponent {
     if(this.mode === 3) this.form.controls["sensations"].disable();
 
     Object.keys(this.form.controls).forEach(controlName => {
-      if(controlName === "rir" && !data.scheme[controlName]) data.scheme[controlName] = -1;
+      if(controlName === "rir" && !data.scheme[controlName]) return;
       if(controlName === "sensations" && !data.scheme[controlName]) return;
       if(controlName === "weights" && !data.scheme[controlName]?.length) return;
 
@@ -92,6 +92,9 @@ export class ExerciseDialogComponent {
   onChangeExercise(select: MatSelectChange) : void {
     firstValueFrom(this.exercise.detail(select.value.id)).then(exercise => {
       this.form.controls["category"].setValue(exercise?.category);
+      this.form.controls["rir"].clearValidators();
+      if(exercise?.category === "TRAINING") this.form.controls["rir"].setValidators(Validators.required);
+      this.form.controls["rir"].updateValueAndValidity();
     });
   }
 

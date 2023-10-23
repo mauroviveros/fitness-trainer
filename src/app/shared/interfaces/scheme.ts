@@ -14,7 +14,7 @@ export interface Scheme {
   category: Category
   series: number
   reps: number
-  rir: number
+  rir?: number
 
   weights?: number[]
   sensations?: string

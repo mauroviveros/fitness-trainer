@@ -27,7 +27,7 @@
         <input type="number" formControlName="reps" placeholder="Cantidad de repeticiones a realizar por serie" matInput />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field *ngIf="form.controls['category'].value === 'TRAINING'">
         <mat-label>RIR</mat-label>
         <mat-icon color="primary" matPrefix>accessibility_new</mat-icon>
         <mat-error>{{ form.controls['rir'].errors | error }}</mat-error>
