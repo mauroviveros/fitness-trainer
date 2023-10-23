@@ -79,8 +79,8 @@ export class ExerciseDialogComponent {
     return this.exercise.getIcon(category);
   }
 
-  compareRef(value: DocumentReference<DocumentData>, reference: DocumentReference<DocumentData>) : boolean {
-    return value.id === reference.id;
+  compareRef(value: DocumentReference<DocumentData>, reference?: DocumentReference<DocumentData>) : boolean {
+    return value.id === reference?.id;
   }
 
   onChangeExercise(select: MatSelectChange) : void {
