@@ -28,7 +28,7 @@ export class ItemComponent {
       { _id: "history", icon: "history", text: "Historial de rutinas" }
     ];
 
-    if(this.routines.length) actions = actions.filter(action => action._id !== "create");
+    if(this.routines.length && this.hasRoutinesWithoutFinish()) actions = actions.filter(action => action._id !== "create");
     if(this.routines.length <= 1) actions = actions.filter(action => action._id !== "history");
 
     return actions;
@@ -39,6 +39,12 @@ export class ItemComponent {
       case "create" : this.routineSrv.openRoutine(1, undefined, this.customer); break;
       case "history" : this.openBottomSheet(); break;
     }
+  }
+
+  hasRoutinesWithoutFinish(){
+    const date = new Date();
+    const routines = this.routines.filter(routine => date < routine.dateOUT);
+    return routines.length;
   }
 
   openBottomSheet(){
