@@ -56,7 +56,7 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
     ];
 
     if(!this.isAdmin) actions = actions.filter(action => action._id !== "delete" && action._id !== "view");
-    if(this.user?.uid !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
+    // if(this.user?.uid !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
     if(this.scheme.weights?.length) actions = actions.filter(action => action._id !== "check");
     if(!this.scheme.weights?.length) actions = actions.filter(action => action._id !== "edit" && action._id !== "view");
 
