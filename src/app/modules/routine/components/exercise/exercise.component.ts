@@ -33,7 +33,6 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
   @Input() scheme!: Scheme;
   @Input() customer!: DocumentReference<DocumentData>;
   @Input() user? : UserDoc;
-  @Input() isAdmin = false;
   exercise? : Exercise;
 
   get icon(){ return this.exerciseService.getIcon(this.exercise ? this.exercise.category : this.scheme.category); }
@@ -54,7 +53,7 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
       { _id: "delete", icon: "delete", text: "Borrar ejercicio" }
     ];
 
-    if(!this.isAdmin) actions = actions.filter(action => action._id !== "delete" && action._id !== "view");
+    if(!this.user?._admin) actions = actions.filter(action => action._id !== "delete" && action._id !== "view");
     if(this.user?._id !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
     if(this.scheme.weights?.length) actions = actions.filter(action => action._id !== "check");
     if(!this.scheme.weights?.length) actions = actions.filter(action => action._id !== "edit" && action._id !== "view");

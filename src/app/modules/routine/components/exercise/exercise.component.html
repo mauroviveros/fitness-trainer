@@ -1,4 +1,4 @@
-<mat-list-item *ngIf="isAdmin; else customerItem">
+<mat-list-item *ngIf="user?._admin; else customerItem">
   <mat-icon matListItemIcon [class.disabled]="!scheme.weights?.length">{{ icon }}</mat-icon>
   <div matListItemTitle>{{ exercise?.name }}</div>
   <span matListItemLine>Series: {{ scheme.series }}</span>
