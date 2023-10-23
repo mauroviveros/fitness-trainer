@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, inject } from "@angular/core";
 import { DocumentData, DocumentReference } from "@angular/fire/firestore";
-import { User } from "@angular/fire/auth";
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { MatListOption } from "@angular/material/list";
 import { Observable, Subscription, filter, switchMap } from "rxjs";
@@ -16,6 +15,7 @@ import { ActionsSheetComponent } from "src/app/shared/components/actions-sheet/a
 import { Exercise } from "src/app/shared/interfaces/exercise";
 import { Action } from "src/app/shared/interfaces/interfaces";
 import { Scheme } from "src/app/shared/interfaces/scheme";
+import { UserDoc } from "src/app/shared/interfaces/user";
 
 @Component({
   selector: "routine-exercise",
@@ -32,9 +32,9 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
   private readonly subscriptions: Subscription[] = [];
   @Input() scheme!: Scheme;
   @Input() customer!: DocumentReference<DocumentData>;
+  @Input() user? : UserDoc;
   @Input() isAdmin = false;
   exercise? : Exercise;
-  user? : User;
 
   get icon(){ return this.exerciseService.getIcon(this.exercise ? this.exercise.category : this.scheme.category); }
 
@@ -42,7 +42,6 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(){
     this.subscriptions.push(this.initExercise());
-    this.subscriptions.push(this.initUser());
   }
   
   ngOnChanges(){
@@ -56,7 +55,7 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
     ];
 
     if(!this.isAdmin) actions = actions.filter(action => action._id !== "delete" && action._id !== "view");
-    // if(this.user?.uid !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
+    if(this.user?._id !== this.customer.id) actions = actions.filter(action => action._id !== "check" && action._id !== "edit");
     if(this.scheme.weights?.length) actions = actions.filter(action => action._id !== "check");
     if(!this.scheme.weights?.length) actions = actions.filter(action => action._id !== "edit" && action._id !== "view");
 
@@ -69,10 +68,6 @@ export class ExerciseComponent implements OnInit, OnChanges, OnDestroy {
 
   private initExercise() : Subscription {
     return this.exerciseService.detail(this.scheme.exercise.id).subscribe(exercise => this.exercise = exercise);
-  }
-
-  private initUser() : Subscription {
-    return this.authService.$user.subscribe(user => this.user = user);
   }
 
   onAction(action: string) : void {
