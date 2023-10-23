@@ -17,6 +17,7 @@ The Fitness Trainer project is a frontend web application designed for managing 
 ```typescript
 // src/environments/environment.ts
 export const environment = {
+  POWEREDBY: "<string URL || default: https://github.com/maurodviveros>",
   MAX_LENGTH: "<number || default: 24>",
 };
 
