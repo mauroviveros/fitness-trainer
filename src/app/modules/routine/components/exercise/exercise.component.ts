@@ -1,15 +1,18 @@
 import { Component, Input, OnDestroy, OnInit, inject } from "@angular/core";
-import { Subscription, filter, switchMap } from "rxjs";
+import { Observable, Subscription, filter, switchMap } from "rxjs";
+import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { MatListOption } from "@angular/material/list";
+
 import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
+import { DialogService } from "src/app/shared/services/dialog.service";
+import { SchemeService } from "../../services/scheme.service";
+import { RoutineService } from "../../services/routine.service";
+
+import { ActionsSheetComponent } from "src/app/shared/components/actions-sheet/actions-sheet.component";
+
 import { Exercise } from "src/app/shared/interfaces/exercise";
 import { Action } from "src/app/shared/interfaces/interfaces";
 import { Scheme } from "src/app/shared/interfaces/scheme";
-import { DialogService } from "src/app/shared/services/dialog.service";
-import { SchemeService } from "../../services/scheme.service";
-import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { MatListOption } from "@angular/material/list";
-import { ActionsSheetComponent } from "src/app/shared/components/actions-sheet/actions-sheet.component";
-import { RoutineService } from "../../services/routine.service";
 
 @Component({
   selector: "routine-exercise",
@@ -32,6 +35,8 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   get actions() : Action[] {
     let actions : Action[] = [
       { _id: "check", icon: "done", text: "Completar Ejercicio", },
+      { _id: "detail", icon: "description", text: "Detalle del ejercicio" },
+      { _id: "video", icon: "play_circle_filled", text: "Ver Video explicativo" },
       { _id: "delete", icon: "delete", text: "Borrar ejercicio" }
     ];
 
@@ -53,19 +58,31 @@ export class ExerciseComponent implements OnInit, OnDestroy {
       .subscribe(exercise => this.exercise = exercise);
   }
 
-  onAction(action: string){
+  onAction(action: string) : void {
     switch(action){
+      case "detail": this.showDetail(); break;
+      case "video": this.showVideo(); break;
       case "check": this.routineService.openExercise(2, this.scheme); break;
       case "delete": this.delete(); break;
     }
   }
 
-  delete(){
+  showVideo() : Observable<boolean> | undefined {
     if(!this.exercise) return;
-    this.dialog.showConfirmDelete("Borrando Ejercicio", this.exercise.name).pipe(
+    return this.dialog.openVideoFrame(this.exercise.name, this.exercise.video);
+  }
+
+  showDetail() : Observable<boolean> | undefined {
+    if(!this.exercise) return;
+    return this.dialog.open({ icon: this.icon, title: this.exercise.name, texts: [this.exercise.description] });
+  }
+
+  delete() : Observable<void> | undefined {
+    if(!this.exercise) return;
+    return this.dialog.showConfirmDelete("Borrando Ejercicio", this.exercise.name).pipe(
       filter(boolean => boolean),
       switchMap(() => this.service.delete(this.scheme._id))
-    ).subscribe();
+    );
   }
 
   openBottomSheet(option: MatListOption){
