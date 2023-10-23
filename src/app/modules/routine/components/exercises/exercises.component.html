@@ -5,7 +5,7 @@
 <ng-container *ngIf="schemesDM[0].length || schemesDM[1].length; else routineBanne">
   <mat-nav-list *ngIf="user?._admin; else customerList">
     <ng-container *ngFor="let schemes of schemesDM; let last = last">
-      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [isAdmin]="user?._admin || false"></routine-exercise>
+      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [customer]="routine.customer" [isAdmin]="user?._admin || false"></routine-exercise>
       <mat-divider *ngIf="!last && schemes.length"></mat-divider>
     </ng-container>
   </mat-nav-list>
@@ -14,7 +14,7 @@
 <ng-template #customerList>
   <mat-selection-list>
     <ng-container *ngFor="let schemes of schemesDM; let last = last">
-      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [isAdmin]="user?._admin || false"></routine-exercise>
+      <routine-exercise *ngFor="let scheme of schemes" [scheme]="scheme" [customer]="routine.customer" [isAdmin]="user?._admin || false"></routine-exercise>
       <mat-divider *ngIf="!last && schemes.length"></mat-divider>
     </ng-container>
   </mat-selection-list>

@@ -12,6 +12,7 @@ import { DocumentData, DocumentReference } from "@angular/fire/firestore";
 interface DetailDialogContent {
   mode: 1 | 2 | 3,
   scheme: Scheme
+  isEdit: boolean
 }
 
 @Component({
@@ -27,6 +28,7 @@ export class ExerciseDialogComponent {
   $exercises = this.exercise.$list;
   RIR = this.scheme.RIR;
   isSaving = false;
+  isEdit = false;
   mode : 1 | 2 | 3 = 3;
 
   readonly form: FormGroup = this.formBuilder.group({
@@ -49,17 +51,21 @@ export class ExerciseDialogComponent {
 
   get title() : string {
     if(this.mode === 1) return "Creando ejercicio";
-    else if(this.mode === 2) return "Completando ejercicio";
-    else return "Detalle del ejercicio";
+    else if(this.mode === 2){
+      return this.isEdit ? "Editando ejercicio" : "Completando ejercicio";
+    } else return "Detalle del ejercicio";
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) data: DetailDialogContent){
     this.mode = data.mode;
+    this.isEdit = data.isEdit;
     if(!data.scheme) return;
 
     for(let i = 0; i < data.scheme.series; i++){
       this.weights.push(this.formBuilder.control(null, [Validators.required]));
     }
+
+    if(this.mode === 3) this.form.controls["sensations"].disable();
 
     Object.keys(this.form.controls).forEach(controlName => {
       if(controlName === "rir" && !data.scheme[controlName]) data.scheme[controlName] = -1;
