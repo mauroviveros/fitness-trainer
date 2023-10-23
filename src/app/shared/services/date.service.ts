@@ -45,5 +45,17 @@ export class DateService {
     const week = index + Math.floor(offsetDate / 7);
 
     return (week === weeksInMonth ? index + 5 : week) - 1;
-}
+  }
+
+  countWeeksOfMonth(dateIN: Date, dateOUT: Date, day: number){
+    let count = 0;
+    const fechaActual = new Date(dateIN);
+
+    while (fechaActual <= dateOUT) {
+      if (fechaActual.getDay() === day) count++;
+      fechaActual.setDate(fechaActual.getDate() + 1);
+    }
+
+    return count;
+  }
 }
