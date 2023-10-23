@@ -1,3 +1,23 @@
+# [2.1.0](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.3...v2.1.0) (2023-10-23)
+
+
+### Bug Fixes
+
+* **exercise:** :adhesive_bandage: fix actions without video ([0bc011e](https://github.com/maurodviveros/fitness_trainer/commit/0bc011e8722a3f213457211eb965edec68e32365))
+* **routine:** :adhesive_bandage: fix actions for customerUser ([cfd93d2](https://github.com/maurodviveros/fitness_trainer/commit/cfd93d24648c9d98e89bcfe9697c4af4d49aeb4e))
+* **routine:** :adhesive_bandage: remove isAdmin input ([92ded76](https://github.com/maurodviveros/fitness_trainer/commit/92ded76b776ac4f644f12f0119ce0e17f247e1ca))
+* **routine:** :zap: add logic on actions for video or detail optionals ([fd3fe02](https://github.com/maurodviveros/fitness_trainer/commit/fd3fe02a85772987bcc1cffda04a417e35d16004))
+
+
+### Features
+
+* **core.shared:** :wheelchair: add count weeks of months ([40f1dca](https://github.com/maurodviveros/fitness_trainer/commit/40f1dca99ab98a3753afa36ca086e46b9e80ab47))
+* **exercise:** :safety_vest: video and description field is optional ([521e170](https://github.com/maurodviveros/fitness_trainer/commit/521e1709b9910f4f91037832cf2117d8b71db2b9))
+* **routine:** :sparkles: replicate exercises for all weeks on routine ([c28e933](https://github.com/maurodviveros/fitness_trainer/commit/c28e933022fd51d8a74ebf56b947456e8b83c0e8))
+* **routine:** :sparkles: rir field is optional ([6b4b520](https://github.com/maurodviveros/fitness_trainer/commit/6b4b520931466300f2a744404698ec56a8090128))
+
+
+
 ## [2.0.3](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.2...v2.0.3) (2023-10-23)
 
 
