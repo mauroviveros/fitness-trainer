@@ -34,6 +34,10 @@
         color: mat.get-contrast-color-from-palette($primary-palette, 200) !important;
       }
     }
+
+    blockquote{
+      color: mat.get-color-from-palette($primary-palette, 500) !important;
+    }
   }
 
   main{

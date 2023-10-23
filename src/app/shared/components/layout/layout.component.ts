@@ -1,8 +1,11 @@
 import { Component, Input, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+
 import { ShortcutsService } from "../../services/shortcuts.service";
 import { AuthService } from "src/app/core/modules/auth/services/auth.service";
 import { UserService } from "src/app/core/modules/auth/services/user.service";
+
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "shared-layout",
@@ -22,6 +25,7 @@ export class LayoutComponent {
 
   readonly $shortcuts = this.shortcutsSrv.$shortcuts;
   readonly $user = this.user.$data;
+  readonly POWEREDBY = environment.POWEREDBY || "https://github.com/maurodviveros";
 
   logout(){ this.auth.logout(); }
 }

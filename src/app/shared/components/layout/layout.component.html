@@ -15,6 +15,11 @@
         <div>{{ shortcut.label | titlecase }}</div>
       </mat-list-item>
     </mat-nav-list>
+
+    <blockquote>
+      <span>Copyright © 2023</span>
+      <span>Powered by <a [href]="POWEREDBY" target="_blank">Mauro Daniel Viveros</a></span>
+    </blockquote>
   </mat-drawer>
 
   <mat-drawer-content>
@@ -39,9 +44,7 @@
 </mat-drawer-container>
 
 <ng-template #loadingScreen>
-  <!-- <article class="banner"> -->
   <mat-spinner></mat-spinner>
-  <!-- </article> -->
 </ng-template>
 
 <ng-template #closeBtn>
