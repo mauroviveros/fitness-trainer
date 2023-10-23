@@ -18,7 +18,7 @@ export class VideoService {
     {
       icon: "youtube",
       regexp: /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/,
-      iframe: "http://www.youtube.com/embed/{ID}?autoplay=1"
+      iframe: "https://www.youtube.com/embed/{ID}?autoplay=1"
     }
   ];
 
