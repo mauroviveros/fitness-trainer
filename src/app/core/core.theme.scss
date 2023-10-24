@@ -11,6 +11,10 @@
 @mixin color($config) {
     $primary-palette: map.get($config, primary);
 
+    :root{
+      --primary: #{mat.get-color-from-palette($primary-palette, 500)};
+    }
+
     body{ 
         background-color: mat.get-color-from-palette($primary-palette, 300);
         color: mat.get-contrast-color-from-palette($primary-palette, 300);
