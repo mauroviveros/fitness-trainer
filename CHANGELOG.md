@@ -1,3 +1,19 @@
+## [2.1.1](https://github.com/maurodviveros/fitness_trainer/compare/v2.1.0...v2.1.1) (2023-10-24)
+
+
+### Bug Fixes
+
+* **routine:** :lipstick: add scroll on list of exercises ([5e1d534](https://github.com/maurodviveros/fitness_trainer/commit/5e1d5347593b954066d851e7fcbe1ce0aa278cd8))
+
+
+### Features
+
+* **core:** :label: add og metas ([9a9118a](https://github.com/maurodviveros/fitness_trainer/commit/9a9118a1db11c04fc4e6de2068aaef82137419bf))
+* **core:** :lipstick: add theme color from theme ([a595213](https://github.com/maurodviveros/fitness_trainer/commit/a595213e7d46b5408ad77c9400089aafb17ca5a2))
+* **routine:** :lipstick: add padding bottom for fab button ([c3e22da](https://github.com/maurodviveros/fitness_trainer/commit/c3e22dae9c96723a5f0f65a123830ebef480696e))
+
+
+
 # [2.1.0](https://github.com/maurodviveros/fitness_trainer/compare/v2.0.3...v2.1.0) (2023-10-23)
 
 
