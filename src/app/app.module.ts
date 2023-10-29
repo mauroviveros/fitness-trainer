@@ -9,7 +9,7 @@ import { provideFirestore,getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from "@angular/fire/analytics";
 
-import { FIREBASE } from "../environments/environment";
+import { FIREBASE } from "../environments/firebase";
 
 import { CoreModule } from "./core/core.module";
 

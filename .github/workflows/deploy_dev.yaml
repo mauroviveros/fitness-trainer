@@ -16,7 +16,7 @@ jobs:
         run: npm install
       
       - name: Config ENVIRONMENT.ts
-        run: echo '${{ vars.ENVIRONMENT_DEV }}' > ./src/environments/environment.ts
+        run: echo '${{ vars.ENVIRONMENT_DEV }}' > ./src/environments/firebase.ts
 
       - name: Build project
         run: npm run build
