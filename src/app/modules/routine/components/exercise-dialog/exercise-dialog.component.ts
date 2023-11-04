@@ -1,13 +1,15 @@
 import { Component, Inject, inject } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
-import { Category, Exercise } from "src/app/shared/interfaces/exercise";
-import { SchemeService } from "../../services/scheme.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Scheme } from "src/app/shared/interfaces/scheme";
-import { MatSelectChange } from "@angular/material/select";
-import { firstValueFrom } from "rxjs";
 import { DocumentData, DocumentReference } from "@angular/fire/firestore";
+
+import { ExerciseService } from "src/app/modules/exercise/services/exercise.service";
+import { SchemeService } from "../../services/scheme.service";
+
+import { Exercise } from "src/app/shared/interfaces/exercise";
+import { Scheme } from "src/app/shared/interfaces/scheme";
+
+import { exerciseSelected } from "../../validators/exercise.validator";
 
 interface DetailDialogContent {
   mode: 1 | 2 | 3,
@@ -38,7 +40,7 @@ export class ExerciseDialogComponent {
     weekOfMonth: [null, [Validators.required]],
     dayOfWeek: [null, [Validators.required]],
     routine: [null, [Validators.required]],
-    exercise: [null, [Validators.required]],
+    exercise: [null, [Validators.required, exerciseSelected()]],
     category: [null, [Validators.required]],
     series: [null, [Validators.required, Validators.min(0)]],
     reps: [null, [Validators.required, Validators.min(0)]],
@@ -84,30 +86,37 @@ export class ExerciseDialogComponent {
 
   ref(exercise: Exercise){ return this.exercise.ref(exercise); }
 
-  getCategoryIcon(category: Category) : string {
-    return this.exercise.getIcon(category);
+  getCategoryIcon(exercise?: Exercise) : string {
+    return this.exercise.getIcon(exercise?.category);
   }
 
   compareRef(value: DocumentReference<DocumentData>, reference?: DocumentReference<DocumentData>) : boolean {
     return value.id === reference?.id;
   }
 
-  onChangeExercise(select: MatSelectChange) : void {
-    firstValueFrom(this.exercise.detail(select.value.id)).then(exercise => {
-      this.form.controls["category"].setValue(exercise?.category);
-      this.form.controls["rir"].clearValidators();
-      if(exercise?.category === "TRAINING") this.form.controls["rir"].setValidators(Validators.required);
-      this.form.controls["rir"].updateValueAndValidity();
-    });
+  onChangeExercise(exercise: Exercise) : void {
+    this.form.controls["category"].setValue(exercise.category);
+    this.form.controls["rir"].clearValidators();
+    if(exercise.category === "TRAINING") this.form.controls["rir"].setValidators(Validators.required);
+    this.form.controls["rir"].updateValueAndValidity();
+  }
+
+  formatExercise(exercise?: Exercise){
+    return exercise ? exercise.name : "";
+  }
+
+  needRIR(exercise?: Exercise){
+    return exercise?.category === "TRAINING";
   }
 
   async submit() : Promise<void> {
-
     if(this.form.invalid) return;
     this.isSaving = true;
+    const value = this.form.value;
+    value.exercise = this.ref(value.exercise);
 
     for(let i = 0; i <= this.months; i++){
-      const scheme = { ...this.form.value };
+      const scheme = { ...value };
       scheme.weekOfMonth = i;
       await this.scheme.upload(scheme);
     }

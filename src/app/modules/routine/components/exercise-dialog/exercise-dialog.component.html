@@ -6,11 +6,13 @@
     <ng-container *ngIf="mode === 1">
       <mat-form-field>
         <mat-label>Ejercicio</mat-label>
-        <mat-icon color="primary" matPrefix>{{ getCategoryIcon(form.controls['category'].value) }}</mat-icon>
+        <mat-icon color="primary" matPrefix>{{ getCategoryIcon(form.controls['exercise'].value) }}</mat-icon>
         <mat-error>{{ form.controls['exercise'].errors | error }}</mat-error>
-        <mat-select formControlName="exercise" placeholder="Seleccione un ejercicio" [compareWith]="compareRef" (selectionChange)="onChangeExercise($event)">
-          <mat-option *ngFor="let exercise of $exercises | async" [value]="ref(exercise)">{{ exercise.name }}</mat-option>
-        </mat-select>
+        <input type="text" formControlName="exercise" placeholder="Seleccione un ejercicio" [matAutocomplete]="exercises" matInput />
+
+        <mat-autocomplete #exercises="matAutocomplete" [displayWith]="formatExercise" (optionSelected)="onChangeExercise($event.option.value)">
+          <mat-option *ngFor="let exercise of $exercises | async" [value]="exercise">{{ exercise.name }}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field>
@@ -27,7 +29,7 @@
         <input type="number" formControlName="reps" placeholder="Cantidad de repeticiones a realizar por serie" matInput />
       </mat-form-field>
 
-      <mat-form-field *ngIf="form.controls['category'].value === 'TRAINING'">
+      <mat-form-field *ngIf="needRIR(form.controls['exercise'].value)">
         <mat-label>RIR</mat-label>
         <mat-icon color="primary" matPrefix>accessibility_new</mat-icon>
         <mat-error>{{ form.controls['rir'].errors | error }}</mat-error>
