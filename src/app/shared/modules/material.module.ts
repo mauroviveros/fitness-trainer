@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -24,6 +25,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 @NgModule({
   exports: [
     MatNativeDateModule,
+    MatAutocompleteModule,
     MatBottomSheetModule,
     MatButtonModule,
     MatCardModule,
