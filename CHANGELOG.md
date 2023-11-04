@@ -1,3 +1,16 @@
+## [2.1.2](https://github.com/maurodviveros/fitness_trainer/compare/v2.1.1...v2.1.2) (2023-11-04)
+
+
+### Features
+
+* :closed_lock_with_key: updare environment file for firebase ([58695a0](https://github.com/maurodviveros/fitness_trainer/commit/58695a0ea973af5b8e72a8cc17d25bb35359501c))
+* **core.shared:** :heavy_plus_sign: add MaterialModules ([941b958](https://github.com/maurodviveros/fitness_trainer/commit/941b958a5b1dbf5ae77a7d73aae2bd04099d3da6))
+* **core.shared:** :rotating_light: add exercise message error on pipe ([d82ce92](https://github.com/maurodviveros/fitness_trainer/commit/d82ce9212f2d7a29d2ad74badce7fd0caaea6b99))
+* **routine:** :sparkles: add exercise validator ([9ec78a5](https://github.com/maurodviveros/fitness_trainer/commit/9ec78a55098588d3ab0a4c62bf299790b99be2b7))
+* **routine:** :sparkles: chage select for autocomplete on exercise ([c34ed09](https://github.com/maurodviveros/fitness_trainer/commit/c34ed09cd20ccfa7a1aa41a5374da89da61ee0dc))
+
+
+
 ## [2.1.1](https://github.com/maurodviveros/fitness_trainer/compare/v2.1.0...v2.1.1) (2023-10-24)
 
 
