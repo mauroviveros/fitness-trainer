@@ -22,6 +22,7 @@
     }
   },
   "conventionalCommits.scopes": [
-    "auth"
+    "auth",
+    "shared"
   ],
 }
