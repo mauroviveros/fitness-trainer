@@ -1,10 +1,11 @@
+@import "breakpoints";
+
 :host{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 1rem;
-  width: 600px;
+  width: 100%;
+  max-width: $screen-xsmall;
   height: 100%;
 }
 
@@ -15,12 +16,14 @@ figure{
   align-items: center;
   img{
     width: 60%;
+    padding: 1rem;
   }
 }
 
 mat-card{
   width: 100%;
   padding: 0 1rem;
+  justify-content:space-around;
 
   mat-card-header, mat-card-footer{
     display: flex;
@@ -29,6 +32,8 @@ mat-card{
 
   mat-card-header{
     text-transform: uppercase;
+    padding: 1rem;
+    h2{ margin: 0; }
   }
 
   mat-card-footer{
@@ -43,3 +48,10 @@ mat-card{
   }
 }
 
+@media #{$media-xsmall} {
+  mat-card{
+    padding: 0;
+    border-radius: 0;
+    flex-grow: 1;
+  }
+}
