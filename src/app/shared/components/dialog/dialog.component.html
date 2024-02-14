@@ -1,9 +1,0 @@
-<mat-toolbar mat-dialog-title>{{ data.title | titlecase }}</mat-toolbar>
-<mat-dialog-content>
-  <mat-icon color="primary">{{ data.icon }}</mat-icon>
-  <p *ngFor="let text of data.texts">{{ text }}</p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button type="button" color="primary" mat-button mat-dialog-close>cancelar</button>
-  <button type="button" color="primary" *ngIf="data.action" (click)="onAction()" mat-raised-button cdkFocusInitial>{{ data.action.label }}</button>
-</mat-dialog-actions>
