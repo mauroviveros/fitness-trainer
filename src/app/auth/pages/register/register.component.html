@@ -1,1 +1,46 @@
-<p>register works!</p>
+<auth-wrapper>
+  <form [formGroup]="form" (submit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <mat-icon color="primary" matIconPrefix>email</mat-icon>
+      <!-- <mat-error>Error</mat-error> -->
+      <input
+        type="email"
+        placeholder="Ingrese su email"
+        autocomplete="email"
+        formControlName="email"
+        matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <mat-icon color="primary" matIconPrefix>password</mat-icon>
+      <!-- <mat-error>Error</mat-error> -->
+      <input
+        type="password"
+        placeholder="Ingrese su contraseñá"
+        autocomplete="new-password"
+        formControlName="password"
+        matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmar contraseñá</mat-label>
+      <mat-icon color="primary" matIconPrefix>password</mat-icon>
+      <!-- <mat-error>Error</mat-error> -->
+      <input
+        type="password"
+        placeholder="Repite su contraseñá"
+        autocomplete="new-password"
+        formControlName="password_confirm"
+        matInput />
+    </mat-form-field>
+
+    <button
+      type="submit"
+      color="accent"
+      [disabled]="form.invalid"
+      mat-stroked-button>
+      Ingresar
+    </button>
+  </form>
+</auth-wrapper>
