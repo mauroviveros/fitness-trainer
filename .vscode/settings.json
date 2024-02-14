@@ -21,4 +21,7 @@
       "source.fixAll.eslint": "explicit"
     }
   },
+  "conventionalCommits.scopes": [
+    "auth"
+  ],
 }
