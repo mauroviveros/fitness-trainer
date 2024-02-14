@@ -3,7 +3,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Correo electrónico</mat-label>
       <mat-icon color="primary" matIconPrefix>email</mat-icon>
-      <!-- <mat-error>Error</mat-error> -->
+      <mat-error>{{ form.controls.email.errors | error }}</mat-error>
       <input
         type="email"
         placeholder="Ingrese su email"
@@ -15,7 +15,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Contraseña</mat-label>
       <mat-icon color="primary" matIconPrefix>password</mat-icon>
-      <!-- <mat-error>Error</mat-error> -->
+      <mat-error>{{ form.controls.password.errors | error }}</mat-error>
       <input
         type="password"
         placeholder="Ingrese su contraseñá"
@@ -26,7 +26,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Confirmar contraseñá</mat-label>
       <mat-icon color="primary" matIconPrefix>password</mat-icon>
-      <!-- <mat-error>Error</mat-error> -->
+      <mat-error>{{ form.controls.password_confirm.errors | error }}</mat-error>
       <input
         type="password"
         placeholder="Repite su contraseñá"
