@@ -1,5 +1,4 @@
 import { Component, Input, inject } from '@angular/core';
-import { SharedModule } from '../../../shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 
 interface wrapper {
@@ -15,8 +14,6 @@ interface wrapper {
 
 @Component({
   selector: 'auth-wrapper',
-  standalone: true,
-  imports: [SharedModule],
   templateUrl: './wrapper.component.html',
   styleUrl: './wrapper.component.scss',
 })
