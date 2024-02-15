@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { SharedModule } from '../../../shared/shared.module';
-import { WrapperComponent } from '../../components/wrapper/wrapper.component';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { tap } from 'rxjs';
+
+import { SharedModule } from '../../../shared/shared.module';
+import { AuthModule } from '../../auth.module';
+
 import { UtilsService } from '../../../shared/services/utils.service';
 import { MessageService } from '../../../shared/services/message.service';
-import { tap } from 'rxjs';
 
 interface FormType {
   email: FormControl<string | null>;
@@ -20,7 +22,7 @@ interface FormType {
 @Component({
   selector: 'auth-register',
   standalone: true,
-  imports: [SharedModule, WrapperComponent],
+  imports: [SharedModule, AuthModule],
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {

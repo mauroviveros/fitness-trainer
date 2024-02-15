@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { SharedModule } from '../../../shared/shared.module';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { WrapperComponent } from '../../components/wrapper/wrapper.component';
-import { UtilsService } from '../../../shared/services/utils.service';
 import { tap } from 'rxjs';
+
+import { SharedModule } from '../../../shared/shared.module';
+import { AuthModule } from '../../auth.module';
+
+import { UtilsService } from '../../../shared/services/utils.service';
 import { MessageService } from '../../../shared/services/message.service';
 
 interface FormType {
@@ -18,7 +20,7 @@ interface FormType {
 @Component({
   selector: 'auth-login',
   standalone: true,
-  imports: [SharedModule, WrapperComponent],
+  imports: [SharedModule, AuthModule],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

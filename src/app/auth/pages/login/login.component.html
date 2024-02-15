@@ -12,17 +12,9 @@
         matInput />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Contraseña</mat-label>
-      <mat-icon color="primary" matIconPrefix>password</mat-icon>
-      <mat-error>{{ form.controls.password.errors | error }}</mat-error>
-      <input
-        type="password"
-        placeholder="Ingrese su contraseñá"
-        autocomplete="current-password"
-        formControlName="password"
-        matInput />
-    </mat-form-field>
+    <auth-input-password
+      autocomplete="current-password"
+      [control]="form.controls.password" />
 
     <button
       type="submit"
