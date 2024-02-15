@@ -7,7 +7,7 @@ import { delay, of } from 'rxjs';
 export class UtilsService {
   constructor() {}
 
-  simulateHTTP<T>(time: number, data?: T) {
+  simulateHTTP<T>(time: number = 1000, data?: T) {
     return of(data).pipe(delay(time));
   }
 }
