@@ -1,8 +1,11 @@
 import { Component, inject } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { tap } from 'rxjs';
@@ -31,14 +34,36 @@ export class RegisterComponent {
   private readonly message = inject(MessageService);
   inProgress: boolean = false;
 
-  readonly form: FormGroup<FormType> = this.fb.group<FormType>({
-    email: this.fb.control(null, [Validators.required, Validators.email]),
-    password: this.fb.control(null, [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-    password_confirm: this.fb.control(null, [Validators.required]),
-  });
+  readonly form: FormGroup<FormType> = this.fb.group<FormType>(
+    {
+      email: this.fb.control(null, [Validators.required, Validators.email]),
+      password: this.fb.control(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      password_confirm: this.fb.control(null, [Validators.required]),
+    },
+    {
+      validators: [
+        this.matchValidator('password', 'password_confirm', 'confirmPassword'),
+      ],
+    }
+  );
+
+  matchValidator(from: string, to: string, error: string): ValidatorFn {
+    return (form: AbstractControl) => {
+      const fromControl = form.get(from);
+      const toControl = form.get(to);
+
+      const validatorError: ValidationErrors | null =
+        fromControl?.value === toControl?.value ? null : { [error]: true };
+
+      if (!toControl?.errors || toControl.errors[error]) {
+        toControl?.setErrors(validatorError);
+      }
+      return validatorError;
+    };
+  }
 
   submit() {
     this.inProgress = true;

@@ -5,7 +5,7 @@ const messages: { [key: string]: string } = {
   required: 'El campo es obligatorio',
   email: 'No es un email valido',
   minlength: 'Debe contener al menos {{ requiredLength }} caracteres',
-  // confirmPassword: 'Las contraseñas no coinciden',
+  confirmPassword: 'Las contraseñas no coinciden',
   // min: 'El campo debe ser mayor a',
   // minlength: 'Debe contener al menos',
   // maxlength: 'Debe contener como máximo',
