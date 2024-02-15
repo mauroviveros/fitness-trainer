@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,6 +21,7 @@ interface wrapper {
   styleUrl: './wrapper.component.scss',
 })
 export class WrapperComponent {
+  @Input() isLoading: boolean = false;
   private readonly route = inject(ActivatedRoute);
   readonly wrapper: wrapper = this.route.snapshot.data['wrapper'];
 }

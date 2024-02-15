@@ -1,4 +1,4 @@
-<auth-wrapper>
+<auth-wrapper [isLoading]="inProgress">
   <form [formGroup]="form" (submit)="submit()">
     <mat-form-field appearance="outline">
       <mat-label>Correo electrónico</mat-label>

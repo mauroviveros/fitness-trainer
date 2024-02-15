@@ -7,6 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { WrapperComponent } from '../../components/wrapper/wrapper.component';
+import { UtilsService } from '../../../shared/services/utils.service';
+import { tap } from 'rxjs';
+import { MessageService } from '../../../shared/services/message.service';
 
 interface FormType {
   email: FormControl<string | null>;
@@ -20,6 +23,9 @@ interface FormType {
 })
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly utils = inject(UtilsService);
+  private readonly message = inject(MessageService);
+  inProgress: boolean = false;
 
   readonly form: FormGroup<FormType> = this.fb.group<FormType>({
     email: this.fb.control(null, [Validators.required, Validators.email]),
@@ -30,6 +36,15 @@ export class LoginComponent {
   });
 
   submit() {
-    console.log(this.form.value);
+    this.inProgress = true;
+    this.utils
+      .simulateHTTP()
+      .pipe(
+        tap(() => (this.inProgress = false)),
+        tap(() => console.log(this.form.value))
+      )
+      .subscribe(() => {
+        this.message.success('Sesión iniciada correctamente');
+      });
   }
 }
