@@ -4,4 +4,4 @@ The Fitness Trainer project is a frontend web application designed for managing 
 ## 📜 License
 MIT © [Mauro Daniel Viveros][github-profile]
 
-[github-profile]: https://github.com/maurodviveros
+[github-profile]: https://github.com/mauroviveros
