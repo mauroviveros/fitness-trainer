@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 
 import { LoginComponent } from './auth/pages/login/login.component';
 import { RegisterComponent } from './auth/pages/register/register.component';
+import { HomeComponent } from './core/pages/home/home.component';
+import { ProfileComponent } from './core/pages/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -37,5 +39,17 @@ export const routes: Routes = [
         },
       },
     },
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    title: 'Fitness Trainer | Inicio',
+    component: HomeComponent,
+  },
+  {
+    path: 'profile',
+    pathMatch: 'full',
+    title: 'Fitness Trainer | Perfil',
+    component: ProfileComponent,
   },
 ];

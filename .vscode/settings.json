@@ -40,7 +40,8 @@
 
   "conventionalCommits.scopes": [
     "auth",
-    "shared"
+    "shared",
+    "core"
   ],
 
 }

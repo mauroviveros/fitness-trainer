@@ -1,0 +1,15 @@
+
+
+
+//
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+:host::ng-deep{
+  form .mdc-text-field--filled{
+    background-color: transparent;
+  }
+}
