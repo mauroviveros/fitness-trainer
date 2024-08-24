@@ -1,6 +1,0 @@
-<mat-list-item (click)="open(3)">
-  <mat-icon matListItemIcon>{{ categoryIcon }}</mat-icon>
-  <div matListItemTitle>{{ exercise.name | titlecase }}</div>
-  <span matListItemLine>{{ exercise.description }}</span>
-  <shared-actions matListItemMeta [actions]="actions" (action)="onAction($event)" (click)="$event.stopPropagation()"></shared-actions>
-</mat-list-item>

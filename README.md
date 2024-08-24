@@ -1,51 +1,27 @@
-# Fitness - Trainer
-The Fitness Trainer project is a frontend web application designed for managing routines and exercises for clients. This intuitive and user-friendly web application provides trainers with the ability to create and customize workout routines, while also enabling clients to access their assigned routines, track their performance, and receive personalized recommendations. Fitness Trainer offers a comprehensive and efficient experience for effective routine and exercise management, enhancing users' results and physical performance.
+# FitnessTrainer
 
-![Angular][angular-badge]
-![Firebase][firebase-badge]
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
-![ESLint][eslint-badge]
-![TypeScript][typescript-badge]
-![RxJS][rxjs-badge]
+## Development server
 
-## 📦 Requeriments
-- [NodeJS][nodejs-link] _v18.16.0_
-- [AngularCLI][angular-link] _v15.2.5_
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## 📟 Setup
+## Code scaffolding
 
-```typescript
-// src/environments/environment.ts
-export const environment = {
-  POWEREDBY: "<string URL || default: https://github.com/maurodviveros>",
-  MAX_LENGTH: "<number || default: 24>",
-};
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-export const FIREBASE = {
-  API_KEY             : "<api_key>",
-  APP_ID              : "<app_id>",
-  AUTH_DOMAIN         : "<auth_domain>",
-  MEASUREMENT_ID      : "<measurenment_id>",
-  MESSAGING_SENDER_ID : "<messaging_sender_id>",
-  PROJECT_ID          : "<project_id>",
-  STORAGE_BUCKET      : "<storage_bucket>"
-};
+## Build
 
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-```bash
-$ npm install
-$ npm start
-```
+## Running unit tests
 
-## 📜 License
-MIT © [Mauro Daniel Viveros][github-profile]
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-[github-profile]: https://github.com/maurodviveros
-[nodejs-link]: https://nodejs.org
-[angular-link]: https://angular.io
-[angular-badge]: https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white
-[firebase-badge]: https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase
-[eslint-badge]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
-[typescript-badge]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
-[rxjs-badge]: https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
