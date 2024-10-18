@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 
@@ -11,4 +11,6 @@ const MATERIAL_MODULES = [MatCardModule];
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
-export class AuthComponent {}
+export class AuthComponent {
+  @Input() orientation: 'left' | 'right' = 'left';
+}
