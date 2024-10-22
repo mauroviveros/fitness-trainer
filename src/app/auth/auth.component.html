@@ -1,11 +1,18 @@
 <aside>
-  <ng-content select="article" />
-  <img src="logo.png" alt="" />
+  <figure>
+    <img src="logo.png" alt="Fitness Trainer Logo" />
+  </figure>
 </aside>
 <main>
   <mat-card appearance="outlined">
+    <mat-card-header>
+      <ng-content select="header" />
+    </mat-card-header>
     <mat-card-content>
       <ng-content select="form" />
     </mat-card-content>
+    <mat-card-footer>
+      <ng-content select="footer" />
+    </mat-card-footer>
   </mat-card>
 </main>

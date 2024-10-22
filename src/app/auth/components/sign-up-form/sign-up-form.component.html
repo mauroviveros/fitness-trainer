@@ -1,4 +1,12 @@
-<auth-wrapper orientation="right">
+<auth-wrapper>
+  <header>
+    <h4>Sign Up</h4>
+  </header>
+  <footer>
+    <span>Lorem ipsum dolor sit amet.</span>
+    <a routerLink="/login" mat-button>Sign In</a>
+  </footer>
+
   <form [formGroup]="form">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
@@ -21,11 +29,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
+      <mat-label>Confirm password</mat-label>
       <mat-icon matPrefix>password</mat-icon>
       <input
         type="password"
-        formControlName="password"
+        [formControl]="password"
         autocomplete="current-password"
         matInput />
     </mat-form-field>
@@ -34,10 +42,4 @@
       Register
     </button>
   </form>
-
-  <article>
-    <h3>One of us?</h3>
-    <p>You're already part of the community! Log in to access your account.</p>
-    <a routerLink="/login" mat-stroked-button>SIGN IN</a>
-  </article>
 </auth-wrapper>

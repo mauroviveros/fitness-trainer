@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
 import { AuthComponent } from '@auth/auth.component';
 
 const MATERIAL_MODULES = [
@@ -27,7 +27,9 @@ const MATERIAL_MODULES = [
 })
 export class SignUpFormComponent {
   form = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
+
+  password = new FormControl(null, Validators.required);
 }

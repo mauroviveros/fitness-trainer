@@ -1,4 +1,12 @@
 <auth-wrapper>
+  <header>
+    <h4>Sign In</h4>
+  </header>
+  <footer>
+    <span>Lorem ipsum dolor sit amet.</span>
+    <a routerLink="/register" mat-button>Sign Up</a>
+  </footer>
+
   <form [formGroup]="form">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
@@ -28,13 +36,4 @@
       Login
     </button>
   </form>
-
-  <article>
-    <h3>New here?</h3>
-    <p>
-      Sign up now and discover all the benefits of joining our community. It's
-      quick and easy!
-    </p>
-    <a routerLink="/register" mat-stroked-button>SIGN UP</a>
-  </article>
 </auth-wrapper>

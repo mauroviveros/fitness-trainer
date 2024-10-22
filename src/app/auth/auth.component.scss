@@ -1,49 +1,56 @@
-:host {
+:host{
   display: flex;
+  flex-direction: column;
   height: 100%;
-  background-color: pink;
 
-  main, aside{
+  aside{
+    flex-grow: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex: 1 1 0;
-  }
-
-  main {
-    mat-card {
-      min-width: 20rem;
-      width: 50%;
+    figure{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 60%;
+        padding: 1rem;
+      }
     }
   }
-
-  aside {
-    flex-direction: column;
-    border-radius: 0% 100% 100% 0% / 100% 0% 100% 0%;
-    gap: 2rem;
-    background-color: rgba(0, 0, 0, 0.1);
+  main{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 26rem;
   }
-
-  &[orientation=right]{
-    flex-direction: row-reverse;
-    aside {
-      flex-direction: column-reverse;
-      border-radius: 100% 0% 0% 100% / 100% 100% 0% 0%;
+  mat-card{
+    mat-card-content{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }
 
-:host::ng-deep {
-  form {
-    display: flex;
-    flex-direction: column;
+
+:host::ng-deep{
+  header{
+    width: 100%;
+    text-align: center;
   }
 
-  article {
+  footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .25rem;
+    padding: 1rem;
+  }
+
+  form{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10%;
   }
 }

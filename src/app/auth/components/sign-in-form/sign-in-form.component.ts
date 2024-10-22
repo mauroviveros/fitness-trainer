@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -6,16 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
-import { AuthComponent } from 'app/auth/auth.component';
+import { AuthComponent } from '@auth/auth.component';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
-  MatCardModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -29,7 +27,7 @@ const MATERIAL_MODULES = [
 })
 export class SignInFormComponent {
   form = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
 }
