@@ -14,10 +14,11 @@ The Fitness Trainer project is a frontend web application designed for managing 
 | :------------------------- | :------------------------------------------------------- |
 | `pnpm install`             | Installs dependencies                                    |
 | `pnpm start`               | Starts local dev server at `localhost:4200`              |
-| `pnpm run ng [command]`    | Runs Angular CLI commands (e.g., `ng generate`)          |
 | `pnpm run build`           | Build your production site to `./dist/fitness-trainer`   |
 | `pnpm run lint`            | Lints your code to ensure it adheres to the coding style |
 | `pnpm run test`            | Runs unit tests to verify application functionality      |
+| `pnpm run ng [command]`    | Runs Angular CLI commands (e.g., `ng generate`)          |
+| `pnpm version [type]`      | Bumps version and generates changelog                    |
 
 ## 📜 License
 MIT © [Mauro Daniel Viveros](./LICENSE)
