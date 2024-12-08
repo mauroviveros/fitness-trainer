@@ -61,8 +61,14 @@
               }
             ],
             "styles": [
+              "src/scss/theming.scss",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss/variables"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -120,8 +126,14 @@
               }
             ],
             "styles": [
+              "src/scss/theming.scss",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss/variables"
+              ]
+            },
             "scripts": []
           }
         },
