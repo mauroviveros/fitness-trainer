@@ -10,7 +10,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+<<<<<<< HEAD
     "isolatedModules": true,
+=======
+>>>>>>> refactor/angular17
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,

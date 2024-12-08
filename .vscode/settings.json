@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
@@ -13,6 +14,8 @@
     },
     "editor.formatOnSave": true
   },
+=======
+>>>>>>> refactor/angular17
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#b45050",
     "activityBar.background": "#b45050",
@@ -33,7 +36,35 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#923F3F",
+<<<<<<< HEAD
   "conventionalCommits.scopes": [
     "auth"
   ],
+=======
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true
+  },
+
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.inlineSuggest.enabled": true,
+
+  "conventionalCommits.scopes": [
+    "auth",
+    "shared",
+    "core"
+  ],
+
+>>>>>>> refactor/angular17
 }

@@ -9,5 +9,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+<<<<<<< HEAD
   title = 'fitness_trainer';
+=======
+  title = 'fitness-trainer';
+>>>>>>> refactor/angular17
 }

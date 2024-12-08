@@ -1,0 +1,27 @@
+<auth-wrapper [isLoading]="inProgress">
+  <form [formGroup]="form" (submit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo electrónico</mat-label>
+      <mat-icon color="primary" matIconPrefix>email</mat-icon>
+      <mat-error>{{ form.controls.email.errors | error }}</mat-error>
+      <input
+        type="email"
+        placeholder="Ingrese su email"
+        autocomplete="email"
+        formControlName="email"
+        matInput />
+    </mat-form-field>
+
+    <auth-input-password
+      autocomplete="current-password"
+      [control]="form.controls.password" />
+
+    <button
+      type="submit"
+      color="accent"
+      [disabled]="form.invalid"
+      mat-stroked-button>
+      Ingresar
+    </button>
+  </form>
+</auth-wrapper>

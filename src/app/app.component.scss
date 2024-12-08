@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+=======
+@import "breakpoints";
+
+:host{
+  max-width: $screen-xsmall;
+}
+
+:host, :host::ng-deep > router-outlet + *{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+>>>>>>> refactor/angular17

@@ -7,5 +7,10 @@
   "arrowParens": "avoid",
   "trailingComma": "es5",
   "bracketSameLine": true,
+<<<<<<< HEAD
   "printWidth": 80
+=======
+  "printWidth": 80,
+  "endOfLine": "auto"
+>>>>>>> refactor/angular17
 }
