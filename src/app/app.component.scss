@@ -1,0 +1,10 @@
+:host{
+  display: flex;
+  flex-grow: 1;
+}
+
+:host::ng-deep > router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

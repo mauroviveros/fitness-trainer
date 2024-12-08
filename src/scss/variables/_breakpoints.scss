@@ -18,3 +18,8 @@ $media-large-down   : "(max-width: #{$screen-large - $_diff})";
 $media-small-up     : "(min-width: #{$screen-xsmall})";
 $media-medium-up    : "(min-width: #{$screen-small})";
 $media-large-up     : "(min-width: #{$screen-medium})";
+
+
+$mobile   : $media-xsmall;
+$desktop  : $media-small-up;
+$tablet   : $media-small-down;
