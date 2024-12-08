@@ -1,6 +1,14 @@
 {
   "name": "fitness-trainer",
-  "version": "0.0.0",
+  "description": "The Fitness Trainer project is a frontend web application designed for managing routines and exercises for clients.",
+  "version": "2.1.2",
+  "author": {
+    "name": "Mauro Daniel Viveros",
+    "email": "maurod.viveros@gmail.com",
+    "url": "https://mauroviveros.github.io/"
+  },
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +17,6 @@
     "test": "ng test",
     "lint": "ng lint"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^19.0.0",
     "@angular/cdk": "19.0.2",

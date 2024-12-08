@@ -1,59 +1,28 @@
-# FitnessTrainer
+# Fitness - Trainer
+The Fitness Trainer project is a frontend web application designed for managing routines and exercises for clients. This intuitive and user-friendly web application provides trainers with the ability to create and customize workout routines, while also enabling clients to access their assigned routines, track their performance, and receive personalized recommendations. Fitness Trainer offers a comprehensive and efficient experience for effective routine and exercise management, enhancing users' results and physical performance.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+![Angular][angular-badge]
 
-## Development server
+![ESLint][eslint-badge]
 
-To start a local development server, run:
+## 📦 Requeriments
+- [NodeJS][nodejs-link] _v22.11.0_
+- [AngularCLI][angular-link] _v19.0.4_
 
-```bash
-ng serve
-```
+## 🧞 Commands
+| Command                    | Action                                                   |
+| :------------------------- | :------------------------------------------------------- |
+| `pnpm install`             | Installs dependencies                                    |
+| `pnpm start`               | Starts local dev server at `localhost:4200`              |
+| `pnpm run ng [command]`    | Runs Angular CLI commands (e.g., `ng generate`)          |
+| `pnpm run build`           | Build your production site to `./dist/fitness-trainer`   |
+| `pnpm run lint`            | Lints your code to ensure it adheres to the coding style |
+| `pnpm run test`            | Runs unit tests to verify application functionality      |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📜 License
+MIT © [Mauro Daniel Viveros](./LICENSE)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[nodejs-link]: https://nodejs.org
+[angular-link]: https://angular.dev
+[angular-badge]: https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white
+[eslint-badge]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
