@@ -2,11 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "pnpm",
-    "analytics": "dcb3dc12-7fbe-44aa-8d4a-f33b1a4f8084",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "packageManager": "pnpm"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -39,11 +35,6 @@
               }
             ],
             "styles": [
-<<<<<<< HEAD
-              "@angular/material/prebuilt-themes/azure-blue.css",
-=======
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
->>>>>>> refactor/angular17
               "src/styles.scss"
             ],
             "scripts": []
@@ -53,23 +44,13 @@
               "budgets": [
                 {
                   "type": "initial",
-<<<<<<< HEAD
                   "maximumWarning": "500kB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
-=======
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
->>>>>>> refactor/angular17
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
@@ -86,30 +67,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-<<<<<<< HEAD
-              "buildTarget": "fitness_trainer:build:production"
-            },
-            "development": {
-              "buildTarget": "fitness_trainer:build:development"
-=======
               "buildTarget": "fitness-trainer:build:production"
             },
             "development": {
               "buildTarget": "fitness-trainer:build:development"
->>>>>>> refactor/angular17
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-<<<<<<< HEAD
           "builder": "@angular-devkit/build-angular:extract-i18n"
-=======
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "fitness-trainer:build"
-          }
->>>>>>> refactor/angular17
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -121,44 +88,18 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-<<<<<<< HEAD
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
-=======
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
->>>>>>> refactor/angular17
               "src/styles.scss"
             ],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
-          }
         }
       }
     }
-<<<<<<< HEAD
-=======
-  },
-  "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
->>>>>>> refactor/angular17
   }
 }
