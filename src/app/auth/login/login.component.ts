@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { AuthWrapperComponent } from '@auth/auth.component';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -12,9 +13,10 @@ const MATERIAL_MODULES = [
   MatIconModule,
   MatInputModule
 ];
+
 @Component({
   selector: 'auth-login',
-  imports: [MATERIAL_MODULES],
+  imports: [MATERIAL_MODULES, AuthWrapperComponent],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

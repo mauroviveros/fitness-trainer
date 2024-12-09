@@ -1,53 +1,47 @@
 @use 'breakpoints';
 
-:host{
-  header{
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  header {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
 
-    img{
+    img {
       max-height: 10rem;
     }
   }
 
-  main{
+  main {
     flex-grow: 9;
 
-    @media #{breakpoints.$media-small-up}{
+    @media #{breakpoints.$media-small-up} {
       padding: 0 1rem;
-    }
-
-    mat-card{
-      @media #{breakpoints.$media-xsmall}{
-        height: 100%;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      mat-card-header{
-        justify-content: center;
-        padding: 1rem;
-      }
-
-      form{
-        display: flex;
-        flex-direction: column;
-      }
     }
   }
 }
 
-:host::ng-deep{
-  mat-card-header {
-    justify-content: center;
-    padding: 1rem;
-  }
+:host::ng-deep {
+  mat-card {
+    @media #{breakpoints.$media-xsmall} {
+      height: 100%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
 
-  form {
-    display: flex;
-    flex-direction: column;
+    mat-card-header {
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
