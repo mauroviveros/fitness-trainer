@@ -1,0 +1,37 @@
+@use 'breakpoints';
+
+:host{
+  header{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    img{
+      max-height: 10rem;
+    }
+  }
+
+  main{
+    flex-grow: 9;
+
+    mat-card{
+      @media #{breakpoints.$media-xsmall}{
+        height: 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      mat-card-header{
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      form{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

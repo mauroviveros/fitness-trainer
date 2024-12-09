@@ -1,6 +1,9 @@
+@use 'breakpoints';
+
 :host{
   display: flex;
   flex-grow: 1;
+  max-width: breakpoints.$screen-xsmall;
 }
 
 :host::ng-deep > router-outlet + * {

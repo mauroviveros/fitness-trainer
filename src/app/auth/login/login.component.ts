@@ -1,12 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
-const MATERIAL_MODULES = [MatCardModule];
-
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule
+];
 @Component({
-  selector: 'auth-login',
-  imports: [MATERIAL_MODULES, SignInFormComponent],
+  selector: 'ft-login',
+  imports: [MATERIAL_MODULES],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
