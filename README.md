@@ -7,7 +7,8 @@ The Fitness Trainer project is a frontend web application designed for managing 
 
 ## 📦 Requeriments
 - [NodeJS][nodejs-link] _v22.11.0_
-- [AngularCLI][angular-link] _v19.0.4_
+- [PNPm][pnpm-link] _v9.15.0_
+- [AngularCLI][angular-link] _v19.0.4_ (optional)
 
 ## 🧞 Commands
 | Command                    | Action                                                   |
@@ -24,6 +25,7 @@ The Fitness Trainer project is a frontend web application designed for managing 
 MIT © [Mauro Daniel Viveros](./LICENSE)
 
 [nodejs-link]: https://nodejs.org
+[pnpm-link]: https://pnpm.io/
 [angular-link]: https://angular.dev
 [angular-badge]: https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white
 [eslint-badge]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
