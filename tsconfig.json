@@ -19,7 +19,8 @@
     "module": "ES2022",
     "baseUrl": "src",
     "paths": {
-      "@auth/*": ["app/auth/*"]
+      "@auth/*": ["app/auth/*"],
+      "@pipes/*": ["app/shared/pipes/*"]
     }
   },
   "angularCompilerOptions": {
