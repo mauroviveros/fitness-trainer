@@ -9,7 +9,7 @@
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
-    typography: Roboto,
+    typography: 'Roboto',
     density: 0,
   ));
 }
@@ -17,4 +17,5 @@
 body {
   background: var(--mat-sys-secondary-container);
   color: var(--mat-sys-on-secondary-container);
+  font-family: 'Roboto';
 }
