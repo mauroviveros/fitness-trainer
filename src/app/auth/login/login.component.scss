@@ -16,6 +16,10 @@
   main{
     flex-grow: 9;
 
+    @media #{breakpoints.$media-small-up}{
+      padding: 0 1rem;
+    }
+
     mat-card{
       @media #{breakpoints.$media-xsmall}{
         height: 100%;
