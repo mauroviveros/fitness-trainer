@@ -39,3 +39,15 @@
     }
   }
 }
+
+:host::ng-deep{
+  mat-card-header {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}
