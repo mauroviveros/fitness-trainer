@@ -18,30 +18,38 @@
   }
 
   main {
-    flex-grow: 9;
-
     @media #{breakpoints.$media-small-up} {
-      padding: 0 1rem;
+      padding: 0 5rem;
+      flex-grow: 9;
     }
   }
 }
 
 :host::ng-deep {
   mat-card {
+    overflow: auto;
+
     @media #{breakpoints.$media-xsmall} {
       height: 100%;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
 
-    mat-card-header {
+    mat-card-footer{
+      display: flex;
       justify-content: center;
-      padding: 1rem;
+      background-color: rgba(0, 0, 0, .05);
+      overflow: hidden;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
+    mat-card-content {
+      flex-grow: 1;
+      padding: 1rem;
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 }

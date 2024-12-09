@@ -1,8 +1,5 @@
 <auth-wrapper>
   <mat-card appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
       <form>
         <mat-form-field appearance="outline">
@@ -20,5 +17,9 @@
         <button type="submit" mat-flat-button>Sign In</button>
       </form>
     </mat-card-content>
+
+    <mat-card-footer>
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </mat-card-footer>
   </mat-card>
 </auth-wrapper>
