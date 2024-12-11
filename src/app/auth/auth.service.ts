@@ -15,6 +15,10 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly message = inject(MessageService);
 
+  isSignedIn(): boolean {
+    return !!this.auth.currentUser;
+  }
+
   signIn(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then(() => {

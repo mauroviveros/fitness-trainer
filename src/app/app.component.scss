@@ -6,8 +6,26 @@
   max-width: breakpoints.$screen-xsmall;
 }
 
-:host::ng-deep > router-outlet + * {
+main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+
+  @media #{breakpoints.$media-small-up} and (min-height: breakpoints.$screen-xsmall) {
+    max-width: breakpoints.$screen-xsmall;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    border-radius: 1.5rem;
+    margin: 2rem 5rem;
+  }
+}
+
+:host::ng-deep > router-outlet + *,
+:host::ng-deep > main > router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @media #{breakpoints.$media-small-up} and (min-height: breakpoints.$screen-xsmall) {
+    overflow: auto;
+  }
 }

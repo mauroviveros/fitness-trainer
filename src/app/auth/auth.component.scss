@@ -17,9 +17,9 @@
     }
   }
 
-  main {
+  section {
     @media #{breakpoints.$media-small-up} {
-      padding: 0 5rem;
+      padding: 2rem 3rem;
       flex-grow: 9;
     }
   }
