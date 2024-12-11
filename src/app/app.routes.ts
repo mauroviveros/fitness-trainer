@@ -24,6 +24,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectLoggedInToHome }
   },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome }
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

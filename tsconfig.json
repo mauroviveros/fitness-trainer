@@ -20,6 +20,7 @@
     "baseUrl": "src",
     "paths": {
       "@auth/*": ["app/auth/*"],
+      "@shared/*": ["app/shared/*"],
       "@pipes/*": ["app/shared/pipes/*"],
       "@services/*": ["app/shared/services/*"]
     }

@@ -1,23 +1,42 @@
 <auth-wrapper>
   <mat-card appearance="outlined">
     <mat-card-content>
-      <form>
+      <form [formGroup]="form" (submit)="submit()">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <mat-icon matIconPrefix>email</mat-icon>
-          <input type="email" autocomplete="email" matInput />
+          <mat-error>{{ form.controls.email.errors | error }}</mat-error>
+          <input
+            type="email"
+            autocomplete="email"
+            formControlName="email"
+            matInput
+          />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
           <mat-icon matIconPrefix>password</mat-icon>
-          <input type="password" autocomplete="new-password" matInput />
+          <mat-error>{{ form.controls.password.errors | error }}</mat-error>
+
+          <input
+            type="password"
+            autocomplete="new-password"
+            formControlName="password"
+            matInput
+          />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Confirm Password</mat-label>
           <mat-icon matIconPrefix>password</mat-icon>
-          <input type="password" autocomplete="new-password" matInput />
+          <mat-error>{{ form.controls.confirm.errors | error }}</mat-error>
+          <input
+            type="password"
+            autocomplete="new-password"
+            formControlName="confirm"
+            matInput
+          />
         </mat-form-field>
 
         <button type="submit" mat-flat-button>Sign Up</button>

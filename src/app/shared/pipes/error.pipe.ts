@@ -5,7 +5,8 @@ const messages: Record<string, string> = {
   required: 'This field is required',
   email: 'Invalid email address',
   minlength: 'Must be at least {requiredLength} characters',
-  maxlength: 'Cannot be more than {requiredLength} characters'
+  maxlength: 'Cannot be more than {requiredLength} characters',
+  confirmPassword: 'Passwords do not match'
 };
 
 @Pipe({
