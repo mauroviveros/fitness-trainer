@@ -2,22 +2,24 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnInit
+  OnInit,
+  signal
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { AuthWrapperComponent } from '@auth/auth.component';
-import { AuthService } from '@auth/auth.service';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AuthWrapperComponent } from '@auth/auth.component';
+import { AuthService } from '@auth/auth.service';
 import { ErrorPipe } from '@pipes/error.pipe';
 import { confirmPaswordValidator } from '@shared/validators/confirmPassword.validator';
 
@@ -26,7 +28,8 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressBarModule
 ];
 
 @Component({
@@ -43,6 +46,7 @@ const MATERIAL_MODULES = [
 })
 export class RegisterComponent implements OnInit {
   private readonly auth = inject(AuthService);
+  readonly isLoading = signal(false);
 
   readonly form = new FormGroup({
     email: new FormControl('', {
@@ -78,6 +82,9 @@ export class RegisterComponent implements OnInit {
     if (this.form.invalid) return;
     if (!email || !password) return;
 
-    this.auth.signUp(email, password);
+    this.isLoading.set(true);
+    this.auth.signUp(email, password).then(() => {
+      this.isLoading.set(false);
+    });
   }
 }

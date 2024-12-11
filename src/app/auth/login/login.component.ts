@@ -1,17 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { AuthWrapperComponent } from '@auth/auth.component';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AuthWrapperComponent } from '@auth/auth.component';
 import { ErrorPipe } from '@pipes/error.pipe';
 import { AuthService } from '@auth/auth.service';
 
@@ -20,7 +26,8 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressBarModule
 ];
 
 @Component({
@@ -37,6 +44,7 @@ const MATERIAL_MODULES = [
 })
 export class LoginComponent {
   private readonly auth = inject(AuthService);
+  readonly isLoading = signal(false);
 
   readonly form = new FormGroup({
     email: new FormControl('', {
@@ -54,6 +62,9 @@ export class LoginComponent {
     if (this.form.invalid) return;
     if (!email || !password) return;
 
-    this.auth.signIn(email, password);
+    this.isLoading.set(true);
+    this.auth.signIn(email, password).finally(() => {
+      this.isLoading.set(false);
+    });
   }
 }
