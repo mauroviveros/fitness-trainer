@@ -3,7 +3,9 @@ import { ValidationErrors } from '@angular/forms';
 
 const messages: Record<string, string> = {
   required: 'This field is required',
-  email: 'Invalid email address'
+  email: 'Invalid email address',
+  minlength: 'Must be at least {requiredLength} characters',
+  maxlength: 'Cannot be more than {requiredLength} characters'
 };
 
 @Pipe({
@@ -14,6 +16,15 @@ export class ErrorPipe implements PipeTransform {
     if (!errors) return;
 
     const type = Object.keys(errors)[0];
-    return messages[type] || `ERROR: ${type}`;
+    const error = errors[type];
+    let message = messages[type] || `ERROR: ${type}`;
+
+    if (message && typeof error === 'object') {
+      message = message.replace(/{(\w+)}/g, (match, key) => {
+        return error[key] || match;
+      });
+    }
+
+    return message;
   }
 }
