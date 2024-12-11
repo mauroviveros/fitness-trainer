@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,7 +37,6 @@ const MATERIAL_MODULES = [
 })
 export class LoginComponent {
   private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
 
   readonly form = new FormGroup({
     email: new FormControl('', {
@@ -51,13 +50,10 @@ export class LoginComponent {
   });
 
   submit() {
+    const { email, password } = this.form.value;
     if (this.form.invalid) return;
+    if (!email || !password) return;
 
-    if (this.form.value.email && this.form.value.password) {
-      this.auth
-        .login(this.form.value.email, this.form.value.password)
-        .then(() => this.router.navigate(['/']))
-        .catch(error => console.error(error));
-    }
+    this.auth.signIn(email, password);
   }
 }

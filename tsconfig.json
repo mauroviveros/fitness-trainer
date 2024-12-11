@@ -20,7 +20,8 @@
     "baseUrl": "src",
     "paths": {
       "@auth/*": ["app/auth/*"],
-      "@pipes/*": ["app/shared/pipes/*"]
+      "@pipes/*": ["app/shared/pipes/*"],
+      "@services/*": ["app/shared/services/*"]
     }
   },
   "angularCompilerOptions": {
