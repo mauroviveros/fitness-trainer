@@ -1,8 +1,29 @@
 import { Routes } from '@angular/router';
-import { authRoutes } from '@auth/auth.routes';
+import {
+  AuthGuard,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo
+} from '@angular/fire/auth-guard';
+import { LoginComponent } from '@auth/login/login.component';
+import { RegisterComponent } from '@auth/register/register.component';
+import { HomeComponent } from './home/home.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 
 export const routes: Routes = [
-  //
-  ...authRoutes
-  // { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome }
+  },
+  { path: 'register', component: RegisterComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

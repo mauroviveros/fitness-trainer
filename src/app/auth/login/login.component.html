@@ -1,7 +1,7 @@
 <auth-wrapper>
   <mat-card appearance="outlined">
     <mat-card-content>
-      <form [formGroup]="form">
+      <form [formGroup]="form" (submit)="submit()">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <mat-icon matIconPrefix>email</mat-icon>
