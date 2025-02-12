@@ -33,4 +33,8 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#005cbb",
+  "conventionalCommits.scopes": [
+    "auth",
+    "home"
+  ],
 }
