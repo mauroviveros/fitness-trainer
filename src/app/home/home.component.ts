@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthService } from '@auth/auth.service';
+import { ShortcutsComponent } from './shortcuts/shortcuts.component';
 
 @Component({
-  selector: 'ft-home',
-  imports: [],
+  selector: 'home-wrapper',
+  imports: [ShortcutsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

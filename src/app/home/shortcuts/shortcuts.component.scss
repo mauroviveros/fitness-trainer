@@ -1,0 +1,11 @@
+mat-card-content{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+mat-card{
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  max-height: 19.5rem;
+}
