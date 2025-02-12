@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
     if (!email || !password) return;
 
     this.isLoading.set(true);
-    this.auth.signUp(email, password).then(() => {
+    this.auth.signUp(email, password).finally(() => {
       this.isLoading.set(false);
     });
   }
