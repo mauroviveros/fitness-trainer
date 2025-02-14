@@ -1,11 +1,22 @@
+@use '@angular/material' as mat;
+
 mat-card-content{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  place-items: center;
   gap: 1rem;
 }
 
 mat-card{
+  border-radius: 1.5rem;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  max-height: 19.5rem;
+  max-height: 22rem;
+  color: var(--mat-sys-on-secondary-container);
+}
+
+mat-card{
+  @include mat.card-overrides((
+    elevated-container-color: var(--mat-sys-secondary-container),
+  ));
 }
