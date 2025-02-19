@@ -11,11 +11,11 @@ mat-card{
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   max-height: 22rem;
-  color: var(--mat-sys-on-secondary-container);
+  color: var(--mat-sys-on-surface);
 }
 
 mat-card{
   @include mat.card-overrides((
-    elevated-container-color: var(--mat-sys-secondary-container),
+    elevated-container-color: var(--mat-sys-surface),
   ));
 }

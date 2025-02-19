@@ -11,6 +11,8 @@ main {
   overflow: hidden;
   flex-direction: column;
   flex-grow: 1;
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
 
   @media #{breakpoints.$media-small-up} and (min-height: breakpoints.$screen-xsmall) {
     max-width: breakpoints.$screen-xsmall;
@@ -21,7 +23,7 @@ main {
 }
 
 :host::ng-deep > router-outlet + *,
-:host::ng-deep > main > router-outlet + * {
+:host::ng-deep > main router-outlet + * {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
