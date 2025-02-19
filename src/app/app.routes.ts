@@ -7,6 +7,9 @@ import {
 import { LoginComponent } from '@auth/login/login.component';
 import { RegisterComponent } from '@auth/register/register.component';
 import { HomeComponent } from './home/home.component';
+import { LayoutComponent } from './layout/layout.component';
+
+import { routes as routesCustomers } from './modules/customers/customers.routes';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -14,9 +17,13 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: LayoutComponent,
     canActivate: [AuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin }
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'customers', children: routesCustomers }
+    ]
   },
   {
     path: 'login',
