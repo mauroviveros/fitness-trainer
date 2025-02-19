@@ -35,6 +35,7 @@
   "peacock.color": "#005cbb",
   "conventionalCommits.scopes": [
     "auth",
-    "home"
+    "home",
+    "customers"
   ],
 }
