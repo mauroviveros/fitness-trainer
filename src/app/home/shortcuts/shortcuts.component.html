@@ -1,13 +1,9 @@
-<mat-card>
-  <mat-card-content>
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-    <home-shortcuts-item />
-
-    <home-shortcuts-item />
-  </mat-card-content>
-</mat-card>
+@if (shortcuts.length) {
+  <mat-card>
+    <mat-card-content>
+      @for (shortcut of shortcuts; track $index) {
+        <home-shortcuts-item [shortcut]="shortcut" />
+      }
+    </mat-card-content>
+  </mat-card>
+}
