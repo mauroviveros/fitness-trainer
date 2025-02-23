@@ -1,0 +1,19 @@
+<mat-drawer-container>
+  <mat-drawer #drawer mode="over">
+    <mat-toolbar>I'm a drawer</mat-toolbar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="open sidenav"
+        (click)="drawer.open()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <router-outlet />
+  </mat-drawer-content>
+</mat-drawer-container>

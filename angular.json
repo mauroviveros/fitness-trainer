@@ -1,13 +1,21 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "pnpm",
+    "analytics": "4dcfcdd3-18e1-41ef-a901-ec2d9f41f8a3",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "fitness_trainer": {
+    "fitness-trainer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
+          "changeDetection": "OnPush",
           "skipTests": true
         },
         "@schematics/angular:class": {
@@ -34,30 +42,32 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "ft",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/fitness_trainer",
+            "outputPath": "dist/fitness-trainer",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
-              "src/theme.scss",
+              "src/scss/theming.scss",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/scss"
+                "src/scss/variables"
               ]
             },
             "scripts": []
@@ -67,24 +77,21 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -93,19 +100,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fitness_trainer:build:production"
+              "buildTarget": "fitness-trainer:build:production"
             },
             "development": {
-              "browserTarget": "fitness_trainer:build:development"
+              "buildTarget": "fitness-trainer:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "fitness_trainer:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -117,12 +121,20 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
+              "src/scss/theming.scss",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss/variables"
+              ]
+            },
             "scripts": []
           }
         },
@@ -136,124 +148,6 @@
           }
         }
       }
-    },
-    "admin": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/admin",
-      "sourceRoot": "projects/admin/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/admin",
-            "index": "projects/admin/src/index.html",
-            "main": "projects/admin/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "projects/admin/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/admin/src/favicon.ico",
-              "projects/admin/src/assets"
-            ],
-            "styles": [
-              "projects/admin/src/theme.scss",
-              "projects/admin/src/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/scss"
-              ]
-            },
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "admin:build:production"
-            },
-            "development": {
-              "browserTarget": "admin:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "admin:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/admin/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/admin/src/favicon.ico",
-              "projects/admin/src/assets"
-            ],
-            "styles": [
-              "projects/admin/src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/admin/**/*.ts",
-              "projects/admin/**/*.html"
-            ]
-          }
-        }
-      }
     }
-  },
-  "cli": {
-    "analytics": "36d2763b-7cf4-42fa-aa47-fe8f7e089c28",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
   }
 }

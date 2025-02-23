@@ -1,51 +1,41 @@
-
 {
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll.eslint": "always"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll.eslint": "always"
     },
-    "editor.formatOnSave": true
-  },
-
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.inlineSuggest.enabled": true,
-  "conventionalCommits.scopes": [
-    "core",
-    "core.auth",
-    "core.shared",
-    "exercise",
-    "customer",
-    "routine"
-  ],
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
+    "editor.formatOnSave": false
   },
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#b45050",
-    "activityBar.background": "#b45050",
+    "activityBar.activeBackground": "#0075ee",
+    "activityBar.background": "#0075ee",
     "activityBar.foreground": "#e7e7e7",
     "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#63bc63",
+    "activityBarBadge.background": "#ff9fce",
     "activityBarBadge.foreground": "#15202b",
     "commandCenter.border": "#e7e7e799",
-    "sash.hoverBorder": "#b45050",
-    "statusBar.background": "#923f3f",
+    "sash.hoverBorder": "#0075ee",
+    "statusBar.background": "#005cbb",
     "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#b45050",
-    "statusBarItem.remoteBackground": "#923f3f",
+    "statusBarItem.hoverBackground": "#0075ee",
+    "statusBarItem.remoteBackground": "#005cbb",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#923f3f",
+    "titleBar.activeBackground": "#005cbb",
     "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#923f3f99",
+    "titleBar.inactiveBackground": "#005cbb99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#923F3F"
+  "peacock.color": "#005cbb",
+  "conventionalCommits.scopes": [
+    "auth",
+    "home",
+    "customers"
+  ],
 }

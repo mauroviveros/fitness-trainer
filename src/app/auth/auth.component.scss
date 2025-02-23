@@ -1,0 +1,56 @@
+@use 'breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  header {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    img {
+      max-height: 10rem;
+    }
+  }
+
+  section {
+    @media #{breakpoints.$media-small-up} {
+      padding: 2rem 3rem;
+      flex-grow: 9;
+    }
+  }
+}
+
+:host::ng-deep {
+  mat-card {
+    overflow: auto;
+
+    @media #{breakpoints.$media-xsmall} {
+      height: 100%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    mat-card-footer{
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, .05);
+      overflow: hidden;
+    }
+
+    mat-card-content {
+      flex-grow: 1;
+      padding: 1rem;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+      }
+    }
+  }
+}

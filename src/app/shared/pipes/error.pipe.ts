@@ -1,37 +1,31 @@
-import { Pipe, PipeTransform } from "@angular/core";
-import { ValidationErrors } from "@angular/forms";
+import { Pipe, PipeTransform } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 
-import { environment } from "src/environments/environment";
-
-interface messages{ [key: string]: string }
-const messages: messages = {
-  required        : "El campo es obligatorio",
-  email           : "No es un email valido",
-  confirmPassword : "Las contraseñas no coinciden",
-  min             : "El campo debe ser mayor a",
-  minlength       : "Debe contener al menos",
-  maxlength       : "Debe contener como máximo",
-  videoUrl        : "Debe ser de Vimeo o YouTube",
-  exercise        : "El ejercicio seleccionado no existe"
+const messages: Record<string, string> = {
+  required: 'This field is required',
+  email: 'Invalid email address',
+  minlength: 'Must be at least {requiredLength} characters',
+  maxlength: 'Cannot be more than {requiredLength} characters',
+  confirmPassword: 'Passwords do not match'
 };
 
 @Pipe({
-  name: "error"
+  name: 'error'
 })
 export class ErrorPipe implements PipeTransform {
-  private readonly maxlength = environment.MAX_LENGTH || 24;
-
-  transform(errors: ValidationErrors | null, arg?: number): string | undefined {
-    if(!errors) return;
+  transform(errors: ValidationErrors | null): string | undefined {
+    if (!errors) return;
 
     const type = Object.keys(errors)[0];
+    const error = errors[type];
     let message = messages[type] || `ERROR: ${type}`;
 
-    if(type === "min") message = `${message}: ${arg === undefined ? NaN : arg}`;
-    if(type === "minlength") message = `${message}: ${arg === undefined ? NaN : arg} caracteres`;
-    if(type === "maxlength") message = `${message}: ${arg !== undefined ? arg : this.maxlength || NaN} caracteres`;
+    if (message && typeof error === 'object') {
+      message = message.replace(/{(\w+)}/g, (match, key) => {
+        return error[key] || match;
+      });
+    }
 
     return message;
   }
-
 }

@@ -1,6 +1,0 @@
-<mat-nav-list>
-  <mat-list-item *ngFor="let routine of routines" (click)="select(routine._id)">
-    <mat-icon matListItemIcon>fitness_center</mat-icon>
-    <div matListItemTitle>{{ routine.dateIN | date : 'mediumDate' }} - {{ routine.dateOUT | date : 'mediumDate' }}</div>
-  </mat-list-item>
-</mat-nav-list>
