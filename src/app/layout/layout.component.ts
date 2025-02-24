@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NavigationComponent } from './navigation/navigation.component';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -15,7 +16,7 @@ const MATERIAL_MODULES = [
 
 @Component({
   selector: 'layout-wrapper',
-  imports: [RouterOutlet, MATERIAL_MODULES],
+  imports: [RouterOutlet, NavigationComponent, MATERIAL_MODULES],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
