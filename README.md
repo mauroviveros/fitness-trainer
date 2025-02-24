@@ -7,8 +7,8 @@ The Fitness Trainer project is a frontend web application designed for managing 
 
 
 ## 📦 Requirements
-- [NodeJS][nodejs-link] _v22.11.0_
-- [PNPm][pnpm-link] _v9.15.0_
+- [NodeJS][nodejs-link] _v22.14.0_
+- [PNPm][pnpm-link] _v10.4.1_
 
 ## 🧞 Commands
 | Command               | Action                                                         |
