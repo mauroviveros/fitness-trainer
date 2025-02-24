@@ -19,7 +19,6 @@ The Fitness Trainer project is a frontend web application designed for managing 
 | `pnpm lint`           | Lints your code to ensure it adheres to the coding style       |
 | `pnpm test`           | Runs unit tests to verify application functionality            |
 | `pnpm ng [command]`   | Runs Angular CLI commands (e.g., `ng generate`)                |
-| `pnpm version [type]` | Bumps `[patch\|minor\|major]` version and updates CHANGELOG.md |
 
 ## 📜 License
 MIT © [Mauro Daniel Viveros](./LICENSE)

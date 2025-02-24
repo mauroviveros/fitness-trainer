@@ -1,7 +1,6 @@
 {
   "name": "fitness-trainer",
   "description": "The Fitness Trainer project is a frontend web application designed for managing routines and exercises for clients.",
-  "version": "2.1.2",
   "author": {
     "name": "Mauro Daniel Viveros",
     "email": "maurod.viveros@gmail.com",
@@ -9,19 +8,14 @@
   },
   "private": true,
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maurodviveros/fitness_trainer.git"
-  },
+  "repository": "github:mauroviveros/fitness_trainer",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "^19.1.7",
@@ -44,7 +38,6 @@
     "@angular/compiler-cli": "^19.1.7",
     "@types/jasmine": "~5.1.7",
     "angular-eslint": "19.1.0",
-    "conventional-changelog-cli": "^5.0.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
