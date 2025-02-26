@@ -12,29 +12,12 @@
     align-items: center;
     padding: 1rem;
 
-    img {
-      max-height: 10rem;
-    }
-  }
-
-  section {
-    @media #{breakpoints.$media-small-up} {
-      padding: 2rem 3rem;
-      flex-grow: 9;
-    }
+    img { max-height: 10rem; }
   }
 }
 
 :host::ng-deep {
   mat-card {
-    overflow: auto;
-
-    @media #{breakpoints.$media-xsmall} {
-      height: 100%;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
     mat-card-footer{
       display: flex;
       justify-content: center;
