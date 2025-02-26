@@ -21,7 +21,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
-      { path: '', component: HomeComponent },
+      {
+        path: '',
+        component: HomeComponent,
+        data: { navigation: { title: 'home', icon: 'home' } }
+      },
       { path: 'customers', children: routesCustomers }
     ]
   },

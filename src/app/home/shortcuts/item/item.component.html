@@ -1,5 +1,5 @@
-<a mat-fab>
-  <mat-icon>people</mat-icon>
+<a [routerLink]="shortcut().path" mat-fab>
+  <mat-icon>{{ shortcut().icon }}</mat-icon>
 </a>
 
-<span>Clientes</span>
+<span>{{ shortcut().title }}</span>
