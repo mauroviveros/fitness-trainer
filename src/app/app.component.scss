@@ -4,6 +4,7 @@
   display: flex;
   flex-grow: 1;
   max-width: breakpoints.$screen-xsmall;
+  width: 100%;
 }
 
 main {
@@ -11,11 +12,10 @@ main {
   overflow: hidden;
   flex-direction: column;
   flex-grow: 1;
-  background: var(--mat-sys-primary-container);
-  color: var(--mat-sys-on-primary-container);
+  background: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
 
-  @media #{breakpoints.$media-small-up} and (min-height: breakpoints.$screen-xsmall) {
-    max-width: breakpoints.$screen-xsmall;
+  @media #{breakpoints.$media-small-up} {
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
     border-radius: 1.5rem;
     margin: 2rem 5rem;
@@ -28,7 +28,7 @@ main {
   flex-direction: column;
   flex-grow: 1;
 
-  @media #{breakpoints.$media-small-up} and (min-height: breakpoints.$screen-xsmall) {
+  @media #{breakpoints.$media-small-up} {
     overflow: auto;
   }
 }

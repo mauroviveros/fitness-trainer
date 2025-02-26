@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 
 import { routes as routesCustomers } from './modules/customers/customers.routes';
+import { routes as routesExercises } from './modules/exercises/exercises.routes';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -26,7 +27,8 @@ export const routes: Routes = [
         component: HomeComponent,
         data: { navigation: { title: 'home', icon: 'home' } }
       },
-      { path: 'customers', children: routesCustomers }
+      { path: 'customers', children: routesCustomers },
+      { path: 'exercises', children: routesExercises }
     ]
   },
   {

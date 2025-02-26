@@ -15,9 +15,3 @@ mat-card{
   height: 20rem;
   color: var(--mat-sys-on-surface);
 }
-
-mat-card{
-  @include mat.card-overrides((
-    elevated-container-color: var(--mat-sys-surface),
-  ));
-}
