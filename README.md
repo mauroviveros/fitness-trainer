@@ -20,6 +20,23 @@ The Fitness Trainer project is a frontend web application designed for managing 
 | `pnpm test`           | Runs unit tests to verify application functionality            |
 | `pnpm ng [command]`   | Runs Angular CLI commands (e.g., `ng generate`)                |
 
+## ⚙️ Environments
+Before running the project, you need to configure the necessary environment variables.  
+Below is a list of files you need to create and modify:
+- `src/environments/firebase.ts`:
+  ```ts
+  export const FIREBASE = {
+    apiKey: '',
+    authDomain: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: '',
+  }
+  ```
+  > To get your Firebase configuration, go to the [Firebase Console](https://console.firebase.google.com/)
+
 ## 📜 License
 MIT © [Mauro Daniel Viveros](./LICENSE)
 
