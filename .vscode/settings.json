@@ -36,6 +36,7 @@
   "conventionalCommits.scopes": [
     "auth",
     "home",
-    "customers"
+    "customers",
+    "shared"
   ],
 }
