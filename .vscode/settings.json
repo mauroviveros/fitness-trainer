@@ -37,6 +37,7 @@
     "auth",
     "home",
     "customers",
-    "shared"
+    "shared",
+    "exercises"
   ],
 }

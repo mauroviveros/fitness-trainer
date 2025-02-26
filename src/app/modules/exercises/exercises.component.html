@@ -1,0 +1,26 @@
+@if (exercises$ | async; as exercises) {
+  <mat-nav-list>
+    @for (exercise of exercises; track $index) {
+      <a mat-list-item>
+        <mat-icon matListItemIcon>fitness_center</mat-icon>
+        <span matListItemTitle>{{ exercise.name }}</span>
+        <p matListItemLine>{{ exercise.video }}</p>
+
+        <div matListItemMeta>
+          <button mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </a>
+    }
+  </mat-nav-list>
+} @else {
+  <mat-spinner></mat-spinner>
+}
+
+<button mat-fab style="position: absolute; bottom: 16px; right: 16px">
+  <mat-icon>add</mat-icon>
+</button>

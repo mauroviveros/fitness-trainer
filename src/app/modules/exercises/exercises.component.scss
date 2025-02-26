@@ -1,0 +1,14 @@
+:host{
+  align-items: center;
+  justify-content: center;
+}
+mat-nav-list{
+  width: 100%;
+  flex: 1;
+}
+
+[matListItemMeta]{
+  display: flex !important;
+  align-items: center;
+  height: 100%;
+}
