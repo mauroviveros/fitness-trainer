@@ -38,10 +38,12 @@ $border-radius: 1.5rem;
    flex-direction: column;
    flex-grow: 1;
 
-  @media #{breakpoints.$media-small-up} {
-    mat-card.mat-mdc-card-outlined{
-      border-bottom-right-radius: $border-radius;
-      border-bottom-left-radius: $border-radius;
+   mat-card.mat-mdc-card-outlined{
+    --border-radius: 0;
+    @media #{breakpoints.$media-small-up} {
+      --border-radius: $border-radius;
     }
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
   }
 }
