@@ -1,3 +1,29 @@
 <main>
-  <router-outlet />
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      type="button"
+      aria-label="open sidenav"
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-drawer-container>
+    <mat-drawer #drawer mode="over">
+      <mat-nav-list>
+        @for (route of routes; track $index) {
+          <a [routerLink]="route.path" (click)="drawer.close()" mat-list-item>
+            <mat-icon matListItemIcon>{{ route.icon }}</mat-icon>
+            <p matListItemTitle>{{ route.title }}</p>
+          </a>
+        }
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <router-outlet />
+    </mat-drawer-content>
+  </mat-drawer-container>
 </main>

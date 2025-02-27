@@ -5,29 +5,40 @@
   flex-grow: 1;
   max-width: breakpoints.$screen-xsmall;
   width: 100%;
-}
 
-main {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  flex-grow: 1;
-  background: var(--mat-sys-background);
-  color: var(--mat-sys-on-background);
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    background: var(--mat-sys-background);
+    color: var(--mat-sys-on-background);
 
-  @media #{breakpoints.$media-small-up} {
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    border-radius: 1.5rem;
-    margin: 2rem 5rem;
+    @media #{breakpoints.$media-small-up} {
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      border-radius: 1.5rem;
+      margin: 2rem 5rem;
+    }
+
+    mat-drawer-container{
+      flex-grow: 1;
+
+      mat-drawer-content{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: auto;
+      }
+    }
   }
 }
 
-:host::ng-deep > router-outlet + *,
-:host::ng-deep > main router-outlet + * {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+:host::ng-deep router-outlet + * {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
 
+  // TODO ver si es necesario solo usar scroll en desktop
   @media #{breakpoints.$media-small-up} {
     overflow: auto;
   }

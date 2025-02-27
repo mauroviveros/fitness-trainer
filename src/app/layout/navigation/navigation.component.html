@@ -1,8 +1,0 @@
-<mat-nav-list>
-  @for (route of routes; track $index) {
-    <a [routerLink]="route.path" (click)="selected.emit()" mat-list-item>
-      <mat-icon matListItemIcon>{{ route.icon }}</mat-icon>
-      <p matListItemTitle>{{ route.title }}</p>
-    </a>
-  }
-</mat-nav-list>
