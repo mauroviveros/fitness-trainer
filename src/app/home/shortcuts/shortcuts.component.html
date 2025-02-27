@@ -1,9 +1,0 @@
-@if (shortcuts.length) {
-  <mat-card appearance="outlined">
-    <mat-card-content>
-      @for (shortcut of shortcuts; track $index) {
-        <home-shortcuts-item [shortcut]="shortcut" />
-      }
-    </mat-card-content>
-  </mat-card>
-}

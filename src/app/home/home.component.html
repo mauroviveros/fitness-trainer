@@ -1,2 +1,61 @@
 <p>home works!</p>
-<home-shortcuts />
+
+@if (shortcuts.length) {
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <ul>
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab>
+              <mat-icon>{{ shortcut.icon }}</mat-icon>
+            </a>
+
+            <span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+        @for (shortcut of shortcuts; track $index) {
+          <li>
+            <a [routerLink]="shortcut.path" mat-fab
+              ><mat-icon>{{ shortcut.icon }}</mat-icon></a
+            ><span>{{ shortcut.title }}</span>
+          </li>
+        }
+      </ul>
+    </mat-card-content>
+  </mat-card>
+}
