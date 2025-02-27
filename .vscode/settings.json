@@ -1,17 +1,8 @@
 {
-  "[html]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "always"
-    },
-    "editor.formatOnSave": false
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "always"
-    },
-    "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
   },
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#0075ee",
@@ -39,5 +30,5 @@
     "customers",
     "shared",
     "exercises"
-  ],
+  ]
 }

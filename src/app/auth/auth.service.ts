@@ -18,7 +18,7 @@ export class AuthService {
 
   readonly isAuthenticated = signal<boolean>(false);
 
-  constructor(){
+  constructor() {
     authState(this.auth).subscribe(authState => {
       this.isAuthenticated.set(!!authState);
     });
@@ -26,8 +26,12 @@ export class AuthService {
 
   signIn(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
-      .then(() => {this.router.navigate(['/'])})
-      .catch(error => {this.message.error(error)});
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch(error => {
+        this.message.error(error);
+      });
   }
 
   signUp(email: string, password: string): Promise<void> {
@@ -35,13 +39,19 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/']);
       })
-      .catch(error => {this.message.error(error)});
+      .catch(error => {
+        this.message.error(error);
+      });
   }
 
   signOut(): Promise<void> {
     return this.auth
       .signOut()
-      .then(() => {this.router.navigate(['/login'])})
-      .catch(error => {this.message.error(error)});
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+      .catch(error => {
+        this.message.error(error);
+      });
   }
 }
