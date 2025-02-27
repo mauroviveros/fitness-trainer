@@ -1,8 +1,9 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   Auth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  authState
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MessageService } from '@services/message.service';
@@ -15,18 +16,18 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly message = inject(MessageService);
 
-  isSignedIn(): boolean {
-    return !!this.auth.currentUser;
+  readonly isAuthenticated = signal<boolean>(false);
+
+  constructor(){
+    authState(this.auth).subscribe(authState => {
+      this.isAuthenticated.set(!!authState);
+    });
   }
 
   signIn(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(error => {
-        this.message.error(error);
-      });
+      .then(() => {this.router.navigate(['/'])})
+      .catch(error => {this.message.error(error)});
   }
 
   signUp(email: string, password: string): Promise<void> {
@@ -34,19 +35,13 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/']);
       })
-      .catch(error => {
-        this.message.error(error);
-      });
+      .catch(error => {this.message.error(error)});
   }
 
   signOut(): Promise<void> {
     return this.auth
       .signOut()
-      .then(() => {
-        this.router.navigate(['/login']);
-      })
-      .catch(error => {
-        this.message.error(error);
-      });
+      .then(() => {this.router.navigate(['/login'])})
+      .catch(error => {this.message.error(error)});
   }
 }

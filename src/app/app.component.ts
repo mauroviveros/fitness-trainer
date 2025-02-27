@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavigationService } from '@shared/services/navigation.service';
+import { AuthService } from '@auth/auth.service';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -26,5 +27,6 @@ const MATERIAL_MODULES = [
 })
 export class AppComponent {
   readonly routes = inject(NavigationService).routes;
+  readonly isAuthenticated = inject(AuthService).isAuthenticated;
   title = 'fitness-trainer';
 }
