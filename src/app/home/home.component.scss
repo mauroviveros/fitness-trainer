@@ -33,10 +33,3 @@
     }
   }
 }
-
-a[mat-fab] {
-  @include mat.fab-overrides((
-    container-color: var(--mat-sys-primary),
-    foreground-color: var(--mat-sys-on-primary)
-  ));
-}
