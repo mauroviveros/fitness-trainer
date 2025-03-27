@@ -1,6 +1,6 @@
-import { inject } from '@angular/core';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
 
 export class FirestoreCollection<T> {
   private readonly firestore = inject(Firestore);

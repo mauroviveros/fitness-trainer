@@ -1,20 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-
+import { ExercisesService } from './exercises.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { ExercisesService } from './exercises.service';
 import { tap } from 'rxjs';
 
-const MATERIAL_MODULES = [
-  MatButtonModule,
-  MatIconModule,
-  MatListModule,
-  MatProgressSpinnerModule
-];
+const MATERIAL_MODULES = [MatButtonModule, MatIconModule, MatListModule, MatProgressSpinnerModule];
 @Component({
   selector: 'ft-exercises',
   imports: [AsyncPipe, MATERIAL_MODULES],

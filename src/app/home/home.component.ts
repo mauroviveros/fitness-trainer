@@ -1,19 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-
 import { NavigationService } from '@shared/services/navigation.service';
+import { RouterLink } from '@angular/router';
 
-const MATERIAL_MODULES = [
-  MatButtonModule,
-  MatCardModule,
-  MatGridListModule,
-  MatIconModule
-];
+const MATERIAL_MODULES = [MatButtonModule, MatCardModule, MatGridListModule, MatIconModule];
 
 @Component({
   selector: 'home-wrapper',
@@ -24,7 +17,5 @@ const MATERIAL_MODULES = [
 })
 export class HomeComponent {
   private readonly navigation = inject(NavigationService);
-  readonly shortcuts = this.navigation.routes.filter(
-    ({ shortcut }) => shortcut
-  );
+  readonly shortcuts = this.navigation.routes.filter(({ shortcut }) => shortcut);
 }

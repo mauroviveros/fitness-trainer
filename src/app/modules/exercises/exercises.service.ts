@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { FirestoreCollection } from '@shared/classes/firestore-collection';
 import { Exercise } from '@shared/interfaces';
+import { FirestoreCollection } from '@shared/classes/firestore-collection';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'

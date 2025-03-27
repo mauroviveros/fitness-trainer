@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
 import { ExercisesComponent } from './exercises.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {

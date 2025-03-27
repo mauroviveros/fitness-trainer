@@ -1,25 +1,15 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  signal
-} from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@auth/auth.service';
+import { AuthWrapperComponent } from '@auth/auth.component';
+import { ErrorPipe } from '@pipes/error.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { AuthWrapperComponent } from '@auth/auth.component';
-import { ErrorPipe } from '@pipes/error.pipe';
-import { AuthService } from '@auth/auth.service';
+import { RouterLink } from '@angular/router';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -32,13 +22,7 @@ const MATERIAL_MODULES = [
 
 @Component({
   selector: 'auth-login',
-  imports: [
-    MATERIAL_MODULES,
-    ReactiveFormsModule,
-    RouterLink,
-    AuthWrapperComponent,
-    ErrorPipe
-  ],
+  imports: [MATERIAL_MODULES, ReactiveFormsModule, RouterLink, AuthWrapperComponent, ErrorPipe],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

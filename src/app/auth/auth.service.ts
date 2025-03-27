@@ -1,12 +1,7 @@
-import { inject, Injectable, signal } from '@angular/core';
-import {
-  Auth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  authState
-} from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Injectable, inject, signal } from '@angular/core';
 import { MessageService } from '@services/message.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

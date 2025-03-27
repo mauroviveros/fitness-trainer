@@ -1,12 +1,8 @@
-import { Routes } from '@angular/router';
-import {
-  AuthGuard,
-  redirectLoggedInTo,
-  redirectUnauthorizedTo
-} from '@angular/fire/auth-guard';
+import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from '@auth/login/login.component';
 import { RegisterComponent } from '@auth/register/register.component';
-import { HomeComponent } from './home/home.component';
+import { Routes } from '@angular/router';
 
 import { routes as routesCustomers } from './modules/customers/customers.routes';
 import { routes as routesExercises } from './modules/exercises/exercises.routes';
