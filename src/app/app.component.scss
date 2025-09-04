@@ -1,0 +1,55 @@
+@use 'breakpoints';
+
+$border-radius: 1.5rem;
+
+:host{
+  display: flex;
+  flex-grow: 1;
+  max-width: breakpoints.$screen-xsmall;
+  width: 100%;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+
+    @media #{breakpoints.$media-small-up} {
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      border-radius: $border-radius;
+      margin: 2rem 5rem;
+    }
+
+    mat-drawer-container{
+      flex-grow: 1;
+
+      mat-drawer-content{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+:host::ng-deep router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  mat-card.mat-mdc-card-outlined{
+    --border-radius: 0;
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    @media #{breakpoints.$media-small-up} {
+      --border-radius: #{$border-radius};
+    }
+  }
+
+  & > [mat-fab] {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

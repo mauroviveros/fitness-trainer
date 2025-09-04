@@ -1,0 +1,30 @@
+<auth-wrapper>
+  <mat-card appearance="outlined">
+    @if (isLoading()) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <mat-card-content>
+      <form [formGroup]="form" (submit)="submit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <mat-icon matIconPrefix>email</mat-icon>
+          <mat-error>{{ form.controls.email.errors | error }}</mat-error>
+          <input type="email" autocomplete="email" formControlName="email" matInput />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <mat-icon matIconPrefix>password</mat-icon>
+          <mat-error>{{ form.controls.email.errors | error }}</mat-error>
+          <input type="password" autocomplete="current-password" formControlName="password" matInput />
+        </mat-form-field>
+
+        <button type="submit" mat-flat-button>Sign In</button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </mat-card-footer>
+  </mat-card>
+</auth-wrapper>

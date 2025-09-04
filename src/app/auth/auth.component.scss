@@ -1,0 +1,39 @@
+@use 'breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  header {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    img { max-height: 10rem; }
+  }
+}
+
+:host::ng-deep {
+  mat-card {
+    mat-card-footer{
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, .05);
+      overflow: hidden;
+    }
+
+    mat-card-content {
+      flex-grow: 1;
+      padding: 1rem;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+      }
+    }
+  }
+}
